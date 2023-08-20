@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/AI/知识图谱.md",
+                "file": "source/_posts/编程语言/matlab/matlab基础语法.md",
                 "mode": "source",
                 "source": false
               }
@@ -33,13 +33,11 @@
         "type": "tabs",
         "children": [
           {
-            "id": "279dc09ec69ba133",
+            "id": "3c308b07cdf852b8",
             "type": "leaf",
             "state": {
-              "type": "file-explorer",
-              "state": {
-                "sortOrder": "alphabetical"
-              }
+              "type": "file-tree-view",
+              "state": {}
             }
           },
           {
@@ -48,7 +46,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/AI/知识图谱.md"
+                "file": "source/_posts/编程语言/matlab/matlab基础语法.md"
               }
             }
           },
@@ -80,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 290.5
+    "width": 308.5
   },
   "right": {
     "id": "bad03ea09745a182",
@@ -96,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/AI/知识图谱.md",
+                "file": "source/_posts/编程语言/matlab/matlab基础语法.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/AI/知识图谱.md",
+                "file": "source/_posts/编程语言/matlab/matlab基础语法.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -129,9 +127,19 @@
                 "useHierarchy": true
               }
             }
+          },
+          {
+            "id": "279dc09ec69ba133",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -142,11 +150,24 @@
     "hiddenItems": {
       "switcher:打开快速切换": false,
       "templates:插入模板": false,
-      "command-palette:打开命令面板": false
+      "command-palette:打开命令面板": false,
+      "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "062788e87a1cf5bb",
+  "active": "4af0893880c47a3f",
   "lastOpenFiles": [
+    "source/_posts/AI/深度学习/Self-Attention and cross-attention.md",
+    "source/_posts/计算机基础/计导/杂/三三.md",
+    "source/_posts/计算机基础/计导/杂/常量.md",
+    "source/_posts/编程语言/Python/遍历excel.md",
+    "source/_posts/编程语言/Python/pyqt5/1 初次使用PyQt5工具包编程/4 关闭窗口/4 关闭窗口.md",
+    "source/_posts/编程语言/Python/pyqt5/1 初次使用PyQt5工具包编程/2 设置程序图标/2 设置程序图标.md",
+    "source/_posts/编程语言/matlab/matlab基础语法.md",
+    "source/_posts/编程语言/前端/html5/图片标签/图片标签.md",
+    "source/_posts/编程语言/GIT/ssh.md",
+    "source/_posts/编程语言/GIT/git.md",
+    "source/_posts/编程语言/C++/c++ stl/vector.md",
+    "source/_posts/AI/知识图谱.md",
     "public/2023/08/dea4f69470e7.html",
     "public/categories/AI/强化学习/index.html",
     "public/categories/AI/强化学习/page/2/index.html",
@@ -157,7 +178,6 @@
     "public/categories/计算机基础/数据结构和算法/错题集/习题集/index.html",
     "public/categories/计算机基础/数据结构和算法/错题集/page/2",
     "public/categories/计算机基础/数据结构和算法/知识点/背包/index.html",
-    "public/categories/计算机基础/数据结构和算法/知识点/线性表/index.html",
     "source/_posts/AI/强化学习/基础/assets/截图_20230725135935.png",
     "source/_posts/AI/强化学习/基础/assets/截图_20230714140418.png",
     "source/_posts/AI/强化学习/基础/assets/Pasted image 20230714144916.png",
@@ -178,20 +198,9 @@
     "source/_posts/AI/强化学习/基础/1 多臂老虎机.md",
     "source/_posts/AI/强化学习/基础/0 RL基本概念.md",
     "source/_posts/AI/强化学习/spinning up/Intro to Policy Optimization.md",
-    "source/_posts/AI/深度学习/Self-Attention and cross-attention.md",
     "source/_posts/AI/机器学习/线性模型.md",
     "source/_posts/AI/机器学习/泛化能力.md",
     "source/_posts/AI/机器学习/机器学习相关术语.md",
-    "source/_posts/AI/机器学习/决策树.md",
-    "source/_posts/AI/强化学习/SAM.md",
-    "source/_posts/AI/强化学习/PPO.md",
-    "source/_posts/AI/强化学习/2023-8-3.md",
-    "source/_posts/AI/知识图谱.md",
-    "source/_posts/杂/颜色.md",
-    "source/_posts/杂/vscode tip.md",
-    "source/_posts/计算机基础/数据结构和算法/数据结构408/线性表/判断单链表是否有环.md",
-    "source/_posts/计算机基础/数据结构和算法/错题集/习题集/习题集.md",
-    "source/_posts/计算机基础/数据结构和算法/知识点/线性表/线性表.md",
-    "source/_posts/计算机基础/数据结构和算法/知识点/背包/背包.md"
+    "source/_posts/AI/机器学习/决策树.md"
   ]
 }

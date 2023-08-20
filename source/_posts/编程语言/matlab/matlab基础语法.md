@@ -1,3 +1,11 @@
+---
+title: matlab基础语法
+tags: []
+categories:
+  - 编程语言
+  - matlab
+date: 2023-08-21 05:03:56
+---
 # matlab基础语法
 
 ## 变量

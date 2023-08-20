@@ -25,7 +25,7 @@
   "setLastSaveToLastCommit": false,
   "submoduleRecurseCheckout": false,
   "gitDir": "",
-  "showFileMenu": true,
+  "showFileMenu": false,
   "lineAuthor": {
     "show": false,
     "followMovement": "inactive",
