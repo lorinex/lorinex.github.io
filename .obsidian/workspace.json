@@ -11,12 +11,8 @@
             "id": "4af0893880c47a3f",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/是不是要成功了.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/是不是要成功了.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/是不是要成功了.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "source/_posts/是不是要成功了.md"
-              }
+              "state": {}
             }
           },
           {
@@ -154,16 +146,53 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "062788e87a1cf5bb",
+  "active": "4af0893880c47a3f",
   "lastOpenFiles": [
-    "public/2023/08/e3b114bfb7a5.html",
-    "Pasted image 20230821040035.png",
-    "source/_obsidian/Post Template.md",
-    "source/_posts/是不是要成功了.md",
-    "source/_posts/分类/决策树_副本.md",
-    "source/_posts/分类/Untitled.md",
-    "public/2023/08/64b7e6941b0b.html",
-    "source/_posts/hello-world.md",
-    "source/_obsidian"
+    "source/_posts/Intro to Policy Optimization.pdf",
+    "source/_posts/AI/强化学习/基础/assets/截图_20230725135935.png",
+    "source/_posts/AI/强化学习/基础/assets/截图_20230714140418.png",
+    "source/_posts/AI/强化学习/基础/assets/Pasted image 20230714144916.png",
+    "source/_posts/AI/强化学习/基础/assets/Pasted image 20230714144458.png",
+    "source/_posts/AI/强化学习/spinning up/assets/截屏2023-08-02 14.42.05.png",
+    "source/_posts/AI/强化学习/spinning up/assets/截屏2023-08-02 14.24.09.png",
+    "source/_posts/AI/强化学习/spinning up/assets/Pasted image 20230802164644.png",
+    "source/_posts/AI/强化学习/spinning up/assets/截图_20230728154930.png",
+    "source/_posts/AI/强化学习/spinning up/assets/Pasted image 20230802164610.png",
+    "source/_posts/AI/强化学习/spinning up/assets/Pasted image 20230802162658.png",
+    "source/_posts/AI/强化学习/相关论文/arXiv20230727-Med-Flamingo-a Multimodal Medical Few Shot Learner.pdf",
+    "source/_posts/AI/强化学习/相关论文/arXiv20230726-Towards Generalist Biomedical AI.pdf",
+    "source/_posts/AI/强化学习/相关论文/MED-FLAMINGO A MULTIMODAL MEDICAL FEWSHOT LEARNER.md",
+    "source/_posts/AI/强化学习/基础/策略学习 (Policy-Based Reinforcement Learning).md",
+    "source/_posts/AI/强化学习/基础/价值学习 (Value-Based Reinforcement Learning).md",
+    "source/_posts/AI/强化学习/基础/assets",
+    "source/_posts/AI/强化学习/基础/5 Dyna-Q算法.md",
+    "source/_posts/AI/强化学习/基础/4 时序差分算法.md",
+    "source/_posts/AI/强化学习/基础/3 动态规划算法.md",
+    "source/_posts/AI/强化学习/基础/2 马尔可夫决策过程.md",
+    "source/_posts/AI/强化学习/基础/1 多臂老虎机.md",
+    "source/_posts/AI/强化学习/spinning up/assets",
+    "source/_posts/AI/强化学习/基础/0 RL基本概念.md",
+    "source/_posts/AI/强化学习/spinning up/Intro to Policy Optimization.md",
+    "source/_posts/AI/深度学习/Self-Attention and cross-attention.md",
+    "source/_posts/AI/机器学习/线性模型.md",
+    "source/_posts/AI/机器学习/泛化能力.md",
+    "source/_posts/AI/机器学习/机器学习相关术语.md",
+    "source/_posts/AI/机器学习/决策树.md",
+    "source/_posts/AI/机器学习/assets",
+    "source/_posts/AI/强化学习/相关论文",
+    "source/_posts/AI/强化学习/基础",
+    "source/_posts/AI/强化学习/spinning up",
+    "source/_posts/AI/强化学习/assets",
+    "source/_posts/AI/强化学习/SAM.md",
+    "source/_posts/AI/强化学习/PPO.md",
+    "source/_posts/AI/强化学习/2023-8-3.md",
+    "source/_posts/AI/books/机器学习_周志华.pdf",
+    "source/_posts/AI/知识图谱.md",
+    "source/_posts/杂/颜色.md",
+    "source/_posts/杂/vscode tip.md",
+    "source/_posts/计算机基础/数据结构和算法/数据结构408/线性表/判断单链表是否有环.md",
+    "source/_posts/计算机基础/数据结构和算法/错题集/习题集/习题集.md",
+    "source/_posts/计算机基础/数据结构和算法/知识点/线性表/线性表.md",
+    "source/_posts/计算机基础/数据结构和算法/知识点/背包/背包.md"
   ]
 }

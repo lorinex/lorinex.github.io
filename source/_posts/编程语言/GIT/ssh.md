@@ -1,0 +1,11 @@
+---
+categories:
+  - 编程语言
+  - GIT
+---
+# ssh
+
+```git
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCYE7723gfsbdh2mJekuvGosQmPF+3QC4bFdBZru6egJSrhKSHCC39d4+3ObN8GZbSy9sLbSZLcbaRWMw27pcHbg7BBoql5m0hYBQX3pLju9mN62A0VuazTYI+DLcK+YZYfDSGnMhLJpuotAMzl70znzn/JbchkSaVbwQ0yknbtDilW+n5UfwM4Sa3giGGiNLnvVXK/+QmPpswOYtYjDKXGjB/DcvhSfdxv3A8vQa9eeiB0GgaqjBZoaBNWT79HYLlpqPXl92J4wvYg9Plsy74CV7q9lGlfMuNem3WqeRYGbfQEHsMwXU41ZD9DIfI/neTsBf+1fBmR0J7DICzrEQ7/hC/VRdcngrlmQHl1pZkhk4fRWy6Uh9KWnIwjr99bA0oN3efc/GyalFsCyDSq4WO1XAezL6oHharNOdlRVgJFOKfmN4aLQun+1F3/KFIRHULzBkZWtvLOT98F+btEYC4jd0FgFGFbhdX/2Hd9IeuwVTXDchUSp+Wj57lm8rJwecc= 1187601935@qq.com
+```
+
