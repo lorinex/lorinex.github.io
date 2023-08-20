@@ -11,8 +11,12 @@
             "id": "4af0893880c47a3f",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/AI/知识图谱.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -39,6 +43,24 @@
             }
           },
           {
+            "id": "03fbcaa50a44b6c7",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "source/_posts/AI/知识图谱.md"
+              }
+            }
+          },
+          {
+            "id": "062788e87a1cf5bb",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
+            }
+          },
+          {
             "id": "2f9bf931f9da13a9",
             "type": "leaf",
             "state": {
@@ -52,20 +74,13 @@
                 "sortOrder": "alphabetical"
               }
             }
-          },
-          {
-            "id": "d3c450cd83cc7127",
-            "type": "leaf",
-            "state": {
-              "type": "bookmarks",
-              "state": {}
-            }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 290.5
   },
   "right": {
     "id": "bad03ea09745a182",
@@ -81,6 +96,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "source/_posts/AI/知识图谱.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,13 +113,14 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "source/_posts/AI/知识图谱.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
           },
           {
-            "id": "2be471f4e44c9d58",
+            "id": "31890dc1a143a80e",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -112,36 +129,18 @@
                 "useHierarchy": true
               }
             }
-          },
-          {
-            "id": "03fbcaa50a44b6c7",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {}
-            }
-          },
-          {
-            "id": "062788e87a1cf5bb",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {}
-            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
       "switcher:打开快速切换": false,
-      "graph:查看关系图谱": false,
-      "canvas:新建白板": false,
-      "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false
     }
