@@ -11,11 +11,28 @@
             "id": "0c1b6fca861d1c1b",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/hello-world.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "6fe2503283c9c249",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/分类/Untitled.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -81,6 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "source/_posts/分类/Untitled.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "source/_posts/分类/Untitled.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +137,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "source/_posts/分类/Untitled.md"
+              }
             }
           }
         ]
@@ -138,6 +159,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0c1b6fca861d1c1b",
-  "lastOpenFiles": []
+  "active": "279dc09ec69ba133",
+  "lastOpenFiles": [
+    "source/_posts/hello-world.md",
+    "source/_posts/分类/Untitled.md",
+    "source/_obsidian/Post Template.md",
+    "source/_obsidian"
+  ]
 }
