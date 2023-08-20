@@ -73,12 +73,12 @@
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 308.5
+    "width": 308.5,
+    "collapsed": true
   },
   "right": {
     "id": "bad03ea09745a182",
@@ -156,6 +156,7 @@
   },
   "active": "4af0893880c47a3f",
   "lastOpenFiles": [
+    "public/2023/08/f8d33071b309.html",
     "source/_posts/AI/深度学习/Self-Attention and cross-attention.md",
     "source/_posts/计算机基础/计导/杂/三三.md",
     "source/_posts/计算机基础/计导/杂/常量.md",
@@ -200,7 +201,6 @@
     "source/_posts/AI/强化学习/spinning up/Intro to Policy Optimization.md",
     "source/_posts/AI/机器学习/线性模型.md",
     "source/_posts/AI/机器学习/泛化能力.md",
-    "source/_posts/AI/机器学习/机器学习相关术语.md",
-    "source/_posts/AI/机器学习/决策树.md"
+    "source/_posts/AI/机器学习/机器学习相关术语.md"
   ]
 }
