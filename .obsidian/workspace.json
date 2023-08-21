@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/AI/SAM/PEFT.md",
+                "file": "source/_posts/AI/transformer.md",
                 "mode": "source",
                 "source": false
               }
@@ -46,7 +46,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/AI/SAM/PEFT.md"
+                "file": "source/_posts/AI/transformer.md"
               }
             }
           },
@@ -73,7 +73,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -93,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/AI/SAM/PEFT.md",
+                "file": "source/_posts/AI/transformer.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/AI/SAM/PEFT.md",
+                "file": "source/_posts/AI/transformer.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -153,10 +154,12 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "4af0893880c47a3f",
+  "active": "062788e87a1cf5bb",
   "lastOpenFiles": [
-    "source/_posts/AI/SAM/MSA.md",
+    "截图_20230821104828.png",
     "source/_posts/AI/SAM/PEFT.md",
+    "source/_posts/AI/transformer.md",
+    "source/_posts/AI/SAM/MSA.md",
     "Pasted image 20230821093210.png",
     "source/_posts/AI/强化学习/基础/2 马尔可夫决策过程.md",
     "source/_posts/AI/SAM",
@@ -182,8 +185,6 @@
     "source/_posts/编程语言/前端/html5/图片标签/图片标签.md",
     "source/_posts/编程语言/GIT/ssh.md",
     "source/_posts/编程语言/GIT/git.md",
-    "source/_posts/编程语言/C++/c++ stl/vector.md",
-    "source/_posts/AI/知识图谱.md",
     "public/2023/08/dea4f69470e7.html",
     "public/categories/AI/强化学习/index.html",
     "public/categories/AI/强化学习/page/2/index.html",
