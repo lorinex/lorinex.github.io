@@ -74,7 +74,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -154,7 +154,7 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "03fbcaa50a44b6c7",
+  "active": "062788e87a1cf5bb",
   "lastOpenFiles": [
     "source/_posts/AI/SAM/MSA.md",
     "source/_posts/AI/transformer.md",
