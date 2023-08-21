@@ -5,5 +5,8 @@
     "scaffolds/",
     "themes/"
   ],
-  "promptDelete": true
+  "promptDelete": true,
+  "newFileLocation": "current",
+  "attachmentFolderPath": "source/_posts/assets",
+  "useMarkdownLinks": true
 }

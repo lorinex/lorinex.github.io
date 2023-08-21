@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/AI/强化学习/基础/2 马尔可夫决策过程.md",
+                "file": "source/_posts/AI/SAM/PEFT.md",
                 "mode": "source",
                 "source": false
               }
@@ -46,7 +46,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/AI/强化学习/基础/2 马尔可夫决策过程.md"
+                "file": "source/_posts/AI/SAM/PEFT.md"
               }
             }
           },
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/AI/强化学习/基础/2 马尔可夫决策过程.md",
+                "file": "source/_posts/AI/SAM/PEFT.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/AI/强化学习/基础/2 马尔可夫决策过程.md",
+                "file": "source/_posts/AI/SAM/PEFT.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -155,6 +155,11 @@
   },
   "active": "4af0893880c47a3f",
   "lastOpenFiles": [
+    "source/_posts/AI/SAM/MSA.md",
+    "source/_posts/AI/SAM/PEFT.md",
+    "Pasted image 20230821093210.png",
+    "source/_posts/AI/强化学习/基础/2 马尔可夫决策过程.md",
+    "source/_posts/AI/SAM",
     "source/_posts/计算机基础/数据结构和算法/知识点/背包/背包.md",
     "source/_posts/计算机基础/计导/杂/常量.md",
     "source/_posts/计算机基础/计导/4.3 结构体.md",
@@ -164,7 +169,6 @@
     "source/_posts/计算机基础/计导/指针/1 &运算符.md",
     "source/_posts/AI/深度学习/Self-Attention and cross-attention.md",
     "source/_posts/AI/强化学习/基础/0 RL基本概念.md",
-    "source/_posts/AI/强化学习/基础/2 马尔可夫决策过程.md",
     "source/_posts/AI/强化学习/基础/4 时序差分算法.md",
     "source/_posts/AI/强化学习/spinning up/Intro to Policy Optimization.md",
     "source/_posts/AI/强化学习/基础/3 动态规划算法.md",
@@ -188,7 +192,6 @@
     "public/categories/计算机基础/数据结构和算法/错题集/page/2/index.html",
     "public/categories/计算机基础/数据结构和算法/数据结构408/page/2/index.html",
     "public/categories/计算机基础/数据结构和算法/错题集/习题集/index.html",
-    "public/categories/计算机基础/数据结构和算法/错题集/page/2",
     "source/_posts/AI/强化学习/基础/assets/截图_20230725135935.png",
     "source/_posts/AI/强化学习/基础/assets/截图_20230714140418.png",
     "source/_posts/AI/强化学习/基础/assets/Pasted image 20230714144916.png",
@@ -197,9 +200,6 @@
     "source/_posts/AI/强化学习/spinning up/assets/截屏2023-08-02 14.24.09.png",
     "source/_posts/AI/强化学习/spinning up/assets/Pasted image 20230802164644.png",
     "source/_posts/AI/强化学习/spinning up/assets/截图_20230728154930.png",
-    "source/_posts/AI/强化学习/spinning up/assets/Pasted image 20230802164610.png",
-    "source/_posts/AI/强化学习/spinning up/assets/Pasted image 20230802162658.png",
-    "source/_posts/AI/强化学习/相关论文/MED-FLAMINGO A MULTIMODAL MEDICAL FEWSHOT LEARNER.md",
-    "source/_posts/AI/强化学习/基础/策略学习 (Policy-Based Reinforcement Learning).md"
+    "source/_posts/AI/强化学习/spinning up/assets/Pasted image 20230802164610.png"
   ]
 }
