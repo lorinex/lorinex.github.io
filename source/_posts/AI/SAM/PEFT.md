@@ -22,3 +22,6 @@ Adapters 是最流行的PEFT 之一，基本的做法是在Transformer 中的基
 ![](source/_posts/AI/SAM/PEFT.assets/image-20230821150946351.png)
 Adapter由两个线性层以及残差连接组成，两个线性层中间有一个非线性激活层。为了控制adapter的参数量，一般会把adapter线性层设计成Down-Up的结构，即先对特征降维，然后再进行升维。
 
+Adapter 的数学表达式可以表示为： 
+$$h_{adapter} = h + (ReLU(hW_{a1} + b_{a1})W_{a2} + b_{a2})$$ , 其中 h 为adapter模块的输入， h \in \mathbb{R}^{n \times d_h} W_{a1} \in \mathbb{R}^{d_h \times d_a}, b_{a1} \in \mathbb{R}^{d_a}, W_{a2} \in \mathbb{R}^{d_a \times d_h}, b_{a2} \in \mathbb{R}^{d_h}, 且 d_a << d_h 。
+一般情况，Adapter模块新增的参数量为预训练模型参数量的 0.5\% - 8\% 。
