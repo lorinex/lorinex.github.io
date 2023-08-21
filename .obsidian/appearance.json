@@ -1,5 +1,6 @@
 {
-  "accentColor": "#3b7722",
+  "accentColor": "",
   "theme": "moonstone",
-  "cssTheme": "Light & Bright"
+  "cssTheme": "Border",
+  "baseFontSize": 19
 }
