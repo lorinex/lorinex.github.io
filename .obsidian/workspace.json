@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/AI/transformer.md",
+                "file": "source/_posts/杂/typora 操作.md",
                 "mode": "source",
                 "source": false
               }
@@ -46,7 +46,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/AI/transformer.md"
+                "file": "source/_posts/杂/typora 操作.md"
               }
             }
           },
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/AI/transformer.md",
+                "file": "source/_posts/杂/typora 操作.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/AI/transformer.md",
+                "file": "source/_posts/杂/typora 操作.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -156,9 +156,10 @@
   },
   "active": "062788e87a1cf5bb",
   "lastOpenFiles": [
+    "source/_posts/杂/vscode tip.md",
+    "source/_posts/AI/transformer.md",
     "截图_20230821104828.png",
     "source/_posts/AI/SAM/PEFT.md",
-    "source/_posts/AI/transformer.md",
     "source/_posts/AI/SAM/MSA.md",
     "Pasted image 20230821093210.png",
     "source/_posts/AI/强化学习/基础/2 马尔可夫决策过程.md",
@@ -200,7 +201,6 @@
     "source/_posts/AI/强化学习/spinning up/assets/截屏2023-08-02 14.42.05.png",
     "source/_posts/AI/强化学习/spinning up/assets/截屏2023-08-02 14.24.09.png",
     "source/_posts/AI/强化学习/spinning up/assets/Pasted image 20230802164644.png",
-    "source/_posts/AI/强化学习/spinning up/assets/截图_20230728154930.png",
-    "source/_posts/AI/强化学习/spinning up/assets/Pasted image 20230802164610.png"
+    "source/_posts/AI/强化学习/spinning up/assets/截图_20230728154930.png"
   ]
 }

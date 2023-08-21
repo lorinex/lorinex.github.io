@@ -1,12 +1,11 @@
 ---
-categories:
-  - 杂
+title: typora 操作  
+date: 2022-06-01 11:15:10  
+tags: []  
 ---
 # typora 操作
 
 ## 颜色
-
-
 
 ```html
 **<font color=#f04b22>文件形式</font>**
