@@ -8,7 +8,7 @@ tags: [AI]
 > code: [https://github.com/WuJunde/Medical-SAM-Adapter](https://github.com/WuJunde/Medical-SAM-Adapter)
 > introduction: [https://mp.weixin.qq.com/s/ykEbDt_6lm9muKTDs6evHQ](https://mp.weixin.qq.com/s/ykEbDt_6lm9muKTDs6evHQ)
 
-![](Pasted%20image%2020230821093210.png)
+![](MSA.assets/image-20230821153238620.png)
 
 # Medical SAM Adapter: Adapting Segment Anything Model for Medical Image Segmentation
 
@@ -20,3 +20,5 @@ tags: [AI]
 ## Introduction
 prompt-based medical image segmentation
 Adaption 是指使用一种[[PEFT]]技术微调预训练过的SAM模型
+
+## Method

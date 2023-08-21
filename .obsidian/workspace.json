@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/AI/SAM/PEFT.md",
+                "file": "source/_posts/AI/SAM/MSA.md",
                 "mode": "source",
                 "source": false
               }
@@ -46,7 +46,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/AI/SAM/PEFT.md"
+                "file": "source/_posts/AI/SAM/MSA.md"
               }
             }
           },
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/AI/SAM/PEFT.md",
+                "file": "source/_posts/AI/SAM/MSA.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/AI/SAM/PEFT.md",
+                "file": "source/_posts/AI/SAM/MSA.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -156,6 +156,9 @@
   },
   "active": "062788e87a1cf5bb",
   "lastOpenFiles": [
+    "source/_posts/AI/SAM/MSA.assets/image-20230821153238620.png",
+    "source/_posts/AI/SAM/MSA.assets",
+    "source/_posts/AI/SAM/PEFT.md",
     "source/_posts/AI/SAM/MSA.md",
     "source/_posts/AI/transformer.md",
     "source/_posts/计算机基础/计导/1 程序设计语言.md",
@@ -163,7 +166,6 @@
     "source/_posts/计算机基础/计导/随机数.md",
     "source/_posts/计算机基础/计导/2 计算过程与算法.md",
     "source/_posts/计算机基础/计导/4.2 指针.md",
-    "source/_posts/AI/SAM/PEFT.md",
     "source/_posts/AI/SAM/PEFT.assets/image-20230821150946351.png",
     "source/_posts/AI/SAM/PEFT.assets",
     "source/_posts/AI/books/机器学习_周志华.pdf",
@@ -187,14 +189,12 @@
     "source/_posts/计算机基础/计导/指针/1 &运算符.md",
     "source/_posts/AI/深度学习/Self-Attention and cross-attention.md",
     "source/_posts/AI/强化学习/基础/0 RL基本概念.md",
-    "source/_posts/AI/强化学习/基础/4 时序差分算法.md",
     "public/2023/08/f8d33071b309.html",
     "public/2023/08/dea4f69470e7.html",
     "public/categories/AI/强化学习/index.html",
     "public/categories/AI/强化学习/page/2/index.html",
     "public/categories/AI/强化学习/page/2",
     "public/categories/AI/强化学习/page",
-    "public/categories/计算机基础/数据结构和算法/错题集/page/2/index.html",
     "source/_posts/AI/强化学习/基础/assets/截图_20230725135935.png",
     "source/_posts/AI/强化学习/基础/assets/截图_20230714140418.png",
     "source/_posts/AI/强化学习/基础/assets/Pasted image 20230714144916.png",
