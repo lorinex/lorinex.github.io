@@ -1,7 +1,7 @@
 ---
-categories:
-  - 计算机基础
-  - 计算机系统
+title: cmov条件传送指令  
+date: 2022-12-22 23:19:37  
+tags: []  
 ---
 <h3><a id="cmov_0"></a>cmov条件传送指令</h3> 
 <ul><li> <p><strong>指令介绍</strong></p> 

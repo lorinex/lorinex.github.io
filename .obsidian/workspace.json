@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/杂/typora 操作.md",
+                "file": "source/_posts/计算机基础/计算机系统/cmov条件传送指令.md",
                 "mode": "source",
                 "source": false
               }
@@ -46,7 +46,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/杂/typora 操作.md"
+                "file": "source/_posts/计算机基础/计算机系统/cmov条件传送指令.md"
               }
             }
           },
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/杂/typora 操作.md",
+                "file": "source/_posts/计算机基础/计算机系统/cmov条件传送指令.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/杂/typora 操作.md",
+                "file": "source/_posts/计算机基础/计算机系统/cmov条件传送指令.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -156,6 +156,9 @@
   },
   "active": "062788e87a1cf5bb",
   "lastOpenFiles": [
+    "source/_posts/计算机基础/计算机系统/gdb.md",
+    "source/_posts/计算机基础/计算机系统/缓冲区溢出.md",
+    "source/_posts/杂/typora 操作.md",
     "source/_posts/杂/vscode tip.md",
     "source/_posts/AI/transformer.md",
     "截图_20230821104828.png",
@@ -183,9 +186,6 @@
     "source/_posts/编程语言/Python/遍历excel.md",
     "source/_posts/编程语言/Python/pyqt5/1 初次使用PyQt5工具包编程/4 关闭窗口/4 关闭窗口.md",
     "source/_posts/编程语言/Python/pyqt5/1 初次使用PyQt5工具包编程/2 设置程序图标/2 设置程序图标.md",
-    "source/_posts/编程语言/前端/html5/图片标签/图片标签.md",
-    "source/_posts/编程语言/GIT/ssh.md",
-    "source/_posts/编程语言/GIT/git.md",
     "public/2023/08/dea4f69470e7.html",
     "public/categories/AI/强化学习/index.html",
     "public/categories/AI/强化学习/page/2/index.html",
