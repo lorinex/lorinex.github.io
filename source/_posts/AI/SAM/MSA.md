@@ -3,7 +3,6 @@ title: MSA
 date: 2023-08-21 09:33:31  
 tags: [AI]  
 ---
-#AI #paper
 
 > paper: [https://arxiv.org/pdf/2304.12620](https://arxiv.org/pdf/2304.12620)
 > code: [https://github.com/WuJunde/Medical-SAM-Adapter](https://github.com/WuJunde/Medical-SAM-Adapter)
