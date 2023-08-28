@@ -1,7 +1,9 @@
 ---
-title: typora 操作  
-date: 2022-06-01 11:15:10  
-tags: []  
+title: typora 操作
+tags: []
+categories:
+  - 杂
+date: 2022-06-01 11:15:10
 ---
 # typora 操作
 

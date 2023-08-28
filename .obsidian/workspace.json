@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/AI/SAM/MSA.md",
+                "file": "source/_posts/计算机基础/计导/3 问题求解方法——算法设计方法（子程序）.md",
                 "mode": "source",
                 "source": false
               }
@@ -46,7 +46,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/AI/SAM/MSA.md"
+                "file": "source/_posts/计算机基础/计导/3 问题求解方法——算法设计方法（子程序）.md"
               }
             }
           },
@@ -73,12 +73,11 @@
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 308.5
+    "width": 295.5
   },
   "right": {
     "id": "bad03ea09745a182",
@@ -94,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/AI/SAM/MSA.md",
+                "file": "source/_posts/计算机基础/计导/3 问题求解方法——算法设计方法（子程序）.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/AI/SAM/MSA.md",
+                "file": "source/_posts/计算机基础/计导/3 问题求解方法——算法设计方法（子程序）.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -154,53 +153,52 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "062788e87a1cf5bb",
+  "active": "4af0893880c47a3f",
   "lastOpenFiles": [
-    "source/_posts/AI/SAM/MSA.assets/image-20230821153238620.png",
-    "source/_posts/AI/SAM/MSA.assets",
-    "source/_posts/AI/SAM/PEFT.md",
-    "source/_posts/AI/SAM/MSA.md",
-    "source/_posts/AI/transformer.md",
-    "source/_posts/计算机基础/计导/1 程序设计语言.md",
-    "source/_posts/计算机基础/计导/指针/3 声明指针.md",
-    "source/_posts/计算机基础/计导/随机数.md",
-    "source/_posts/计算机基础/计导/2 计算过程与算法.md",
-    "source/_posts/计算机基础/计导/4.2 指针.md",
-    "source/_posts/AI/SAM/PEFT.assets/image-20230821150946351.png",
-    "source/_posts/AI/SAM/PEFT.assets",
-    "source/_posts/AI/books/机器学习_周志华.pdf",
-    "source/_posts/计算机基础/计算机系统/并发.md",
-    "source/_posts/计算机基础/计算机系统/gdb.md",
-    "source/_posts/计算机基础/计算机系统/C语言负数整形的除法和取余.md",
-    "source/_posts/计算机基础/计算机系统/cmov条件传送指令.md",
-    "source/_posts/计算机基础/计算机系统/缓冲区溢出.md",
-    "source/_posts/杂/typora 操作.md",
-    "source/_posts/杂/vscode tip.md",
+    "source/_posts/编程语言/matlab/matlab基础语法.md",
     "截图_20230821104828.png",
-    "Pasted image 20230821093210.png",
-    "source/_posts/AI/强化学习/基础/2 马尔可夫决策过程.md",
+    "source/_posts/杂/typora 操作.md",
+    "source/_posts/AI/transformer.md",
+    "source/_posts/AI/SAM/PEFT.assets/image-20230821150946351.png",
+    "source/_posts/AI/SAM/MSA.assets/image-20230821153238620.png",
+    "source/_posts/AI/SAM/PEFT.md",
+    "source/_posts/AI/SAM/PEFT.assets",
+    "source/_posts/AI/SAM/MSA.md",
+    "source/_posts/AI/SAM/MSA.assets",
     "source/_posts/AI/SAM",
-    "source/_posts/计算机基础/数据结构和算法/知识点/背包/背包.md",
-    "source/_posts/计算机基础/计导/杂/常量.md",
-    "source/_posts/计算机基础/计导/4.3 结构体.md",
-    "source/_posts/计算机基础/计导/指针/5 函数、数组和指针.md",
-    "source/_posts/计算机基础/数据结构和算法/错题集/1043 输出PATest.md",
-    "source/_posts/计算机基础/计导/3 问题求解方法——算法设计方法（子程序）.md",
-    "source/_posts/计算机基础/计导/指针/1 &运算符.md",
-    "source/_posts/AI/深度学习/Self-Attention and cross-attention.md",
-    "source/_posts/AI/强化学习/基础/0 RL基本概念.md",
+    "Pasted image 20230821093210.png",
     "public/2023/08/f8d33071b309.html",
+    "source/_posts/AI/深度学习/Self-Attention and cross-attention.md",
+    "source/_posts/计算机基础/计导/杂/三三.md",
+    "source/_posts/计算机基础/计导/杂/常量.md",
+    "source/_posts/编程语言/Python/遍历excel.md",
+    "source/_posts/编程语言/Python/pyqt5/1 初次使用PyQt5工具包编程/4 关闭窗口/4 关闭窗口.md",
+    "source/_posts/编程语言/Python/pyqt5/1 初次使用PyQt5工具包编程/2 设置程序图标/2 设置程序图标.md",
+    "source/_posts/编程语言/前端/html5/图片标签/图片标签.md",
+    "source/_posts/编程语言/GIT/ssh.md",
+    "source/_posts/编程语言/GIT/git.md",
+    "source/_posts/编程语言/C++/c++ stl/vector.md",
+    "source/_posts/AI/知识图谱.md",
     "public/2023/08/dea4f69470e7.html",
     "public/categories/AI/强化学习/index.html",
     "public/categories/AI/强化学习/page/2/index.html",
     "public/categories/AI/强化学习/page/2",
     "public/categories/AI/强化学习/page",
+    "public/categories/计算机基础/数据结构和算法/错题集/page/2/index.html",
     "source/_posts/AI/强化学习/基础/assets/截图_20230725135935.png",
     "source/_posts/AI/强化学习/基础/assets/截图_20230714140418.png",
     "source/_posts/AI/强化学习/基础/assets/Pasted image 20230714144916.png",
     "source/_posts/AI/强化学习/基础/assets/Pasted image 20230714144458.png",
     "source/_posts/AI/强化学习/spinning up/assets/截屏2023-08-02 14.42.05.png",
     "source/_posts/AI/强化学习/spinning up/assets/截屏2023-08-02 14.24.09.png",
-    "source/_posts/AI/强化学习/spinning up/assets/Pasted image 20230802164644.png"
+    "source/_posts/AI/强化学习/相关论文/MED-FLAMINGO A MULTIMODAL MEDICAL FEWSHOT LEARNER.md",
+    "source/_posts/AI/强化学习/基础/策略学习 (Policy-Based Reinforcement Learning).md",
+    "source/_posts/AI/强化学习/基础/价值学习 (Value-Based Reinforcement Learning).md",
+    "source/_posts/AI/强化学习/基础/5 Dyna-Q算法.md",
+    "source/_posts/AI/强化学习/基础/4 时序差分算法.md",
+    "source/_posts/AI/强化学习/基础/3 动态规划算法.md",
+    "source/_posts/AI/强化学习/基础/2 马尔可夫决策过程.md",
+    "source/_posts/AI/强化学习/基础/1 多臂老虎机.md",
+    "source/_posts/AI/强化学习/基础/0 RL基本概念.md"
   ]
 }

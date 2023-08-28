@@ -1,7 +1,11 @@
 ---
-title: transformer  
-date: 2023-08-21 10:45:36  
-tags: [机器学习,深度学习]  
+title: transformer
+tags:
+  - 机器学习
+  - 深度学习
+categories:
+  - AI
+date: 2023-08-21 10:45:36
 ---
 
 Transformer结构由 **Multi-Head Attention** 层、**Fully-Connected Feed Forward** 层、**Residual Connection** 以及 **Layer Normalization** 层组成

@@ -1,7 +1,12 @@
 ---
-title: PEFT  
-date: 2023-08-21 10:09:43  
-tags: [AI,大模型]  
+title: PEFT
+tags:
+  - AI
+  - 大模型
+categories:
+  - AI
+  - SAM
+date: 2023-08-21 10:09:43
 ---
 # parameter-efficient fine-tuning
 
