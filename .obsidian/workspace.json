@@ -73,8 +73,7 @@
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "horizontal",
@@ -154,7 +153,7 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "4af0893880c47a3f",
+  "active": "3c308b07cdf852b8",
   "lastOpenFiles": [
     "source/_posts/English",
     "source/_posts/未命名文件夹",
