@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/计算机基础/计导/计导.md",
+                "file": "source/_posts/计算机基础/计导/指针.md",
                 "mode": "source",
                 "source": false
               }
@@ -46,7 +46,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/计算机基础/计导/计导.md"
+                "file": "source/_posts/计算机基础/计导/指针.md"
               }
             }
           },
@@ -64,7 +64,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#ifnde",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/计算机基础/计导/计导.md",
+                "file": "source/_posts/计算机基础/计导/指针.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/计算机基础/计导/计导.md",
+                "file": "source/_posts/计算机基础/计导/指针.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -143,7 +143,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 304.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -155,13 +156,31 @@
   },
   "active": "062788e87a1cf5bb",
   "lastOpenFiles": [
-    "source/_posts/计算机基础/计导/杂/if.md",
     "source/_posts/计算机基础/计导/计导.md",
+    "source/_posts/计算机基础/计导/指针.md",
+    "source/_posts/计算机基础/计导/指针/指针.md",
+    "source/_posts/计算机基础/计导/指针/5 函数、数组和指针.md",
+    "source/_posts/计算机基础/计导/指针/4 指针和数组.md",
+    "source/_posts/计算机基础/计导/指针/3 声明指针.md",
+    "source/_posts/计算机基础/计导/指针/2 间接运算符.md",
+    "source/_posts/计算机基础/计导/指针/1 &运算符.md",
+    "source/_posts/计算机基础/计导/计导.assets/image-20230828205053737.png",
+    "source/_posts/计算机基础/计导/4.3 结构体.assets/8631252f-945e-4b6f-aeab-05d99d5ab3d4-13691659.jpg",
+    "source/_posts/计算机基础/计导/计导.assets/image-20230828204949673.png",
+    "source/_posts/计算机基础/计导/计导.assets/image-20230828204914615.png",
+    "source/_posts/计算机基础/计导/计导.assets/image-20230828204814861.png",
+    "source/_posts/计算机基础/计导/计导.assets",
+    "source/_posts/计算机基础/计导/变量类型/字符型的运算.md",
+    "source/_posts/计算机基础/计导/变量类型/逻辑运算（布尔型）.md",
+    "source/_posts/计算机基础/计导/变量类型/浮点数.md",
+    "public/2022/06/d3c2dd6427cb.html",
+    "public/categories/AI/SAM/index.html",
+    "public/categories/AI/SAM",
+    "source/_posts/计算机基础/计导/杂/if.md",
     "source/_posts/计算机基础/计导/杂/getchar();.md",
     "source/_posts/计算机基础/计导/杂/break和continue不要用.md",
     "source/_posts/计算机基础/计导/杂/三三.md",
     "source/_posts/计算机基础/计导/杂/常量.md",
-    "source/_posts/计算机基础/计导/4.3 结构体.assets/8631252f-945e-4b6f-aeab-05d99d5ab3d4-13691659.jpg",
     "source/_posts/计算机基础/计导/随机数.md",
     "source/_posts/计算机基础/计导/模块化工程.md",
     "source/_posts/计算机基础/计导/文件.md",
@@ -171,14 +190,6 @@
     "source/_posts/计算机基础/计导/4.1 数据结构初步——数组.md",
     "source/_posts/计算机基础/计导/3 问题求解方法——算法设计方法（子程序）.md",
     "source/_posts/计算机基础/计导/2 计算过程与算法.md",
-    "source/_posts/计算机基础/计导/指针/5 函数、数组和指针.md",
-    "source/_posts/计算机基础/计导/指针/4 指针和数组.md",
-    "source/_posts/计算机基础/计导/指针/3 声明指针.md",
-    "source/_posts/计算机基础/计导/指针/2 间接运算符.md",
-    "source/_posts/计算机基础/计导/指针/1 &运算符.md",
-    "source/_posts/计算机基础/计导/指针/0 指针.md",
-    "source/_posts/计算机基础/计导/变量类型/逻辑运算（布尔型）.md",
-    "source/_posts/计算机基础/计导/变量类型/浮点数.md",
     "source/_posts/计算机基础/计导/杂/+=.md",
     "public/img/background.jpg",
     "public/img/flower.png",
@@ -188,17 +199,8 @@
     "public/archives/2022/06",
     "public/2023/08/d4d92bc2fd34.html",
     "public/2023/08/3d9fa0abef7f.html",
-    "public/2023/08/b08ccc4fa78a.html",
-    "public/2023/08/24f15a0277f4.html",
-    "public/2022/07/fb34ad419b9e.html",
-    "public/2022/06/01e2f236bde8.html",
-    "source/_posts/编程语言/matlab/matlab基础语法.md",
     "截图_20230821104828.png",
     "source/_posts/AI/SAM/PEFT.assets/image-20230821150946351.png",
-    "source/_posts/AI/SAM/MSA.assets/image-20230821153238620.png",
-    "Pasted image 20230821093210.png",
-    "source/_posts/AI/强化学习/基础/assets/截图_20230725135935.png",
-    "source/_posts/AI/强化学习/基础/assets/截图_20230714140418.png",
-    "source/_posts/AI/强化学习/基础/assets/Pasted image 20230714144916.png"
+    "source/_posts/AI/SAM/MSA.assets/image-20230821153238620.png"
   ]
 }
