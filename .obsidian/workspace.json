@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/计算机基础/计导/计导.md",
+                "file": "source/_posts/English/六级作文.md",
                 "mode": "source",
                 "source": false
               }
@@ -46,7 +46,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/计算机基础/计导/计导.md"
+                "file": "source/_posts/English/六级作文.md"
               }
             }
           },
@@ -73,7 +73,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -93,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/计算机基础/计导/计导.md",
+                "file": "source/_posts/English/六级作文.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/计算机基础/计导/计导.md",
+                "file": "source/_posts/English/六级作文.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -153,8 +154,13 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "3c308b07cdf852b8",
+  "active": "062788e87a1cf5bb",
   "lastOpenFiles": [
+    "source/_posts/计算机基础/计导/计导.md",
+    "source/_posts/English/六级作文.md",
+    "source/_posts/English/~$23上半年六级作文模板.docx",
+    "source/_posts/English/2023上半年翻译练习.docx",
+    "source/_posts/English/2023上半年六级作文模板.docx",
     "source/_posts/English",
     "source/_posts/未命名文件夹",
     "source/_posts/计算机基础/数据结构和算法/经验/技巧.md",
@@ -167,7 +173,6 @@
     "public/tags/计导，C语言",
     "public/tags/C语言，指针/index.html",
     "public/tags/C语言，指针",
-    "source/_posts/计算机基础/计导/计导.md",
     "source/_posts/计算机基础/计导/指针/指针.md",
     "source/_posts/计算机基础/计导/指针/5 函数、数组和指针.md",
     "source/_posts/计算机基础/计导/指针/4 指针和数组.md",
@@ -179,13 +184,9 @@
     "source/_posts/计算机基础/计导/计导.assets/image-20230828204949673.png",
     "source/_posts/计算机基础/计导/计导.assets/image-20230828204914615.png",
     "source/_posts/计算机基础/计导/计导.assets/image-20230828204814861.png",
-    "source/_posts/计算机基础/计导/计导.assets",
     "source/_posts/计算机基础/计导/变量类型/字符型的运算.md",
     "source/_posts/计算机基础/计导/变量类型/逻辑运算（布尔型）.md",
     "source/_posts/计算机基础/计导/变量类型/浮点数.md",
-    "public/2022/06/d3c2dd6427cb.html",
-    "public/categories/AI/SAM/index.html",
-    "public/categories/AI/SAM",
     "source/_posts/计算机基础/计导/杂/if.md",
     "source/_posts/计算机基础/计导/杂/getchar();.md",
     "source/_posts/计算机基础/计导/杂/break和continue不要用.md",
