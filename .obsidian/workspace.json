@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/AI/SAM/MSA.md",
+                "file": "source/_posts/English/六级作文.md",
                 "mode": "source",
                 "source": false
               }
@@ -46,7 +46,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/AI/SAM/MSA.md"
+                "file": "source/_posts/English/六级作文.md"
               }
             }
           },
@@ -64,7 +64,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#ifnde",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 308.5
+    "width": 269.5
   },
   "right": {
     "id": "bad03ea09745a182",
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/AI/SAM/MSA.md",
+                "file": "source/_posts/English/六级作文.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/AI/SAM/MSA.md",
+                "file": "source/_posts/English/六级作文.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -143,7 +143,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
+    "width": 304.5,
     "collapsed": true
   },
   "left-ribbon": {
@@ -156,51 +156,51 @@
   },
   "active": "062788e87a1cf5bb",
   "lastOpenFiles": [
-    "source/_posts/AI/SAM/MSA.assets/image-20230821153238620.png",
-    "source/_posts/AI/SAM/MSA.assets",
-    "source/_posts/AI/SAM/PEFT.md",
-    "source/_posts/AI/SAM/MSA.md",
-    "source/_posts/AI/transformer.md",
-    "source/_posts/计算机基础/计导/1 程序设计语言.md",
-    "source/_posts/计算机基础/计导/指针/3 声明指针.md",
-    "source/_posts/计算机基础/计导/随机数.md",
-    "source/_posts/计算机基础/计导/2 计算过程与算法.md",
-    "source/_posts/计算机基础/计导/4.2 指针.md",
-    "source/_posts/AI/SAM/PEFT.assets/image-20230821150946351.png",
-    "source/_posts/AI/SAM/PEFT.assets",
-    "source/_posts/AI/books/机器学习_周志华.pdf",
-    "source/_posts/计算机基础/计算机系统/并发.md",
-    "source/_posts/计算机基础/计算机系统/gdb.md",
-    "source/_posts/计算机基础/计算机系统/C语言负数整形的除法和取余.md",
-    "source/_posts/计算机基础/计算机系统/cmov条件传送指令.md",
+    "public/2023/08/dc2fe3e6f16b.html",
+    "public/categories/English/index.html",
+    "public/categories/English",
+    "source/_posts/计算机基础/计导/计导.md",
+    "source/_posts/English/六级作文.md",
+    "source/_posts/English/~$23上半年六级作文模板.docx",
+    "source/_posts/English/2023上半年翻译练习.docx",
+    "source/_posts/English/2023上半年六级作文模板.docx",
+    "source/_posts/English",
+    "source/_posts/未命名文件夹",
+    "source/_posts/计算机基础/数据结构和算法/经验/技巧.md",
+    "source/_posts/计算机基础/数据结构和算法/经验/知乎-acm经验1.md",
+    "source/_posts/计算机基础/计算机系统/异常控制流.md",
     "source/_posts/计算机基础/计算机系统/缓冲区溢出.md",
-    "source/_posts/杂/typora 操作.md",
-    "source/_posts/杂/vscode tip.md",
-    "截图_20230821104828.png",
-    "Pasted image 20230821093210.png",
-    "source/_posts/AI/强化学习/基础/2 马尔可夫决策过程.md",
-    "source/_posts/AI/SAM",
-    "source/_posts/计算机基础/数据结构和算法/知识点/背包/背包.md",
-    "source/_posts/计算机基础/计导/杂/常量.md",
-    "source/_posts/计算机基础/计导/4.3 结构体.md",
+    "source/_posts/计算机基础/计导/指针.md",
+    "public/2022/06/877d195b0d49.html",
+    "public/tags/计导，C语言/index.html",
+    "public/tags/计导，C语言",
+    "source/_posts/计算机基础/计导/指针/指针.md",
     "source/_posts/计算机基础/计导/指针/5 函数、数组和指针.md",
-    "source/_posts/计算机基础/数据结构和算法/错题集/1043 输出PATest.md",
-    "source/_posts/计算机基础/计导/3 问题求解方法——算法设计方法（子程序）.md",
+    "source/_posts/计算机基础/计导/指针/4 指针和数组.md",
+    "source/_posts/计算机基础/计导/指针/3 声明指针.md",
+    "source/_posts/计算机基础/计导/指针/2 间接运算符.md",
     "source/_posts/计算机基础/计导/指针/1 &运算符.md",
-    "source/_posts/AI/深度学习/Self-Attention and cross-attention.md",
-    "source/_posts/AI/强化学习/基础/0 RL基本概念.md",
-    "public/2023/08/f8d33071b309.html",
-    "public/2023/08/dea4f69470e7.html",
-    "public/categories/AI/强化学习/index.html",
-    "public/categories/AI/强化学习/page/2/index.html",
-    "public/categories/AI/强化学习/page/2",
-    "public/categories/AI/强化学习/page",
-    "source/_posts/AI/强化学习/基础/assets/截图_20230725135935.png",
-    "source/_posts/AI/强化学习/基础/assets/截图_20230714140418.png",
-    "source/_posts/AI/强化学习/基础/assets/Pasted image 20230714144916.png",
-    "source/_posts/AI/强化学习/基础/assets/Pasted image 20230714144458.png",
-    "source/_posts/AI/强化学习/spinning up/assets/截屏2023-08-02 14.42.05.png",
-    "source/_posts/AI/强化学习/spinning up/assets/截屏2023-08-02 14.24.09.png",
-    "source/_posts/AI/强化学习/spinning up/assets/Pasted image 20230802164644.png"
+    "source/_posts/计算机基础/计导/计导.assets/image-20230828205053737.png",
+    "source/_posts/计算机基础/计导/4.3 结构体.assets/8631252f-945e-4b6f-aeab-05d99d5ab3d4-13691659.jpg",
+    "source/_posts/计算机基础/计导/计导.assets/image-20230828204949673.png",
+    "source/_posts/计算机基础/计导/计导.assets/image-20230828204914615.png",
+    "source/_posts/计算机基础/计导/计导.assets/image-20230828204814861.png",
+    "source/_posts/计算机基础/计导/变量类型/字符型的运算.md",
+    "source/_posts/计算机基础/计导/变量类型/逻辑运算（布尔型）.md",
+    "source/_posts/计算机基础/计导/变量类型/浮点数.md",
+    "source/_posts/计算机基础/计导/杂/if.md",
+    "source/_posts/计算机基础/计导/杂/getchar();.md",
+    "source/_posts/计算机基础/计导/杂/break和continue不要用.md",
+    "source/_posts/计算机基础/计导/杂/三三.md",
+    "source/_posts/计算机基础/计导/杂/常量.md",
+    "source/_posts/计算机基础/计导/随机数.md",
+    "source/_posts/计算机基础/计导/模块化工程.md",
+    "source/_posts/计算机基础/计导/文件.md",
+    "source/_posts/计算机基础/计导/链表.md",
+    "public/img/background.jpg",
+    "public/img/flower.png",
+    "截图_20230821104828.png",
+    "source/_posts/AI/SAM/PEFT.assets/image-20230821150946351.png",
+    "source/_posts/AI/SAM/MSA.assets/image-20230821153238620.png"
   ]
 }

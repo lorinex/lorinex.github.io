@@ -1,7 +1,11 @@
 ---
-title: MSA  
-date: 2023-08-21 09:33:31  
-tags: [AI]  
+title: MSA
+tags:
+  - AI
+categories:
+  - AI
+  - SAM
+date: 2023-08-21 09:33:31
 ---
 
 > paper: [https://arxiv.org/pdf/2304.12620](https://arxiv.org/pdf/2304.12620)
