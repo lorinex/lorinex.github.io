@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/AI/SAM/PEFT.md",
+                "file": "source/_posts/AI/SAM/医学影像图片格式.md",
                 "mode": "source",
                 "source": false
               }
@@ -46,7 +46,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/AI/SAM/PEFT.md"
+                "file": "source/_posts/AI/SAM/医学影像图片格式.md"
               }
             }
           },
@@ -73,8 +73,7 @@
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "horizontal",
@@ -94,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/AI/SAM/PEFT.md",
+                "file": "source/_posts/AI/SAM/医学影像图片格式.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/AI/SAM/PEFT.md",
+                "file": "source/_posts/AI/SAM/医学影像图片格式.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -154,8 +153,10 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "062788e87a1cf5bb",
+  "active": "4af0893880c47a3f",
   "lastOpenFiles": [
+    "source/_posts/AI/SAM/PEFT.md",
+    "source/_posts/AI/SAM/医学影像图片格式.md",
     "source/_posts/AI/SAM/MSA.md",
     "source/_posts/计算机基础/计导/指针.md",
     "source/_posts/计算机基础/计导/计导.md",
@@ -165,7 +166,6 @@
     "source/_posts/English",
     "source/_posts/AI/SAM/MSA.assets/image-20230821153238620.png",
     "source/_posts/AI/SAM/MSA.assets",
-    "source/_posts/AI/SAM/PEFT.md",
     "source/_posts/AI/transformer.md",
     "source/_posts/计算机基础/计导/1 程序设计语言.md",
     "source/_posts/计算机基础/计导/指针/3 声明指针.md",
@@ -192,7 +192,6 @@
     "source/_posts/计算机基础/计导/指针/5 函数、数组和指针.md",
     "source/_posts/计算机基础/数据结构和算法/错题集/1043 输出PATest.md",
     "source/_posts/计算机基础/计导/3 问题求解方法——算法设计方法（子程序）.md",
-    "source/_posts/计算机基础/计导/指针/1 &运算符.md",
     "public/2023/08/f8d33071b309.html",
     "public/2023/08/dea4f69470e7.html",
     "public/categories/AI/强化学习/index.html",
