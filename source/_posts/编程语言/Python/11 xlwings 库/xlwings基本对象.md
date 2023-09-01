@@ -1,7 +1,11 @@
 ---
-title: xlwings基本对象  
-date: 2022-05-13 10:17:11  
-tags: []  
+title: xlwings基本对象
+tags: []
+categories:
+  - 编程语言
+  - Python
+  - 11 xlwings 库
+date: 2022-05-13 10:17:11
 ---
 
 ## 打开已保存的Excel文档  
