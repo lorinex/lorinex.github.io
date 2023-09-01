@@ -18,8 +18,19 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "ac6812bc3d9047a4",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.4.5"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -153,7 +164,7 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "4af0893880c47a3f",
+  "active": "ac6812bc3d9047a4",
   "lastOpenFiles": [
     "source/_posts/随笔",
     "source/_posts/未命名文件夹",
