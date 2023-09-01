@@ -23,9 +23,11 @@
             "id": "ac6812bc3d9047a4",
             "type": "leaf",
             "state": {
-              "type": "release-notes",
+              "type": "markdown",
               "state": {
-                "currentVersion": "1.4.5"
+                "file": "source/_posts/随笔/去去重去去 来时是来时.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -57,7 +59,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/编程语言/Python/11 xlwings 库/xlwings基本对象.md"
+                "file": "source/_posts/随笔/去去重去去 来时是来时.md"
               }
             }
           },
@@ -104,7 +106,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/编程语言/Python/11 xlwings 库/xlwings基本对象.md",
+                "file": "source/_posts/随笔/去去重去去 来时是来时.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -121,7 +123,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/编程语言/Python/11 xlwings 库/xlwings基本对象.md",
+                "file": "source/_posts/随笔/去去重去去 来时是来时.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
