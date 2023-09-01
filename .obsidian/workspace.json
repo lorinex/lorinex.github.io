@@ -73,7 +73,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -153,18 +154,12 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "062788e87a1cf5bb",
+  "active": "4af0893880c47a3f",
   "lastOpenFiles": [
-    "public/tags/计导/index.html",
-    "public/tags/C语言-指针/index.html",
-    "public/2023/08/eef8f22002ad.html",
-    "public/tags/C语言/index.html",
-    "public/tags/C语言",
-    "public/tags/C语言-指针",
-    "public/tags/计导",
+    "source/_posts/编程语言/Python/11 xlwings 库/xlwings基本对象.md",
+    "source/_posts/AI/SAM/医学影像图片格式.md",
     "source/_posts/AI/SAM/MSA.md",
     "source/_posts/AI/SAM/PEFT.md",
-    "source/_posts/AI/SAM/医学影像图片格式.md",
     "source/_posts/AI/SAM/医学影像图片格式.assets/image-20230829165513753.png",
     "source/_posts/AI/SAM/医学影像图片格式.assets/image-20230829164533327.png",
     "source/_posts/AI/SAM/医学影像图片格式.assets",
@@ -175,6 +170,7 @@
     "source/_posts/English/2023上半年六级作文模板.docx",
     "source/_posts/English",
     "source/_posts/AI/SAM/MSA.assets/image-20230821153238620.png",
+    "source/_posts/AI/SAM/MSA.assets",
     "source/_posts/AI/transformer.md",
     "source/_posts/计算机基础/计导/1 程序设计语言.md",
     "source/_posts/计算机基础/计导/指针/3 声明指针.md",
@@ -182,6 +178,8 @@
     "source/_posts/计算机基础/计导/2 计算过程与算法.md",
     "source/_posts/计算机基础/计导/4.2 指针.md",
     "source/_posts/AI/SAM/PEFT.assets/image-20230821150946351.png",
+    "source/_posts/AI/SAM/PEFT.assets",
+    "source/_posts/AI/books/机器学习_周志华.pdf",
     "source/_posts/计算机基础/计算机系统/并发.md",
     "source/_posts/计算机基础/计算机系统/gdb.md",
     "source/_posts/计算机基础/计算机系统/C语言负数整形的除法和取余.md",
@@ -192,11 +190,14 @@
     "截图_20230821104828.png",
     "Pasted image 20230821093210.png",
     "source/_posts/AI/强化学习/基础/2 马尔可夫决策过程.md",
+    "source/_posts/AI/SAM",
     "source/_posts/计算机基础/数据结构和算法/知识点/背包/背包.md",
     "source/_posts/计算机基础/计导/杂/常量.md",
     "source/_posts/计算机基础/计导/4.3 结构体.md",
     "source/_posts/计算机基础/计导/指针/5 函数、数组和指针.md",
     "source/_posts/计算机基础/数据结构和算法/错题集/1043 输出PATest.md",
+    "public/2023/08/f8d33071b309.html",
+    "public/2023/08/dea4f69470e7.html",
     "source/_posts/AI/强化学习/基础/assets/截图_20230725135935.png",
     "source/_posts/AI/强化学习/基础/assets/截图_20230714140418.png",
     "source/_posts/AI/强化学习/基础/assets/Pasted image 20230714144916.png",
