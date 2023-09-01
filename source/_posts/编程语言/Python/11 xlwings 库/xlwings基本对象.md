@@ -104,7 +104,7 @@ xw.Range((1,1),(3,3))
 
 1.  储存单个值  
 ```python
-    # 注意".value“  
+    # 注意".value"
     sht.range('A1').value=1
 ```
 2.  储存列表  
