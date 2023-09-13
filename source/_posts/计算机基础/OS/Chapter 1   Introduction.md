@@ -1,5 +1,8 @@
 ---
 title: Chapter 1   Introduction
+categories:
+  - 计算机基础
+  - OS
 date: 2023-09-12 09:26:35
 tags:
 ---
