@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/计算机基础/数据结构和算法/知识点/快速幂.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
                 "mode": "source",
                 "source": false
               }
@@ -46,7 +46,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/计算机基础/数据结构和算法/知识点/快速幂.md"
+                "file": "source/_posts/计算机基础/OS/Chapter 1   Introduction.md"
               }
             }
           },
@@ -77,7 +77,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 308.5
+    "width": 308.5,
+    "collapsed": true
   },
   "right": {
     "id": "bad03ea09745a182",
@@ -93,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/计算机基础/数据结构和算法/知识点/快速幂.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/计算机基础/数据结构和算法/知识点/快速幂.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -165,6 +166,7 @@
   },
   "active": "6331296bf7bc9de6",
   "lastOpenFiles": [
+    "source/_posts/计算机基础/数据结构和算法/知识点/快速幂.md",
     "source/_posts/计算机基础/数据结构和算法/知识点/伪代码.md",
     "source/_posts/计算机基础/数据结构和算法/知识点/DP/DP.md",
     "source/_posts/计算机基础/数据结构和算法/知识点/迭代算法.md",
@@ -172,7 +174,6 @@
     "source/_posts/计算机基础/数据结构和算法/知识点/线性表/线性表.md",
     "source/_posts/计算机基础/数据结构和算法/知识点/算法概论.md",
     "source/_posts/计算机基础/数据结构和算法/知识点/最短路径问题/最短路径问题.md",
-    "source/_posts/计算机基础/数据结构和算法/知识点/快速幂.md",
     "source/_posts/计算机基础/数据结构和算法/知识点/并查集/并查集.md",
     "source/_posts/计算机基础/数据结构和算法/经验/技巧.md",
     "public/tags/算法/index.html",

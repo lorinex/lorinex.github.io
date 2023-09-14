@@ -12,6 +12,8 @@ Computer System Components
 ## 1.1 What Operating Systems do?
 ### 1.1.1 User view
 ### 1.1.2 System view
+- resource allocator
+- control program
 ### 1.1.3 Defining Operating Systems
 Kernel（nucleus）内核
 - OS is the one program **running at all times** on the computer.(all else being system programs and application programs)
