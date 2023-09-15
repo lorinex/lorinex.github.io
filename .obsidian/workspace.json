@@ -73,12 +73,12 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
-    "width": 308.5,
-    "collapsed": true
+    "width": 308.5
   },
   "right": {
     "id": "bad03ea09745a182",
@@ -164,8 +164,10 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "6331296bf7bc9de6",
+  "active": "062788e87a1cf5bb",
   "lastOpenFiles": [
+    "public/2023/09/def391c12a80.html",
+    "public/archives/2023/page/16/index.html",
     "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
     "source/_posts/计算机基础/数据库/数据库系统的基本概念.md",
     "source/_posts/计算机基础/数据结构和算法/知识点/快速幂.md",
@@ -181,7 +183,6 @@
     "public/tags/算法/index.html",
     "public/2023/09/ed60a771f669.html",
     "public/2023/09/c6451eda9afb.html",
-    "public/archives/2023/page/16/index.html",
     "public/tags/算法",
     "source/_posts/杂/asset",
     "source/_posts/杂/新建文件夹",
@@ -205,7 +206,6 @@
     "source/_posts/计算机基础/计导/指针/3 声明指针.md",
     "source/_posts/计算机基础/计导/随机数.md",
     "source/_posts/计算机基础/计导/2 计算过程与算法.md",
-    "source/_posts/计算机基础/计导/4.2 指针.md",
     "source/_posts/AI/SAM/PEFT.assets/image-20230821150946351.png",
     "截图_20230821104828.png",
     "Pasted image 20230821093210.png",
