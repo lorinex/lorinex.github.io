@@ -8,7 +8,6 @@
   "showFilesFromSubFoldersButton": true,
   "revealActiveFileButton": false,
   "excludedExtensions": "jpg,png,jpeg",
-  "excludedFolders": "source/_posts/计算机基础/操作系统",
   "folderIcon": "typicon",
   "folderCount": true,
   "folderCountOption": "notes",
