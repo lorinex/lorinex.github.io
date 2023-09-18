@@ -1,10 +1,10 @@
 ---
-categories:
-  - 编程语言
-  - Python
-  - 1 数据类型
-  - 字符串
+title: "'str' object does not support item assignment"
+date: 2023-09-18
+tags:
+  - python
 ---
+
 字符串是不可变的对象
 不能用下标赋值的方法去改变字符串
 **改变字符串的正确方法：**

@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/计算机基础/数据库/数据库系统的基本概念.md",
+                "file": "source/_posts/编程语言/Python/1 数据类型/字符串/字符串.md",
                 "mode": "source",
                 "source": false
               }
@@ -46,7 +46,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/计算机基础/数据库/数据库系统的基本概念.md"
+                "file": "source/_posts/编程语言/Python/1 数据类型/字符串/字符串.md"
               }
             }
           },
@@ -73,12 +73,11 @@
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 308.5
+    "width": 200
   },
   "right": {
     "id": "bad03ea09745a182",
@@ -94,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/计算机基础/数据库/数据库系统的基本概念.md",
+                "file": "source/_posts/编程语言/Python/1 数据类型/字符串/字符串.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/计算机基础/数据库/数据库系统的基本概念.md",
+                "file": "source/_posts/编程语言/Python/1 数据类型/字符串/字符串.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -164,12 +163,18 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "062788e87a1cf5bb",
+  "active": "6331296bf7bc9de6",
   "lastOpenFiles": [
-    "public/2023/09/def391c12a80.html",
-    "public/archives/2023/page/16/index.html",
-    "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
+    "source/_posts/编程语言/Python/2 输入输出/简单的输入输出.md",
+    "source/_posts/编程语言/Python/1 数据类型/字符串/字符串.md",
+    "source/_posts/编程语言/Python/1 数据类型/字符串/字符串函数.md",
+    "source/_posts/编程语言/Python/1 数据类型/字符串/'str' object does not support item assignment.md",
+    "source/_posts/编程语言/Python/1 数据类型/字符串/取出引号中的字符串.md",
+    "source/_posts/编程语言/Python/1 数据类型/数值.md",
+    "source/_posts/编程语言/Python/1 数据类型/字符串/索引和切片.md",
+    "source/_posts/编程语言/Python/1 数据类型/111.md",
     "source/_posts/计算机基础/数据库/数据库系统的基本概念.md",
+    "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
     "source/_posts/计算机基础/数据结构和算法/知识点/快速幂.md",
     "source/_posts/计算机基础/数据结构和算法/知识点/伪代码.md",
     "source/_posts/计算机基础/数据结构和算法/知识点/DP/DP.md",
@@ -183,6 +188,7 @@
     "public/tags/算法/index.html",
     "public/2023/09/ed60a771f669.html",
     "public/2023/09/c6451eda9afb.html",
+    "public/archives/2023/page/16/index.html",
     "public/tags/算法",
     "source/_posts/杂/asset",
     "source/_posts/杂/新建文件夹",
@@ -198,14 +204,7 @@
     "source/_posts/AI/SAM/医学影像图片格式.assets/image-20230829165513753.png",
     "source/_posts/AI/SAM/医学影像图片格式.assets/image-20230829164533327.png",
     "source/_posts/计算机基础/计导/指针.md",
-    "source/_posts/计算机基础/计导/计导.md",
-    "source/_posts/English/六级作文.md",
     "source/_posts/AI/SAM/MSA.assets/image-20230821153238620.png",
-    "source/_posts/AI/transformer.md",
-    "source/_posts/计算机基础/计导/1 程序设计语言.md",
-    "source/_posts/计算机基础/计导/指针/3 声明指针.md",
-    "source/_posts/计算机基础/计导/随机数.md",
-    "source/_posts/计算机基础/计导/2 计算过程与算法.md",
     "source/_posts/AI/SAM/PEFT.assets/image-20230821150946351.png",
     "截图_20230821104828.png",
     "Pasted image 20230821093210.png",
