@@ -7,7 +7,7 @@
   ],
   "promptDelete": true,
   "newFileLocation": "current",
-  "attachmentFolderPath": "./字典.assets",
+  "attachmentFolderPath": "./集合.assets",
   "useMarkdownLinks": true,
   "newLinkFormat": "relative"
 }

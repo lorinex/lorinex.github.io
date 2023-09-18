@@ -8,31 +8,18 @@
         "type": "tabs",
         "children": [
           {
-            "id": "6331296bf7bc9de6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/编程语言/Python/1 python基础/7 字典/字典.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "81e23ccffc6b743c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/编程语言/Python/1 python基础/7 字典/字典.md",
+                "file": "source/_posts/编程语言/Python/1 python基础/集合.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -59,7 +46,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/编程语言/Python/1 python基础/7 字典/字典.md"
+                "file": "source/_posts/编程语言/Python/1 python基础/集合.md"
               }
             }
           },
@@ -106,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/编程语言/Python/1 python基础/7 字典/字典.md",
+                "file": "source/_posts/编程语言/Python/1 python基础/集合.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/编程语言/Python/1 python基础/7 字典/字典.md",
+                "file": "source/_posts/编程语言/Python/1 python基础/集合.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -178,10 +165,24 @@
   },
   "active": "81e23ccffc6b743c",
   "lastOpenFiles": [
+    "source/_posts/编程语言/Python/1 python基础/自定义函数.md",
+    "source/_posts/编程语言/Python/1 python基础/简单的输入输出.md",
+    "source/_posts/编程语言/Python/1 python基础/深拷贝和浅拷贝.md",
+    "source/_posts/编程语言/Python/1 python基础/文件操作.md",
+    "source/_posts/编程语言/Python/1 python基础/数值.md",
+    "source/_posts/编程语言/Python/1 python基础/控制流.md",
+    "source/_posts/编程语言/Python/1 python基础/字符串.md",
+    "source/_posts/编程语言/Python/1 python基础/字典.md",
+    "source/_posts/编程语言/Python/1 python基础/列表.md",
+    "source/_posts/编程语言/Python/1 python基础/关系运算符.md",
+    "source/_posts/编程语言/Python/1 python基础/元组.md",
+    "source/_posts/编程语言/Python/文件操作.md",
+    "source/_posts/编程语言/Python/深拷贝和浅拷贝.md",
+    "source/_posts/编程语言/Python/1 python基础/集合.md",
+    "source/_posts/编程语言/Python/1 python基础/7 字典/字典.md",
     "source/_posts/编程语言/Python/1 python基础/7 字典/字典2.md",
     "source/_posts/编程语言/Python/1 python基础/5 列表/列表.md",
     "source/_posts/编程语言/Python/1 python基础/5 列表/列表2.md",
-    "source/_posts/编程语言/Python/1 python基础/7 字典/字典.md",
     "source/_posts/编程语言/Python/1 python基础/6 元组/元组.md",
     "source/_posts/编程语言/Python/1 python基础/8 集合/集合.md",
     "source/_posts/编程语言/Python/1 python基础/4 函数/自定义函数.md",
@@ -190,7 +191,6 @@
     "source/_posts/编程语言/Python/1 python基础/3 控制流/while.md",
     "source/_posts/编程语言/Python/1 python基础/3 控制流/关系运算符.md",
     "source/_posts/编程语言/Python/1 python基础/2 输入输出/简单的输入输出.md",
-    "source/_posts/编程语言/Python/8 集合/集合.md",
     "source/_posts/编程语言/Python/1 python基础/8 集合",
     "source/_posts/编程语言/Python/1 python基础/7 字典",
     "source/_posts/编程语言/Python/1 python基础/6 元组",
@@ -198,22 +198,9 @@
     "source/_posts/编程语言/Python/1 python基础/4 函数",
     "source/_posts/编程语言/Python/1 python基础/3 控制流",
     "source/_posts/编程语言/Python/1 python基础/2 输入输出",
-    "source/_posts/编程语言/Python/1 python基础/1 数据类型/数值.md",
-    "source/_posts/编程语言/Python/1 python基础/1 数据类型/字符串.md",
     "source/_posts/编程语言/Python/1 python基础/1 数据类型",
-    "source/_posts/编程语言/Python/1 数据类型/字符串.md",
     "source/_posts/编程语言/Python/1 python基础",
     "source/_posts/编程语言/Python/新建文件夹",
-    "source/_posts/编程语言/Python/11 xlwings 库/遍历excel.md",
-    "source/_posts/编程语言/Python/1 数据类型/字符串/字符串.md",
-    "source/_posts/编程语言/Python/2 输入输出/简单的输入输出.md",
-    "source/_posts/编程语言/Python/1 数据类型/字符串/字符串函数.md",
-    "source/_posts/编程语言/Python/1 数据类型/字符串/'str' object does not support item assignment.md",
-    "source/_posts/编程语言/Python/1 数据类型/字符串/取出引号中的字符串.md",
-    "source/_posts/编程语言/Python/1 数据类型/数值.md",
-    "source/_posts/编程语言/Python/1 数据类型/字符串/索引和切片.md",
-    "source/_posts/编程语言/Python/1 数据类型/111.md",
-    "source/_posts/计算机基础/数据库/数据库系统的基本概念.md",
     "source/_posts/计算机基础/OS/Chapter 1   Introduction.assets/image-20230912091431208.png",
     "source/_posts/AI/SAM/医学影像图片格式.assets/image-20230829165513753.png",
     "source/_posts/AI/SAM/医学影像图片格式.assets/image-20230829164533327.png",
