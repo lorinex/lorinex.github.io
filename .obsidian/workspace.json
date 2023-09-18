@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
+                "file": "source/_posts/计算机基础/数据库/数据库系统的基本概念.md",
                 "mode": "source",
                 "source": false
               }
@@ -46,7 +46,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 1   Introduction.md"
+                "file": "source/_posts/计算机基础/数据库/数据库系统的基本概念.md"
               }
             }
           },
@@ -73,7 +73,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -93,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
+                "file": "source/_posts/计算机基础/数据库/数据库系统的基本概念.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
+                "file": "source/_posts/计算机基础/数据库/数据库系统的基本概念.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -163,8 +164,12 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "6331296bf7bc9de6",
+  "active": "062788e87a1cf5bb",
   "lastOpenFiles": [
+    "public/2023/09/def391c12a80.html",
+    "public/archives/2023/page/16/index.html",
+    "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
+    "source/_posts/计算机基础/数据库/数据库系统的基本概念.md",
     "source/_posts/计算机基础/数据结构和算法/知识点/快速幂.md",
     "source/_posts/计算机基础/数据结构和算法/知识点/伪代码.md",
     "source/_posts/计算机基础/数据结构和算法/知识点/DP/DP.md",
@@ -178,14 +183,12 @@
     "public/tags/算法/index.html",
     "public/2023/09/ed60a771f669.html",
     "public/2023/09/c6451eda9afb.html",
-    "public/archives/2023/page/16/index.html",
     "public/tags/算法",
     "source/_posts/杂/asset",
     "source/_posts/杂/新建文件夹",
     "source/_posts/计算机基础/数据库/数据库系统概念.pdf",
     "source/_posts/计算机基础/数据库/Practice Exercises Answers.pdf",
     "source/_posts/计算机基础/数据库/Exercises Answers.pdf",
-    "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
     "source/_posts/计算机基础/OS/Chapter 1   Introduction.assets/image-20230912091431208.png",
     "source/_posts/编程语言/Python/11 xlwings 库/xlwings基本对象.md",
     "source/_posts/随笔/去去重去去 来时是来时.md",
@@ -203,9 +206,7 @@
     "source/_posts/计算机基础/计导/指针/3 声明指针.md",
     "source/_posts/计算机基础/计导/随机数.md",
     "source/_posts/计算机基础/计导/2 计算过程与算法.md",
-    "source/_posts/计算机基础/计导/4.2 指针.md",
     "source/_posts/AI/SAM/PEFT.assets/image-20230821150946351.png",
-    "source/_posts/计算机基础/计算机系统/并发.md",
     "截图_20230821104828.png",
     "Pasted image 20230821093210.png",
     "source/_posts/AI/强化学习/基础/assets/截图_20230725135935.png",
