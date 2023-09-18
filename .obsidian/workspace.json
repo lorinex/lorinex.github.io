@@ -77,7 +77,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "bad03ea09745a182",
@@ -163,7 +164,7 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "6331296bf7bc9de6",
+  "active": "3c308b07cdf852b8",
   "lastOpenFiles": [
     "source/_posts/编程语言/Python/2 输入输出/简单的输入输出.md",
     "source/_posts/编程语言/Python/1 数据类型/字符串/字符串.md",
