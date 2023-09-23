@@ -1,5 +1,9 @@
 ---
 title: assert 断言
+categories:
+  - 编程语言
+  - Python
+  - 1 python基础
 date: 2023-09-18 14:19:16
 tags:
 ---
