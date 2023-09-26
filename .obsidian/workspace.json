@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/编程语言/Python/1 python基础/函数和高级特性.md",
+                "file": "source/_posts/编程语言/Python/1 python基础/temp.md",
                 "mode": "source",
                 "source": false
               }
@@ -46,7 +46,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/编程语言/Python/1 python基础/函数和高级特性.md"
+                "file": "source/_posts/编程语言/Python/1 python基础/temp.md"
               }
             }
           },
@@ -77,7 +77,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 211.5
+    "width": 211.5,
+    "collapsed": true
   },
   "right": {
     "id": "bad03ea09745a182",
@@ -93,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/编程语言/Python/1 python基础/函数和高级特性.md",
+                "file": "source/_posts/编程语言/Python/1 python基础/temp.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/编程语言/Python/1 python基础/函数和高级特性.md",
+                "file": "source/_posts/编程语言/Python/1 python基础/temp.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -163,8 +164,12 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "03fbcaa50a44b6c7",
+  "active": "81e23ccffc6b743c",
   "lastOpenFiles": [
+    "source/_posts/编程语言/Python/1 python基础/temp.assets/image-20230926153013436.png",
+    "source/_posts/编程语言/Python/1 python基础/temp.assets",
+    "source/_posts/编程语言/Python/1 python基础/函数和高级特性.md",
+    "source/_posts/编程语言/Python/1 python基础/temp.md",
     "source/_posts/计算机基础/数据库/数据库系统的基本概念.md",
     "source/_posts/编程语言/Python/1 python基础/变量作用域.md",
     "source/_posts/AI/SAM/医学影像图片格式.md",
@@ -173,7 +178,6 @@
     "source/_posts/编程语言/Python/1 python基础/assert 断言.md",
     "source/_posts/编程语言/Python/1 python基础/赋值、引用、深浅拷贝.assets/image-20230918141333276.png",
     "source/_posts/编程语言/Python/1 python基础/赋值、引用、深浅拷贝.assets",
-    "source/_posts/编程语言/Python/1 python基础/函数和高级特性.md",
     "source/_posts/编程语言/Python/1 python基础/简单的输入输出.md",
     "source/_posts/编程语言/Python/1 python基础/文件操作.md",
     "source/_posts/编程语言/Python/1 python基础/数值.md",
@@ -191,8 +195,6 @@
     "source/_posts/编程语言/Python/1 python基础/5 列表/列表2.md",
     "source/_posts/编程语言/Python/1 python基础/6 元组/元组.md",
     "source/_posts/编程语言/Python/1 python基础/8 集合/集合.md",
-    "source/_posts/编程语言/Python/1 python基础/4 函数/自定义函数.md",
-    "source/_posts/编程语言/Python/1 python基础/3 控制流/控制流.md",
     "source/_posts/编程语言/Python/1 python基础/8 集合",
     "source/_posts/编程语言/Python/1 python基础/7 字典",
     "source/_posts/编程语言/Python/1 python基础/6 元组",
@@ -201,7 +203,6 @@
     "source/_posts/编程语言/Python/1 python基础/3 控制流",
     "source/_posts/编程语言/Python/1 python基础/2 输入输出",
     "source/_posts/编程语言/Python/1 python基础/1 数据类型",
-    "source/_posts/编程语言/Python/1 python基础",
     "source/_posts/计算机基础/OS/Chapter 1   Introduction.assets/image-20230912091431208.png",
     "source/_posts/AI/SAM/医学影像图片格式.assets/image-20230829165513753.png",
     "source/_posts/AI/SAM/医学影像图片格式.assets/image-20230829164533327.png",
