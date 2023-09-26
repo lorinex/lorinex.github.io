@@ -2,7 +2,7 @@
 
 ### 一、LEX使用流程
 
-![image-20230926150023284](file://C:/Users/xxx/Desktop/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E7%A8%8B%E5%BA%8F.assets/image-20230926150023284.png?lastModify=1695712117)
+![image-20230926150023284|300](file://C:/Users/xxx/Desktop/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E7%A8%8B%E5%BA%8F.assets/image-20230926150023284.png?lastModify=1695712117)
 
 ### 二、LEX源程序结构
 
@@ -155,4 +155,8 @@ abb         {  }
 %%
 ```
 
-![截图_20230926153011.png](https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%E6%88%AA%E5%9B%BE_20230926153011.png)
+![截图_20230926153011.png|400](https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%E6%88%AA%E5%9B%BE_20230926153011.png)
+![截图_20230926204247.png|400](https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%E6%88%AA%E5%9B%BE_20230926204247.png)
+![截图_20230926204400.png|400](https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%E6%88%AA%E5%9B%BE_20230926204400.png)
+![截图_20230926204429.png|400](https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%E6%88%AA%E5%9B%BE_20230926204429.png)
+![截图_20230926204456.png|400](https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%E6%88%AA%E5%9B%BE_20230926204456.png)
