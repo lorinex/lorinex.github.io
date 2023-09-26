@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/编程语言/Python/1 python基础/temp.md",
+                "file": "source/_posts/计算机基础/数据库/关系代数.md",
                 "mode": "source",
                 "source": false
               }
@@ -46,7 +46,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/编程语言/Python/1 python基础/temp.md"
+                "file": "source/_posts/计算机基础/数据库/关系代数.md"
               }
             }
           },
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/编程语言/Python/1 python基础/temp.md",
+                "file": "source/_posts/计算机基础/数据库/关系代数.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/编程语言/Python/1 python基础/temp.md",
+                "file": "source/_posts/计算机基础/数据库/关系代数.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -166,6 +166,9 @@
   },
   "active": "81e23ccffc6b743c",
   "lastOpenFiles": [
+    "source/_posts/计算机基础/数据库/数据库系统的基本概念.md",
+    "source/_posts/计算机基础/数据库/关系代数.md",
+    "source/_posts/编程语言/Python/1 python基础/temp.md",
     "source/_posts/编程语言/Python/1 python基础/temp.assets/image-20230926204457674.png",
     "source/_posts/编程语言/Python/1 python基础/temp.assets/image-20230926204431514.png",
     "source/_posts/编程语言/Python/1 python基础/temp.assets/image-20230926204402702.png",
@@ -173,8 +176,6 @@
     "source/_posts/编程语言/Python/1 python基础/temp.assets/image-20230926153013436.png",
     "source/_posts/编程语言/Python/1 python基础/temp.assets",
     "source/_posts/编程语言/Python/1 python基础/函数和高级特性.md",
-    "source/_posts/编程语言/Python/1 python基础/temp.md",
-    "source/_posts/计算机基础/数据库/数据库系统的基本概念.md",
     "source/_posts/编程语言/Python/1 python基础/变量作用域.md",
     "source/_posts/AI/SAM/医学影像图片格式.md",
     "source/_posts/编程语言/Python/1 python基础/赋值、引用、深浅拷贝.md",
@@ -210,7 +211,6 @@
     "source/_posts/计算机基础/OS/Chapter 1   Introduction.assets/image-20230912091431208.png",
     "source/_posts/AI/SAM/医学影像图片格式.assets/image-20230829165513753.png",
     "source/_posts/AI/SAM/医学影像图片格式.assets/image-20230829164533327.png",
-    "source/_posts/AI/SAM/MSA.assets/image-20230821153238620.png",
-    "source/_posts/AI/SAM/PEFT.assets/image-20230821150946351.png"
+    "source/_posts/AI/SAM/MSA.assets/image-20230821153238620.png"
   ]
 }
