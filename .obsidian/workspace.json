@@ -18,8 +18,19 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "152b5467513a395d",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.4.14"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -77,8 +88,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 211.5,
-    "collapsed": true
+    "width": 211.5
   },
   "right": {
     "id": "bad03ea09745a182",
@@ -164,7 +174,7 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "81e23ccffc6b743c",
+  "active": "152b5467513a395d",
   "lastOpenFiles": [
     "source/_posts/计算机基础/数据库/数据库系统的基本概念.md",
     "source/_posts/计算机基础/数据库/关系代数.md",
