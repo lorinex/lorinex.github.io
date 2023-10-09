@@ -13,24 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/计算机基础/数据库/关系代数.md",
+                "file": "source/_posts/编程语言/Python/1 python基础/函数式编程.md",
                 "mode": "source",
                 "source": false
               }
             }
-          },
-          {
-            "id": "152b5467513a395d",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.4.14"
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -57,7 +46,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/计算机基础/数据库/关系代数.md"
+                "file": "source/_posts/编程语言/Python/1 python基础/函数式编程.md"
               }
             }
           },
@@ -88,7 +77,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 211.5
+    "width": 211.5,
+    "collapsed": true
   },
   "right": {
     "id": "bad03ea09745a182",
@@ -104,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/计算机基础/数据库/关系代数.md",
+                "file": "source/_posts/编程语言/Python/1 python基础/函数式编程.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -121,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/计算机基础/数据库/关系代数.md",
+                "file": "source/_posts/编程语言/Python/1 python基础/函数式编程.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -174,10 +164,12 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "152b5467513a395d",
+  "active": "81e23ccffc6b743c",
   "lastOpenFiles": [
-    "source/_posts/计算机基础/数据库/数据库系统的基本概念.md",
+    "source/_posts/编程语言/Python/1 python基础/函数和高级特性.md",
+    "source/_posts/编程语言/Python/1 python基础/函数式编程.md",
     "source/_posts/计算机基础/数据库/关系代数.md",
+    "source/_posts/计算机基础/数据库/数据库系统的基本概念.md",
     "source/_posts/编程语言/Python/1 python基础/temp.md",
     "source/_posts/编程语言/Python/1 python基础/temp.assets/image-20230926204457674.png",
     "source/_posts/编程语言/Python/1 python基础/temp.assets/image-20230926204431514.png",
@@ -185,7 +177,6 @@
     "source/_posts/编程语言/Python/1 python基础/temp.assets/image-20230926204250110.png",
     "source/_posts/编程语言/Python/1 python基础/temp.assets/image-20230926153013436.png",
     "source/_posts/编程语言/Python/1 python基础/temp.assets",
-    "source/_posts/编程语言/Python/1 python基础/函数和高级特性.md",
     "source/_posts/编程语言/Python/1 python基础/变量作用域.md",
     "source/_posts/AI/SAM/医学影像图片格式.md",
     "source/_posts/编程语言/Python/1 python基础/赋值、引用、深浅拷贝.md",
@@ -209,7 +200,6 @@
     "source/_posts/编程语言/Python/1 python基础/5 列表/列表.md",
     "source/_posts/编程语言/Python/1 python基础/5 列表/列表2.md",
     "source/_posts/编程语言/Python/1 python基础/6 元组/元组.md",
-    "source/_posts/编程语言/Python/1 python基础/8 集合/集合.md",
     "source/_posts/编程语言/Python/1 python基础/8 集合",
     "source/_posts/编程语言/Python/1 python基础/7 字典",
     "source/_posts/编程语言/Python/1 python基础/6 元组",
