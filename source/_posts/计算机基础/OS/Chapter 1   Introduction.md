@@ -191,21 +191,134 @@ Example:
 ## Operating-System Operations
 
 - **现代操作系统是基于中断的** 现代操作系统采用了基于中断的工作方式，这意味着操作系统能够在需要时响应硬件中断或异常。*Modern operating systems are interrupt driven.*
-
 - **硬件引发的中断**：硬件设备（如时钟、硬盘、键盘）可以引发中断，通知操作系统需要采取某种操作或响应。*Interrupt driven by hardware.*
-
 - **软件错误或请求引发异常或陷阱** 操作系统还可以通过软件错误（如除以零）或用户请求（如请求操作系统服务）来引发异常或陷阱，从而触发操作系统的处理。*Software error or request creates exception or trap.*
   - *Division by zero, request for operating system service.*
-
 - **其他进程问题包括无限循环，进程相互修改或修改操作系统：** 操作系统必须应对其他进程可能出现的问题，如无限循环或试图修改其他进程或操作系统的操作。*Other process problems include infinite loop, processes modifying each other or the operating system.*
+- **双模式操作允许操作系统保护自身和其他系统组件：** 为了提高系统的安全性和稳定性，操作系统通常运行在两种不同的模式下，以保护自身和其他系统组件。**Dual-mode operation** allows OS to protect itself and other system components.
+  - **提供硬件支持以区分至少两种操作模式：** 现代计算机硬件提供了支持双模式操作的机制，通常有两种模式：Provide hardware support to differentiate between at least two modes of operations.
+    - User mode - execution done on behalf of a user. 
+    - Monitor mode (also kernel mode, system mode, or privileged mode) - execution done on behalf of operating system.
+  - **硬件提供的模式位**
+    - kernel mode (0) or user mode (1)
+    - Provides ability to distinguish when the system is running user code or kernel code.
+    - Some instructions are designated as privileged, only executable in kernel mode.
+    - System call changes mode to kernel mode, return from call resets it to user mode. 系统调用将模式切换到内核模式，调用返回后将其重置为用户模式。
+- When an interrupt or fault occurs hardware switches to kernel mode.
+  - ![image-20231021104445208](https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/image-20231021104445208.png)
 
-- **双模式操作允许操作系统保护自身和其他系统组件：** 为了提高系统的安全性和稳定性，操作系统通常运行在两种不同的模式下，以保护自身和其他系统组件。*Dual-mode operation allows OS to protect itself and other system components.*
+![image-20231021104643987](https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/image-20231021104643987.png)
 
-  - **提供硬件支持以区分至少两种操作模式：** 现代计算机硬件提供了支持双模式操作的机制，通常有两种模式：*Provide hardware support to differentiate between at least two modes of operations.**
+- Timer to prevent infinite loop/process hogging resources
+  - **在特定时间段后设置中断：** 操作系统在特定时间段后设置一个中断，通常使用计时器来实现这一功能。*Set interrupt after specific period.*
+  - **操作系统递减计数器：** 操作系统不断递减计数器的值。*OS decrements counter.*
+  - **当计数器归零时生成中断：** 当计数器的值减至零时，操作系统生成一个中断，这通常用于触发时间相关的操作。*When counter zero generate an interrupt.*
+  - **在调度进程之前设置中断以重新获得控制或终止超过分配时间的程序：** 操作系统在调度新进程之前设置中断，以确保程序在分配的时间内运行，否则会终止或重新获得控制。*Set up before scheduling process to regain control or terminate program that exceeds allotted time.*
+  - **修改计时器内容的指令属于特权指令：** 操作系统通常将能够修改计时器内容的指令标记为特权指令，只有在特权模式下才能执行这些操作。*Instructions that modify the content of the timer are privileged.*
 
-    - **User mode - execution done on behalf of a user.*
+## Process Management
 
-    - *Monitor mode (also kernel mode, system mode, or privileged mode) - execution done on behalf of operating system.*
+- **进程是正在执行的程序，是系统内的工作单元。可以分配给处理器并在其上执行的实体。**
+  - *A process is a program in execution, is the unit of work within the system. The entity that can be assigned to and executed on a processor.*
+- **进程需要资源来完成其任务。**
+  - *Process needs resources to accomplish its task.*
+- **进程终止需要回收可重用资源。**
+  - *Process termination requires reclamation of any reusable resources.*
+- **单线程进程具有一个程序计数器，指定下一条要执行的指令位置。**
+  - *A single-threaded process has one program counter specifying the location of the next instruction to execute.*
+- **多线程进程每个线程都有一个程序计数器。**
+  - *A multi-threaded process has one program counter per thread.*
+- **系统在一个或多个CPU上并发运行许多进程。**
+  - *The system has many processes running concurrently on one or more CPUs.*
+- **通过在进程/线程之间复用CPU来实现。**
+  - *By multiplexing the CPU among the processes/threads.*
 
-### Dual-Mode Operation
+操作系统在与进程管理相关的活动中负责以下任务：
 
+- 创建和删除用户和系统进程
+- 挂起和恢复进程
+- 提供进程同步的机制
+- 提供进程通信的机制
+- 提供死锁处理的机制
+
+## Memory Management
+
+- **对于现代计算机系统的运作至关重要。**
+  - All data should be in memory before and after processing.
+  - All instructions should be in memory in order to execute.
+- **CPU能够直接寻址和访问的唯一大型存储设备。**
+- **内存管理确定内存中存在什么内容，提高CPU利用率和计算机响应用户的速度。**
+- **内存管理活动**
+  - 跟踪当前正在使用内存的部分以及使用者。
+  - 决定将哪些进程（或其中的部分）和数据移入和移出内存。
+  - 根据需要分配和释放内存空间。
+
+## Storage Management
+
+- 操作系统提供了关于信息存储的统一逻辑视图。 
+
+  - 从物理属性抽象出来，定义了逻辑存储单元 - 文件。 
+
+  - 每种存储介质都由设备（如磁盘驱动器、磁带驱动器）控制。 
+    - 不同的属性包括访问速度、容量、数据传输速率、访问方法（顺序或随机）。
+
+### File-System management
+
+文件通常组织成目录。 大多数系统具有**访问控制**来确定谁可以访问什么。 
+
+操作系统的活动包括：
+
+- 创建和删除文件
+- 创建和删除目录以组织文件
+- 支持用于操作文件和目录的基本操作
+- 将文件映射到辅助存储设备
+- 备份文件到稳定的（非易失性）存储介质。
+
+### Mass-Storage Management
+
+通常，磁盘用于存储无法容纳在主内存中的数据，或者需要在较长时间内保留的数据。
+
+操作系统在磁盘管理方面的活动包括：
+
+- 空闲空间管理
+- 存储分配
+- 磁盘调度
+
+计算机操作的整体速度高度依赖于磁盘子系统及其算法。
+
+某些存储设备不必很快，三级存储包括光盘、磁带。 存储介质可能是WORM（只写一次，多次读取）或RW（可读写）。 虽然对系统性能不是至关重要的，但仍然需要进行管理，包括挂载和卸载、分配和释放，以及将数据从二级存储迁移到三级存储。
+
+### Caching
+
+- 缓存是计算机系统中的一个重要概念，广泛应用于多个计算机层次（包括硬件、操作系统和软件）
+- 其目的是将正在使用的信息从较慢的存储复制到较快的存储中以便临时使用。
+- 缓存是一种将信息复制到更快的存储系统中的方法，主内存通常被视为辅助存储的最后一级缓存。
+- 在访问数据之前，系统会首先检查缓存，以确定信息是否存在。
+  - 如果信息已经存在于缓存中，那么可以直接从缓存中获取，从而提高数据处理速度。
+  - 如果信息不存在于缓存中，系统会将数据复制到缓存并在其中使用。
+- 然而，由于缓存的容量通常小于被缓存的存储容量，因此缓存管理策略是一个重要的设计问题。设计决策还包括确定缓存的大小和数据替换策略。
+- 缓存是计算机系统中的一个重要原则，它被广泛应用在多个层次，包括硬件、操作系统和软件。
+
+- Disk Cache
+  - 主内存的一部分被用作缓冲区，用于临时存储磁盘数据。
+  - 磁盘写入会进行聚类
+  - 有些被写出的数据可能会再次被引用。
+  - 这些数据可以从软件缓存中快速检索，而不是从磁盘上缓慢地读取。
+
+- Cache Memory
+  - 对操作系统不可见
+  - 提高内存速度
+  - 处理器速度比内存速度快
+
+## Protection and Security
+
+- **保护（Protection）：** 保护是指控制进程或用户对操作系统定义的资源访问的任何机制。它确保系统资源的安全使用和访问控制。
+- **安全（Security）：** 安全是指系统抵御内部和外部攻击的防御措施。这包括防止拒绝服务、蠕虫、病毒、身份盗窃和服务盗用等多种安全威胁。
+- **访问控制（Access Control）：** 访问控制用于规定用户对系统的访问权限，以确定用户能够执行什么操作。
+- **信息流控制（Information Flow Control）：** 信息流控制用于规定数据在系统内的流动以及传递给用户的方式。
+- **认证（Certification）：** 认证是指证明访问控制和信息流控制是否按照规范执行的过程。
+- **系统通常首先区分用户，以确定谁可以执行什么操作。**
+- **用户标识（用户ID、安全ID）包括用户名和相关编号，每个用户有一个。**
+- **然后，用户ID与该用户的所有文件和进程相关联，以确定访问控制。**
+- **组标识符（组ID）允许定义一组用户，并进行管理，然后也与每个进程和文件相关联。**
+- **特权提升允许用户切换到具有更多权限的有效ID。**
