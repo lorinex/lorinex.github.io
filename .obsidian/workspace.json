@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/编程语言/Python/2 面向对象编程/0 面向对象编程.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 7  Deadlocks.md",
                 "mode": "source",
                 "source": false
               }
@@ -46,7 +46,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/编程语言/Python/2 面向对象编程/0 面向对象编程.md"
+                "file": "source/_posts/计算机基础/OS/Chapter 7  Deadlocks.md"
               }
             }
           },
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/编程语言/Python/2 面向对象编程/0 面向对象编程.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 7  Deadlocks.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/编程语言/Python/2 面向对象编程/0 面向对象编程.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 7  Deadlocks.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -165,6 +165,20 @@
   },
   "active": "81e23ccffc6b743c",
   "lastOpenFiles": [
+    "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
+    "source/_posts/计算机基础/OS/Chapter 7  Deadlocks.md",
+    "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
+    "source/_posts/计算机基础/OS/Chapter 5 CPU Scheduling.md",
+    "source/_posts/计算机基础/OS/Chapter 4 Threads.md",
+    "source/_posts/计算机基础/OS/Chapter 3 Processes.md",
+    "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
+    "public/categories/编程语言/Python/2-面向对象编程/index.html",
+    "public/categories/编程语言/Python/2-面向对象编程",
+    "public/2023/10/1fa34fbc103c.html",
+    "public/2023/10/f91918818548.html",
+    "public/2023/10/78136329f0c2.html",
+    "source/_posts/编程语言/Python/2 面向对象编程/0 面向对象编程.md",
+    "conflict-files-obsidian-git.md",
     "source/_posts/编程语言/Python/1 python基础/函数式编程.md",
     "source/_posts/English/六级作文.md",
     "source/_posts/English/六级作文.assets/image-20231013164955237.png",
@@ -194,20 +208,6 @@
     "source/_posts/编程语言/Python/1 python基础/数值.md",
     "source/_posts/编程语言/Python/1 python基础/控制流.md",
     "source/_posts/编程语言/Python/1 python基础/字符串.md",
-    "source/_posts/编程语言/Python/1 python基础/字典.md",
-    "source/_posts/编程语言/Python/1 python基础/列表.md",
-    "source/_posts/编程语言/Python/1 python基础/关系运算符.md",
-    "source/_posts/编程语言/Python/1 python基础/元组.md",
-    "source/_posts/编程语言/Python/文件操作.md",
-    "source/_posts/编程语言/Python/深拷贝和浅拷贝.md",
-    "source/_posts/编程语言/Python/1 python基础/7 字典/字典.md",
-    "source/_posts/编程语言/Python/1 python基础/7 字典/字典2.md",
-    "source/_posts/编程语言/Python/1 python基础/5 列表/列表.md",
-    "source/_posts/编程语言/Python/1 python基础/8 集合",
-    "source/_posts/编程语言/Python/1 python基础/7 字典",
-    "source/_posts/编程语言/Python/1 python基础/6 元组",
-    "source/_posts/编程语言/Python/1 python基础/5 列表",
-    "source/_posts/编程语言/Python/1 python基础/4 函数",
     "source/_posts/计算机基础/OS/Chapter 1   Introduction.assets/image-20230912091431208.png",
     "source/_posts/AI/SAM/医学影像图片格式.assets/image-20230829165513753.png",
     "source/_posts/AI/SAM/医学影像图片格式.assets/image-20230829164533327.png"
