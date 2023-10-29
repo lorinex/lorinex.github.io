@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 4 Threads.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 5 CPU Scheduling.md",
                 "mode": "source",
                 "source": false
               }
@@ -46,7 +46,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 4 Threads.md"
+                "file": "source/_posts/计算机基础/OS/Chapter 5 CPU Scheduling.md"
               }
             }
           },
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 4 Threads.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 5 CPU Scheduling.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 4 Threads.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 5 CPU Scheduling.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -166,6 +166,8 @@
   },
   "active": "3e1ca42d2d145377",
   "lastOpenFiles": [
+    "source/_posts/计算机基础/OS/Chapter 5 CPU Scheduling.assets/image-20231029170217044.png",
+    "source/_posts/计算机基础/OS/Chapter 5 CPU Scheduling.assets",
     "source/_posts/计算机基础/OS/Chapter 4 Threads.md",
     "source/_posts/计算机基础/OS/Chapter 5 CPU Scheduling.md",
     "source/_posts/计算机基础/OS/Chapter 7  Deadlocks.md",
@@ -201,14 +203,12 @@
     "source/_posts/编程语言/Python/1 python基础/temp.assets",
     "source/_posts/编程语言/Python/1 python基础/变量作用域.md",
     "source/_posts/AI/SAM/医学影像图片格式.md",
-    "source/_posts/编程语言/Python/1 python基础/赋值、引用、深浅拷贝.md",
     "source/_posts/编程语言/Python/1 python基础/赋值、引用、深浅拷贝.assets/image-20230918141333276.png",
     "source/_posts/编程语言/Python/1 python基础/赋值、引用、深浅拷贝.assets",
     "source/_posts/编程语言/Python/1 python基础/8 集合",
     "source/_posts/编程语言/Python/1 python基础/7 字典",
     "source/_posts/编程语言/Python/1 python基础/6 元组",
     "source/_posts/编程语言/Python/1 python基础/5 列表",
-    "source/_posts/编程语言/Python/1 python基础/4 函数",
     "source/_posts/计算机基础/OS/Chapter 1   Introduction.assets/image-20230912091431208.png",
     "source/_posts/AI/SAM/医学影像图片格式.assets/image-20230829165513753.png",
     "source/_posts/AI/SAM/医学影像图片格式.assets/image-20230829164533327.png"
