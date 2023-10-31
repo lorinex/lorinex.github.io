@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "4c87469a43e73061",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/计算机基础/OS/Chapter 7  Deadlocks.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -46,7 +59,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md"
+                "file": "source/_posts/计算机基础/OS/Chapter 7  Deadlocks.md"
               }
             }
           },
@@ -77,7 +90,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 255.5
+    "width": 255.5,
+    "collapsed": true
   },
   "right": {
     "id": "bad03ea09745a182",
@@ -93,7 +107,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 7  Deadlocks.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +124,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 7  Deadlocks.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -163,10 +177,10 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "3e1ca42d2d145377",
+  "active": "4c87469a43e73061",
   "lastOpenFiles": [
-    "source/_posts/计算机基础/OS/Chapter 7  Deadlocks.md",
     "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
+    "source/_posts/计算机基础/OS/Chapter 7  Deadlocks.md",
     "source/_posts/计算机基础/数据结构和算法/数据结构408/串.md",
     "source/_posts/计算机基础/OS/Chapter 5 CPU Scheduling.md",
     "source/_posts/计算机基础/OS/Chapter 5 CPU Scheduling.assets/image-20231030095618565.png",
