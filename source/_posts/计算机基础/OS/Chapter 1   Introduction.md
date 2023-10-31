@@ -27,17 +27,11 @@ Kernel（nucleus）内核
 
 操作系统是计算机系统中的一个**系统软件**，是一些**程序模块的集合**，它们能以尽量有效、合理的方式**组织和管理计算机的软硬件资源**，合理地**组织计算机的工作流程**，**控制程序的执行**，向用户**提供各种服务功能**
 
-（1）操作系统是安装在计算机硬件之上的一层软件；
-
-（2）操作系统之上可以安装各种应用程序软件；
-
-（3）用户可以通过应用程序软件来间接使用操作系统，也可以直接使用操作系统，但通常都是通过操作系统来最终使用计算机硬件的；
-
-（4）直接使用操作系统的含义就是让用户通过编写程序来调用操作系统提供的系统接口从而进入操作系统。
-
-（5）用户通过系统接口进入操作系统后使用计算机硬件，即用户必须“穿过”操作系统才能使用计算机硬件；
-
-（6）操作系统管理计算机硬件，目的是让用户对计算机硬件的使用更加简便，也更加高效；
+1. 操作系统是安装在计算机硬件之上的一层软件；操作系统之上可以安装各种应用程序软件；
+2. 用户可以通过应用程序软件来间接使用操作系统，也可以直接使用操作系统，但通常都是通过操作系统来最终使用计算机硬件的；
+	- 直接使用操作系统的含义就是让用户通过编写程序来调用操作系统提供的系统接口从而进入操作系统。
+	- 用户通过系统接口进入操作系统后使用计算机硬件，即用户必须“穿过”操作系统才能使用计算机硬件；
+3. 操作系统管理计算机硬件，目的是让用户对计算机硬件的使用更加简便，也更加高效；
 
 ## Operating System Feature
 操作系统是一种系统软件，操作系统的基本特征包括**并发、共享、虚拟和异步**
@@ -62,101 +56,89 @@ Kernel（nucleus）内核
 简单来说，操作系统的虚拟技术可以归纳为：时分复用技术（处理器的分时共享）和空分复用技术（虚拟存储器）
 ### Asynchronism
 异步是在多道程序环境下允许多个程序并发执行极有可能导致的进程与时间有关的错误，操作系统可以解决多道程序引发的异步问题，保证多次运行进程后都能获得相同的结果；
+## Operating-System Function
+操作系统的基本功能：
+I/O管理：操作系统提供I/O例程，管理设备和文件的读写操作。
+内存管理：有效分配内存给多个作业，避免内存碎片化。
+虚拟内存：使用虚拟内存技术，使得不完全加载在内存中的作业也可以执行。
+磁盘管理：操作系统提供文件系统来管理文件存储和访问。
+CPU调度：实施CPU调度机制，确保多个作业可以并发执行。
+资源分配：公平、高效地分配系统资源，如CPU时间、内存和I/O设备。
 
-## Computer-System Organization
-### Computer-System Operation
+一个基本操作系统包含如下四个基本管理模块：进程管理、内存管理、I/O管理以及文件系统
 
-I/O devices and the CPU can execute concurrently.
+### I/O Management
 
-Each device controller is in charge of a particular device type. Each device controller has a local buffer.
+### Process Management
+1. 进程是计算机系统中正在执行的程序，作为系统的工作单元，可以分配给处理器并在其上执行。  
+2. 进程在执行过程中需要分配资源，如内存、CPU 时间片等，以完成其任务。  
+3. 当进程完成任务或终止时，需要回收其占用的资源，以便其他进程可以使用。  
+4. 单线程进程有一个程序计数器，用于指定下一条要执行的指令位置。  
+5. 多线程进程具有多个线程，每个线程都有一个独立的程序计数器。  
+6. 计算机系统可以在一个或多个 CPU 上并发运行多个进程，以提高系统性能。  
+7. 进程与线程之间的切换是通过在它们之间复用 CPU 资源实现的，这种技术称为多路复用。
 
-CPU moves data from/to main memory to/from local buffers.
+操作系统在与进程管理相关的活动中负责以下任务：
+- 创建和删除用户和系统进程
+- 挂起和恢复进程
+- 提供进程同步的机制
+- 提供进程通信的机制
+- 提供死锁处理的机制
 
-I/O is from the device to local buffer of controller.
+### Memory Management
 
-Device controller informs CPU that it has finished its operation by causing an interrupt.
+1. CPU 能够直接寻址和访问的**唯一大型存储设备**是内存。  
+2. 内存管理负责管理内存中存储的内容，从而提高 CPU 利用率和计算机响应用户的速度。  
+3. 内存管理活动包括以下几个方面：  
+   - 跟踪当前正在使用内存的部分以及使用者。  
+   - 决定将哪些进程（或其中的部分）和数据移入和移出内存。  
+   - 根据需要分配和释放内存空间。
 
-#### Interrupt Timeline
+### Storage Management
 
-"Interrupt Timeline"（中断时间线）通常指的是计算机系统中的中断事件序列，记录了中断的发生时间和处理时间。在操作系统和计算机体系结构中，中断是一种用于处理异步事件的机制，例如硬件故障、外部设备的输入、定时器事件等。中断允许计算机系统在正常执行的过程中响应和处理这些事件，而不需要等待或轮询。
+1. 操作系统为信息存储提供了统一的逻辑视图，使得用户和程序能够以更加简洁的方式处理存储设备。
+2. 操作系统将物理存储介质抽象为逻辑存储单元，即文件。这种抽象使得用户可以忽略底层物理存储细节，更容易地管理和操作数据。
+3. 每种存储介质都由特定的设备控制，如磁盘驱动器、磁带驱动器等。这些设备具有不同的属性，如访问速度、容量、数据传输速率以及访问方法（顺序或随机）。
 
-Interrupt Timeline包括以下关键元素：
+#### File-System Management
 
-1. 中断源：表示引发中断事件的来源，例如硬件故障、I/O设备请求、时钟中断等。
-2. 中断请求时间：指中断事件发生的确切时间戳。
-3. 中断处理时间：指操作系统或处理器开始处理中断事件的时间戳。这包括了操作系统的中断服务例程或中断处理程序的执行时间。
-4. 中断完成时间：指整个中断处理过程完成的时间戳。这包括了中断服务例程的执行以及可能的上下文切换。
+文件通常组织成目录。 大多数系统具有**访问控制**来确定谁可以访问什么。 
 
-中断时间线通常用于性能分析、故障诊断和系统优化。通过分析中断时间线，可以识别中断的来源、频率和处理时间，帮助系统管理员和开发人员识别和解决性能问题以及改善系统的响应时间。中断时间线也有助于了解系统的稳定性和可靠性，因为它们提供了有关系统中断处理的详细信息。
+操作系统的活动包括：
 
-![image-20231020235732529](https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/image-20231020235732529.png)
+- 创建和删除文件
+- 创建和删除目录以组织文件
+- 支持用于操作文件和目录的基本操作
+- 将文件映射到辅助存储设备
+- 备份文件到稳定的（非易失性）存储介质。
 
-### Storage Structure
+#### Mass-Storage Management
 
-- Main memory -- only large storage area that the processor can access directly.
-- Secondary storage -- extension of main memory that provides large nonvolatile storage capacity.
-- Magnetic disks -- rigid metal or glass platters covered with magnetic recording material.
-  - Disk surface is logically divided into tracks, which are subdivided into sectors. 
-  - The disk controller determines the logical interaction between the device and the computer.
-- Magnetic tapes -- used for backup, for storage of infrequently used information.
+通常，磁盘用于存储无法容纳在主内存中的数据，或者需要在较长时间内保留的数据。
 
-#### Storage Hierarchy
+操作系统在磁盘管理方面的活动包括：
 
-- Storage systems organized in hierarchy.
-  - Speed 
-  - Cost 
-  - Volatility
-- Volatile storage loses its contents when the power to the device is removed.
-- Principle of design a computer memory system：
-  - uses only as much expensive memory as necessary.
-  - provides as much inexpensive, nonvolatile memory as possible.
+- 空闲空间管理
+- 存储分配
+- 磁盘调度
 
-#### Storage-Device Hierarchy
+计算机操作的整体速度高度依赖于磁盘子系统及其算法。
 
-![image-20231020220210038](https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/image-20231020220210038.png)
+某些存储设备不必很快，三级存储包括光盘、磁带。 存储介质可能是WORM（只写一次，多次读取）或RW（可读写）。 虽然对系统性能不是至关重要的，但仍然需要进行管理，包括挂载和卸载、分配和释放，以及将数据从二级存储迁移到三级存储。
 
-### I/O Structure
-
-- Programmed I/O 
-
-- Interrupt-Driven I/O
-
-  - Synchronous I/O 
-
-  - Asynchronous I/O
-
-- DMA
-
-- I/O通道控制方式
-
-#### I/O operation
-
-- **设备控制器** device controller
-  - Local buffer storage
-  - A set of special-purpose registers
-  - Moving data between device and its local buffer storage.
-  - 设备控制器是一种硬件组件，用于管理特定类型的外部设备（如磁盘驱动器、键盘、鼠标等）。它包括一组特殊用途的寄存器，用于控制设备的操作和状态。设备控制器还包括本地缓冲存储，用于在设备和计算机之间传输数据。
-- **设备驱动程序** device driver
-  - One for each device controller.
-  - Presents a uniform interface to the device.
-  - 设备驱动程序是用于与设备控制器通信的软件组件。每种设备控制器都有一个相应的设备驱动程序。设备驱动程序提供了一个统一的接口，以便操作系统可以与不同类型的设备进行交互。
-- **I/O 操作** I/O operation ：I/O 操作是指计算机系统与外部设备之间的数据传输和交互过程。它包括以下步骤：
-  - Device driver loads registers within the controller. 设备驱动程序加载设备控制器内的寄存器，以配置设备的操作。
-  - Device controller examines the contents of the registers to determine what action to take. 设备控制器检查寄存器的内容，以确定应采取什么操作。
-  - Device controller starts the transfer of data between the device and its local buffer. 设备控制器开始在设备和其本地缓冲存储之间传输数据。
-  - Once done, device controller sets its status, or informs the driver via an interrupt. 一旦完成数据传输，设备控制器设置其状态，或者通过中断通知设备驱动程序。
-  - Device driver returns control to the OS, with data if 'read'. 设备驱动程序将控制返回给操作系统，如果是“读”操作，可能会将读取的数据一并返回。
-
-#### Modern Computer System
-
-- high-end systems use switch architecture.
-- multiple components can talk to other components concurrently, rather than competing for cycles on a shared bus.
-
-在计算机系统中，高端系统采用了一种称为"交换架构"的设计。这种设计允许多个系统组件同时相互通信，而不是竞争共享总线周期。在传统的计算机架构中，多个组件（如CPU、内存、输入/输出设备）必须通过共享总线来访问系统资源，这可能会导致资源争用和性能瓶颈。而交换架构允许各个组件之间以更高效的方式进行通信，从而提高了系统的并发性和性能。
-
-在交换架构中，不同组件之间可以直接建立点对点的连接，而无需通过共享总线进行通信。这种架构通常使用交换网络或高速互连来实现，允许组件之间并行传输数据，提供更大的带宽和更低的延迟。这对于高性能计算、大规模服务器和数据中心等需要处理大量数据并进行高度并发处理的应用非常重要。
-
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/image-20231020235530030.png" alt="image-20231020235530030" style="zoom:50%;" />
+#### Caching
+1. 缓存是计算机系统中的重要概念，旨在将正在使用的信息从较慢的存储复制到较快的存储中，以提高数据处理速度。  
+2. 缓存应用于多个计算机层次，包括硬件、操作系统和软件。主内存被视为辅助存储的最后一级缓存。  
+3. 系统在访问数据前会首先检查缓存，若信息已存在，则直接从缓存中获取；若不存在，则将数据复制到缓存并在其中使用。  
+4. 由于缓存容量有限，缓存管理策略（如数据替换算法）和设计决策（如缓存大小）至关重要。  
+具体类型如下：
+- 磁盘缓存（Disk Cache）：  
+  - 利用主内存的一部分作为缓冲区，临时存储磁盘数据。  
+  - 磁盘写入时进行聚类，预计会再次被引用的数据可以从软件缓存中快速检索，避免从磁盘缓慢读取。
+- 缓存内存（Cache Memory）：  
+  - 对操作系统不可见，由硬件直接管理。  
+  - 提高内存速度，缓解处理器速度与内存速度之间的差距。  
+  - 作为处理器的高速存储区域，提高数据访问效率。
 
 
 
@@ -169,15 +151,12 @@ Uniprogramming（单一程序系统）是一种计算机操作系统的早期模
 ![image-20231020235850374](https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/image-20231020235850374.png)
 
 Uniprogramming的特点包括：
-
 1. **单一任务执行：** 在Uniprogramming系统中，计算机一次只能执行一个程序。这意味着系统在任何给定时间只能处理一个任务。
 2. **简单性：** 由于只有一个程序在运行，Uniprogramming系统相对简单，不需要复杂的任务调度或多任务管理机制。
 3. **资源共享：** 资源（如内存和CPU时间）完全由当前运行的程序占用，而其他程序必须等待。
 
 Uniprogramming有一些明显的局限性。最显著的是效率问题，因为计算机在执行一个程序时，其他程序无法运行，导致资源利用率低下。此外，用户体验也受到影响，因为用户必须等待一个程序完成后才能运行下一个程序。
-
 这包括：
-
 1. **性能低下：** 由于Uniprogramming一次只能执行一个程序，因此性能有限，计算机不能同时处理多个任务，导致了性能低下的问题。
 2. **I/O速度慢：** 输入/输出操作的速度较慢，因为计算机必须等待I/O指令完成后才能继续执行。这意味着I/O操作会阻塞其他计算任务的执行。
 
@@ -204,31 +183,19 @@ Example:
 
 ### Time sharing systems
 
-1. **时间共享（多任务处理）是一个逻辑扩展：** 在时间共享系统中，CPU频繁切换执行的作业，以使用户能够与每个程序互动，同时运行多个程序，创造出交互式计算环境。Time sharing (multitasking) is a logical extension, in which CPU switches jobs so frequently that users can interact with each program while it is running, creating interactive computing.
-   1. **响应时间应该小于1秒：** 时间共享系统旨在实现快速响应，以确保用户在与计算机交互时不会感到明显的延迟。Response time should be less than 1 second.
-   2. **每个用户至少有一个在内存中执行的程序 = 进程：** 在时间共享系统中，每个用户可以同时运行一个或多个程序，每个程序被视为一个进程。Each user has at least one program executing in memory = process
-   3. **如果有多个作业同时准备运行 = CPU调度：** 当多个进程准备好运行时，操作系统需要选择下一个要分配CPU的进程，这涉及到CPU调度。If several jobs ready to run at the same time = CPU scheduling
-   4. **如果进程不能完全放入内存中，通过交换将它们移入和移出以运行 = 交换程序（Swapper）：** 如果内存空间不足以容纳所有进程，操作系统可以将进程移到磁盘上以腾出内存空间，然后将它们重新调入内存。这个过程通常由交换程序（Swapper）负责。If processes don't fit in memory, swapping moves them in and out to run = swapper
-   5. **允许执行不完全在内存中的进程 = 虚拟内存：** 虚拟内存是一种技术，允许计算机执行那些不完全加载到内存中的进程，从而提高内存的有效利用率。allows execution of processes not completely in memory = Virtual memory
-2. **使用多道程序设计来处理多个交互式作业：** 多道程序设计是一种核心技术，用于同时处理多个交互式作业，以提高资源利用率。Using multiprogramming to handle multiple interactive jobs.
-3. **CPU被多个作业多路复用：** CPU的时间在多个作业之间共享，这些作业同时存在于内存和磁盘上。The CPU is multiplexed among several jobs that are kept in memory and on disk
-   1. **处理器的时间被多个用户共享：** 在多用户系统中，CPU的时间被多个用户共享，每个用户都可以运行自己的程序。Processor's time is shared among multiple users.
-   2. **CPU只分配给内存中的作业：** 只有在内存中的作业才能被分配CPU执行时间。The CPU is allocated to a job only if the job is in memory.
-4. **作业可以被交换进出内存到磁盘：** 如果内存不足，作业可以被交换到磁盘上，以腾出内存空间。A job may be swapped in and out of memory to the disk.
-5. **多个用户同时共享计算机：** 许多用户可以同时共享一台计算机，每个用户都可以执行自己的程序。Many users share the computer simultaneously.
-   1. **提供用户和系统之间的在线通信：** 在线系统允许用户通过终端与系统进行实时通信，执行命令等。On-line communication between the user and the system is provided.
-   2. **多用户通过终端同时访问系统：** 多用户系统允许多个用户通过终端同时访问计算机系统。Multiple users simultaneously access the system through terminals.
-   3. **当操作系统执行完一个命令后，不再从卡片阅读机中获取下一个“控制语句”，而是从用户键盘获取：** 这表示用户能够直接与系统进行交互，输入命令等。when the operating system finishes the execution of one command, it seeks the next "control statement" not from a card reader, but rather from the user's keyboard.
-6. **在线系统必须随时提供给用户访问数据和代码：** 在线系统需要保持随时可用，以便用户能够访问数据和代码。On-line system must be available for users to access data and code.
-
-#### features
-
-1. **I/O例程由系统提供：** 操作系统提供了用于输入/输出（I/O）操作的例程，这些例程用于管理设备和文件的读写，以及与外部设备的交互。
-2. **内存管理：** 操作系统必须有效地分配内存给多个作业，以确保它们能够同时在计算机上运行。这包括内存的分配和释放，以及避免内存碎片化。
-3. **虚拟内存：** 虚拟内存是一种技术，允许计算机执行那些不完全加载到内存中的作业，从而提高内存的有效利用率。虚拟内存允许操作系统将数据从磁盘交换到内存，以满足程序的需求。
-4. **磁盘管理：** 操作系统需要提供文件系统，它管理文件的存储和访问。文件系统通常存储在多个磁盘上，操作系统必须有效地管理这些磁盘和文件的存储。
-5. **CPU调度：** 操作系统需要实现CPU调度机制，以便多个作业可以并发执行。这包括作业的选择、作业同步和通信，以及避免死锁等问题。
-6. **资源分配：** 操作系统必须合理分配系统资源，包括CPU时间、内存、I/O设备等，以满足不同作业的需求。资源分配是操作系统的一个核心任务，以确保公平性和效率。
+1. **时间共享和交互式计算**：时间共享系统通过频繁地在不同作业之间切换CPU，使得多个程序能够似乎同时运行，为用户提供交互式的体验。
+2. **系统响应和进程**：
+   - 快速响应：为了维持交互性，系统的响应时间必须很短，最好小于1秒。
+   - 多进程：每个用户在系统中都有至少一个或多个正在运行的程序，这些程序称为进程。
+3. **CPU调度和资源管理**：
+   - 当多个进程同时请求CPU时，需要一个调度机制来决定哪个进程应该获得CPU。
+   - 不所有进程都能完全装入内存。当内存不足时，某些进程会被移到磁盘上，需要时再被调入内存。这种操作称为交换，由交换程序（Swapper）执行。
+   - 虚拟内存允许不完全在内存中的进程执行，提高了内存的使用效率。
+4. **多用户系统和在线通信**：
+   - 多个用户可以同时使用计算机并运行自己的程序。
+   - 用户可以通过终端与系统实时通信，发送命令和接收响应。
+   - 与传统的从外部设备（如卡片阅读机）获取指令不同，现代操作系统直接从用户键盘获取指令。
+5. **在线系统的可用性**：在线系统必须始终可用，以供用户随时访问数据和代码。
 
 ## Operating-System Operations
 
@@ -373,7 +340,7 @@ A：简单来说，软件=程序+文档=数据结构+算法+文档
 开中断、中断返回；
 上述流程我们在 计组期末复习笔记 - Tintoki_blog (gintoki-jpg.github.io) 有详细介绍；
 
-## 操作系统的体系结构
+## Operating-System Structures
 操作系统在核心态应当为应用程序提供什么样的公共服务？主要有两种主要的体系结构解答：大内核和微内核；
 
 ### 大内核和微内核
@@ -382,123 +349,113 @@ A：简单来说，软件=程序+文档=数据结构+算法+文档
 微内核将内核中最基本的功能保留在内核，将那些不需要在核心态执行的功能移到用户态执行；
 微内核结构最大的问题是性能问题，需要频繁在核心态与用户态之间进行切换；
 
-## 四个基本管理模块
+## Computer-System Organization
+### Computer-System Operation
 
-一个基本操作系统包含如下四个基本管理模块：进程管理、内存管理、I/O管理以及文件系统
+I/O devices and the CPU can execute concurrently.
 
-### I/O管理
+Each device controller is in charge of a particular device type. Each device controller has a local buffer.
 
-### Process Management
+CPU moves data from/to main memory to/from local buffers.
 
-- **进程是正在执行的程序，是系统内的工作单元。可以分配给处理器并在其上执行的实体。**
-  - *A process is a program in execution, is the unit of work within the system. The entity that can be assigned to and executed on a processor.*
-- **进程需要资源来完成其任务。**
-  - *Process needs resources to accomplish its task.*
-- **进程终止需要回收可重用资源。**
-  - *Process termination requires reclamation of any reusable resources.*
-- **单线程进程具有一个程序计数器，指定下一条要执行的指令位置。**
-  - *A single-threaded process has one program counter specifying the location of the next instruction to execute.*
-- **多线程进程每个线程都有一个程序计数器。**
-  - *A multi-threaded process has one program counter per thread.*
-- **系统在一个或多个CPU上并发运行许多进程。**
-  - *The system has many processes running concurrently on one or more CPUs.*
-- **通过在进程/线程之间复用CPU来实现。**
-  - *By multiplexing the CPU among the processes/threads.*
+I/O is from the device to local buffer of controller.
 
-操作系统在与进程管理相关的活动中负责以下任务：
+Device controller informs CPU that it has finished its operation by causing an interrupt.
 
-- 创建和删除用户和系统进程
-- 挂起和恢复进程
-- 提供进程同步的机制
-- 提供进程通信的机制
-- 提供死锁处理的机制
+#### Interrupt Timeline
 
-### Memory Management
+"Interrupt Timeline"（中断时间线）通常指的是计算机系统中的中断事件序列，记录了中断的发生时间和处理时间。在操作系统和计算机体系结构中，中断是一种用于处理异步事件的机制，例如硬件故障、外部设备的输入、定时器事件等。中断允许计算机系统在正常执行的过程中响应和处理这些事件，而不需要等待或轮询。
 
-- **对于现代计算机系统的运作至关重要。**
-  - All data should be in memory before and after processing.
-  - All instructions should be in memory in order to execute.
-- **CPU能够直接寻址和访问的唯一大型存储设备。**
-- **内存管理确定内存中存在什么内容，提高CPU利用率和计算机响应用户的速度。**
-- **内存管理活动**
-  - 跟踪当前正在使用内存的部分以及使用者。
-  - 决定将哪些进程（或其中的部分）和数据移入和移出内存。
-  - 根据需要分配和释放内存空间。
+Interrupt Timeline包括以下关键元素：
 
-### Storage Management
+1. 中断源：表示引发中断事件的来源，例如硬件故障、I/O设备请求、时钟中断等。
+2. 中断请求时间：指中断事件发生的确切时间戳。
+3. 中断处理时间：指操作系统或处理器开始处理中断事件的时间戳。这包括了操作系统的中断服务例程或中断处理程序的执行时间。
+4. 中断完成时间：指整个中断处理过程完成的时间戳。这包括了中断服务例程的执行以及可能的上下文切换。
 
-- 操作系统提供了关于信息存储的统一逻辑视图。 
+中断时间线通常用于性能分析、故障诊断和系统优化。通过分析中断时间线，可以识别中断的来源、频率和处理时间，帮助系统管理员和开发人员识别和解决性能问题以及改善系统的响应时间。中断时间线也有助于了解系统的稳定性和可靠性，因为它们提供了有关系统中断处理的详细信息。
 
-  - 从物理属性抽象出来，定义了逻辑存储单元 - 文件。 
+![image-20231020235732529](https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/image-20231020235732529.png)
 
-  - 每种存储介质都由设备（如磁盘驱动器、磁带驱动器）控制。 
-    - 不同的属性包括访问速度、容量、数据传输速率、访问方法（顺序或随机）。
+### Storage Structure
 
-#### File-System Management
+- Main memory -- only large storage area that the processor can access directly.
+- Secondary storage -- extension of main memory that provides large nonvolatile storage capacity.
+- Magnetic disks -- rigid metal or glass platters covered with magnetic recording material.
+  - Disk surface is logically divided into tracks, which are subdivided into sectors. 
+  - The disk controller determines the logical interaction between the device and the computer.
+- Magnetic tapes -- used for backup, for storage of infrequently used information.
 
-文件通常组织成目录。 大多数系统具有**访问控制**来确定谁可以访问什么。 
+#### Storage Hierarchy
 
-操作系统的活动包括：
+- Storage systems organized in hierarchy.
+  - Speed 
+  - Cost 
+  - Volatility
+- Volatile storage loses its contents when the power to the device is removed.
+- Principle of design a computer memory system：
+  - uses only as much expensive memory as necessary.
+  - provides as much inexpensive, nonvolatile memory as possible.
 
-- 创建和删除文件
-- 创建和删除目录以组织文件
-- 支持用于操作文件和目录的基本操作
-- 将文件映射到辅助存储设备
-- 备份文件到稳定的（非易失性）存储介质。
+#### Storage-Device Hierarchy
 
-#### Mass-Storage Management
+![image-20231020220210038](https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/image-20231020220210038.png)
 
-通常，磁盘用于存储无法容纳在主内存中的数据，或者需要在较长时间内保留的数据。
+### I/O Structure
 
-操作系统在磁盘管理方面的活动包括：
+- Programmed I/O 
 
-- 空闲空间管理
-- 存储分配
-- 磁盘调度
+- Interrupt-Driven I/O
 
-计算机操作的整体速度高度依赖于磁盘子系统及其算法。
+  - Synchronous I/O 
 
-某些存储设备不必很快，三级存储包括光盘、磁带。 存储介质可能是WORM（只写一次，多次读取）或RW（可读写）。 虽然对系统性能不是至关重要的，但仍然需要进行管理，包括挂载和卸载、分配和释放，以及将数据从二级存储迁移到三级存储。
+  - Asynchronous I/O
 
-## Caching
+- DMA
 
-- 缓存是计算机系统中的一个重要概念，广泛应用于多个计算机层次（包括硬件、操作系统和软件）
-- 其目的是将正在使用的信息从较慢的存储复制到较快的存储中以便临时使用。
-- 缓存是一种将信息复制到更快的存储系统中的方法，主内存通常被视为辅助存储的最后一级缓存。
-- 在访问数据之前，系统会首先检查缓存，以确定信息是否存在。
-  - 如果信息已经存在于缓存中，那么可以直接从缓存中获取，从而提高数据处理速度。
-  - 如果信息不存在于缓存中，系统会将数据复制到缓存并在其中使用。
-- 然而，由于缓存的容量通常小于被缓存的存储容量，因此缓存管理策略是一个重要的设计问题。设计决策还包括确定缓存的大小和数据替换策略。
-- 缓存是计算机系统中的一个重要原则，它被广泛应用在多个层次，包括硬件、操作系统和软件。
+- I/O通道控制方式
 
-- Disk Cache
-  - 主内存的一部分被用作缓冲区，用于临时存储磁盘数据。
-  - 磁盘写入会进行聚类
-  - 有些被写出的数据可能会再次被引用。
-  - 这些数据可以从软件缓存中快速检索，而不是从磁盘上缓慢地读取。
+#### I/O operation
 
-- Cache Memory
-  - 对操作系统不可见
-  - 提高内存速度
-  - 处理器速度比内存速度快
+- **设备控制器** device controller
+  - Local buffer storage
+  - A set of special-purpose registers
+  - Moving data between device and its local buffer storage.
+  - 设备控制器是一种硬件组件，用于管理特定类型的外部设备（如磁盘驱动器、键盘、鼠标等）。它包括一组特殊用途的寄存器，用于控制设备的操作和状态。设备控制器还包括本地缓冲存储，用于在设备和计算机之间传输数据。
+- **设备驱动程序** device driver
+  - One for each device controller.
+  - Presents a uniform interface to the device.
+  - 设备驱动程序是用于与设备控制器通信的软件组件。每种设备控制器都有一个相应的设备驱动程序。设备驱动程序提供了一个统一的接口，以便操作系统可以与不同类型的设备进行交互。
+- **I/O 操作** I/O operation ：I/O 操作是指计算机系统与外部设备之间的数据传输和交互过程。它包括以下步骤：
+  - Device driver loads registers within the controller. 设备驱动程序加载设备控制器内的寄存器，以配置设备的操作。
+  - Device controller examines the contents of the registers to determine what action to take. 设备控制器检查寄存器的内容，以确定应采取什么操作。
+  - Device controller starts the transfer of data between the device and its local buffer. 设备控制器开始在设备和其本地缓冲存储之间传输数据。
+  - Once done, device controller sets its status, or informs the driver via an interrupt. 一旦完成数据传输，设备控制器设置其状态，或者通过中断通知设备驱动程序。
+  - Device driver returns control to the OS, with data if 'read'. 设备驱动程序将控制返回给操作系统，如果是“读”操作，可能会将读取的数据一并返回。
+
+#### Modern Computer System
+
+- high-end systems use switch architecture.
+- multiple components can talk to other components concurrently, rather than competing for cycles on a shared bus.
+
+在计算机系统中，高端系统采用了一种称为"交换架构"的设计。这种设计允许多个系统组件同时相互通信，而不是竞争共享总线周期。在传统的计算机架构中，多个组件（如CPU、内存、输入/输出设备）必须通过共享总线来访问系统资源，这可能会导致资源争用和性能瓶颈。而交换架构允许各个组件之间以更高效的方式进行通信，从而提高了系统的并发性和性能。
+
+在交换架构中，不同组件之间可以直接建立点对点的连接，而无需通过共享总线进行通信。这种架构通常使用交换网络或高速互连来实现，允许组件之间并行传输数据，提供更大的带宽和更低的延迟。这对于高性能计算、大规模服务器和数据中心等需要处理大量数据并进行高度并发处理的应用非常重要。
+
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/image-20231020235530030.png" alt="image-20231020235530030" style="zoom:50%;" />
+
+
 
 ## Protection and Security
 
-- **保护（Protection）：** 保护是指控制进程或用户对操作系统定义的资源访问的任何机制。它确保系统资源的安全使用和访问控制。
-- **安全（Security）：** 安全是指系统抵御内部和外部攻击的防御措施。这包括防止拒绝服务、蠕虫、病毒、身份盗窃和服务盗用等多种安全威胁。
-- **访问控制（Access Control）：** 访问控制用于规定用户对系统的访问权限，以确定用户能够执行什么操作。
-- **信息流控制（Information Flow Control）：** 信息流控制用于规定数据在系统内的流动以及传递给用户的方式。
-- **认证（Certification）：** 认证是指证明访问控制和信息流控制是否按照规范执行的过程。
-- **系统通常首先区分用户，以确定谁可以执行什么操作。**
-- **用户标识（用户ID、安全ID）包括用户名和相关编号，每个用户有一个。**
-- **然后，用户ID与该用户的所有文件和进程相关联，以确定访问控制。**
-- **组标识符（组ID）允许定义一组用户，并进行管理，然后也与每个进程和文件相关联。**
-- **特权提升允许用户切换到具有更多权限的有效ID。**
+1. 保护：操作系统中的保护机制控制进程或用户对系统资源的访问，确保资源的安全使用和访问控制。
+2. 安全：操作系统需要抵御内部和外部攻击，包括拒绝服务、蠕虫、病毒、身份盗窃和服务盗用等安全威胁。
+3. 访问控制：操作系统规定用户对系统的访问权限，以确定用户能够执行的操作。
+4. 信息流控制：操作系统控制数据在系统内的流动以及传递给用户的方式。
+5. 认证：证明访问控制和信息流控制是否按照规范执行的过程。
+6. 系统首先区分用户，以确定谁可以执行什么操作。用户标识（用户 ID、安全 ID）包括用户名和相关编号，每个用户有一个。
+7. 用户 ID 与用户的所有文件和进程相关联，以确定访问控制。组标识符（组 ID）允许定义一组用户，并进行管理，然后也与每个进程和文件相关联。
+8. 特权提升：操作系统允许用户切换到具有更多权限的有效 ID，以便执行需要更高权限的操作。
 
-## 操作系统的接口
-操作系统系统了一系列接口为用户服务，主要分为两类：
 
-命令接口：用户利用这些操作命令来组织和控制作业的执行，使用命令接口进行作业控制的主要方式有两种，按照控制的方式可将命令接口分为两类
-脱机控制接口：脱机命令接口又称为批处理命令接口，适用于批处理系统，批处理类比于雇主将工人需要做的事写在清单上，工人按照清单命令逐条完成这些事；
-联机控制接口：又称为交互式命令接口，适用于分时或实时系统的接口，雇主说一句话工人做一件事并反馈，强调交互性；
-程序接口：编程人员使用它们来请求操作系统服务，实际上就是系统调用；
+
