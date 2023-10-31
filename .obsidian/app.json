@@ -7,7 +7,7 @@
   ],
   "promptDelete": true,
   "newFileLocation": "current",
-  "attachmentFolderPath": "./串.assets",
+  "attachmentFolderPath": "./Chapter 6 Process Synchronization.assets",
   "useMarkdownLinks": true,
   "newLinkFormat": "relative",
   "pdfExportSettings": {
@@ -15,5 +15,6 @@
     "landscape": false,
     "margin": "0",
     "downscalePercent": 100
-  }
+  },
+  "autoConvertHtml": false
 }
