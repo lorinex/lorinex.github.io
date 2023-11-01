@@ -267,7 +267,7 @@ typedef struct   {
 
 ## 图的遍历
 
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221204134925985.png" alt="image-20221204134925985" style="zoom:50%;" />
+<img src="%E5%9B%BE.assets/image-20221204134925985.png" alt="image-20221204134925985" style="zoom:50%;" />
 
 ### 深度优先遍历
 
@@ -322,7 +322,7 @@ void DFS(ALGraph G, int v)
 
 当图分连通时，需要多次启动DFS，每启动一次对应一个连通分量
 
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221204140236514.png" alt="image-20221204140236514" style="zoom:33%;" />
+<img src="%E5%9B%BE.assets/image-20221204140236514.png" alt="image-20221204140236514" style="zoom:33%;" />
 
 ```c
 void  DFSTraverse(Graph G)

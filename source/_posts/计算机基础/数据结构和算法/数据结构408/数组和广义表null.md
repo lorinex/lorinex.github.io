@@ -152,11 +152,11 @@ typedef struct{
 }TSMatrix;
 ```
 
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027103606316.png" alt="image-20221027103606316"/>
+<img src="%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8.assets/image-20221027103606316.png" alt="image-20221027103606316"/>
 
 [应用例] 求转置矩阵
 
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027103634267.png" alt="image-20221027103634267"  />
+<img src="%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8.assets/image-20221027103634267.png" alt="image-20221027103634267"  />
 
 算法1 { O(n*t) }求矩阵a的转置矩阵b
 
@@ -332,8 +332,8 @@ head(GL)= a1
 tail(GL)=( a2, ……, an )
 
 
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027111646633.png" alt="image-20221027111646633" style="zoom:50%;" />
-![image-20221027111646633|100](https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027111646633.png)
+<img src="%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8.assets/image-20221027111646633.png" alt="image-20221027111646633" style="zoom:50%;" />
+![image-20221027111646633|100](%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8.assets/image-20221027111646633.png)
 
 hp: 指示表头的指针
 

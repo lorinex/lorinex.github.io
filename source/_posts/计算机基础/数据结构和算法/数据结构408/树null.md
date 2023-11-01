@@ -238,7 +238,7 @@ void InOrderTraverse(BiTree T,Status(*Visit)(datatype)){
 }
 ```
 
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101145146306.png" alt="image-20221101145146306" style="zoom:25%;" />
+<img src="%E6%A0%91.assets/image-20221101145146306.png" alt="image-20221101145146306" style="zoom:25%;" />
 
 从左到右写这棵树，本质上是描述了这棵树的左右顺序
 
@@ -264,7 +264,7 @@ void PostOrderTraverse(BiTree T,Status(*Visit)(datatype)){
 }
 ```
 
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101145747743.png" alt="image-20221101145747743" style="zoom:25%;" />
+<img src="%E6%A0%91.assets/image-20221101145747743.png" alt="image-20221101145747743" style="zoom:25%;" />
 
 后序遍历：预留很多空，直接写左右根
 
@@ -463,7 +463,7 @@ Status LevelOrderTraverse(BiTree T, Status (*Visit)(TElemType e))
 
 指向孩子的指针和线索都是地址，如何区别某结点的指针域内存放的是指针还是线索？方法是为每个结点增设两个标志位域ltag和rtag，令：
 
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101155932079.png" alt="image-20221101155932079" style="zoom: 33%;" />
+<img src="%E6%A0%91.assets/image-20221101155932079.png" alt="image-20221101155932079" style="zoom: 33%;" />
 
 ```c
 线索二叉树的结点定义如下：
@@ -476,9 +476,9 @@ typedef struct BiThrNode {
 }BiThrNodeType, *BiThrTree;
 ```
 
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101160021688.png" alt="image-20221101160021688" style="zoom:25%;" />
+<img src="%E6%A0%91.assets/image-20221101160021688.png" alt="image-20221101160021688" style="zoom:25%;" />
 
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101160037725.png" alt="image-20221101160037725" style="zoom:25%;" />
+<img src="%E6%A0%91.assets/image-20221101160037725.png" alt="image-20221101160037725" style="zoom:25%;" />
 
 #### 线索二叉树的构建
 
@@ -583,11 +583,11 @@ Status InOrderTraverse_Thr(BiThrTree T, Status (*Visit)(TElemType e))
 
 **树的带权路径长度**  树中所有叶子结点的带权路径长度之和。
 
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101162144066.png" alt="image-20221101162144066" style="zoom:33%;" />
+<img src="%E6%A0%91.assets/image-20221101162144066.png" alt="image-20221101162144066" style="zoom:33%;" />
 
 **最优二叉树(哈夫曼树)   带权路径长度WPL最小的 二叉树。**
 
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101162322259.png" alt="image-20221101162322259" style="zoom:33%;" />
+<img src="%E6%A0%91.assets/image-20221101162322259.png" alt="image-20221101162322259" style="zoom:33%;" />
 
 ### 最优二叉树
 
@@ -608,9 +608,9 @@ Status InOrderTraverse_Thr(BiThrTree T, Status (*Visit)(TElemType e))
 (4)重复(2)和(3)，直到F中只含一棵树为止，该树即为所求。
 
 <center class="half">
-    <img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101162904931.png" alt="image-20221101162904931" width="200"/>
-    <img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101162925228.png" alt="image-20221101162925228" width="200"/>
-    <img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101162946228.png" alt="image-20221101162946228" width="200"/>
+    <img src="%E6%A0%91.assets/image-20221101162904931.png" alt="image-20221101162904931" width="200"/>
+    <img src="%E6%A0%91.assets/image-20221101162925228.png" alt="image-20221101162925228" width="200"/>
+    <img src="%E6%A0%91.assets/image-20221101162946228.png" alt="image-20221101162946228" width="200"/>
 </center>
 
 
@@ -620,7 +620,7 @@ Status InOrderTraverse_Thr(BiThrTree T, Status (*Visit)(TElemType e))
 
 用大小为2n的向量存储赫夫曼树—顺序存储。
 
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101163110399.png" alt="image-20221101163110399" style="zoom:67%;" />
+<img src="%E6%A0%91.assets/image-20221101163110399.png" alt="image-20221101163110399" style="zoom:67%;" />
 
 ```c
 typedef struct {
@@ -636,7 +636,7 @@ typedef struct {
 
 2)设置HT[1..n]的weight值
 
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101163303339.png" alt="image-20221101163303339" style="zoom:67%;" />
+<img src="%E6%A0%91.assets/image-20221101163303339.png" alt="image-20221101163303339" style="zoom:67%;" />
 
 1.在HT[1..i-1]中parent = 0的结点中选weight最小的两个结点HT[s1]和HT[s2]
 
@@ -644,9 +644,9 @@ typedef struct {
 
 3.置HT[i]：weight=HT[s1].weight + HT[s2].weight ,lchild=s1, rchild=s2
 
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101163412376.png" alt="image-20221101163412376" style="zoom:67%;" />
+<img src="%E6%A0%91.assets/image-20221101163412376.png" alt="image-20221101163412376" style="zoom:67%;" />
 
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101163431984.png" alt="image-20221101163431984" style="zoom:50%;" />
+<img src="%E6%A0%91.assets/image-20221101163431984.png" alt="image-20221101163431984" style="zoom:50%;" />
 
 #### 构造赫夫曼树的算法步骤
 
@@ -690,7 +690,7 @@ void  BuildHT(HuffmanTree &HT, int *w, int n)
 
 哈夫曼编码：用于通信和数据传送中字符的二进制编码，可以使电文编码总长度最短。
 
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101164310926.png" alt="image-20221101164310926" style="zoom: 50%;" />
+<img src="%E6%A0%91.assets/image-20221101164310926.png" alt="image-20221101164310926" style="zoom: 50%;" />
 
 设需要编码的字符集合为{d1，d2，…，dn}，它们在电文中出现的次数或频率集合为{w1，w2，…，wn}，以d1，d2，…，dn作为叶结点，w1，w2，…，wn作为它们的权值，构造一棵哈夫曼树。
 
@@ -706,9 +706,9 @@ void  BuildHT(HuffmanTree &HT, int *w, int n)
 
 #### 赫夫曼编码表的存储结构
 
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101164400044.png" alt="image-20221101164400044" style="zoom:33%;" />
+<img src="%E6%A0%91.assets/image-20221101164400044.png" alt="image-20221101164400044" style="zoom:33%;" />
 
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101164423491.png" alt="image-20221101164423491" style="zoom: 50%;" />
+<img src="%E6%A0%91.assets/image-20221101164423491.png" alt="image-20221101164423491" style="zoom: 50%;" />
 
 ```c
 void  HuffmanCoding(HuffmanTree HT, int n, HuffmanCode &HC)

@@ -80,7 +80,7 @@ Status Pop(SqStack &S,Elemtype &e){
 }//Pop
 ```
 
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221015103433751.png" alt="image-20221015103433751" style="zoom:50%;" />
+<img src="%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97.assets/image-20221015103433751.png" alt="image-20221015103433751" style="zoom:50%;" />
 
 #### (5)取栈顶元素
 
@@ -102,7 +102,7 @@ Status GetTop(SqStack S,Elemtype &e){
 
    2）出栈和读栈顶元素操作，先判栈是否为空，为空时不能出栈和读栈顶元素，否则产生错误。
 
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221015103249866.png" alt="image-20221015103249866" style="zoom:50%;" />
+<img src="%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97.assets/image-20221015103249866.png" alt="image-20221015103249866" style="zoom:50%;" />
 
 ### 两个栈共享一组地址连续的存储单元
 
@@ -461,7 +461,7 @@ typedef struct  {
 }LinkQueue;
 ```
 
-<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221015160450120.png" alt="image-20221015160450120" style="zoom:50%;" />
+<img src="%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97.assets/image-20221015160450120.png" alt="image-20221015160450120" style="zoom:50%;" />
 
 带头结点的链队如图所示：
 
