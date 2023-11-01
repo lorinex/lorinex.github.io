@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
+                "file": "source/_posts/计算机基础/数据结构和算法/数据结构408/串.md",
                 "mode": "source",
                 "source": false
               }
@@ -58,7 +58,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md"
+                "file": "source/_posts/计算机基础/数据结构和算法/数据结构408/串.md"
               }
             }
           },
@@ -105,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
+                "file": "source/_posts/计算机基础/数据结构和算法/数据结构408/串.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -122,7 +122,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
+                "file": "source/_posts/计算机基础/数据结构和算法/数据结构408/串.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -177,10 +177,15 @@
   },
   "active": "3e1ca42d2d145377",
   "lastOpenFiles": [
-    "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
-    "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
+    "source/_posts/计算机基础/数据结构和算法/数据结构408/线性表/删除倒数第k个结点.md",
+    "source/_posts/计算机基础/数据结构和算法/数据结构408/外部排序.md",
     "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
     "source/_posts/计算机基础/OS/Chapter 7  Deadlocks.md",
+    "source/_posts/计算机基础/数据库/2 关系模型.md",
+    "source/_posts/计算机基础/数据库/3 SQL.md",
+    "source/_posts/计算机基础/数据库/4 E-R图.md",
+    "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
+    "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
     "source/_posts/计算机基础/数据结构和算法/数据结构408/串.md",
     "source/_posts/计算机基础/OS/Chapter 5 CPU Scheduling.md",
     "source/_posts/计算机基础/OS/Chapter 5 CPU Scheduling.assets/image-20231030095618565.png",
@@ -190,9 +195,6 @@
     "source/_posts/编程语言/Python/2 面向对象编程/0 面向对象编程.md",
     "source/_posts/编程语言/Python/pyqt5/1 初次使用PyQt5工具包编程/3 悬停显示信息/3 悬停显示信息.md",
     "source/_posts/计算机基础/OS/Chapter 3 Processes.md",
-    "source/_posts/计算机基础/数据库/2 关系模型.md",
-    "source/_posts/计算机基础/数据库/3 SQL.md",
-    "source/_posts/计算机基础/数据库/4 E-R图.md",
     "source/_posts/计算机基础/数据库/1 数据库系统的基本概念.md",
     "source/_posts/编程语言/Python/1 python基础/正则表达式.md",
     "source/_posts/编程语言/Python/1 python基础/多线程.md",
@@ -214,8 +216,6 @@
     "source/_posts/编程语言/Python/1 python基础/temp.assets/image-20230926204250110.png",
     "source/_posts/编程语言/Python/1 python基础/temp.assets/image-20230926153013436.png",
     "source/_posts/编程语言/Python/1 python基础/temp.assets",
-    "source/_posts/编程语言/Python/1 python基础/变量作用域.md",
-    "source/_posts/AI/SAM/医学影像图片格式.md",
     "source/_posts/编程语言/Python/1 python基础/赋值、引用、深浅拷贝.assets/image-20230918141333276.png",
     "source/_posts/编程语言/Python/1 python基础/赋值、引用、深浅拷贝.assets",
     "source/_posts/编程语言/Python/1 python基础/8 集合",
