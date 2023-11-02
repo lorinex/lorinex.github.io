@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
                 "mode": "source",
                 "source": false
               }
@@ -31,8 +31,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -59,7 +58,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 1   Introduction.md"
+                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md"
               }
             }
           },
@@ -86,8 +85,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -107,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -124,7 +122,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -177,7 +175,7 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "38a9bb61432cca39",
+  "active": "3e1ca42d2d145377",
   "lastOpenFiles": [
     "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
     "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
