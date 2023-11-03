@@ -83,7 +83,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md"
+                "file": "source/_posts/计算机基础/OS/Chapter 3 Processes.md"
               }
             }
           },
@@ -110,7 +110,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -130,7 +131,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 3 Processes.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -147,7 +148,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 3 Processes.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -200,11 +201,11 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "03fbcaa50a44b6c7",
+  "active": "c010816d5e9e60ca",
   "lastOpenFiles": [
+    "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
     "source/_posts/计算机基础/OS/Chapter 4 Threads.md",
     "source/_posts/计算机基础/OS/Chapter 3 Processes.md",
-    "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
     "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
     "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
     "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.assets/image-20231102170615609.png",
