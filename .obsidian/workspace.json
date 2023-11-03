@@ -54,9 +54,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "3dac2258dd3e5719",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -83,7 +95,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 4 Threads.md"
+                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md"
               }
             }
           },
@@ -131,7 +143,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 4 Threads.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -148,7 +160,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 4 Threads.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -201,13 +213,13 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "c010816d5e9e60ca",
+  "active": "3dac2258dd3e5719",
   "lastOpenFiles": [
+    "source/_posts/计算机基础/OS/Chapter 4 Threads.md",
     "source/_posts/计算机基础/OS/Chapter 4 Threads.assets/image-20231103210340722.png",
     "source/_posts/计算机基础/OS/Chapter 4 Threads.assets",
     "source/_posts/计算机基础/OS/Chapter 3 Processes.md",
     "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
-    "source/_posts/计算机基础/OS/Chapter 4 Threads.md",
     "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
     "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
     "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.assets/image-20231102170615609.png",
@@ -244,7 +256,6 @@
     "source/_posts/编程语言/Python/1 python基础/temp.assets/image-20230926204457674.png",
     "source/_posts/编程语言/Python/1 python基础/temp.assets/image-20230926204431514.png",
     "source/_posts/编程语言/Python/1 python基础/temp.assets/image-20230926204402702.png",
-    "source/_posts/编程语言/Python/1 python基础/temp.assets/image-20230926204250110.png",
     "source/_posts/编程语言/Python/1 python基础/temp.assets",
     "source/_posts/编程语言/Python/1 python基础/赋值、引用、深浅拷贝.assets",
     "source/_posts/编程语言/Python/1 python基础/8 集合",
