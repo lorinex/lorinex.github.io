@@ -83,7 +83,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 3 Processes.md"
+                "file": "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md"
               }
             }
           },
@@ -110,8 +110,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -131,7 +130,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 3 Processes.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -148,7 +147,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 3 Processes.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
