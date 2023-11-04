@@ -49,26 +49,14 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 4 Threads.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "3dac2258dd3e5719",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 7  Deadlocks.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -95,7 +83,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 7  Deadlocks.md"
+                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md"
               }
             }
           },
@@ -122,11 +110,13 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 327.5
+    "width": 327.5,
+    "collapsed": true
   },
   "right": {
     "id": "bad03ea09745a182",
@@ -142,7 +132,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 7  Deadlocks.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -159,7 +149,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 7  Deadlocks.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -212,14 +202,14 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "3c308b07cdf852b8",
+  "active": "03fbcaa50a44b6c7",
   "lastOpenFiles": [
+    "source/_posts/计算机基础/OS/Chapter 4 Threads.md",
+    "source/_posts/计算机基础/OS/Chapter 7  Deadlocks.md",
     "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
     "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
     "source/_posts/计算机基础/OS/Chapter 3 Processes.md",
     "source/_posts/计算机基础/OS/Chapter 5 CPU Scheduling.md",
-    "source/_posts/计算机基础/OS/Chapter 7  Deadlocks.md",
-    "source/_posts/计算机基础/OS/Chapter 4 Threads.md",
     "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
     "source/_posts/计算机基础/OS/Chapter 4 Threads.assets/image-20231103210340722.png",
     "source/_posts/计算机基础/OS/Chapter 4 Threads.assets",
