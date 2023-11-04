@@ -110,8 +110,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -202,12 +201,12 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "03fbcaa50a44b6c7",
+  "active": "7878eb54ced8b833",
   "lastOpenFiles": [
+    "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
     "source/_posts/计算机基础/OS/Chapter 4 Threads.md",
     "source/_posts/计算机基础/OS/Chapter 7  Deadlocks.md",
     "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
-    "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
     "source/_posts/计算机基础/OS/Chapter 3 Processes.md",
     "source/_posts/计算机基础/OS/Chapter 5 CPU Scheduling.md",
     "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
