@@ -49,14 +49,14 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/计算机基础/数据库/1 数据库系统的基本概念.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -83,7 +83,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/计算机基础/数据库/1 数据库系统的基本概念.md"
+                "file": "source/_posts/计算机基础/OS/Chapter 1   Introduction.md"
               }
             }
           },
@@ -110,7 +110,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -130,7 +131,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/计算机基础/数据库/1 数据库系统的基本概念.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -147,7 +148,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/计算机基础/数据库/1 数据库系统的基本概念.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -200,12 +201,12 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "7878eb54ced8b833",
+  "active": "38a9bb61432cca39",
   "lastOpenFiles": [
-    "source/_posts/计算机基础/数据库/2 关系模型.md",
-    "source/_posts/计算机基础/数据库/1 数据库系统的基本概念.md",
-    "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
     "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
+    "source/_posts/计算机基础/数据库/1 数据库系统的基本概念.md",
+    "source/_posts/计算机基础/数据库/2 关系模型.md",
+    "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
     "source/_posts/计算机基础/OS/Chapter 4 Threads.md",
     "source/_posts/计算机基础/OS/Chapter 7  Deadlocks.md",
     "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
