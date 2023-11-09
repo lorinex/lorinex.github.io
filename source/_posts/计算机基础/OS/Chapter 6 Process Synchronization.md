@@ -138,6 +138,8 @@ remainder section;
 
 ## Synchronization Hardware
 
+### Synchronization Hardware
+
 许多系统提供硬件支持以保护临界区代码。
 
 - **禁用中断disable interrupts**
@@ -150,11 +152,26 @@ remainder section;
 	- 例如，**TestAndSet()** 指令用于测试内存单元的值并设置新的值。
 	- **Swap()** 指令用于交换两个内存单元的内容。
 
-
+![image-20231109193936288](https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231109193936288.png)
 
 这些原子硬件指令可以在多线程或多进程的情况下，用来保护临界区代码，确保多个执行单元在同时访问共享资源时不会发生竞争条件。这些原子指令提供了一种有效的方式来执行互斥操作，而无需禁用中断或使用锁。
 
+### Solution using TestAndSet()
+
 使用 `TestAndSet()` 来解决临界区问题的解决方案如下：
+
+```c
+Shared data:
+boolean lock = FALSE;
+
+Process Pi
+while(TRUE) {
+    while (TestAndSet(&lock));
+    critical section
+    lock = FALSE;
+    remainder section
+}
+```
 
 - 共享数据：`boolean lock = FALSE;`，`lock` 是一个布尔变量，初始值为 `FALSE`。
 - 进程 `Pi`：
@@ -166,7 +183,24 @@ remainder section;
 
 这个解决方案使用 `TestAndSet()` 指令来确保在一个时刻只有一个进程能够进入临界区，其他进程必须等待。这样，它满足了互斥性的要求。
 
+### Solution using Swap()
+
 使用 `Swap()` 来解决临界区问题的解决方案如下：
+
+```c
+Shared data:
+boolean lock = FALSE;
+
+Process Pi
+while(TRUE) {
+    key = TRUE;
+    while (key == TRUE)
+        Swap (&lock, &key);
+    critical section
+    lock = FALSE;
+    remainder section
+}
+```
 
 - 共享数据：`boolean lock = FALSE;`，`lock` 是一个布尔变量，初始值为 `FALSE`。
 - 进程 `Pi`：
@@ -179,7 +213,7 @@ remainder section;
 
 这个解决方案使用 `Swap()` 指令来确保在一个时刻只有一个进程能够进入临界区，其他进程必须等待。这样，它满足了互斥性的要求。
 
-互斥机器指令的优势和劣势如下：
+### Mutual Exclusion Machine Instructions
 
 **优势：**
 
@@ -189,43 +223,69 @@ remainder section;
 
 **劣势：**
 
-- 忙等待会占用处理器时间，这可能会导致资源的浪费。
-- 可能出现饥饿情况，当一个进程离开临界区并且有多个进程在等待时。
-- 死锁：如果一个优先级较低的进程拥有临界区，而一个优先级较高的进程需要进入临界区，那么高优先级的进程将获得处理器，但它只是等待临界区。
+- <u>**Busy-waiting**</u>会占用处理器时间，这可能会导致资源的浪费。
+- 可能出现<u>**starvation**</u>情况，当一个进程离开临界区并且有多个进程在等待时。
+- <u>**deadlock**</u>：如果一个优先级较低的进程拥有临界区，而一个优先级较高的进程需要进入临界区，那么高优先级的进程将获得处理器，但它只是等待临界区。
 
-这些是使用互斥机器指令来解决互斥问题的一些优势和劣势。
+### Revised Solution Using TestAndSet()
 
 经过修订的使用TestAndSet()的解决方案如下：
+
+```c
+Shared data(initialized to FALSE) : 
+boolean lock;
+boolean waiting[n];
+
+Process Pi 
+while (TRUE)
+{
+    waiting[i] = TRUE;
+    key = TRUE;
+    while (waiting[i] && key)
+        key = TestAndSet(&lock);
+    waiting[i] = FALSE;
+    // critical section
+    j = (i + 1) % n;
+    while ((j != i) && !waiting[j])
+        j = (j + 1) % n;
+    if (j == i)
+        lock = FALSE;
+    else
+        waiting[j] = FALSE;
+    // remainder section
+}
+```
 
 **共享数据（初始化为FALSE）：**
 
 - boolean lock; // 用于表示临界区是否被锁定
 - boolean waiting[n]; // 用于表示每个进程是否在等待
 
-**进程Pi：**
+这是使用TestAndSet()进行修订的解决方案，以实现多个进程之间的互斥。当进程需要访问临界区时，它首先等待其他进程完成，然后尝试使用TestAndSet()获取锁。在进入临界区后，它会检查是否有其他进程在等待，如果没有，就释放锁；否则，将等待标志设置为FALSE，以允许其他进程尝试获取锁。这有助于确保只有一个进程可以同时进入临界区。
 
-```plaintext
-while(TRUE) {
-    waiting[i] = TRUE; // 标记进程i正在等待
-    key = TRUE;
-    while (waiting[i] && key)
-        key = TestAndSet(&lock); // 使用TestAndSet()获取锁
-    waiting[i] = FALSE; // 进程i不再等待
-    critical section // 进入临界区
-    j = (i+1) % n; // 选择下一个进程
-    while ((j != i) && !waiting[j])
-        j = (j+1) % n;
-    if (j == i)
-        lock = FALSE; // 没有其他进程在等待，解锁临界区
-    else
-        waiting[j] = FALSE; // 将等待标志重置为FALSE
-    remainder section // 临界区外的代码
+### Mutex Locks
+
+以前的硬件解决方案复杂且通常不易被程序员所使用，操作系统设计者通过编写软件工具来解决关键段问题。最为简单的解决方案是互斥锁（又称互斥机制）。
+保护关键段的方法是：首先获取（acquire）锁，然后释放（release）锁。
+采用一个布尔变量available来表示锁的状态，用以判断锁是否可用。
+acquire()和release()锁的操作必须是原子性的，通常通过硬件原子指令来实现原子性操作。
+然而，这种解决方案需要忙等待，即在获取锁时，线程需要不断尝试直到锁可用。因此，这种锁被称为<u>自旋锁（spinlock）</u>。自旋锁通常在多处理器系统中使用，以解决多个处理器同时访问共享资源的问题。
+
+```c
+acquire()
+{
+    while (!available)
+      ; /* busy wait */
+    available = false;
+}
+release()
+{
+    available = true;
 }
 ```
 
-这是使用TestAndSet()进行修订的解决方案，以实现多个进程之间的互斥。当进程需要访问临界区时，它首先等待其他进程完成，然后尝试使用TestAndSet()获取锁。在进入临界区后，它会检查是否有其他进程在等待，如果没有，就释放锁；否则，将等待标志设置为FALSE，以允许其他进程尝试获取锁。这有助于确保只有一个进程可以同时进入临界区。
-
 ## Semaphores
+
 信号量（Semaphore）是一种用于进程同步的工具，它提供了比互斥锁更复杂的方法。与互斥锁不同，信号量不需要busy waiting。
 信号量是一个特殊的变量，通常用**整数**来表示，可以初始化为非负数。它只能通过两个不可分割的操作来访问：
 1. `wait(S)`：等待操作，用于获取信号量，操作会减小信号量的值。S--
