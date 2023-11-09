@@ -54,9 +54,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "195759f4b3f0aa6f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -83,7 +95,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 1   Introduction.md"
+                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md"
               }
             }
           },
@@ -110,8 +122,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -131,7 +142,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -148,7 +159,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -201,15 +212,15 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "38a9bb61432cca39",
+  "active": "195759f4b3f0aa6f",
   "lastOpenFiles": [
+    "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
     "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
     "source/_posts/计算机基础/数据库/1 数据库系统的基本概念.md",
     "source/_posts/计算机基础/数据库/2 关系模型.md",
     "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
     "source/_posts/计算机基础/OS/Chapter 4 Threads.md",
     "source/_posts/计算机基础/OS/Chapter 7  Deadlocks.md",
-    "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
     "source/_posts/计算机基础/OS/Chapter 3 Processes.md",
     "source/_posts/计算机基础/OS/Chapter 5 CPU Scheduling.md",
     "source/_posts/计算机基础/OS/Chapter 4 Threads.assets/image-20231103210340722.png",
