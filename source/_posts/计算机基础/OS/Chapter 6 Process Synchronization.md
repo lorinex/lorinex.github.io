@@ -514,9 +514,8 @@ signal(semaphore *S) {
 
 ### Condition Variable
 
-条件变量（Condition Variable）是管程（Monitor）内的一个重要组成部分，用于实现进程的等待和通知机制。条件变量通常与等待（wait）和通知（signal）操作相关联。下面是条件变量及其相关操作的概述：
-
-1. 声明条件变量：在监视器内，你可以声明一个或多个条件变量`condition x, y;`
+条件变量（Condition Variable）是管程（Monitor）内的一个重要组成部分，用于实现进程的等待和通知机制。条件变量通常与等待（wait）和通知（signal）操作相关联。
+1. 声明条件变量：在monitor内，你可以声明一个或多个条件变量`condition x, y;`
 2. wait() 操作：调用此操作的进程将被挂起（suspended），直到另一个进程调用x.signal();
 3.  signal() 操作：恢复（resumes）一个被挂起的进程。如果没有进程被挂起，则signal操作没有任何效果。
 
