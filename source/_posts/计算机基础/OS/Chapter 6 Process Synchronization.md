@@ -136,6 +136,32 @@ remainder section;
 
 仅过上面的分析，我们就不难理解，当Pi和Pj经过一轮谦让之后，就会直接根据turn的值（即：该轮到谁进临界区了）来直接决定谁该进入临界区。现在回过头回顾整个算法，其实我们会发现，Peterson算法的思想会更贴近于生活中的真实情况，大家一般都是略微谦让一下，然后直奔主题，难道不是吗？哈哈
 
+## \*Bakery Algorithm
+
+面包店算法为n个进程的临界区问题提供了一种解决方案。在进入临界区之前，每个进程都会接收到一个编号。持有最小编号的进程首先进入临界区。如果两个进程Pi和Pj接收到相同的编号，那么比较它们的进程ID：如果i<j，则Pi先被服务；否则Pj先被服务。编号方案始终按枚举的递增顺序生成编号，例如1, 2, 3, 3, 3, 3, 4, 5等等。
+
+这里的“<”表示字典顺序（票号，进程ID号）。如果(a, b)<(c, d)，那么要么是a<c，要么在a=c的情况下b<d。max(a0, …, an-1)是一个数字k，满足对于所有i = 0, …, n – 1，k≥ai。
+
+```c
+Shared data
+boolean choosing[n];//false
+int number[n]; //0
+
+Pi
+while (1) {
+	choosing[i] = true; // Pi is taking a number
+	number[i] = max(number[0], number[1], …, number [n–1])+1; //排队取号
+	choosing[i] = false; // end of number taking
+	for (j = 0; j < n; j++) {
+		while (choosing[j]) ;
+		while ((number[j] != 0) && ((number[j], j)<(number[i], i)); //排队等待
+	}
+	critical section
+	number[i] = 0;
+	remainder section
+}
+```
+
 ## Synchronization Hardware
 
 ### Synchronization Hardware
