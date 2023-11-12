@@ -1,5 +1,5 @@
 ---
-title: Chapter 7  Deadlocks
+title: 5  Deadlocks
 categories:
   - 计算机基础
   - OS

@@ -1,5 +1,5 @@
 ---
-title: Chapter 6 Process Synchronization
+title: 4 Process Synchronization
 categories:
   - 计算机基础
   - OS
