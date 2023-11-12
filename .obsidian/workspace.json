@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/计算机基础/OS/2 Processes And Threads.md",
+                "file": "source/_posts/计算机基础/OS/4 Process Synchronization.md",
                 "mode": "source",
                 "source": false
               }
@@ -59,7 +59,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/计算机基础/OS/2 Processes And Threads.md"
+                "file": "source/_posts/计算机基础/OS/4 Process Synchronization.md"
               }
             }
           },
@@ -86,8 +86,7 @@
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "horizontal",
@@ -107,7 +106,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/计算机基础/OS/2 Processes And Threads.md",
+                "file": "source/_posts/计算机基础/OS/4 Process Synchronization.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -124,7 +123,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/计算机基础/OS/2 Processes And Threads.md",
+                "file": "source/_posts/计算机基础/OS/4 Process Synchronization.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -177,8 +176,9 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "062788e87a1cf5bb",
+  "active": "195759f4b3f0aa6f",
   "lastOpenFiles": [
+    "source/_posts/计算机基础/OS/2 Processes And Threads.md",
     "public/2023/10/53ddad975415.html",
     "public/2023/09/410f88b72ca2.html",
     "public/2023/10/c0eb1ad7b677.html",
@@ -187,7 +187,6 @@
     "source/_posts/计算机基础/OS/3 CPU Scheduling.md",
     "source/_posts/计算机基础/OS/4 Process Synchronization.md",
     "source/_posts/计算机基础/OS/5  Deadlocks.md",
-    "source/_posts/计算机基础/OS/2 Processes And Threads.md",
     "source/_posts/计算机基础/OS/Chapter 4 Threads.md",
     "source/_posts/计算机基础/OS/1   Introduction.md",
     "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
@@ -196,7 +195,6 @@
     "public/page/17/index.html",
     "public/archives/2023/page/17/index.html",
     "public/archives/page/17/index.html",
-    "public/2023/10/e98f6242bafa.html",
     "source/_posts/计算机基础/数据库/1 数据库系统的基本概念.md",
     "source/_posts/计算机基础/数据库/2 关系模型.md",
     "source/_posts/计算机基础/OS/Chapter 4 Threads.assets/image-20231103210340722.png",
