@@ -564,11 +564,9 @@ while(1){
 		wait(chopstick[i]);
 		wait(chopstick[(i+1)%5]);
 	}else{
-		
 		wait(chopstick[(i+1)%5]);
 		wait(chopstick[i]);
 	}
-	
 	eating
 	signal(chopstick[i]);
 	signal(chopstick[(i+1)%5]);

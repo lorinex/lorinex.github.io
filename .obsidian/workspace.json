@@ -77,8 +77,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 327.5,
-    "collapsed": true
+    "width": 327.5
   },
   "right": {
     "id": "bad03ea09745a182",
@@ -164,7 +163,7 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "3c308b07cdf852b8",
+  "active": "195759f4b3f0aa6f",
   "lastOpenFiles": [
     "source/_posts/计算机基础/OS/2 Processes And Threads.md",
     "public/2023/10/53ddad975415.html",
