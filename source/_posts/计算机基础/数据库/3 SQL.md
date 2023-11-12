@@ -1,5 +1,8 @@
 ---
 title: 3 SQL
+categories:
+  - 计算机基础
+  - 数据库
 date: 2023-10-27 15:08:54
 tags:
 ---

@@ -1,5 +1,9 @@
 ---
 title: IO编程
+categories:
+  - 编程语言
+  - Python
+  - 1 python基础
 date: 2023-10-23 13:09:31
 tags:
 ---

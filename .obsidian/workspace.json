@@ -61,7 +61,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
                 "mode": "source",
                 "source": false
               }
@@ -95,7 +95,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md"
+                "file": "source/_posts/计算机基础/OS/Chapter 1   Introduction.md"
               }
             }
           },
@@ -142,7 +142,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -159,7 +159,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
+                "file": "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -214,8 +214,8 @@
   },
   "active": "195759f4b3f0aa6f",
   "lastOpenFiles": [
-    "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
     "source/_posts/计算机基础/OS/Chapter 6 Process Synchronization.md",
+    "source/_posts/计算机基础/OS/Chapter 1   Introduction.md",
     "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
     "source/_posts/计算机基础/数据库/1 数据库系统的基本概念.md",
     "source/_posts/计算机基础/数据库/2 关系模型.md",
