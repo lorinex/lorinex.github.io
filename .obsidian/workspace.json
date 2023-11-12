@@ -86,7 +86,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -176,8 +177,13 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "195759f4b3f0aa6f",
+  "active": "062788e87a1cf5bb",
   "lastOpenFiles": [
+    "public/2023/10/53ddad975415.html",
+    "public/2023/09/410f88b72ca2.html",
+    "public/2023/10/c0eb1ad7b677.html",
+    "public/2023/10/8e5a650ede18.html",
+    "public/2023/10/29e8160886da.html",
     "source/_posts/计算机基础/OS/3 CPU Scheduling.md",
     "source/_posts/计算机基础/OS/4 Process Synchronization.md",
     "source/_posts/计算机基础/OS/5  Deadlocks.md",
@@ -191,10 +197,6 @@
     "public/archives/2023/page/17/index.html",
     "public/archives/page/17/index.html",
     "public/2023/10/e98f6242bafa.html",
-    "public/2023/10/0ab41f2ccb04.html",
-    "public/2023/10/a42fa9e2a935.html",
-    "public/2023/11/6762c633dea3.html",
-    "public/2023/10/ccf89eb33855.html",
     "source/_posts/计算机基础/数据库/1 数据库系统的基本概念.md",
     "source/_posts/计算机基础/数据库/2 关系模型.md",
     "source/_posts/计算机基础/OS/Chapter 4 Threads.assets/image-20231103210340722.png",
