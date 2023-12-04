@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/计算机基础/OS/4 Process Synchronization.md",
+                "file": "source/_posts/English/六级作文.md",
                 "mode": "source",
                 "source": false
               }
@@ -59,7 +59,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/计算机基础/OS/4 Process Synchronization.md"
+                "file": "source/_posts/English/六级作文.md"
               }
             }
           },
@@ -86,11 +86,13 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 327.5
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "bad03ea09745a182",
@@ -106,7 +108,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/计算机基础/OS/4 Process Synchronization.md",
+                "file": "source/_posts/English/六级作文.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,7 +125,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/计算机基础/OS/4 Process Synchronization.md",
+                "file": "source/_posts/English/六级作文.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -178,9 +180,10 @@
   },
   "active": "a4f7a27969cc9378",
   "lastOpenFiles": [
+    "source/_posts/English/~$23上半年六级作文模板.docx",
+    "source/_posts/计算机基础/OS/4 Process Synchronization.md",
     "source/_posts/计算机基础/OS/3 CPU Scheduling.md",
     "source/_posts/计算机基础/OS/2 Processes And Threads.md",
-    "source/_posts/计算机基础/OS/4 Process Synchronization.md",
     "public/2023/10/53ddad975415.html",
     "public/2023/09/410f88b72ca2.html",
     "public/2023/10/c0eb1ad7b677.html",
