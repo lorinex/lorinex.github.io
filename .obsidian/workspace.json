@@ -170,10 +170,9 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:打开快速切换": false,
-      "templates:插入模板": false,
-      "command-palette:打开命令面板": false,
-      "file-tree-alternative:File Tree Alternative Plugin": false
+      "switcher:Open quick switcher": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
     }
   },
   "active": "a4f7a27969cc9378",
