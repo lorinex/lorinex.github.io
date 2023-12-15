@@ -90,7 +90,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 222.5
   },
   "right": {
     "id": "bad03ea09745a182",
@@ -172,10 +172,11 @@
     "hiddenItems": {
       "switcher:Open quick switcher": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "a4f7a27969cc9378",
+  "active": "3c308b07cdf852b8",
   "lastOpenFiles": [
     "source/_posts/English/~$23上半年六级作文模板.docx",
     "source/_posts/计算机基础/OS/4 Process Synchronization.md",
