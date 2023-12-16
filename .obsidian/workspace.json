@@ -86,11 +86,13 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 222.5
+    "width": 222.5,
+    "collapsed": true
   },
   "right": {
     "id": "bad03ea09745a182",
@@ -176,7 +178,7 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "3c308b07cdf852b8",
+  "active": "a4f7a27969cc9378",
   "lastOpenFiles": [
     "source/_posts/English/~$23上半年六级作文模板.docx",
     "source/_posts/计算机基础/OS/4 Process Synchronization.md",
