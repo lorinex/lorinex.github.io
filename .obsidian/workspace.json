@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/English/六级作文.md",
+                "file": "source/_posts/计算机基础/数据库/数据库系统原理实验报告-2021211336-谢欣栩.md",
                 "mode": "source",
                 "source": false
               }
@@ -59,7 +59,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/English/六级作文.md"
+                "file": "source/_posts/计算机基础/数据库/数据库系统原理实验报告-2021211336-谢欣栩.md"
               }
             }
           },
@@ -86,11 +86,13 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 222.5
+    "width": 222.5,
+    "collapsed": true
   },
   "right": {
     "id": "bad03ea09745a182",
@@ -106,7 +108,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/English/六级作文.md",
+                "file": "source/_posts/计算机基础/数据库/数据库系统原理实验报告-2021211336-谢欣栩.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,7 +125,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/English/六级作文.md",
+                "file": "source/_posts/计算机基础/数据库/数据库系统原理实验报告-2021211336-谢欣栩.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -178,6 +180,10 @@
   },
   "active": "a4f7a27969cc9378",
   "lastOpenFiles": [
+    "source/_posts/计算机基础/数据库/数据库系统原理实验报告-2021211336-谢欣栩.assets/image-20231218132941959.png",
+    "source/_posts/计算机基础/数据库/数据库系统原理实验报告-2021211336-谢欣栩.assets",
+    "source/_posts/English/六级作文.md",
+    "source/_posts/计算机基础/数据库/数据库系统原理实验报告-2021211336-谢欣栩.md",
     "source/_posts/English/~$23上半年六级作文模板.docx",
     "source/_posts/计算机基础/OS/4 Process Synchronization.md",
     "source/_posts/计算机基础/OS/3 CPU Scheduling.md",
@@ -194,8 +200,6 @@
     "public/2023/09/e53c0a44fd64.html",
     "public/2023/09/9959444339b7.html",
     "public/page/17/index.html",
-    "public/archives/2023/page/17/index.html",
-    "public/archives/page/17/index.html",
     "source/_posts/计算机基础/数据库/1 数据库系统的基本概念.md",
     "source/_posts/计算机基础/数据库/2 关系模型.md",
     "source/_posts/计算机基础/OS/Chapter 4 Threads.assets/image-20231103210340722.png",
@@ -216,8 +220,6 @@
     "source/_posts/计算机基础/数据结构和算法/数据结构408/最大子序列和.md",
     "source/_posts/计算机基础/数据结构和算法/数据结构408/栈、队列.md",
     "source/_posts/计算机基础/数据结构和算法/数据结构408/绪论.md",
-    "source/_posts/计算机基础/数据结构和算法/数据结构408/串.md",
-    "source/_posts/计算机基础/数据结构和算法/数据结构408/树null.md",
     "source/_posts/计算机基础/OS/Chapter 5 CPU Scheduling.assets/image-20231030095618565.png",
     "source/_posts/计算机基础/OS/Chapter 5 CPU Scheduling.assets/image-20231029170217044.png",
     "source/_posts/English/六级作文.assets/image-20231013164955237.png",
