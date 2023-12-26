@@ -187,6 +187,26 @@ Shared Pages是指多个进程共享同一只读(不可变)代码的内存页。
 
 ## Structure of the Page Table
 
+### Hierarchical Paging
+
+层次页表结构：将页表自身也进行分页，可以减少内存占用。常见的有双级页表。
+
+![](https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/20231226195032.png)
+![](https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/20231226195115.png)
+
+### Hashed Page Tables
+
+Hashed Page Tables(散列表页表)在地址空间大于32位时常见。
+散列表中的每个条目包含一个链表，其中元素通过哈希函数散列到同一位置。每个元素包含三个字段：
+(1)虚拟页号 
+(2)对应的物理页号
+(3)指向下一个元素的指针
+逻辑页号通过哈希函数散列到散列表中，并与链表中元素的(1)字段进行比较查找匹配项。如果找到匹配项，则提取对应的物理页号(2)。如果没有匹配项，则继续搜索链表中的后续元素以查找匹配逻辑页号。
+
+![](https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/20231226195906.png)
+
+### Inverted Page Tables
+
 
 
 ## Segmentation
