@@ -73,7 +73,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -174,6 +175,8 @@
   },
   "active": "195759f4b3f0aa6f",
   "lastOpenFiles": [
+    "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.assets/image-20240105205607679.png",
+    "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.assets",
     "source/_posts/计算机基础/OS/8 Mass-Storage Structure.md",
     "source/_posts/计算机基础/OS/8 Mass-Storage Structure~.md",
     "source/_posts/计算机基础/OS/4 Process Synchronization.md",
@@ -194,7 +197,6 @@
     "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.assets/image-20231225215645740.png",
     "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.assets/image-20231225215613810.png",
     "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.assets/image-20231225215145060.png",
-    "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.assets",
     "source/_posts/计算机基础/OS/2 Processes And Threads.md",
     "source/_posts/计算机基础/数据库/数据库系统原理实验报告-2021211336-谢欣栩.md",
     "source/_posts/计算机基础/数据库/数据库系统原理实验报告-2021211336-谢欣栩.assets",
@@ -218,7 +220,6 @@
     "source/_posts/计算机基础/数据结构和算法/数据结构408/排序.md",
     "source/_posts/计算机基础/数据结构和算法/数据结构408/线性表/选做力扣练习题.md",
     "source/_posts/计算机基础/数据结构和算法/数据结构408/线性表/判断单链表是否有环.md",
-    "source/_posts/计算机基础/数据结构和算法/数据结构408/线性表/删除倒数第k个结点.md",
-    "source/_posts/计算机基础/数据结构和算法/数据结构408/线性表/循环左移.md"
+    "source/_posts/计算机基础/数据结构和算法/数据结构408/线性表/删除倒数第k个结点.md"
   ]
 }
