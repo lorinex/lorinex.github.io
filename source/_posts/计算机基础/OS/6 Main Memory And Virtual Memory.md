@@ -1,7 +1,10 @@
 ---
 title: 6 Main Memory And Virtual Memory
 date: 2023-12-25 19:54:47
-tags:
+tags: 
+categories:
+  - 计算机基础
+  - OS
 ---
 # Main Memory
 
