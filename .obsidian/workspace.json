@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.md",
+                "file": "source/_posts/计算机基础/OS/7 File-System.md",
                 "mode": "source",
                 "source": false
               }
@@ -46,7 +46,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.md"
+                "file": "source/_posts/计算机基础/OS/7 File-System.md"
               }
             }
           },
@@ -73,8 +73,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -94,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.md",
+                "file": "source/_posts/计算机基础/OS/7 File-System.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.md",
+                "file": "source/_posts/计算机基础/OS/7 File-System.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -175,6 +174,7 @@
   },
   "active": "195759f4b3f0aa6f",
   "lastOpenFiles": [
+    "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.md",
     "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.assets/image-20240105205607679.png",
     "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.assets",
     "source/_posts/计算机基础/OS/8 Mass-Storage Structure.md",
@@ -184,7 +184,6 @@
     "source/_posts/计算机基础/OS/5  Deadlocks.assets/image-20240105120908411.png",
     "source/_posts/计算机基础/OS/5  Deadlocks.assets",
     "source/_posts/计算机基础/OS/7 File-System.md",
-    "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.md",
     "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.assets/image-20231227224213831.png",
     "source/_posts/计算机基础/OS/7 Virtual Memory.md",
     "source/_posts/计算机基础/数据结构和算法/数据结构408/图.md",
@@ -196,7 +195,6 @@
     "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.assets/image-20231226101851339.png",
     "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.assets/image-20231225215645740.png",
     "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.assets/image-20231225215613810.png",
-    "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.assets/image-20231225215145060.png",
     "source/_posts/计算机基础/OS/2 Processes And Threads.md",
     "source/_posts/计算机基础/数据库/数据库系统原理实验报告-2021211336-谢欣栩.md",
     "source/_posts/计算机基础/数据库/数据库系统原理实验报告-2021211336-谢欣栩.assets",
