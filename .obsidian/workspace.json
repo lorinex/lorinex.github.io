@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.md",
-                "mode": "source",
+                "file": "source/_posts/计算机基础/OS/7 File-System.md",
+                "mode": "preview",
                 "source": false
               }
             }
@@ -46,7 +46,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.md"
+                "file": "source/_posts/计算机基础/OS/7 File-System.md"
               }
             }
           },
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.md",
+                "file": "source/_posts/计算机基础/OS/7 File-System.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.md",
+                "file": "source/_posts/计算机基础/OS/7 File-System.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -174,8 +174,9 @@
   },
   "active": "195759f4b3f0aa6f",
   "lastOpenFiles": [
-    "source/_posts/计算机基础/OS/7 File-System.md",
+    "source/_posts/计算机基础/OS/1   Introduction.md",
     "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.md",
+    "source/_posts/计算机基础/OS/7 File-System.md",
     "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.assets/image-20240105205607679.png",
     "source/_posts/计算机基础/OS/6 Main Memory And Virtual Memory.assets",
     "source/_posts/计算机基础/OS/8 Mass-Storage Structure.md",
@@ -207,7 +208,6 @@
     "public/2023/10/8e5a650ede18.html",
     "public/2023/10/29e8160886da.html",
     "source/_posts/计算机基础/OS/Chapter 4 Threads.md",
-    "source/_posts/计算机基础/OS/1   Introduction.md",
     "source/_posts/计算机基础/OS/Chapter 2 Operating-System Structures.md",
     "source/_posts/计算机基础/数据库/1 数据库系统的基本概念.md",
     "source/_posts/计算机基础/数据库/2 关系模型.md",
