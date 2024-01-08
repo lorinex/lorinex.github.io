@@ -1,0 +1,746 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/flower.png">
+  <link rel="icon" href="/img/flower.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#0f1f15">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="关系模型关系数据结构关系模型的数据结构是：二维表结构，它是关系型数据库的基础。关系数据模型由关系数据结构、关系操作和关系完整性约束三部分组成。关系必须是规范化的，满足一定的规范条件。关系数据库必须满足1NF范式，即一张表中不包含子表。（关系的每一个分量必须是一个不可分的数据项, 不允许表中还有表） 关系模型只是常用的数据模型的一种，数据模型按照数据之间的联系可以划分为：  层次模型 网状模型 关系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关系模型">
+<meta property="og:url" content="http://example.com/2023/09/eef147b6f625.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="关系模型关系数据结构关系模型的数据结构是：二维表结构，它是关系型数据库的基础。关系数据模型由关系数据结构、关系操作和关系完整性约束三部分组成。关系必须是规范化的，满足一定的规范条件。关系数据库必须满足1NF范式，即一张表中不包含子表。（关系的每一个分量必须是一个不可分的数据项, 不允许表中还有表） 关系模型只是常用的数据模型的一种，数据模型按照数据之间的联系可以划分为：  层次模型 网状模型 关系">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231027154643117.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231027154827889.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231027154933876.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231027155103551.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/u=1259885532,3028600250&fm=253&app=138&f=PNG">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/asynccode">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231027180205662.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/asynccode">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/asynccode">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/asynccode">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/asynccode">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/asynccode">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/asynccode">
+<meta property="article:published_time" content="2023-09-26T21:42:34.000Z">
+<meta property="article:modified_time" content="2024-01-08T06:18:22.812Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231027154643117.png">
+  
+  
+  
+  <title>关系模型 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="关系模型"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-26 21:42" pubdate>
+          September 26, 2023 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">关系模型</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="关系模型"><a href="#关系模型" class="headerlink" title="关系模型"></a>关系模型</h1><h2 id="关系数据结构"><a href="#关系数据结构" class="headerlink" title="关系数据结构"></a>关系数据结构</h2><p>关系模型的数据结构是：<strong>二维表结构</strong>，它是<strong>关系型数据库</strong>的基础。<br>关系数据模型由<strong>关系数据结构、关系操作和关系完整性约束</strong>三部分组成。<br>关系必须是<strong>规范化</strong>的，满足一定的<strong>规范条件</strong>。<br>关系数据库必须满足<strong>1NF</strong>范式，即一张表中不包含<strong>子表</strong>。（<strong>关系的每一个分量必须是一个不可分的数据项, 不允许表中还有表</strong>）</p>
+<p>关系模型只是<strong>常用的数据模型</strong>的一种，数据模型按照<strong>数据之间的联系</strong>可以划分为：</p>
+<ul>
+<li><strong>层次</strong>模型</li>
+<li><strong>网状</strong>模型</li>
+<li><strong>关系</strong>模型</li>
+<li><strong>面向对象</strong>模型</li>
+</ul>
+<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><ul>
+<li><strong>关系</strong>：通常指一张<strong>表</strong></li>
+<li><strong>元组</strong>：表中的一行<strong>记录</strong></li>
+<li><strong>属性</strong>：表中的一<strong>列</strong>，有<strong>属性名和属性值（分量）</strong></li>
+<li><strong>分量</strong>：元组中的一个<strong>属性值</strong></li>
+<li><strong>关系模式</strong>：对关系的<strong>描述</strong>，通常有几张表就有几个关系模式</li>
+<li><strong>域</strong>：属性值的<strong>取值范围</strong></li>
+<li><strong>键</strong>：<ul>
+<li><strong>super key超键：</strong> 在关系中能<strong>唯一</strong>标识元组的属性<strong>集</strong>（学号+姓名也是）</li>
+<li><strong>candidate key候选键</strong>：最小的超键，但不唯一。</li>
+<li><strong>primary key主键、关键字</strong>：选择一个候选键（唯一、最小）</li>
+<li><strong>foreign key外键</strong>：<ul>
+<li>两个关系R1,R2，如果R1包含了R2的主键，就叫R2外键。</li>
+<li>一个关系中的某个属性是其他关系的主键</li>
+<li>外键表中的外键不能有主键表中<strong>不存在</strong>的数据。（保证数据的完整性和一致性）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>主属性</strong>：一个属性只要在<strong>任何一个候选键</strong>中出现过，这个属性就是主属性。</li>
+<li><strong>非主属性</strong>：与上面相反，没有在任何候选码中出现过，这个属性就是非主属性。</li>
+<li><strong>Integrity Constraint of Primary Key实体完整性约束</strong>：主键每一列的取值不能为空</li>
+<li><strong>Referential Integrity constraint参照完整性约束</strong></li>
+</ul>
+<h2 id="关系代数运算"><a href="#关系代数运算" class="headerlink" title="关系代数运算"></a>关系代数运算</h2><p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231027154643117.png" srcset="/img/loading.gif" lazyload alt="image-20231027154643117"></p>
+<h3 id="选择运算（筛选-去掉一些行）selection"><a href="#选择运算（筛选-去掉一些行）selection" class="headerlink" title="选择运算（筛选|去掉一些行）selection"></a>选择运算（筛选|去掉一些行）selection</h3><ul>
+<li>$\sigma_p(r)&#x3D;{t|t\in r \quad and \quad p(t)}$</li>
+<li>p是选择谓词</li>
+</ul>
+<h3 id="投影运算（去掉一些列）projection"><a href="#投影运算（去掉一些列）projection" class="headerlink" title="投影运算（去掉一些列）projection"></a>投影运算（去掉一些列）projection</h3><ul>
+<li>$\Pi_{A1,A2,…,Ak}(r)$   A1,A2,…,Ak是属性名</li>
+</ul>
+<h3 id="并运算（合并两张表）Union"><a href="#并运算（合并两张表）Union" class="headerlink" title="并运算（合并两张表）Union"></a>并运算（合并两张表）Union</h3><ul>
+<li>$r \cup s&#x3D;{t|t\in r \quad or \quad t\in s}$</li>
+<li>属性数目必须相同且对应</li>
+</ul>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231027154827889.png" srcset="/img/loading.gif" lazyload alt="image-20231027154827889" style="zoom: 25%;" />
+
+<h3 id="差运算except"><a href="#差运算except" class="headerlink" title="差运算except"></a>差运算except</h3><ul>
+<li>$r-s&#x3D;{t|t\in r \quad and \quad t\notin s}$</li>
+<li>属性数目必须相同且对应</li>
+</ul>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231027154933876.png" srcset="/img/loading.gif" lazyload alt="image-20231027154933876" style="zoom:25%;" />
+
+<h3 id="广义笛卡尔积cartesian-product"><a href="#广义笛卡尔积cartesian-product" class="headerlink" title="广义笛卡尔积cartesian product"></a>广义笛卡尔积cartesian product</h3><p>两个分别为n目和m目的关系R和S的广义笛卡尔积是一个<strong>n+m列</strong>的元组的集合。</p>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231027155103551.png" srcset="/img/loading.gif" lazyload alt="image-20231027155103551" style="zoom:50%;" />
+
+
+
+<h3 id="更名rename"><a href="#更名rename" class="headerlink" title="更名rename"></a>更名rename</h3><h3 id="连接join"><a href="#连接join" class="headerlink" title="连接join"></a>连接join</h3><p>关系R与关系S的连接运算是从两个关系的<strong>广义笛卡尔积</strong>中选取<strong>属性间满足一定条件</strong>的元组形成一个新的连接。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/u=1259885532,3028600250&fm=253&app=138&f=PNG" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/asynccode" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h4 id="等值连接equal-join"><a href="#等值连接equal-join" class="headerlink" title="等值连接equal join"></a>等值连接equal join</h4><p>从关系R和S的广义笛卡尔积中选取<strong>A、B属性值</strong>相等的那些元组。</p>
+<h4 id="自然连接natural-join"><a href="#自然连接natural-join" class="headerlink" title="自然连接natural join"></a>自然连接natural join</h4><p>自然连接是一种<strong>特殊的等值连接</strong>，它要求两个关系中进行比较的分量必须是<strong>相同的属性组</strong>，并且在结果中把<strong>属性重复的列</strong>去掉</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231027180205662.png" srcset="/img/loading.gif" lazyload alt="image-20231027180205662"></p>
+<h4 id="内连接inner-join"><a href="#内连接inner-join" class="headerlink" title="内连接inner join"></a><strong>内连接inner join</strong></h4><p>内连接是将两张表中<strong>共有某属性值</strong>的记录挑选出来。与等值连接类似，二者都是取<strong>交集</strong>。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/asynccode" srcset="/img/loading.gif" lazyload alt="img"></p>
+<div class="code-wrapper"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> StudentCourse.COURSE_ID, Student.NAME, Student.AGE <span class="hljs-keyword">FROM</span> Student
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> StudentCourse
+<span class="hljs-keyword">ON</span> Student.ROLL_NO <span class="hljs-operator">=</span> StudentCourse.ROLL_NO;</code></pre></div>
+
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/asynccode" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h4 id="左外连接left-join"><a href="#左外连接left-join" class="headerlink" title="左外连接left join"></a><strong>左外连接left join</strong></h4><p>在自然连接的基础上，保证<strong>左表完全显示</strong>，右表若不存在则<strong>用null填满</strong>。</p>
+<p>在<strong>自然连接</strong>的基础上加上<strong>左边表</strong>上不包含自然连接中所含元组（行）的元组。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/asynccode" srcset="/img/loading.gif" lazyload alt="img"></p>
+<div class="code-wrapper"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> Student.NAME,StudentCourse.COURSE_ID 
+<span class="hljs-keyword">FROM</span> Student
+<span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> StudentCourse 
+<span class="hljs-keyword">ON</span> StudentCourse.ROLL_NO <span class="hljs-operator">=</span> Student.ROLL_NO;</code></pre></div>
+
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/asynccode" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h4 id="右外连接right-join"><a href="#右外连接right-join" class="headerlink" title="右外连接right join"></a><strong>右外连接right join</strong></h4><p>在自然连接的基础上，保证<strong>右表完全显示</strong>，左表若不存在则<strong>用null填满</strong>。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/asynccode" srcset="/img/loading.gif" lazyload alt="img"></p>
+<div class="code-wrapper"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> Student.NAME,StudentCourse.COURSE_ID 
+<span class="hljs-keyword">FROM</span> Student
+<span class="hljs-keyword">RIGHT</span> <span class="hljs-keyword">JOIN</span> StudentCourse 
+<span class="hljs-keyword">ON</span> StudentCourse.ROLL_NO <span class="hljs-operator">=</span> Student.ROLL_NO;</code></pre></div>
+
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/asynccode" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h4 id="全外连接outer-join"><a href="#全外连接outer-join" class="headerlink" title="全外连接outer join"></a><strong>全外连接outer join</strong></h4><p><strong>左连接+右连接+去重&#x3D;全连接</strong></p>
+<h2 id="空值"><a href="#空值" class="headerlink" title="空值"></a>空值</h2><h2 id="数据库的修饰"><a href="#数据库的修饰" class="headerlink" title="数据库的修饰"></a>数据库的修饰</h2>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" class="category-chain-item">计算机基础</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>关系模型</div>
+      <div>http://example.com/2023/09/eef147b6f625.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 26, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/10/a8796deb3406.html" title="函数式编程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">函数式编程</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/09/fdc0827df394.html" title="变量作用域">
+                        <span class="hidden-mobile">变量作用域</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

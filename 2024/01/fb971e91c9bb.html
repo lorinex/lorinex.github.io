@@ -1,0 +1,896 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/flower.png">
+  <link rel="icon" href="/img/flower.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#0f1f15">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="部件部件是构建应用程序的基础元素。PyQt5 工具包拥有大量的种类繁多的部件。比如：按钮，单选框，滑块，列表框等任何程序员在完成其工作时需要的部件。 QCheckBox单选框  this is a checkbox  单选框具有两个状态：被选中或未被选中。它看起来像一个附件了标签的方框。当用户选择或取消选择时，单选框就会发射一个 stateChanged()信号。 import sys from">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2024/01/fb971e91c9bb.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="部件部件是构建应用程序的基础元素。PyQt5 工具包拥有大量的种类繁多的部件。比如：按钮，单选框，滑块，列表框等任何程序员在完成其工作时需要的部件。 QCheckBox单选框  this is a checkbox  单选框具有两个状态：被选中或未被选中。它看起来像一个附件了标签的方框。当用户选择或取消选择时，单选框就会发射一个 stateChanged()信号。 import sys from">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-08T06:18:22.784Z">
+<meta property="article:modified_time" content="2024-01-08T06:18:22.784Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-01-08 06:18" pubdate>
+          January 8, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          52 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="部件"><a href="#部件" class="headerlink" title="部件"></a>部件</h1><p>部件是构建应用程序的基础元素。PyQt5 工具包拥有大量的种类繁多的部件。比如：按钮，单选框，滑块，列表框等任何程序员在完成其工作时需要的部件。</p>
+<h4 id="QCheckBox单选框"><a href="#QCheckBox单选框" class="headerlink" title="QCheckBox单选框"></a><strong>QCheckBox单选框</strong></h4><ul>
+<li><input disabled="" type="checkbox"> this is a checkbox</li>
+</ul>
+<p>单选框具有两个状态：被选中或未被选中。它看起来像一个附件了标签的方框。当用户选择或取消选择时，单选框就会发射一个 stateChanged()信号。</p>
+<div class="code-wrapper"><pre><code class="hljs Python"><span class="hljs-keyword">import</span> sys
+<span class="hljs-keyword">from</span> PyQt5 <span class="hljs-keyword">import</span> QtWidgets, QtCore
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">CheckBox</span>(QtWidgets.QWidget):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">super</span>(CheckBox, self).__init__()
+
+        self.setWindowTitle(<span class="hljs-string">&quot;单选框演示程序&quot;</span>)
+        self.setGeometry(<span class="hljs-number">300</span>, <span class="hljs-number">300</span>, <span class="hljs-number">250</span>, <span class="hljs-number">150</span>)
+
+        <span class="hljs-comment"># 该语句用来创建一个标签信息为&quot;显示标题&quot;的单选框。</span>
+        self.check_box = QtWidgets.QCheckBox(<span class="hljs-string">&quot;显示标题&quot;</span>, self)
+        self.check_box.move(<span class="hljs-number">10</span>, <span class="hljs-number">10</span>)
+        self.check_box.setFocusPolicy(QtCore.Qt.NoFocus)
+        <span class="hljs-comment"># 初始状态下我们设置了窗口的标题，因此我们需要使用以上代码行将单选框选上。在默认情况下，单选框是未被选中的。</span>
+        self.check_box.toggle()
+        self.check_box.stateChanged.connect(self.change_title)
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">change_title</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-keyword">if</span> self.check_box.isChecked():
+            self.setWindowTitle(<span class="hljs-string">&quot;单选框演示程序&quot;</span>)
+        <span class="hljs-keyword">else</span>:
+            self.setWindowTitle(<span class="hljs-string">&quot;单选框未选中&quot;</span>)
+
+app = QtWidgets.QApplication(sys.argv)
+cb = CheckBox()
+cb.show()
+sys.exit(app.exec_())</code></pre></div>
+
+
+<div class="code-wrapper"><pre><code class="hljs Python">self.check_box.setFocusPolicy(QtCore.Qt.NoFocus)
+</code></pre></div>
+
+
+<p>默认情况下单选框接受聚焦，被聚焦的表现形式为单选框的标签被一个薄薄的矩形所覆盖。这个矩形看起来回有些太过严肃，所以我们使用以上代码行将单选框的聚焦样式修改为Qt.NoFocus 的无聚焦样式。这里我把这句注释掉的话，显示效果没变，原因不明，但是我知道作者想说的大概是这样的。</p>
+<h4 id="ToggleButton开关按钮"><a href="#ToggleButton开关按钮" class="headerlink" title="ToggleButton开关按钮"></a><strong>ToggleButton开关按钮</strong></h4><p>PyQt5 没有开关按钮部件。但是我们可以使用在特殊状态下的 QPushButton 部件来创建开关按钮。而所谓的开关按钮就是一个具有按下和未按下两种状态的普通按钮。用户可以通过单击按钮来切换其开或关的状态。在一些情形下，这个特性会非常好用。</p>
+<div class="code-wrapper"><pre><code class="hljs Python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span>
+<span class="hljs-string">&quot;&quot;&quot;开关按钮示例&quot;&quot;&quot;</span>
+<span class="hljs-keyword">import</span> sys
+<span class="hljs-keyword">from</span> PyQt5 <span class="hljs-keyword">import</span> QtWidgets, QtCore, QtGui
+
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ToggleButton</span>(QtWidgets.QWidget):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">super</span>(ToggleButton, self).__init__()
+
+        self.setWindowTitle(<span class="hljs-string">&quot;开关按钮演示程序&quot;</span>)
+        self.setGeometry(<span class="hljs-number">300</span>, <span class="hljs-number">300</span>, <span class="hljs-number">280</span>, <span class="hljs-number">170</span>)
+
+        <span class="hljs-comment"># 通过创建一个 QPushButton 并将其设置为可被选择的，即得到我们想要的开关按钮。</span>
+        self.red = QtWidgets.QPushButton(<span class="hljs-string">&quot;红&quot;</span>, self)
+        self.red.setCheckable(<span class="hljs-literal">True</span>)
+        self.red.move(<span class="hljs-number">10</span>, <span class="hljs-number">10</span>)
+        self.red.clicked.connect(self.set_red)
+
+        self.green = QtWidgets.QPushButton(<span class="hljs-string">&quot;绿&quot;</span>, self)
+        self.green.setCheckable(<span class="hljs-literal">True</span>)
+        self.green.move(<span class="hljs-number">10</span>, <span class="hljs-number">60</span>)
+        self.green.clicked.connect(self.set_green)
+
+        self.blue = QtWidgets.QPushButton(<span class="hljs-string">&quot;蓝&quot;</span>, self)
+        self.blue.setCheckable(<span class="hljs-literal">True</span>)
+        self.blue.move(<span class="hljs-number">10</span>, <span class="hljs-number">110</span>)
+        self.blue.clicked.connect(self.set_blue)
+
+        self.square = QtWidgets.QWidget(self)
+        self.square.setGeometry(<span class="hljs-number">150</span>, <span class="hljs-number">20</span>, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>)
+        self.color = QtGui.QColor(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)
+        self.square.setStyleSheet(<span class="hljs-string">&quot;QWidget&#123;background-color:%s&#125;&quot;</span> % self.color.name())
+
+        QtWidgets.QApplication.setStyle(QtWidgets.QStyleFactory.create(<span class="hljs-string">&quot;cleanlooks&quot;</span>))
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">set_red</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-keyword">if</span> self.red.isChecked():
+            self.color.setRed(<span class="hljs-number">255</span>)
+        <span class="hljs-keyword">else</span>:
+            self.color.setRed(<span class="hljs-number">0</span>)
+        self.square.setStyleSheet(<span class="hljs-string">&quot;QWidget&#123;background-color:%s&#125;&quot;</span> % self.color.name())
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">set_green</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-keyword">if</span> self.green.isChecked():
+            self.color.setGreen(<span class="hljs-number">255</span>)
+        <span class="hljs-keyword">else</span>:
+            self.color.setGreen(<span class="hljs-number">0</span>)
+        self.square.setStyleSheet(<span class="hljs-string">&quot;QWidget&#123;background-color:%s&#125;&quot;</span> % self.color.name())
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">set_blue</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-keyword">if</span> self.blue.isChecked():
+            self.color.setBlue(<span class="hljs-number">255</span>)
+        <span class="hljs-keyword">else</span>:
+            self.color.setBlue(<span class="hljs-number">0</span>)
+        self.square.setStyleSheet(<span class="hljs-string">&quot;QWidget&#123;background-color:%s&#125;&quot;</span> % self.color.name())
+
+app = QtWidgets.QApplication(sys.argv)
+tb = ToggleButton()
+tb.show()
+sys.exit(app.exec_())
+</code></pre></div>
+
+
+<p>在这个例子中，我们创建了三个开关按钮和一个 QWidget 部件，并将 QWidget 部件的背景颜色设置为黑色。用户通过开关按钮从红、绿、蓝选择出 QWidget 部件的背景颜色组合。若开关按钮被按下，则其对应的颜色即被选中。</p>
+<h4 id="QSlider滑块、QLabel标签"><a href="#QSlider滑块、QLabel标签" class="headerlink" title="QSlider滑块、QLabel标签"></a><strong>QSlider滑块、QLabel标签</strong></h4><p>滑块部件由一个简单的操控杆构成，用户可以通过向前或向后滑动滑块来选择数据。这种选择数据的方式对一些特殊的任务来说比单纯的提供一个数据或使用 spin box 调整数据大小的方式要自然与友好的多。而标签部件则用来显示文本或图片。</p>
+<div class="code-wrapper"><pre><code class="hljs Python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span>
+<span class="hljs-string">&quot;&quot;&quot;滑块和标签示例&quot;&quot;&quot;</span>
+<span class="hljs-keyword">import</span> sys
+<span class="hljs-keyword">from</span> PyQt5 <span class="hljs-keyword">import</span> QtWidgets, QtCore, QtGui
+
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">SliderLabel</span>(QtWidgets.QWidget):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">super</span>(SliderLabel, self).__init__()
+
+        self.setWindowTitle(<span class="hljs-string">&quot;滑块和标签演示程序&quot;</span>)
+        self.setGeometry(<span class="hljs-number">300</span>, <span class="hljs-number">300</span>, <span class="hljs-number">300</span>, <span class="hljs-number">200</span>)
+
+        self.slider = QtWidgets.QSlider(QtCore.Qt.Horizontal, self)
+        self.slider.setGeometry(<span class="hljs-number">30</span>, <span class="hljs-number">40</span>, <span class="hljs-number">100</span>, <span class="hljs-number">30</span>)
+        self.slider.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.slider.valueChanged.connect(self.change_value)
+
+        self.label = QtWidgets.QLabel(self)
+        self.label.setPixmap(QtGui.QPixmap(<span class="hljs-string">r&quot;sample_06.png&quot;</span>))
+        self.label.setGeometry(<span class="hljs-number">160</span>, <span class="hljs-number">40</span>, <span class="hljs-number">128</span>, <span class="hljs-number">128</span>)
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">change_value</span>(<span class="hljs-params">self</span>):
+        pos = self.slider.value()
+        <span class="hljs-keyword">if</span> pos == <span class="hljs-number">0</span>:
+            self.label.setPixmap(QtGui.QPixmap(<span class="hljs-string">r&quot;sapmle_06.png&quot;</span>))
+        <span class="hljs-keyword">elif</span> <span class="hljs-number">0</span> &lt; pos &lt; <span class="hljs-number">60</span>:
+            self.label.setPixmap(QtGui.QPixmap(<span class="hljs-string">r&quot;sapmle__12.png&quot;</span>))
+        <span class="hljs-keyword">else</span>:
+            self.label.setPixmap(QtGui.QPixmap(<span class="hljs-string">r&quot;sapmle__05.png&quot;</span>))
+
+app = QtWidgets.QApplication(sys.argv)
+sl = SliderLabel()
+sl.show()
+sys.exit(app.exec_())
+</code></pre></div>
+
+
+
+
+<h4 id="QProgressBar进度条"><a href="#QProgressBar进度条" class="headerlink" title="QProgressBar进度条"></a><strong>QProgressBar进度条</strong></h4><p>当我们在处理一个耗时较长的任务时，可能就会用到进度条部件。因为使用进度条可以形象告诉用户当前的任务正在进行中。PyQt5 工具包提供了水平和垂直两种类型的进度条部件。我们可以设置进度条的最大和最小值，默认的最大和最小值分别为 0 和 99。</p>
+<div class="code-wrapper"><pre><code class="hljs Python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span>
+<span class="hljs-string">&quot;&quot;&quot;进度条示例&quot;&quot;&quot;</span>
+<span class="hljs-keyword">import</span> sys
+<span class="hljs-keyword">from</span> PyQt5 <span class="hljs-keyword">import</span> QtWidgets, QtCore
+
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ProgressBar</span>(QtWidgets.QWidget):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">super</span>(ProgressBar, self).__init__()
+
+        self.setWindowTitle(<span class="hljs-string">&quot;进度条演示程序&quot;</span>)
+        self.setGeometry(<span class="hljs-number">300</span>, <span class="hljs-number">300</span>, <span class="hljs-number">250</span>, <span class="hljs-number">150</span>)
+
+        <span class="hljs-comment"># 使用该构造器来创建一个进度条。</span>
+        self.progress_bar = QtWidgets.QProgressBar(self)
+        self.progress_bar.setGeometry(<span class="hljs-number">30</span>, <span class="hljs-number">40</span>, <span class="hljs-number">200</span>, <span class="hljs-number">25</span>)
+
+        self.button = QtWidgets.QPushButton(<span class="hljs-string">&quot;开始&quot;</span>, self)
+        self.button.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.button.move(<span class="hljs-number">40</span>, <span class="hljs-number">80</span>)
+        self.button.clicked.connect(self.on_start)
+
+        <span class="hljs-comment"># 创建一个定时器对象。</span>
+        self.timer = QtCore.QBasicTimer()
+        self.step = <span class="hljs-number">0</span>
+
+    <span class="hljs-comment"># 每一个 QObject 对象或其子对象都有一个QObject.timerEvent 方法。在本实例中，为了响应定时器的超时事件，我们需要使用上面的代码重写进度条的 timerEvent 方法。</span>
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">timerEvent</span>(<span class="hljs-params">self, *args, **kwargs</span>):
+        <span class="hljs-keyword">if</span> self.step &gt;= <span class="hljs-number">100</span>:
+            self.timer.stop()
+            <span class="hljs-keyword">return</span>
+        self.step += <span class="hljs-number">1</span>
+        self.progress_bar.setValue(self.step)
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">on_start</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-keyword">if</span> self.timer.isActive():
+            self.timer.stop()
+            self.button.setText(<span class="hljs-string">&quot;开始&quot;</span>)
+        <span class="hljs-keyword">else</span>:
+            <span class="hljs-comment"># 要激活该进度条，我们需要使用定时器的start()方法启动定时器。该方法的第一个参数为超时时间。第二个参数表示当前超时时间到了以后定时器触发超时事件的接收对象。</span>
+            self.timer.start(<span class="hljs-number">100</span>, self)
+            self.button.setText(<span class="hljs-string">&quot;停止&quot;</span>)
+
+app = QtWidgets.QApplication(sys.argv)
+pb = ProgressBar()
+pb.show()
+sys.exit(app.exec_())
+
+</code></pre></div>
+
+
+<p>在这个示例中，我们创建了一个水平的进度条和一个按钮。按钮用来启动或终止进度。</p>
+<h4 id="QCalendarWidget日历部件"><a href="#QCalendarWidget日历部件" class="headerlink" title="QCalendarWidget日历部件"></a><strong>QCalendarWidget日历部件</strong></h4><p>QCalendarWidget 类提供了以月为单位的日历部件。该部件允许用户以一种简单而直接的方式选择日期。</p>
+<div class="code-wrapper"><pre><code class="hljs Python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span>
+<span class="hljs-string">&quot;&quot;&quot;日历部件示例&quot;&quot;&quot;</span>
+<span class="hljs-keyword">import</span> sys
+<span class="hljs-keyword">from</span> PyQt5 <span class="hljs-keyword">import</span> QtWidgets, QtCore
+
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">CalendarWidget</span>(QtWidgets.QWidget):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">super</span>(CalendarWidget, self).__init__()
+
+        self.setWindowTitle(<span class="hljs-string">&quot;日历部件演示程序&quot;</span>)
+        self.setGeometry(<span class="hljs-number">300</span>, <span class="hljs-number">300</span>, <span class="hljs-number">350</span>, <span class="hljs-number">300</span>)
+
+        self.calendar = QtWidgets.QCalendarWidget(self)
+        self.calendar.setGridVisible(<span class="hljs-literal">True</span>)
+        self.calendar.selectionChanged.connect(self.show_date)
+
+        date = self.calendar.selectedDate()
+        self.label = QtWidgets.QLabel(self)
+        self.label.setText(<span class="hljs-built_in">str</span>(date.toPyDate()))
+
+        v_box = QtWidgets.QVBoxLayout()
+        v_box.addWidget(self.calendar)
+        v_box.addWidget(self.label)
+        self.setLayout(v_box)
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">show_date</span>(<span class="hljs-params">self</span>):
+        date = self.calendar.selectedDate()
+        self.label.setText(<span class="hljs-built_in">str</span>(date.toPyDate()))
+
+app = QtWidgets.QApplication(sys.argv)
+cw = CalendarWidget()
+cw.show()
+sys.exit(app.exec_())
+</code></pre></div>
+
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="category-chain-item">编程语言</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/" class="category-chain-item">Python</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/pyqt5/" class="category-chain-item">pyqt5</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/pyqt5/%E9%83%A8%E4%BB%B6/" class="category-chain-item">部件</a>
+  
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2024/01/fb971e91c9bb.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 8, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/01/df7febb1e166.html" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/01/c83e78c291a2.html" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,949 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/flower.png">
+  <link rel="icon" href="/img/flower.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#0f1f15">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="数组和广义表数组和线性表的关系以及数组的运算任何数组A都可以看作一个线性表 $A&#x3D;\left(a_1, a_2, \ldots, a_i, \ldots a_n\right)$ 二维数组m*n时，$a_i$是数组中第i列所有元素，表中每一个元素是一个一维数组 三维数组时，表中每一个元素是一个二维数组； n维数组时，表中每一个元素是一个(n-1)维数组。 数组与线性表之间的关系：线性表的扩">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数组和广义表">
+<meta property="og:url" content="http://example.com/2023/11/f6bc7579cf50.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数组和广义表数组和线性表的关系以及数组的运算任何数组A都可以看作一个线性表 $A&#x3D;\left(a_1, a_2, \ldots, a_i, \ldots a_n\right)$ 二维数组m*n时，$a_i$是数组中第i列所有元素，表中每一个元素是一个一维数组 三维数组时，表中每一个元素是一个二维数组； n维数组时，表中每一个元素是一个(n-1)维数组。 数组与线性表之间的关系：线性表的扩">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221023181939772.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221023182621248.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221023182926181.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221023183015502.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221025111854396.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221025111918651.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421142520439.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hvcnNlQ29kZXI=,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221025112014799.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027103606316.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027103634267.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027103924799.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027104049693.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027104506712.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027105457254.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027105933034.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027110921192.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027111646633.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027111646633.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027112009542.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027112154443.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027112256434.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027112335949.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027112405707.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027112425409.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027112702550.png">
+<meta property="article:published_time" content="2023-11-01T14:57:10.000Z">
+<meta property="article:modified_time" content="2024-01-08T06:18:22.812Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221023181939772.png">
+  
+  
+  
+  <title>数组和广义表 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="数组和广义表"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-01 14:57" pubdate>
+          November 1, 2023 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          40 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">数组和广义表</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="数组和广义表"><a href="#数组和广义表" class="headerlink" title="数组和广义表"></a>数组和广义表</h1><h2 id="数组和线性表的关系以及数组的运算"><a href="#数组和线性表的关系以及数组的运算" class="headerlink" title="数组和线性表的关系以及数组的运算"></a>数组和线性表的关系以及数组的运算</h2><p>任何数组A都可以看作一个线性表</p>
+<p>$A&#x3D;\left(a_1, a_2, \ldots, a_i, \ldots a_n\right)$</p>
+<p><strong>二维数组</strong>m*n时，<br>$a_i$是数组中第i列所有元素，表中每一个元素是一个一维数组</p>
+<p><strong>三维数组</strong>时，<br>表中每一个元素是一个二维数组；</p>
+<p><strong>n维数组</strong>时，<br>表中每一个元素是一个(n-1)维数组。</p>
+<p><strong>数组与线性表之间的关系</strong>：线性表的扩展，其数据元素本身也是线性表</p>
+<p>数组的特点</p>
+<ul>
+<li>数组中各元素都具有统一的类型</li>
+<li>可以认为，<strong>d维</strong>数组的<strong>非边界元素</strong>具有<strong>d个直接前趋</strong>和<strong>d个直接后继</strong></li>
+<li>数组维数确定后，数据元素个数和元素之间的关系不再发生改变，<br>适合于顺序存储</li>
+<li>每组有定义的下标都存在一个与其相对应的值</li>
+</ul>
+<p>在数组上的基本操作</p>
+<ul>
+<li>给定一组下标，取得相应的数据元素值</li>
+<li>给定一组下标，修改相应的数据元素值</li>
+</ul>
+<p><strong>数组的基本操作定义</strong></p>
+<p>(1)构造n维数组  InitArray(&amp;A, n, bound ${ }_1, \ldots$, bound $_n$ )<br>(2)销毁数组A     DestroyArray(&amp;A)<br>(3)取得指定下标的数组元素值  Value( $\left.A, &amp; e, \operatorname{index}_1, \ldots, \operatorname{index}_n\right)$<br>(4)为指定下标的数组元素重新赋值  Assign(&amp;A, e, index,$\ldots$, index $\left._n\right)$</p>
+<h2 id="数组的顺序存储结构"><a href="#数组的顺序存储结构" class="headerlink" title="数组的顺序存储结构"></a>数组的顺序存储结构</h2><h3 id="一维数组"><a href="#一维数组" class="headerlink" title="一维数组"></a>一维数组</h3><p><code>ElemType a[n]</code></p>
+<h3 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h3><p><code>ElemType a[m][n]  //n是第二维的长度</code></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221023181939772.png" srcset="/img/loading.gif" lazyload alt="image-20221023181939772"></p>
+<h3 id="n维数组"><a href="#n维数组" class="headerlink" title="n维数组"></a>n维数组</h3><p><code>ElemType a[b1][b2] ... [bn] ;</code></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221023182621248.png" srcset="/img/loading.gif" lazyload alt="image-20221023182621248"></p>
+<p>数组是一种随机存取结构:对任一元素定位时间相等.</p>
+<h2 id="矩阵的压缩存储"><a href="#矩阵的压缩存储" class="headerlink" title="矩阵的压缩存储"></a>矩阵的压缩存储</h2><h3 id="对称矩阵"><a href="#对称矩阵" class="headerlink" title="对称矩阵"></a>对称矩阵</h3><p><strong>[存储方法]</strong> </p>
+<p>只存储下(或者上)三角(包括主对角线)的数据元素。共占用n(n+1)&#x2F;2个元素空间: sa[0… n(n+1)&#x2F;2-1] 。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221023182926181.png" srcset="/img/loading.gif" lazyload alt="image-20221023182926181"></p>
+<h3 id="三角矩阵"><a href="#三角矩阵" class="headerlink" title="三角矩阵"></a>三角矩阵</h3><p><strong>[存储方法]</strong> </p>
+<p>重复元素c共享一个元素存储空间，共占用n(n+1)&#x2F;2+1个元素空间: sa[1.. n(n+1)&#x2F;2]。sa[0]&#x3D;C</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221023183015502.png" srcset="/img/loading.gif" lazyload alt="image-20221023183015502"></p>
+<h3 id="带状矩阵（对角矩阵）"><a href="#带状矩阵（对角矩阵）" class="headerlink" title="带状矩阵（对角矩阵）"></a>带状矩阵（对角矩阵）</h3><p>在n*n的方阵中，非零元素集中在主对角线及其两侧共L(奇数)条对角线的带状区域内 — L对角矩阵。</p>
+<p><strong>[存储方法]</strong> 只存储带状区内的元素。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221025111854396.png" srcset="/img/loading.gif" lazyload alt="image-20221025111854396"></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221025111918651.png" srcset="/img/loading.gif" lazyload alt="image-20221025111918651"></p>
+<p><img src="https://img-blog.csdnimg.cn/20210421142520439.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hvcnNlQ29kZXI=,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" lazyload></p>
+<h4 id="公式推导"><a href="#公式推导" class="headerlink" title="公式推导"></a>公式推导</h4><ol>
+<li><p>k&#x3D;2i+j-3推导过程：</p>
+<p>当i&#x3D;1时，只有两个元素。当i&#x3D;2~i-1时，每一行都有三个元素。在最后的i行，有j-i+1个元素。</p>
+<p>k&#x3D;2+（i-1-2+1)*3 + (j-i+1)&#x3D; 2i+j-3</p>
+</li>
+<li><p>i&#x3D;(k+1)&#x2F;3+1,j&#x3D;k-2i+3推导过程：</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>i</th>
+<th>j</th>
+<th>k</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>5</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>6</td>
+</tr>
+<tr>
+<td>3</td>
+<td>4</td>
+<td>7</td>
+</tr>
+<tr>
+<td>4</td>
+<td>3</td>
+<td>8</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+<td>9</td>
+</tr>
+</tbody></table>
+<p>k&#x3D;2i+j-3<br>i&#x3D;(k+1)&#x2F;3+1<br>j&#x3D;k-2i+3</p>
+<h3 id="随机稀疏矩阵"><a href="#随机稀疏矩阵" class="headerlink" title="随机稀疏矩阵"></a>随机稀疏矩阵</h3><p>大多数元素为零</p>
+<p>记录每一非零元素(i, j, aij)<br>节省空间，但丧失随机存取功能<br>顺序存储：三元组表<br>链式存储：十字(正交)链表</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221025112014799.png" srcset="/img/loading.gif" lazyload alt="image-20221025112014799"></p>
+<h4 id="三元组顺序表"><a href="#三元组顺序表" class="headerlink" title="三元组顺序表"></a>三元组顺序表</h4><p>[类型定义]</p>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> MAXSIZE 1000</span>
+<span class="hljs-comment">//设定非零元素最大值</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span>
+    <span class="hljs-type">int</span> i,j;
+    ElemType e;
+&#125;Triple;
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span>
+    Triple data[MAXSIZE+<span class="hljs-number">1</span>];<span class="hljs-comment">//三元组表，data[0]未用</span>
+    <span class="hljs-type">int</span> mu,nu,tu;<span class="hljs-comment">//行数、列数、非零元个数</span>
+&#125;TSMatrix;</code></pre></div>
+
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027103606316.png" srcset="/img/loading.gif" lazyload alt="image-20221027103606316"/>
+
+<p>[应用例] 求转置矩阵</p>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027103634267.png" srcset="/img/loading.gif" lazyload alt="image-20221027103634267"  />
+
+<p>算法1 { O(n*t) }求矩阵a的转置矩阵b</p>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">TransMatrix</span><span class="hljs-params">(TSMatrix &amp;b, TSMatrix a)</span>
+&#123; 
+    b.mu=a.nu; 
+    b.nu=a.mu; 
+    b.tu=a.tu;
+    <span class="hljs-keyword">if</span> (b.tu) &#123;
+        q=<span class="hljs-number">1</span>; <span class="hljs-comment">//指示b中存放数据的位置，初值为1</span>
+        <span class="hljs-keyword">for</span> ( col=<span class="hljs-number">1</span>; col&lt;=a.nu; col++ ) <span class="hljs-comment">//尝试找到列为1到nu的元素</span>
+            <span class="hljs-keyword">for</span> ( p=<span class="hljs-number">1</span>; p&lt;=a.tu; p++ ) <span class="hljs-comment">//对a的每个三元组检查</span>
+                <span class="hljs-keyword">if</span> (a.data[p].j==col) &#123; <span class="hljs-comment">//找列号为col的三元组</span>
+                    b.data[q].i =a.data[p].j;
+                    b.data[q].j =a.data[p].i;
+                    b.data[q].e =a.data[p].e;
+                    q++; <span class="hljs-comment">//修正q值</span>
+                &#125;
+    &#125;
+&#125; <span class="hljs-comment">//TransMatrix</span></code></pre></div>
+
+<p>算法2 快速转置法 { O(n+t) }</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027103924799.png" srcset="/img/loading.gif" lazyload alt="image-20221027103924799"></p>
+<div class="code-wrapper"><pre><code class="hljs c">Statue <span class="hljs-title function_">FastTransMatrix</span><span class="hljs-params">(TSMatrix &amp;b, TSMatrix a)</span>
+&#123; b.mu=a.nu; b.nu=a.mu; b.tu=a.tu;
+<span class="hljs-keyword">if</span> ( b.tu ) &#123;
+&#123; <span class="hljs-keyword">for</span>(col=<span class="hljs-number">1</span>; col&lt;= a.nu; ++col) <span class="hljs-comment">//num清零</span>
+num[col]=<span class="hljs-number">0</span>;
+<span class="hljs-keyword">for</span> (t=<span class="hljs-number">1</span>; t&lt;=a.tu; ++t) <span class="hljs-comment">//对a.tu个非零元素按列号计数</span>
+++num[a.data[t].j];
+cpot[<span class="hljs-number">1</span>]=<span class="hljs-number">1</span>; <span class="hljs-comment">//生成cpot，计算每列第1元素转置后的位置</span>
+<span class="hljs-keyword">for</span> ( col=<span class="hljs-number">2</span>; col&lt;=a.nu; ++col )
+cpot[col]=cpot[col<span class="hljs-number">-1</span>]+num[col<span class="hljs-number">-1</span>];
+<span class="hljs-keyword">for</span> ( p=<span class="hljs-number">1</span>; p&lt;=a.tu; ++p ) &#123; <span class="hljs-comment">//对a.tu个非零元素转置</span>
+col=a.data[p].j; q=cpot[col];
+b.data[q].i =a.data[p].j;
+b.data[q].j =a.data[p].i;
+b.data[q].e =a.data[p].e;
+++cpot[col] ;
+&#125;
+&#125;
+<span class="hljs-keyword">return</span> OK;
+&#125;<span class="hljs-comment">//FastTransMatrix</span></code></pre></div>
+
+<h4 id="行逻辑链接的顺序表"><a href="#行逻辑链接的顺序表" class="headerlink" title="行逻辑链接的顺序表"></a>行逻辑链接的顺序表</h4><p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027104049693.png" srcset="/img/loading.gif" lazyload alt="image-20221027104049693"></p>
+<h4 id="十字（正交）链表"><a href="#十字（正交）链表" class="headerlink" title="十字（正交）链表"></a>十字（正交）链表</h4><p>［特点］在行、列两个方向上，将非零元素链接在一起。克服三元组表在矩阵的非零元素位置或个数经常变动时的使用不便。</p>
+<p>［类型定义］</p>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">OLNode</span>&#123;</span>
+    <span class="hljs-type">int</span> i,j;
+    ElemType e;
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">OLNode</span> *<span class="hljs-title">right</span>,*<span class="hljs-title">down</span>;</span>
+&#125;OLNode,*OLink;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span>
+    OLink *rhead,*chead;
+    <span class="hljs-type">int</span> mu,nu,tu;
+&#125;</code></pre></div>
+
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027104506712.png" srcset="/img/loading.gif" lazyload alt="image-20221027104506712"></p>
+<p>[算法示例] 从终端接收信息建立稀疏矩阵的十字链表</p>
+<p>算法思想：<br>1）赋值矩阵的行数mu、列数nu和非零元素个数tu；<br>2）申请行、列头指针向量，将各行、列链表置为空链表；<br>3）读入一个非零元素的行号i、列号j、值e<br>3.1）建立该元素的结点，赋值其三元组<br>3.2）寻找该结点在行表中的插入位置并插入<br>3.3）寻找该结点在列表中的插入位置并插入<br>3.4）存在下一个非零元素，转3；否则，结束。</p>
+<h2 id="广义表的定义"><a href="#广义表的定义" class="headerlink" title="广义表的定义"></a>广义表的定义</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>广义表是由零个或多个原子或者子表组成的有限序列。可以记作：$LS&#x3D;(d_1, d_2, … , d_n)$<br>原子：逻辑上不能再分解的元素。<br>子表：作为广义表中元素的广义表。</p>
+<h3 id="与线性表的关系"><a href="#与线性表的关系" class="headerlink" title="与线性表的关系"></a>与线性表的关系</h3><p>广义表中的元素全部为原子时即为线性表。<strong>线性表是广义表的特例，广义表是线性表的推广。</strong></p>
+<h3 id="广义表的图形表达方法"><a href="#广义表的图形表达方法" class="headerlink" title="广义表的图形表达方法"></a>广义表的图形表达方法</h3><p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027105457254.png" srcset="/img/loading.gif" lazyload alt="image-20221027105457254"></p>
+<h3 id="规定所有表都有名字时，广义表的表示方法"><a href="#规定所有表都有名字时，广义表的表示方法" class="headerlink" title="规定所有表都有名字时，广义表的表示方法"></a>规定所有表都有名字时，广义表的表示方法</h3><p>习惯上用大写字母表示广义表的名称，用小写字母表示原子。<br>例 A(a,b)<br>B(A(a,b), c)<br>L(A(a,b), B(A(a,b),c))<br>D(a, D(a, D(…)))</p>
+<h3 id="广义表的表示方法和相关术语"><a href="#广义表的表示方法和相关术语" class="headerlink" title="广义表的表示方法和相关术语"></a>广义表的表示方法和相关术语</h3><p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027105933034.png" srcset="/img/loading.gif" lazyload alt="image-20221027105933034"></p>
+<p><strong>表的长度</strong> 表中的元素（第一层）个数。<br><strong>表的深度</strong> 表中元素的最深嵌套层数。<br><strong>表头</strong> 表中的第一个元素。<br><strong>表尾</strong> 除第一个元素外，剩余元素构成的广义表。<br>任何一个非空广义表的表尾必定仍为广义表。</p>
+<h3 id="广义表结构的分类"><a href="#广义表结构的分类" class="headerlink" title="广义表结构的分类"></a>广义表结构的分类</h3><p>纯表：与树型结构对应的广义表。<br>再入表：允许结点共享的广义表。<br>递归表：允许递归的广义表。<br>递归表⊃再入表⊃纯表⊃线性表</p>
+<h3 id="广义表的应用"><a href="#广义表的应用" class="headerlink" title="广义表的应用"></a>广义表的应用</h3><p>m元多项式的表示</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027110921192.png" srcset="/img/loading.gif" lazyload alt="image-20221027110921192"></p>
+<p>先将z设为主元，然后依次在系数多项式中把y和x作为主元</p>
+<h3 id="抽象数据类型定义"><a href="#抽象数据类型定义" class="headerlink" title="抽象数据类型定义"></a>抽象数据类型定义</h3><p>ADT GList {<br>数据对象：D&#x3D;{ei | i&#x3D;1,2,…,n; n0; eiAtomSet 或 eiGList,<br>AtomSet为某个数据对象}<br>数据关系：R&#x3D;{&lt; ei-1, ei &gt;| ei-1, ei D, 2i  n}<br>基本操作：<br>InitGList(&amp;L);<br>操作结果：创建空的广义表L。<br>CreateGList(&amp;L, S);<br>初始条件：S是广义表的书写形式串。<br>操作结果：由S创建广义表L。<br>……<br>} ADT GList</p>
+<h2 id="广义表的存储结构"><a href="#广义表的存储结构" class="headerlink" title="广义表的存储结构"></a>广义表的存储结构</h2><h3 id="方法1-头尾链表形式"><a href="#方法1-头尾链表形式" class="headerlink" title="方法1 头尾链表形式"></a>方法1 头尾链表形式</h3><div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">enum</span>&#123;</span>ATOM,LIST&#125; ElemTag;
+<span class="hljs-comment">//ATOM==0:原子；LIST==1：子表</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">GLNode</span>&#123;</span>
+    ElemTag tag;
+    <span class="hljs-class"><span class="hljs-keyword">union</span>&#123;</span>
+        AtomType atom;
+        <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span>
+            <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">GLNode</span> *<span class="hljs-title">hp</span>,*<span class="hljs-title">tp</span>;</span>
+        &#125;ptr;
+    &#125;
+&#125;*GList1;</code></pre></div>
+
+<p>GL&#x3D;( a1, a2, ……, an )<br>head(GL)&#x3D; a1<br>tail(GL)&#x3D;( a2, ……, an )</p>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027111646633.png" srcset="/img/loading.gif" lazyload alt="image-20221027111646633" style="zoom:50%;" />
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027111646633.png" srcset="/img/loading.gif" lazyload alt="image-20221027111646633|100" style="zoom:50%;" />
+
+<p>hp: 指示表头的指针</p>
+<p>tp:指示表尾的指针</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027112009542.png" srcset="/img/loading.gif" lazyload alt="image-20221027112009542"></p>
+<h3 id="方法2—扩展的线性链表形式"><a href="#方法2—扩展的线性链表形式" class="headerlink" title="方法2—扩展的线性链表形式"></a>方法2—扩展的线性链表形式</h3><div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> &#123;</span>ATOM, LIST&#125; ElemTag;
+<span class="hljs-comment">// ATOM==0:原子；LIST==1：子表</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">GLNode</span>&#123;</span>
+    ElemTag tag;
+    <span class="hljs-class"><span class="hljs-keyword">union</span> &#123;</span>
+        AtomType atom;
+        <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span>
+            <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">GLNode</span> *<span class="hljs-title">hp</span>;</span> 
+        &#125;
+    &#125;
+    
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">GLNode</span> *<span class="hljs-title">tp</span>;</span>
+&#125; * GList2;</code></pre></div>
+
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027112154443.png" srcset="/img/loading.gif" lazyload alt="image-20221027112154443"></p>
+<p>hp: 指向表头的指针<br>tp: 指向同一层的下一个结点</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027112256434.png" srcset="/img/loading.gif" lazyload alt="image-20221027112256434"></p>
+<h2 id="广义表的递归算法"><a href="#广义表的递归算法" class="headerlink" title="广义表的递归算法"></a>广义表的递归算法</h2><p>广义表的特点：定义是递归的。<br>示例约定：非递归表且无共享子表。</p>
+<h3 id="示例1-计算广义表的深度"><a href="#示例1-计算广义表的深度" class="headerlink" title="[示例1] 计算广义表的深度"></a>[示例1] 计算广义表的深度</h3><p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027112335949.png" srcset="/img/loading.gif" lazyload alt="image-20221027112335949"></p>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">GListDepth</span><span class="hljs-params">(GList1 L)</span>
+&#123; <span class="hljs-comment">//采用头尾链表存储结构，求广义表L的深度</span>
+    <span class="hljs-keyword">if</span> (!L) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>; <span class="hljs-comment">//空表</span>
+    <span class="hljs-keyword">if</span> (L-&gt;tag==ATOM) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; <span class="hljs-comment">//单原子</span>
+    <span class="hljs-keyword">for</span> (max=<span class="hljs-number">0</span>, pp=L; pp; pp=pp-&gt;ptr.tp) &#123;
+        dep=GListDepth (pp-&gt;ptr.hp);
+        <span class="hljs-keyword">if</span> (dep&gt;max) max=dep;
+    &#125;
+    <span class="hljs-keyword">return</span> max+<span class="hljs-number">1</span>; <span class="hljs-comment">//非空表的深度是各元素深度的最大值加1</span>
+&#125;<span class="hljs-comment">//GListDepth</span></code></pre></div>
+
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027112405707.png" srcset="/img/loading.gif" lazyload alt="image-20221027112405707"></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027112425409.png" srcset="/img/loading.gif" lazyload alt="image-20221027112425409"></p>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">GListDepth</span><span class="hljs-params">(GList1 L)</span>
+&#123; 
+    <span class="hljs-keyword">if</span> (!L) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>; <span class="hljs-comment">//空表</span>
+    <span class="hljs-keyword">if</span> (L-&gt;tag==ATOM) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; <span class="hljs-comment">//单原子</span>
+    dep1=GListDepth (L-&gt;ptr.hp)+<span class="hljs-number">1</span>;
+    dep2=GListDepth (L-&gt;ptr.tp);
+    <span class="hljs-keyword">if</span> (dep1&gt;dep2) <span class="hljs-keyword">return</span> dep1;
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> dep2;
+&#125;<span class="hljs-comment">//GListDepth</span></code></pre></div>
+
+<h3 id="示例2-复制广义表"><a href="#示例2-复制广义表" class="headerlink" title="[示例2] 复制广义表"></a>[示例2] 复制广义表</h3><p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221027112702550.png" srcset="/img/loading.gif" lazyload alt="image-20221027112702550"></p>
+<div class="code-wrapper"><pre><code class="hljs c">Status <span class="hljs-title function_">CopyGList</span><span class="hljs-params">(GList1 &amp;T, GList1 L)</span>
+&#123; <span class="hljs-keyword">if</span> (!L) T=<span class="hljs-literal">NULL</span>; <span class="hljs-comment">//复制空表</span>
+<span class="hljs-keyword">else</span> &#123;
+T=(GList1)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(GLNode));
+<span class="hljs-keyword">if</span> (!T) <span class="hljs-built_in">exit</span>(OVERFLOW);
+T-&gt;tag=L-&gt;tag;
+<span class="hljs-keyword">if</span> (L-&gt;tag==ATOM) T-&gt;atom=L-&gt;atom; <span class="hljs-comment">//复制单原子</span>
+<span class="hljs-keyword">else</span> &#123;
+CopyGList(T-&gt;ptr.hp, L-&gt;ptr.hp);
+CopyGList(T-&gt;ptr.tp, L-&gt;ptr.tp);
+&#125;
+&#125;
+<span class="hljs-keyword">return</span> OK;
+&#125;<span class="hljs-comment">//CopyGList</span></code></pre></div>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" class="category-chain-item">计算机基础</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" class="category-chain-item">数据结构和算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84408/" class="category-chain-item">数据结构408</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>数组和广义表</div>
+      <div>http://example.com/2023/11/f6bc7579cf50.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 1, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/11/30d5113eb5e6.html" title="排序">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">排序</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/11/f55de38c9c0a.html" title="最大子序列和">
+                        <span class="hidden-mobile">最大子序列和</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

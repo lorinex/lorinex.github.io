@@ -1,0 +1,799 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/flower.png">
+  <link rel="icon" href="/img/flower.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#0f1f15">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="拖放操作在计算机图形用户界面中，拖放操作是指点击一个虚拟对象并把它拖到一个不同的位置或其他的虚拟对象上的操作(或支持的行为).一般来说，它可以用来调用多种操作，或创建两个抽象对象间的特定类型的关联。(Wikipedia) 拖放功能是图形用户接口的一个明显的特征，拖放操作允许用户直观的组合事物。 一般来说，我们可以拖放两种东西，数据和图形对象。如果我们将一幅图像从一个应用程序拖到另一个，我们拖放的是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2024/01/df7febb1e166.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="拖放操作在计算机图形用户界面中，拖放操作是指点击一个虚拟对象并把它拖到一个不同的位置或其他的虚拟对象上的操作(或支持的行为).一般来说，它可以用来调用多种操作，或创建两个抽象对象间的特定类型的关联。(Wikipedia) 拖放功能是图形用户接口的一个明显的特征，拖放操作允许用户直观的组合事物。 一般来说，我们可以拖放两种东西，数据和图形对象。如果我们将一幅图像从一个应用程序拖到另一个，我们拖放的是">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-08T06:18:22.784Z">
+<meta property="article:modified_time" content="2024-01-08T06:18:22.784Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-01-08 06:18" pubdate>
+          January 8, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          37 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="拖放操作"><a href="#拖放操作" class="headerlink" title="拖放操作"></a>拖放操作</h1><p>在计算机图形用户界面中，拖放操作是指点击一个虚拟对象并把它拖到一个不同的位置或其他的虚拟对象上的操作(或支持的行为).一般来说，它可以用来调用多种操作，或创建两个抽象对象间的特定类型的关联。(Wikipedia)</p>
+<p>拖放功能是图形用户接口的一个明显的特征，拖放操作允许用户直观的组合事物。</p>
+<p>一般来说，我们可以拖放两种东西，数据和图形对象。如果我们将一幅图像从一个应用程序拖到另一个，我们拖放的是二进制数据。如果我们拖起一个火狐的标签并将它放到另一个地方，我们拖放的是图形组件。</p>
+<div class="code-wrapper"><pre><code class="hljs Python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span>
+<span class="hljs-string">&quot;&quot;&quot;拖放功能示例&quot;&quot;&quot;</span>
+<span class="hljs-keyword">import</span> sys
+<span class="hljs-keyword">from</span> PyQt5 <span class="hljs-keyword">import</span> QtWidgets
+
+<span class="hljs-comment"># 为了将文本放到QPushButton组件上，我们必须写一些方法，</span>
+<span class="hljs-comment"># 所以我们通过继承QPushButton组件来创建我们自己的按钮类。</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Button</span>(QtWidgets.QPushButton):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, title, parent</span>):
+        <span class="hljs-built_in">super</span>(Button, self).__init__(title, parent)
+        <span class="hljs-comment"># 我们允许QPushButton的放置事件（即将其它对象拖放到其上的操作）。</span>
+        self.setAcceptDrops(<span class="hljs-literal">True</span>)
+
+    <span class="hljs-comment"># 首先我们重写dragEnterEvent()</span>
+    <span class="hljs-comment"># 方法，我们通知我们将要收到的数据类型，这里是无格式文本。</span>
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">dragEnterEvent</span>(<span class="hljs-params">self, event</span>):
+        <span class="hljs-keyword">if</span> event.mimeData().hasFormat(<span class="hljs-string">&#x27;text/plain&#x27;</span>):
+            event.accept()
+        <span class="hljs-keyword">else</span>:
+            event.ignore()
+
+    <span class="hljs-comment"># 通过重写dropEvent()方法，我们定义我们收到drop事件后如何操作，</span>
+    <span class="hljs-comment"># 这里我们改变按钮组件显示的文本。</span>
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">dropEvent</span>(<span class="hljs-params">self, event</span>):
+        self.setText(event.mimeData().text())
+
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">DragDrop</span>(QtWidgets.QDialog):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">super</span>(DragDrop, self).__init__()
+
+        self.setWindowTitle(<span class="hljs-string">&quot;拖放功能演示程序&quot;</span>)
+        self.resize(<span class="hljs-number">1000</span>, <span class="hljs-number">750</span>)
+        <span class="hljs-comment"># QLineEdit组件有内置的拖动操作，</span>
+        <span class="hljs-comment"># 我们所要作的就是调用setDragEnabled()方法来将其设置为可用。</span>
+        edit = QtWidgets.QLineEdit(<span class="hljs-string">&quot;&quot;</span>, self)
+        edit.move(<span class="hljs-number">30</span>, <span class="hljs-number">65</span>)
+        edit.setDragEnabled(<span class="hljs-literal">True</span>)
+        button = Button(<span class="hljs-string">&quot;按钮&quot;</span>, self)
+        button.move(<span class="hljs-number">500</span>, <span class="hljs-number">65</span>)
+
+        screen = QtWidgets.QDesktopWidget().screenGeometry()
+        size = self.geometry()
+        self.move((screen.width()-size.width())/<span class="hljs-number">2</span>, (screen.height()-size.height())/<span class="hljs-number">2</span>)
+
+app = QtWidgets.QApplication(sys.argv)
+dd = DragDrop()
+dd.show()
+sys.exit(app.exec_())
+</code></pre></div>
+
+
+<p><a href="%E6%8B%96%E6%94%BE%E5%8A%9F%E8%83%BD%E6%BC%94%E7%A4%BA%E7%A8%8B%E5%BA%8F.mp4"></a></p>
+<h4 id="拖放按钮部件"><a href="#拖放按钮部件" class="headerlink" title="拖放按钮部件"></a><strong>拖放按钮部件</strong></h4><div class="code-wrapper"><pre><code class="hljs Python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span>
+<span class="hljs-string">&quot;&quot;&quot;拖放按钮示例&quot;&quot;&quot;</span>
+<span class="hljs-keyword">import</span> sys
+<span class="hljs-keyword">from</span> PyQt5 <span class="hljs-keyword">import</span> QtWidgets, QtCore, QtGui
+
+<span class="hljs-comment"># 我们创建一个继承QPushButton的按钮类。我们同时重写QPushButton的两个方法mouseMoveEvent()和mousePressEvent()。mouseMoveEvent()方法是拖放操作开始的位置。</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Button</span>(QtWidgets.QPushButton):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, title, parent</span>):
+        <span class="hljs-built_in">super</span>(Button, self).__init__(title, parent)
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">mouseMoveEvent</span>(<span class="hljs-params">self, event</span>):
+        <span class="hljs-comment"># 这里我们设定只对鼠标右键的拖放操作做出响应，对鼠标左键操作保留给点击按钮。</span>
+        <span class="hljs-keyword">if</span> event.buttons() != QtCore.Qt.RightButton:
+            <span class="hljs-keyword">return</span>
+        <span class="hljs-comment"># 这里我们创建一个QDrag对象。</span>
+        <span class="hljs-comment"># 这段代码其实是定义了Button类的拖放属性，</span>
+        <span class="hljs-comment"># 首先定义一个QMimeData类的示例用于存存储在拖放过程中的信息，可以将需要的信息通过QMimeData传到被拖放到的部件处；然后定义了一个QDrag类，并用setMimeData()方法设定其将拖放信息存放在mime_data中。</span>
+        mime_data = QtCore.QMimeData()
+        drag = QtGui.QDrag(self)
+        drag.setMimeData(mime_data)
+        <span class="hljs-comment"># 最后这一句，在本例中其实没用，注释掉之后，程序运行如常，</span>
+        drag.setHotSpot(event.pos()-self.rect().topLeft())
+        <span class="hljs-comment"># 拖动对象的exec_ ()方法开始拖放操作。如果我们完成一次移动放置操作，我们要销毁按钮组件。技术上来讲，我们在当前位置销毁一个组件，并在新位置重新创建它。</span>
+<span class="hljs-comment"># PS:原文中（即PyQt4中）， 这里的方法并不是exec_()而是start()，运行起来右键拖动按钮提示：AttributeError:&#x27;QDrag&#x27; object has no attribute &#x27;start&#x27;，打开idle，输入</span>
+        drop_action = drag.exec_(QtCore.Qt.MoveAction)
+        <span class="hljs-keyword">if</span> drop_action == QtCore.Qt.MoveAction:
+            self.close()
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">mousePressEvent</span>(<span class="hljs-params">self, event</span>):
+        QtWidgets.QPushButton.mousePressEvent(self, event)
+        <span class="hljs-keyword">if</span> event.button() == QtCore.Qt.LeftButton:
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;按下&quot;</span>)
+
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">DragButton</span>(QtWidgets.QDialog):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">super</span>(DragButton, self).__init__()
+        self.setWindowTitle(<span class="hljs-string">&quot;拖放按钮演示程序&quot;</span>)
+        self.resize(<span class="hljs-number">280</span>, <span class="hljs-number">150</span>)
+        self.setAcceptDrops(<span class="hljs-literal">True</span>)
+        self.button = Button(<span class="hljs-string">&quot;关闭&quot;</span>, self)
+        self.button.move(<span class="hljs-number">100</span>, <span class="hljs-number">65</span>)
+
+        screen = QtWidgets.QDesktopWidget().screenGeometry()
+        size = self.geometry()
+        self.move((screen.width()-size.width())/<span class="hljs-number">2</span>, (screen.height()-size.height())/<span class="hljs-number">2</span>)
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">dragEnterEvent</span>(<span class="hljs-params">self, event</span>):
+        event.accept()
+
+    <span class="hljs-comment"># 在dropEvent()方法中包含了当我们释放鼠标按键并且结束放置后的操作的代码。在我们的例子里，我们在鼠标指针的当前位置创建了一个新的按钮组件。</span>
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">dropEvent</span>(<span class="hljs-params">self, event</span>):
+        position = event.pos()
+        button = Button(<span class="hljs-string">&quot;关闭&quot;</span>, self)
+        button.move(position)
+        button.show()
+        <span class="hljs-comment"># 我们指定释放操作的类型。这里是移动操作。</span>
+        event.setDropAction(QtCore.Qt.MoveAction)
+        event.accept()
+app = QtWidgets.QApplication(sys.argv)
+db = DragButton()
+db.show()
+sys.exit(app.exec_())</code></pre></div>
+
+
+<p>在我们的例子里，主窗口中有一个QPushButton，如果我们鼠标左键点击按钮，会在终端上打印”按下”，如果我们右键点击并拖动按钮，我们对按钮组件执行拖放操作。</p>
+<p>如果我们点击鼠标左键，就在控制台打印’press’。注意，这里我们调用了父类的mousePressEvent()方法，否则我们无法看到鼠标被按下的效果。</p>
+<p>友情提示：这一点由其重要，在重写事件方法时，继承父类的方法可以使部件能像以前一样工作，只是在你定义的功能部分替换为了你所写的功能，通常我们都需要这样做，这一点在多个贴子中均有提到。</p>
+<div class="code-wrapper"><pre><code class="hljs Python">drag.setHotSpot(event.pos()-self.rect().topLeft())</code></pre></div>
+
+
+<p>经过百度，这个方法其实是配合下面两条语句使用的：</p>
+<div class="code-wrapper"><pre><code class="hljs Python">pixmap = QtGui.QPixmap(<span class="hljs-string">r&quot; sample.png&quot;</span>)
+drag.setPixmap(pixmap)</code></pre></div>
+
+
+<p>先创建一个QPixmap类的实例存放一个图片，然后设定拖放过程中在鼠标所在位置显示该图片，然后再调用setHotSpot()方法设定显示图片的位置，参数应该是一个QtCore.QPoint类，比如drag.setHotSpot(QtCore.QPoint(64,64))，设置鼠标在pixmap图片以左上角为(0, 0)时(64,64)的位置。</p>
+<p>教程的作者只是给我们展示了两个例子，但是这两个例子可以清楚的看到拖放的细节（当然这些细节的发现要靠自己查资料来发现）。首先，对于拖放操作的接受对象我们需要调用setAcceptDrops()方法设定它可以接受把其它对象拖动到上面的操作；其次，对于拖放操作的接受对象我们需要重写它的dragEnterEvent()和dropEvent()两个方法，来设定当有对象拖放到其上时，需要做出的响应；最后，对于我们要拖放的对象要在它内部描述清楚拖放操作过程中的一些细节（如拖放过程中显示图片，响应鼠标的哪个按键的拖动操作）。</p>
+<p>最后，大家可以试一下，分别把这几条语句注释掉，程序会发生什么改变。</p>
+<div class="code-wrapper"><pre><code class="hljs Python"><span class="hljs-number">1</span>   <span class="hljs-keyword">if</span> event.buttons() != QtCore.Qt.RightButton:
+           Return
+<span class="hljs-number">2</span>   dragEnterEvent函数中的event.accept()
+<span class="hljs-number">3</span>   dropEvent函数中的event.accept()</code></pre></div>
+
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="category-chain-item">编程语言</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/" class="category-chain-item">Python</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/pyqt5/" class="category-chain-item">pyqt5</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/pyqt5/%E6%8B%96%E6%94%BE%E6%93%8D%E4%BD%9C/" class="category-chain-item">拖放操作</a>
+  
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2024/01/df7febb1e166.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 8, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/01/6db693cb927b.html" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/01/fb971e91c9bb.html" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

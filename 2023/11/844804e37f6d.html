@@ -1,0 +1,1173 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/flower.png">
+  <link rel="icon" href="/img/flower.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#0f1f15">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="查找概念和术语查找表是一种以集合为逻辑结构，以查找为核心运算的数据结构。查找指定某个值，在查找表中确定是否存在一个记录，该记录的关键字等于给定值。关键字记录(数据元素)中的某个数据项的值。     主关键字   该关键字可以唯一地标识一个记录。  如学生花名册中的学号     次关键字   该关键字不能唯一标识一个记录。如学生花名册中的姓名 查找表以集合为逻辑结构，因此数据元素之间是没有“关系”的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="查找">
+<meta property="og:url" content="http://example.com/2023/11/844804e37f6d.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="查找概念和术语查找表是一种以集合为逻辑结构，以查找为核心运算的数据结构。查找指定某个值，在查找表中确定是否存在一个记录，该记录的关键字等于给定值。关键字记录(数据元素)中的某个数据项的值。     主关键字   该关键字可以唯一地标识一个记录。  如学生花名册中的学号     次关键字   该关键字不能唯一标识一个记录。如学生花名册中的姓名 查找表以集合为逻辑结构，因此数据元素之间是没有“关系”的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207110935141.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207115458897.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207120019903.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207120051931.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207120115276.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207120923313.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207153452832.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207153627144.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207153708122.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207153728644.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207154641487.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231101145535707.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207154713081.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207204421630.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207213201344.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20221208154402.jpg">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208162929276.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208162942253.png">
+<meta property="og:image" content="http://example.com/image-20221208170015935.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207223943540.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208175805055.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208175830815.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207224010476.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/6e2b65dbcf4dae6bbb993592af2b52c.jpg">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207224608151.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193623933.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193632049.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193641929.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193839782.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193851585.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193945472.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208192903948.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/20180520012305597.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208192924626.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193032531.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193531209.png">
+<meta property="article:published_time" content="2023-11-01T14:58:29.000Z">
+<meta property="article:modified_time" content="2024-01-08T06:18:22.812Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207110935141.png">
+  
+  
+  
+  <title>查找 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="查找"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-01 14:58" pubdate>
+          November 1, 2023 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          14k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          115 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">查找</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h1><h2 id="概念和术语"><a href="#概念和术语" class="headerlink" title="概念和术语"></a>概念和术语</h2><p><strong>查找表</strong>是一种以集合为逻辑结构，以查找为核心运算的数据结构。<br><strong>查找</strong>指定某个值，在查找表中确定是否存在一个记录，该记录的关键字等于给定值。<br><strong>关键字</strong>记录(数据元素)中的某个数据项的值。<br>     <strong>主关键字</strong>   该关键字可以唯一地标识一个记录。  如学生花名册中的学号<br>     <strong>次关键字</strong>   该关键字不能唯一标识一个记录。如学生花名册中的姓名</p>
+<p>查找表<strong>以集合为逻辑结构</strong>，因此数据元素之间是没有“关系”的，在实现时就不受“关系”的约束，根据实际应用去组织查找表，以提高查找的效率，常见的存储结构有：顺序结构、链式结构、索引结构、散列结构。</p>
+<p>基于在查找表中操作的不同，查找表又分为以下两种:</p>
+<p>  <strong>静态查找表</strong>  对查找表的查找仅是以查询为目的，不改动查找表中的数据。</p>
+<p>  <strong>动态查找表</strong>  查找过程中还会有插入、删除操作。</p>
+<p><strong>查找成功</strong>  查找表中存在满足查找条件的记录。</p>
+<p><strong>查找不成功</strong>  查找表中不存在满足查找条件的记录。</p>
+<p><strong>内查找</strong>  整个查找过程都在内存中进行。</p>
+<p><strong>外查找</strong>  在查找过程中需要访问外存。</p>
+<p><strong>平均查找长度ASL</strong>（ Average Search Length ）——查找方法时效的度量</p>
+<p>​      为确定记录在查找表中的位置，需将关键字和给定值比较次数的期望值。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207110935141.png" srcset="/img/loading.gif" lazyload alt="image-20221207110935141"></p>
+<h2 id="静态查找表"><a href="#静态查找表" class="headerlink" title="静态查找表"></a>静态查找表</h2><h3 id="顺序表查找"><a href="#顺序表查找" class="headerlink" title="顺序表查找"></a>顺序表查找</h3><div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">Search_Seq2</span><span class="hljs-params">(SSTable ST, KeyType key)</span> 
+&#123;	
+	ST.elem[<span class="hljs-number">0</span>].key=key; <span class="hljs-comment">//哨兵</span>
+	<span class="hljs-keyword">for</span>(i=ST.length; ST.elem[i].key!=key; i--)；
+	<span class="hljs-keyword">return</span> i;
+&#125;<span class="hljs-comment">//Search_Seq2</span>
+设置监视哨，查找时每一步不必检测位置是否越界，提高算法效率。</code></pre></div>
+
+<p><strong>[性能分析]</strong></p>
+<p>空间：一个辅助空间。</p>
+<p>时间：</p>
+<p>  1)查找成功时的平均查找长度</p>
+<p>​      设表中各记录查找概率相等</p>
+<p>   $ASL_s(n)&#x3D;\sum_{i&#x3D;1}^{n}P_{i} C_i  &#x3D;(1+2+ … +n)&#x2F;n &#x3D;(n+1)&#x2F;2$</p>
+<p>  2)查找不成功时的平均查找长度   $ ASL_f &#x3D;n+1$</p>
+<p><strong>[算法特点]</strong></p>
+<p>算法简单，对表中元素排列顺序无任何要求</p>
+<p>n很大时查找效率较低</p>
+<p>改进措施：非等概率查找时，可将查找概率高的记录尽量排在表前部。</p>
+<p>逐个查找的方法也可用于<strong>线性链表</strong>表示的静态查找表</p>
+<h3 id="有序表查找（补充：跳表）"><a href="#有序表查找（补充：跳表）" class="headerlink" title="有序表查找（补充：跳表）"></a>有序表查找（补充：跳表）</h3><h4 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h4><div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">Search_Bin</span><span class="hljs-params">(SSTable ST, keytype key)</span>
+&#123;
+    low = <span class="hljs-number">1</span>;
+    high = ST.length; <span class="hljs-comment">// 置区间初值</span>
+    <span class="hljs-keyword">while</span> (low &lt;= high)
+    &#123;                           <span class="hljs-comment">//  要点1：结束条件</span>
+        mid = (low + high) / <span class="hljs-number">2</span>; <span class="hljs-comment">//  要点2：mid计算</span>
+        <span class="hljs-keyword">if</span> (key == ST.elem[mid].key)
+            <span class="hljs-keyword">return</span> mid;                  <span class="hljs-comment">// 找到待查元素</span>
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (key &lt; ST.elem[mid].key) <span class="hljs-comment">// 要点3：low和high更新</span>
+            high = mid - <span class="hljs-number">1</span>;              <span class="hljs-comment">// 继续在前半区间进行查找</span>
+        <span class="hljs-keyword">else</span>
+            low = mid + <span class="hljs-number">1</span>; <span class="hljs-comment">// 继续在后半区间进行查找</span>
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; <span class="hljs-comment">// 顺序表中不存在待查元素</span>
+&#125; <span class="hljs-comment">// Search_Bin</span></code></pre></div>
+
+<p>变体问题</p>
+<p>查找第一个值等于给定值的元素</p>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">Search_Bin</span><span class="hljs-params">(SSTable ST, keytype key)</span>
+&#123;
+    low = <span class="hljs-number">1</span>;
+    high = ST.length;
+    <span class="hljs-keyword">while</span> (low &lt;= high)
+        mid = (low + high) / <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">if</span> (key == ST.elem[mid].key)
+    &#123;
+        <span class="hljs-keyword">if</span> (mid == <span class="hljs-number">1</span> || ST.elem[mid - <span class="hljs-number">1</span>].key != key)
+            <span class="hljs-keyword">return</span> mid;
+        <span class="hljs-keyword">else</span>
+            high = mid - <span class="hljs-number">1</span>
+    &#125;
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (key &lt; ST.elem[mid].key)
+        high = mid - <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">else</span>
+        low = mid + <span class="hljs-number">1</span>;
+&#125;
+<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; <span class="hljs-comment">// 顺序表中不存在待查元素</span>
+&#125; <span class="hljs-comment">// Search_Bin</span></code></pre></div>
+
+<p>查找最后一个值等于给定值的元素</p>
+<p>略</p>
+<p>查找第一个值大于或等于给定值的元素</p>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-keyword">if</span> (key &lt;= ST.elem[mid].key)
+&#123;
+    <span class="hljs-keyword">if</span> ((mid == <span class="hljs-number">1</span> || key &gt; ST.elem[mid - <span class="hljs-number">1</span>].key))
+        <span class="hljs-keyword">return</span> mid;
+    <span class="hljs-keyword">else</span>
+        high = mid - <span class="hljs-number">1</span>;
+&#125;
+<span class="hljs-keyword">else</span>
+&#123;
+    low = mid + <span class="hljs-number">1</span>;
+&#125;</code></pre></div>
+
+<p>查找最后一个值小于或等于给定值的元素</p>
+<p>略</p>
+<p>1.<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%8A%98%E5%8D%8A%E6%9F%A5%E6%89%BE&spm=1001.2101.3001.7020">折半查找</a>和二叉排序树的时间性能分析：</p>
+<ul>
+<li>从查找过程看，二叉排序树与二分查找相似。就平均时间性能而言，二叉排序树上的查找和二分查找差不多，但不完全一致；</li>
+<li>折半查找的性能分析可以用二叉判定树来衡量，平均查找长度和最大查找长度都是O（logn）；</li>
+<li>二叉排序树的查找性能与数据的输入顺序有关，最好情况下的平均查找长度与折半查找相同，但最坏情况时，即形成单支树时，其查找长度为O(n)。</li>
+<li>折半查找的判定树唯一，而二叉排序树不唯一，相同的关键字其插入顺序不同可能生成不同的二叉排序树。</li>
+</ul>
+<p>2.就维护表的有序性而言，<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91&spm=1001.2101.3001.7020">二叉排序树</a>无需移动节点，只需修改指针即可完成插入和删除操作，平均执行时间是O（logn）。二分查找的对象是有序顺序表，若有插入和删除结点的操作，所花的代价是O（n）。</p>
+<p>3.当有序表是静态查找表时，宜用顺序表作为其存储结构，而采用<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE&spm=1001.2101.3001.7020">二分查找</a>实现其查找操作；若有序表是动态查找表，则应选择二叉排序树作为其逻辑结构。</p>
+<p>4.折半查找过程所对应的判定树是一棵平衡二叉树：每次把一个数组从中间分割时，总是把数组分为结点数相差最多不超过1的两个子数组，从而使得对应的判定树的两颗子树高度差绝对值不超过1。</p>
+<h4 id="跳表"><a href="#跳表" class="headerlink" title="跳表"></a>跳表</h4><p>实现简单，性能优良，插入、删除、查找的复杂度均为O(logN)</p>
+<p>Redis的有序集合（Sorted Set）用跳表实现</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207115458897.png" srcset="/img/loading.gif" lazyload alt="image-20221207115458897"></p>
+<p>核心思路：对链表建立多层“索引”，上图中-1表示 INT_MIN，链表的最小值，1表示INT_MAX。如果索引层足够，相对于实现了二分查找。</p>
+<h5 id="查找-1"><a href="#查找-1" class="headerlink" title="查找"></a>查找</h5><p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207120019903.png" srcset="/img/loading.gif" lazyload alt="image-20221207120019903"></p>
+<h5 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h5><p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207120051931.png" srcset="/img/loading.gif" lazyload alt="image-20221207120051931"></p>
+<h5 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h5><p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207120115276.png" srcset="/img/loading.gif" lazyload alt="image-20221207120115276"></p>
+<h3 id="静态树表查找"><a href="#静态树表查找" class="headerlink" title="静态树表查找"></a>静态树表查找</h3><h4 id="静态最优查找树"><a href="#静态最优查找树" class="headerlink" title="静态最优查找树"></a>静态最优查找树</h4><p>定义：查找性能最佳的判定树。</p>
+<p>性质：带权内路径长度之和PH为最小值。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207120923313.png" srcset="/img/loading.gif" lazyload alt="image-20221207120923313"></p>
+<p>最优查找体现的原则：</p>
+<p>  1）最先访问的结点应是访问概率最大的结点；</p>
+<p>   2）每次访问应使结点两边尚未访问的结点的被访概率之和尽可能相等。</p>
+<h4 id="静态次优查找树"><a href="#静态次优查找树" class="headerlink" title="静态次优查找树"></a>静态次优查找树</h4><p>PH值近似为最小</p>
+<p>比静态最优查找树易于构造，时间开销少</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207153452832.png" srcset="/img/loading.gif" lazyload alt="image-20221207153452832"></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207153627144.png" srcset="/img/loading.gif" lazyload alt="image-20221207153627144"></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207153708122.png" srcset="/img/loading.gif" lazyload alt="image-20221207153708122"></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207153728644.png" srcset="/img/loading.gif" lazyload alt="image-20221207153728644"></p>
+<p>[次优查找树上的查找步骤] </p>
+<p>设给定的查找值为K</p>
+<p>将根结点作为当前考察的结点</p>
+<p>1）若当前结点指针为NULL，则返回空指针</p>
+<p>2）将当前结点的关键字key与K比较，</p>
+<p>   若K&#x3D;key，则返回当前结点的指针；</p>
+<p>   若K&gt;key，将其右孩子作为当前结点，转1）；</p>
+<p>   若K&lt;key，将其左孩子作为当前结点，转1）；</p>
+<p>[查找性能]</p>
+<p>   比较次数不超过树的深度，O(log2n)</p>
+<h3 id="索引顺序表查找"><a href="#索引顺序表查找" class="headerlink" title="索引顺序表查找"></a>索引顺序表查找</h3><p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207154641487.png" srcset="/img/loading.gif" lazyload alt="image-20221207154641487"></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231101145535707.png" srcset="/img/loading.gif" lazyload alt="image-20231101145535707"></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207154713081.png" srcset="/img/loading.gif" lazyload alt="image-20221207154713081"></p>
+<h2 id="动态查找表"><a href="#动态查找表" class="headerlink" title="动态查找表"></a>动态查找表</h2><h3 id="二叉排序树和平衡二叉树（补充内容：红黑树）"><a href="#二叉排序树和平衡二叉树（补充内容：红黑树）" class="headerlink" title="二叉排序树和平衡二叉树（补充内容：红黑树）"></a>二叉排序树和平衡二叉树（补充内容：红黑树）</h3><h4 id="二叉排序树"><a href="#二叉排序树" class="headerlink" title="二叉排序树"></a>二叉排序树</h4><p><strong>1.</strong> <strong>定义</strong></p>
+<p>二叉排序树或者是空树，或者是满足如下性质的二叉树：</p>
+<p>1)若其左子树非空，则左子树上所有结点的值均小于根结点的值；</p>
+<p>2)若其右子树非空，则右子树上所有结点的值均大于根结点的值；</p>
+<p>3)其左右子树本身又各是一棵二叉排序树</p>
+<p><strong>2.</strong> <strong>性质</strong></p>
+<p>中序遍历一棵二叉排序树，将得到一个以关键字递增排列的有序序列</p>
+<p>3.<strong>在二叉排序树上的操作</strong></p>
+<p>通常，取二叉链表作为存储结构</p>
+<p>1）查找</p>
+<div class="code-wrapper"><pre><code class="hljs c">Bitree <span class="hljs-title function_">SearchBST</span><span class="hljs-params">(BiTree T, KeyType key)</span>
+<span class="hljs-comment">// 在二叉排序树T中查找关键字值为 key 的结点，</span>
+<span class="hljs-comment">//找到返回该结点的地址，否则返回空。</span>
+&#123;
+    <span class="hljs-keyword">if</span> ((!T) || EQ(key, T-&gt;data.key))
+        <span class="hljs-keyword">return</span> (T); <span class="hljs-comment">// T为空或者查找成功</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (LT(key, T-&gt;data.key))
+        <span class="hljs-keyword">return</span> (SearchBST(T-&gt;lchild, key));
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> (SearchBST(T-&gt;rchild, key));
+&#125; <span class="hljs-comment">// SearchBST  P228-9.5（a）</span>
+
+<span class="hljs-keyword">if</span> (count == <span class="hljs-number">11</span> &amp;&amp; idFlag == <span class="hljs-number">0</span>)
+    idFlag = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">if</span> (idFlag &amp;&amp; (c == <span class="hljs-string">&#x27;x&#x27;</span> || c == <span class="hljs-string">&#x27;u&#x27;</span>))
+    c = <span class="hljs-string">&#x27;*&#x27;</span>;</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs c">Status <span class="hljs-title function_">SearchBST</span><span class="hljs-params">(BiTree T, KeyType key, BiTree f, BiTree &amp;p)</span>
+<span class="hljs-comment">//f指向T的父结点,初始调用值为NULL。</span>
+<span class="hljs-comment">//查找成功，p指向该结点，并返回TRUE；</span>
+<span class="hljs-comment">//查找失败，p指向查找路径上的最后一个结点，并返回FALSE</span>
+&#123;
+    <span class="hljs-keyword">if</span> (!T)
+    &#123;
+        p = f;
+        <span class="hljs-keyword">return</span> FALSE;
+    &#125; <span class="hljs-comment">//查找失败，p=f，即p指向父结点</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> EQ (key, T-&gt;data.key)
+    &#123;
+        p = T;
+        <span class="hljs-keyword">return</span> TRUE;
+    &#125; <span class="hljs-comment">//查找成功，p指向该结点</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> LT (key, T-&gt;data.key)
+        <span class="hljs-keyword">return</span> SearchBST(T-&gt;lchild, key, T, p);
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> SearchBST(T-&gt;rchild, key, T, p);
+&#125;<span class="hljs-comment">// SearchBST   P228-9.5(b)</span></code></pre></div>
+
+<p>2）插入</p>
+<div class="code-wrapper"><pre><code class="hljs c">Status <span class="hljs-title function_">InsertBST</span> <span class="hljs-params">(BiTree &amp;T,ElemType e)</span>&#123;  
+    <span class="hljs-keyword">if</span> (!SearchBST(T, e.key, <span class="hljs-literal">NULL</span>, p)) &#123;<span class="hljs-comment">//未找到</span>
+    	s=(BiTree)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(BiTNode));
+        s-&gt;data=e;
+        s-&gt;lchild=s-&gt;rchild=<span class="hljs-literal">NULL</span>;
+        <span class="hljs-keyword">if</span>(!T)  T=s; <span class="hljs-comment">//若T为空，T直接指向s</span>
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(LT(e.key, p-&gt;data.key))
+        	p-&gt;lchild = s; <span class="hljs-comment">//放p的左侧</span>
+        <span class="hljs-keyword">else</span> 
+            p-&gt;rchild = s; <span class="hljs-comment">//放p的右侧</span>
+        <span class="hljs-keyword">return</span> TRUE;
+    &#125;<span class="hljs-keyword">else</span> 
+        <span class="hljs-keyword">return</span> FALSE；
+&#125; <span class="hljs-comment">//InsertBST   P228-9.6</span></code></pre></div>
+
+<p>3)删除结点</p>
+<ol>
+<li><p>p结点为叶结点</p>
+</li>
+<li><p>p结点只有右子树pR或只有左子树pL</p>
+</li>
+<li><p>p结点既有左子树PL又有右子树PR，可按中序遍历保持有序进行调整。</p>
+<p>左孩子或右孩子跟上去</p>
+<p>把左子树的最右叶子结点拿上去或者把右子树的最左叶子结点拿上去</p>
+</li>
+</ol>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207204421630.png" srcset="/img/loading.gif" lazyload alt="image-20221207204421630"></p>
+<p><strong>最优&#x2F;次优查找树与二叉排序树</strong><br>最优&#x2F;次优查找树也符合二叉排序树的定义<br>二叉排序树的性能分析的讨论是在等概率前提下进行的<br>最优&#x2F;次优查找树考虑了查找概率不等的问题<br>最优&#x2F;次优查找树是静态树表，不方便在查找的过程中进行插入&#x2F;删除<br>二叉排序树是动态树表，方便在查找的过程中进行插入&#x2F;删除</p>
+<h4 id="平衡二叉树（AVL树）"><a href="#平衡二叉树（AVL树）" class="headerlink" title="平衡二叉树（AVL树）"></a>平衡二叉树（AVL树）</h4><ol>
+<li>平衡二叉树的定义<br>   或者是空树，或者是满足如下性质的二叉排序树：<br>   1)它的左、右子树的高度之差的绝对值不超过1；<br>   2)其左右子树本身又各是一棵平衡二叉树。</li>
+</ol>
+<p>二叉树上结点的平衡因子：该结点的左子树高度减去右子树的高度。</p>
+<ol start="2">
+<li>定理</li>
+</ol>
+<p>一个具有n个结点的平衡二叉树的高度h为<br>      $log2(n+1)≤ h≤loga(sqrt(5)*(n+1))-2$      a&#x3D;(1＋sqrt(5))&#x2F;2<br>     结论：最坏情况下，AVL树的高度约为1.44log2n，而完全平衡的二叉树高度约为log2n，因此AVL树是接近最优的，其平均查找长度与log2n 同数量级。</p>
+<ol start="3">
+<li>结点的存储结构</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span>  <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span>
+     KeyType key;
+     ……
+&#125;ElemType
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">BSTNode</span> &#123;</span>
+     ElemType  data;
+     <span class="hljs-type">int</span>  bf;
+     <span class="hljs-class"><span class="hljs-keyword">struct</span>  <span class="hljs-title">BSTNode</span> *<span class="hljs-title">lchile</span>,*<span class="hljs-title">rchild</span>;</span>
+&#125;BSTNode, * BSTree;
+<span class="hljs-comment">//lchild：左孩子指针</span>
+<span class="hljs-comment">//rchild：右孩子指针</span>
+<span class="hljs-comment">//bf：平衡因子</span>
+<span class="hljs-comment">//key：记录的关键字</span></code></pre></div>
+
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV16m4y1F7do/?spm_id_from=333.337.search-card.all.click&vd_source=e9b391c976a8e177cd022307f5d265e2">一秒学会 平衡二叉树的调整，非标题党！不简单你打我！ （考研数据结构）_哔哩哔哩_bilibili</a></p>
+<p>平衡二叉树(AVL树)的中序遍历值是递增的。</p>
+<h4 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h4><p>红黑树是一种相对平衡的二叉查找树，牺牲了部分平衡性以换取插入&#x2F;删除操作时少量的旋转操作</p>
+<p>红黑树的高度近似为log2n，插入、删除和查找操作的时间复杂度都是O(log2n)  </p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207213201344.png" srcset="/img/loading.gif" lazyload alt="image-20221207213201344"></p>
+<p>红黑树需要满足以下要求：</p>
+<p>1）结点只能是红色或黑色的；</p>
+<p>2）根结点是黑色的；</p>
+<p>3）每个叶子结点都是黑色的空结点；</p>
+<p>4）每个红色结点的两个子结点都是黑色，也就是说红色结点被黑色结点隔开；</p>
+<p>5）对于每个结点，从该结点到其叶子结点的所有路径，都包含相同数目的黑色结点。</p>
+<p><strong>从根到叶子的最长的可能路径不多于最短的可能路径的两倍长</strong></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1xG4y1b7Zu/?spm_id_from=333.337.search-card.all.click&vd_source=e9b391c976a8e177cd022307f5d265e2">红黑树插入-别再玩什么旋转了_哔哩哔哩_bilibili</a></p>
+<h3 id="B-树和B-树"><a href="#B-树和B-树" class="headerlink" title="B-树和B+树"></a>B-树和B+树</h3><h4 id="B-树"><a href="#B-树" class="headerlink" title="B-树"></a>B-树</h4><h5 id="B-树的特性"><a href="#B-树的特性" class="headerlink" title="B-树的特性"></a>B-树的特性</h5><p><strong>B-树是一种平衡的多路查找树</strong></p>
+<p>一棵 m 阶B-树，或为空树，或为满足下列特性的 m 叉树：</p>
+<ol>
+<li>树中每个结点最多有 m 棵子树，最多有m-1个关键字。</li>
+<li>若根结点不是叶子结点，则最少有两棵子树；</li>
+<li>除根之外的所有非叶子结点最少有 ⌈ m &#x2F; 2 ⌉ 棵子树，最少有 ⌈ m &#x2F; 2 ⌉ -1个关键字。</li>
+<li>所有非叶子结点包含 （n,A0,K1,A1,K2,…,Kn,An）信息数据；其中n为结点中关键字个数，Ai为指向子树的指针，Ki为关键字。</li>
+<li>所有叶子结点在同一层上，且不带信息(可以看做是外部结点或查找失败的结点，实际上这些结点不存在，指向这些结点的指针为空)。</li>
+<li>B树是所有结点的平衡因子均等于0的多路平衡查找树。</li>
+</ol>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20221208154402.jpg" srcset="/img/loading.gif" lazyload alt="微信图片_20221208154402"></p>
+<p>1）结点的孩子个数等于该结点中关键字个数加1。</p>
+<p>2）如果根结点没有关键字就没有子树，此时 B 树为空；如果根结点有关键字，则其子树必然大于等于两棵，因为子树个数等于关键字个数加1。</p>
+<p>3）除根结点外的所有非终端结点至少有 ⌈ m &#x2F; 2 ⌉&#x3D;⌈ 5 &#x2F; 2 ⌉&#x3D;3棵子树（即至少有 2个关键字），至多有5棵子树（即至多有4个关键字）。</p>
+<p>4）结点中关键字从左到右递增有序，关键字两侧均有指向子树的指针，左边指针所指子树的所有关键字均小于该关键字，右边指针所指子树的所有关键字均大于该关键字。或者看成下层结点关键字总是落在由上层结点关键字所划分的区间内，如第二层最左结点的关键字划分成了3个区间：(-∞,5),(5,11),(11,+∞)，该结点3个指针所指子树的关键字均落在这3个区间内。</p>
+<p>5）所有叶结点均在第4层，代表查找失败的位置。</p>
+<h5 id="B-树的用途"><a href="#B-树的用途" class="headerlink" title="B-树的用途"></a>B-树的用途</h5><p>当内存中不可能容纳所有数据记录时，在磁盘等直接存取设备上组织动态的查找表。</p>
+<p>B-树的根结点可以始终置于内存中；</p>
+<p>其余非叶结点放置在外存上，每一结点可作为一个读取单位（页&#x2F;块）</p>
+<p>选取较大的阶次m，降低树的高度，减少外存访问次数</p>
+<p>B-树的信息组织方法</p>
+<ul>
+<li><p>每个记录的其它信息与关键字一起存储。查到关键字即可获取记录的完整信息。</p>
+</li>
+<li><p>将记录的外存地址(页指针)与关键字一起存储。查到关键字时，还需根据该页指针访问外存。</p>
+</li>
+</ul>
+<h5 id="B-树的存储定义"><a href="#B-树的存储定义" class="headerlink" title="B-树的存储定义"></a>B-树的存储定义</h5><p>B-树节点定义</p>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> m 3                   <span class="hljs-comment">//B-树的阶</span></span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">BTNode</span> &#123;</span>
+    <span class="hljs-type">int</span> keynum;              <span class="hljs-comment">//关键字个数</span>
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">BTNode</span> *<span class="hljs-title">parent</span>;</span>   <span class="hljs-comment">//双亲指针</span>
+    KeyType key[m+<span class="hljs-number">1</span>];        <span class="hljs-comment">//0号未用 </span>
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">BTNode</span> *<span class="hljs-title">ptr</span>[<span class="hljs-title">m</span>+1];</span>
+    Record *recptr[m+<span class="hljs-number">1</span>];     <span class="hljs-comment">//0号未用</span>
+&#125; BTNode, *BTree;</code></pre></div>
+
+<p>查找结果描述</p>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span>
+    BTNode *pt; <span class="hljs-comment">//指向找到的结点</span>
+    <span class="hljs-type">int</span> i;      <span class="hljs-comment">//1..m ,结点内序号</span>
+    <span class="hljs-type">int</span> tag;    <span class="hljs-comment">//1成功，0失败</span>
+&#125;Result;</code></pre></div>
+
+<h5 id="B-树上的基本运算"><a href="#B-树上的基本运算" class="headerlink" title="B-树上的基本运算"></a>B-树上的基本运算</h5><p>1)查找</p>
+<p>[算法思想]<br>设查找时给定值为K，从根结点开始<br>(a)在当前结点<code>*p</code>中顺序或者折半查找<br>   若找到某个i，满足<code>key[i]=K</code>，则查找成功，返回p、i、1(成功)<br>   否则，确定满足<code>key[i]&lt;K&lt;key[i+1]</code>的i值<br>(b)若<code>*p</code>结点中的<code>ptr[i]</code>为空指针，则查找失败，返回p、i、0<br>(c)从磁盘上读入<code>ptr[i]</code>指示的结点 <code>DiskRead(p-&gt;ptr[i])</code>，将此结点作为当前结点，转(a)</p>
+<div class="code-wrapper"><pre><code class="hljs c">Result <span class="hljs-title function_">SearchBTree</span><span class="hljs-params">(BTree T, KeyType K)</span>
+&#123;
+    p = T;
+    q = <span class="hljs-literal">NULL</span>;
+    found = FALSE;
+    i = <span class="hljs-number">0</span>; <span class="hljs-comment">// q指向p的双亲，找不到时q有用</span>
+    <span class="hljs-keyword">while</span> (p &amp;&amp; !found)
+    &#123;
+        i = Search(p, K); <span class="hljs-comment">//在p-&gt;key[1..keynum]中找i,使得key[i]&lt;=K&lt;key[i+1]</span>
+        If(i &gt; <span class="hljs-number">0</span> &amp;&amp; p-&gt;key[i] == K) found = TRUE;
+        <span class="hljs-keyword">else</span>
+        &#123;
+            q = p;
+            p = p-&gt;ptr[i];
+        &#125;
+    &#125;
+    <span class="hljs-keyword">if</span> (found)
+        <span class="hljs-keyword">return</span> (p, i, <span class="hljs-number">1</span>);
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> (q, i, <span class="hljs-number">0</span>);
+&#125; <span class="hljs-comment">// SearchBTree</span></code></pre></div>
+
+<p><strong>2)</strong> 插入</p>
+<p>设插入的关键字为K</p>
+<p>(a)定位<br>    找出插入该关键字的最低层中的某个非叶结点<br>    在查找时，会找到表示查找失败的叶结点，来确定最低层中非叶结点的插入位置</p>
+<p>(b)插入<br>    在B树中，每个非失败结点的关键字个数都在区间[⌈m&#x2F;2⌉-1,m-1]内。<br>    插入后 keynum+1<br>    if 结点关键字个数小于m 表示当前结点未溢出(keynum&lt;m)<br>        可以直接插入，则写盘<code>DiskWrite(*q)</code><br>    else 分裂-上溢</p>
+<p>(c)分裂<br>    在插入key后的原结点，从中间位置⌈m&#x2F;2⌉将其分裂成两部分，⌈m&#x2F;2⌉左边的部分放在原结点中，⌈m&#x2F;2⌉右边的部分放在新的结点中，⌈m&#x2F;2⌉的结点放到父节点中。若父节点也溢出，则继续分裂。<br>以key[⌈m&#x2F;2⌉]为划分点，分裂当前结点为两个结点：<br>      (⌈m&#x2F;2⌉-1, ptr0, key1, …,key ⌈m&#x2F;2⌉-1, ptr ⌈m&#x2F;2⌉-1 )——q<br>      (m-⌈m&#x2F;2⌉, ptr⌈m&#x2F;2⌉, key⌈m&#x2F;2⌉+1, …,keym, ptrm )——新结点q1<br>     写盘<code>DiskWrite(*q)</code>，<code>DiskWrite(*q1)</code>，<br>读当前结点的父结点到内存<code>DiskRead(q-&gt;parent)</code>，<br>     将偶对(key[⌈m&#x2F;2⌉], q1)插入该父结点，<br>     以该父结点为当前结点q，转(b)</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208162929276.png" srcset="/img/loading.gif" lazyload alt="image-20221208162929276"></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208162942253.png" srcset="/img/loading.gif" lazyload alt="image-20221208162942253"></p>
+<p><strong>3)生成</strong></p>
+<p>从空树起，逐个插入关键字得到。</p>
+<p><strong>4)删除</strong></p>
+<p>设删除的关键字为K</p>
+<p>(a)在B-树中查找K，若未查找到，则返回</p>
+<p>否则查找成功，查找操作定位于某个结点q，</p>
+<p>​                且q-&gt;key[i]为K</p>
+<p>(b)若q结点不是最下层的非叶结点，则查找q-&gt;ptr[i]所指子树的最小关键字x，用x替换key[i]，使问题转换为删除最下层的非叶结点上的关键字</p>
+<p><img src="/image-20221208170015935.png" srcset="/img/loading.gif" lazyload alt="image-20221208170015935"></p>
+<p>(c) 删除最下层非叶子结点中的关键字，分三种情况处理：</p>
+<p>1）其所属结点的关键字个数&gt;⌈m&#x2F;2⌉-1：简单删除</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207223943540.png" srcset="/img/loading.gif" lazyload alt="image-20221207223943540"></p>
+<p>2）兄弟够借。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208175805055.png" srcset="/img/loading.gif" lazyload alt="image-20221208175805055"></p>
+<p>3）兄弟不够借。<br>若被删除关键字所在结点删除前关键字个数&#x3D;⌈m&#x2F;2⌉-1，且此时与该结点相邻的左右兄弟结点的关键字个数均为⌈m&#x2F;2⌉-1，则将关键字删除后与左右兄弟结点及双亲结点中的关键字进行合并。<br>在合并过程中，双亲结点中的关键字个数会减1。若其双亲结点是根结点且关键字个数为0，直接将根结点删除，合并后的新结点为根。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208175830815.png" srcset="/img/loading.gif" lazyload alt="image-20221208175830815"></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207224010476.png" srcset="/img/loading.gif" lazyload alt="image-20221207224010476"></p>
+<h5 id="B-树的高度及性能分析"><a href="#B-树的高度及性能分析" class="headerlink" title="B-树的高度及性能分析"></a>B-树的高度及性能分析</h5><p>B树的高度不包含最后不带任何信息的叶结点的那一层</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/6e2b65dbcf4dae6bbb993592af2b52c.jpg" srcset="/img/loading.gif" lazyload alt="6e2b65dbcf4dae6bbb993592af2b52c"></p>
+<p><strong>定理</strong>  对于任一棵具有n(n&gt;0)个关键字的m (m&gt;2)阶B-树，其树高h至多为logt((n+1)&#x2F;2)+1。<br>其中t&#x3D;⌈ m &#x2F; 2 ⌉</p>
+<p>决定B-树上操作的时间开销的两个主要因素</p>
+<ul>
+<li>外存的访问次数O(h) ——O(logtn)</li>
+<li>CPU的在结点上的比较定位时间<code>O(hm)</code>或<code>O(h*log2m)</code><br>前者起主导作用</li>
+</ul>
+<p>作为外存上的动态查找表，m越大，则B-树的高度越小，时间性能越好；仅在内存中使用的B-树必须取较小的m，通常取最小值m&#x3D;3</p>
+<h4 id="B-树-1"><a href="#B-树-1" class="headerlink" title="B+树"></a>B+树</h4><p>B+树是一种B-树的变形树。支持按区间查询，是MySQL等数据库使用的主要索引类型之一。</p>
+<ol>
+<li>m阶B+ 树与 B-树的不同之处<br>1)有 n 棵子树的结点中有 n 个关键字；</li>
+</ol>
+<ol start="2">
+<li>非叶结点可以看成是索引部分   索引集<br>Ai ：第i个子结点的指针<br>Ki ：第i个子结点的最大（或最小）关键字<br>3)所有叶子结点中包含了全部关键字的信息及指向这些关键字记录的指针，且叶子结点以关键字大小自小至大顺序链接；数据集</li>
+</ol>
+<p>[结点结构]<br>非叶结点  ( A1, K1, …,Ai, Ki, …, An,Kn)  索引集<br>Ai ：第i个子结点的指针<br>Ki ：第i个子结点的最大（或最小）关键字<br>叶结点  </p>
+<p>全部关键字及指向关键字记录的指针    数据集</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207224608151.png" srcset="/img/loading.gif" lazyload alt="image-20221207224608151"></p>
+<ol start="2">
+<li>B+树上的基本运算</li>
+</ol>
+<p>1)查找<br>方式1：从根结点开始，利用索引集结构，向下查找直到叶子结点<br>方式2：从最小关键字开始，沿叶结点数据集的链结构顺序查找<br>2)插入<br>    仅在叶子结点上进行，关键字个数大于m则分裂<br>3)删除<br>    也仅在叶子结点上进行，关键字个数小于⌈m&#x2F;2⌉时，需进行合并</p>
+<h3 id="键树"><a href="#键树" class="headerlink" title="键树"></a>键树</h3><ol>
+<li>概念</li>
+</ol>
+<p>将关键字<strong>分解</strong>为字符的多叉树，多叉树中的每个结点只代表关键字中的一个字符，叶结点用于表示字符串的结束符(如‘$’)，并含有指向该关键字记录的指针。从根到叶子的路径上所有的结点对应的字符连接起来就代表一个关键字。约定</p>
+<p>键树是有序树</p>
+<p>结束符小于任何字符</p>
+<ol start="2">
+<li>键树的存储结构及其操作<br>1)双链树<br> ——以树的孩子兄弟链表表示</li>
+</ol>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193623933.png" srcset="/img/loading.gif" lazyload alt="image-20221208193623933"></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193632049.png" srcset="/img/loading.gif" lazyload alt="image-20221208193632049"></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193641929.png" srcset="/img/loading.gif" lazyload alt="image-20221208193641929"></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193839782.png" srcset="/img/loading.gif" lazyload alt="image-20221208193839782"></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193851585.png" srcset="/img/loading.gif" lazyload alt="image-20221208193851585"></p>
+<ol start="2">
+<li>Trie树(来源于retrieval(检索))——以多重链表表示</li>
+</ol>
+<p>若以多重链表表示键树，则树的每个结点含有d个指针域，此时的键树称为Trie树。 </p>
+<p>分支结点：num—有用指针的数量</p>
+<p>​          ptr[0..m]—指针数组</p>
+<p>叶子结点：key—关键字</p>
+<p>​          recptr—指向对应记录的指针</p>
+<p> 若从键树中某个结点开始到叶子结点的路径上的每个结点中都只有一个孩子，则将该路径上的所有结点压缩成一个“叶子结点”，且叶子结点中存储有指向记录的指针。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193945472.png" srcset="/img/loading.gif" lazyload alt="image-20221208193945472"></p>
+<h2 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>[哈希表的基本思想] </p>
+<p>在记录的存储地址和它的关键字之间建立一个确定的对应关系；这样，理想状态不经过比较，一次存取就能得到所查元素。</p>
+<p><code>地址index=H(key)</code></p>
+<p>[术语]</p>
+<p><strong>哈希表</strong>       一个有限的连续的地址空间，用以容纳按哈希地址存储的记录。<br><strong>哈希函数</strong>   记录的存储位置与它的关键字之间存在的一种对应关系。   Loc(ri)&#x3D;H(keyi)<br><strong>冲突</strong>          对于keyi≠keyj， i ≠j，出现的H(keyi) &#x3D; H(keyj)的现象。<br><strong>同义词</strong>      在同一地址出现冲突的各关键字。<br><strong>哈希(散列)地址</strong>   根据设定的哈希函数H(key)和处理冲突的方法确定的记录的存储位置。<br><strong>装填因子</strong>   表中填入的记录数n和哈希表表长m之比。    α&#x3D;n&#x2F;m</p>
+<p>[设计哈希表的过程]</p>
+<p>1)明确哈希表的地址空间范围。即确定哈希函数的值域。<br>2)选择合理的哈希函数。该函数要保证所有可能的记录的哈希地址均在指定的值域内，并使冲突的可能性尽量小。<br>3)设定处理冲突的方法。</p>
+<h3 id="哈希函数的基本构造方法"><a href="#哈希函数的基本构造方法" class="headerlink" title="哈希函数的基本构造方法"></a>哈希函数的基本构造方法</h3><p>构造原则： 算法简单，运算量小；均匀分布，减少冲突。</p>
+<p><strong>若是非数字关键字，则需先对其进行数字化处理。</strong></p>
+<h4 id="直接定址法"><a href="#直接定址法" class="headerlink" title="直接定址法"></a>直接定址法</h4><p>$H(key)&#x3D;a*key + b$     <em>a<strong>、</strong>b</em>为常数</p>
+<p>特点：计算简单，冲突最少。</p>
+<p>此法仅适合于：地址集合的大小 &#x3D;  关键字集合的大小</p>
+<h4 id="数字分析法"><a href="#数字分析法" class="headerlink" title="数字分析法"></a>数字分析法</h4><p><strong>取关键字的若干数位作为哈希地址。</strong></p>
+<p>假设关键字集合中的每个关键字都是由 s 位数字组成 (u1, u2, …, us)，分析关键字集中的全体，并从中提取分布均匀的若干位或它们的组合作为地址。</p>
+<p>此方法仅适合于：能预先估计出全体关键字的每一位上各种数字出现的频度。</p>
+<h4 id="平方取中法"><a href="#平方取中法" class="headerlink" title="平方取中法"></a>平方取中法</h4><p>取关键字平方后的中间几位作为哈希地址<br>求“关键字的平方值” 的目的是“扩大差别” ，同时平方值的中间各位又能受到整个关键字中各位的影响。<br>此方法适合于: 关键字中每一位都有某些数字重复出现频度很高的现象。</p>
+<p>使用举例<br>比如key&#x3D;1234 1234^2&#x3D;1522756 取227作hash地址<br>比如key&#x3D;4321 4321^2&#x3D;18671041 取671作hash地址</p>
+<h4 id="折叠法"><a href="#折叠法" class="headerlink" title="折叠法"></a>折叠法</h4><p>将关键字分割成位数相同的几部分(最后一部分的位数可以不同)，然后取这几个部分的叠加和(舍去进位)作为哈希地址。<br>此方法适合于: 关键字的数字位数特别多。</p>
+<h4 id="除留余数法"><a href="#除留余数法" class="headerlink" title="除留余数法"></a>除留余数法</h4><p>H(key) &#x3D; key MOD p     (p≤m)<br>m: 哈希表的表长；<br>p: 最好为素数 ,更有利于“散列”</p>
+<h4 id="随机数法"><a href="#随机数法" class="headerlink" title="随机数法"></a>随机数法</h4><p>H(key) &#x3D; random(key)<br>此方法适合于:关键字长度不等时的情况。</p>
+<h3 id="处理冲突的常用方法"><a href="#处理冲突的常用方法" class="headerlink" title="处理冲突的常用方法"></a>处理冲突的常用方法</h3><h4 id="开放定址法-空缺编址法"><a href="#开放定址法-空缺编址法" class="headerlink" title="开放定址法 (空缺编址法)"></a>开放定址法 (空缺编址法)</h4><p>首先有一个H (key)的哈希函数，如果$\mathrm{H}(\mathrm{key_1})&#x3D;\mathrm{H} \mathrm{(key_i)}$<br>那么keyi存储位置$H_{i}&#x3D;\left(H(key)+d_{i}\right)$ Mod m ，m为表长，$d_{i}$有三种取法<br>1）线性探测再散列        $d_{i}&#x3D;1,2,3,…,m-1$<br>2）二次探测再散列        $d_{i}&#x3D;1^{2},-1^{2},2^{2},-2^{2} \ldots \ldots$<br>3）伪随机探测在散列     $d_{i}$是一组伪随机数列<br>4）双重散列函数探查法  $d_i&#x3D; i*h1(key)$  (0&lt; i &lt;m- 1)<br>    要求：h1(key)的值与m互素<br>    m为素数时，h1(key)可取1到m-1之间的任何数，建议h1(key)&#x3D;key mod (m-2) +1<br>    m为2的方幂时，h1(key)可取1到m-1之间的任何奇数</p>
+<p>开放定址法不宜执行删除操作</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208192903948.png" srcset="/img/loading.gif" lazyload alt="image-20221208192903948"></p>
+<h4 id="再哈希法"><a href="#再哈希法" class="headerlink" title="再哈希法"></a>再哈希法</h4><p>$H_i &#x3D; RH_i(key)$       $i&#x3D;1,2, … , k$</p>
+<p>$RH_i$为不同的散列函数</p>
+<h4 id="链地址法"><a href="#链地址法" class="headerlink" title="链地址法"></a>链地址法</h4><p>产生hash冲突后在存储数据后面加一个指针，指向后面冲突的数据<br>上面的例子，用链地址法则是下面这样：</p>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/20180520012305597.png" srcset="/img/loading.gif" lazyload alt="20180520012305597" style="zoom:67%;" />
+
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208192924626.png" srcset="/img/loading.gif" lazyload alt="image-20221208192924626"></p>
+<h4 id="建立一个公共溢出区"><a href="#建立一个公共溢出区" class="headerlink" title="建立一个公共溢出区"></a>建立一个公共溢出区</h4><p>设哈希函数产生的哈希地址集为[0,m-1]，则分配两个表：<br>  基本表 DateType base_t[m]:每个单元只能存放一个元素；<br>  溢出表 DateType over_t[k]:只要关键码对应的散列地址在基本表上产生冲突，则所有这样的元素一律存入该表。<br>查找时，对给定关键码kx通过散列函数计算出散列地址i，先与基本表的base_t[i]单元比较，若相等，查找成功，否则，到溢出表进行查找。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193032531.png" srcset="/img/loading.gif" lazyload alt="image-20221208193032531"></p>
+<h3 id="哈希表的建立、查找及其ASL分析"><a href="#哈希表的建立、查找及其ASL分析" class="headerlink" title="哈希表的建立、查找及其ASL分析"></a>哈希表的建立、查找及其ASL分析</h3><h4 id="Hash表查找成功和查找不成功的平均查找长度"><a href="#Hash表查找成功和查找不成功的平均查找长度" class="headerlink" title="Hash表查找成功和查找不成功的平均查找长度"></a>Hash表查找成功和查找不成功的平均查找长度</h4><p>Hash表的平均查找长度包括查找成功时的平均查找长度和查找失败时的平均查找长度。<br>　　<strong>查找成功时的平均查找长度&#x3D;表中每个元素查找成功时的比较次数之和&#x2F;表中元素个数</strong>；<br><strong>查找不成功时的平均查找长度相当于在表中查找元素不成功时的平均比较次数</strong>，可以理解为向表中插入某个元素，该元素在每个位置都有可能，然后计算出在每个位置能够插入时需要比较的次数，<strong>再除以表长即为查找不成功时的平均查找长度</strong>。</p>
+<p>下面举个例子：<br>将关键字序列{7, 8, 30, 11, 18, 9, 14}散列存储到散列表中。散列表的存储空间是一个下标从0开始的一维数组，长度为10，即{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}。散列函数为： H(key) &#x3D; (key * 3) % 7，处理冲突采用线性探测再散列法。<br>求等概率情况下查找成功和查找不成功的平均查找长度。</p>
+<p>解：</p>
+<h5 id="1-求散列表"><a href="#1-求散列表" class="headerlink" title="1 求散列表"></a>1 求散列表</h5><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-built_in">H</span>(<span class="hljs-number">7</span>) = (<span class="hljs-number">7</span> * <span class="hljs-number">3</span>) % <span class="hljs-number">7</span> = <span class="hljs-number">0</span>
+<span class="hljs-built_in">H</span>(<span class="hljs-number">8</span>) = (<span class="hljs-number">8</span> * <span class="hljs-number">3</span>) % <span class="hljs-number">7</span> = <span class="hljs-number">3</span>
+<span class="hljs-built_in">H</span>(<span class="hljs-number">30</span>) = <span class="hljs-number">6</span>
+<span class="hljs-built_in">H</span>(<span class="hljs-number">11</span>) = <span class="hljs-number">5</span>
+<span class="hljs-built_in">H</span>(<span class="hljs-number">18</span>) = <span class="hljs-number">5</span>
+<span class="hljs-built_in">H</span>(<span class="hljs-number">9</span>) = <span class="hljs-number">6</span>
+<span class="hljs-built_in">H</span>(<span class="hljs-number">14</span>) = <span class="hljs-number">0</span>
+<span class="hljs-number">1234567</span></code></pre></div>
+
+<p>按关键字序列顺序依次向<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%93%88%E5%B8%8C&spm=1001.2101.3001.7020">哈希</a>表中填入，发生冲突后按照“线性探测”探测到第一个空位置填入。<br>H(7) &#x3D; 0，key &#x3D; 7应插在第0个位置，因为第0个位置为空，可以直接插入。<br>H(8) &#x3D; 3，key &#x3D; 8应插在第3个位置，因为第3个位置为空，可以直接插入。<br>H(30) &#x3D; 6，key &#x3D; 30应插在第6个位置，因为第6个位置为空，可以直接插入。<br>H(11) &#x3D; 5，key &#x3D; 11应插在第5个位置，因为第5个位置为空，可以直接插入。<br>H(18) &#x3D; 5，key &#x3D; 18应插在第5个位置，但是第5个位置已经被key&#x3D;11占据了，所以往后挪一位到第6个位置，但是第6个位置被key&#x3D;30占据了，再往后挪一位到第7个位置，这个位置是空的，所以key&#x3D;18就插到这个位置<br>H(9) &#x3D; 6，key &#x3D; 9应插在第6个位置，但是第6个位置已经被key &#x3D; 30占据，所以需要往后挪一位到第7个位置，但是第7个位置已经被key &#x3D; 18占据，所以再往后挪移到第8个位置，这个位置是空的，所以key &#x3D; 9就插到这个位置。<br>H(14) &#x3D; 0，key &#x3D; 14应插在第0个位置，但第0个位置已被key&#x3D;7占据，所以往后挪移一位到第1个位置，这个位置是空的，所以key&#x3D;14就插到这个位置。</p>
+<p>最终的插入结果如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>address</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>key</td>
+<td>7</td>
+<td>14</td>
+<td></td>
+<td>8</td>
+<td></td>
+<td>11</td>
+<td>30</td>
+<td>18</td>
+<td>9</td>
+<td></td>
+</tr>
+</tbody></table>
+<h5 id="2-求查找成功的平均查找长度"><a href="#2-求查找成功的平均查找长度" class="headerlink" title="2 求查找成功的平均查找长度"></a>2 求查找成功的平均查找长度</h5><p>查找7，H(7) &#x3D; 0，在0的位置，一下子就找到了7，查找长度为1。<br>查找8，H(8) &#x3D; 3，在3的位置，一下子就找到了8，查找长度为1。<br>查找30，H(30) &#x3D; 6，在6的位置，一下子就找到了30，查找长度为1。<br>查找11，H(11) &#x3D; 5，在5的位置，一下子就找到了11，查找长度为1。<br>查找18，H(18) &#x3D; 5，第一次在5的位置没有找到18，第二次往后挪移一位到6的位置，仍没有找到，第三次再往后挪移一位到7的位置，找到了，查找长度为3。<br>查找9，H(9) &#x3D; 6，第一次在6的位置没找到9，第二次往后挪移一位到7的位置，仍没有找到，第三次再往后挪移一位到8的位置，找到了，查找长度为3.<br>查找14，H(14) &#x3D; 0，第一次在0的位置没找到14，第二次往后挪移一位到1的位置，找到了，查找长度为2。</p>
+<p>所以，查找成功的平均查找长度为(1 + 1 + 1 + 1 + 3 + 3 + 2) &#x2F; 7 &#x3D; 12 &#x2F; 7。</p>
+<h5 id="3-求查找不成功的平均查找长度"><a href="#3-求查找不成功的平均查找长度" class="headerlink" title="3 求查找不成功的平均查找长度"></a>3 求查找不成功的平均查找长度</h5><p>查找不成功，说明要查找的数字肯定不在上述的散列表中。<br>因为这里哈希函数的模为7，所以要查找的数的初始地址只可能位于0~6的位置上。<br>地址0，到第一个关键字为空的地址2需要比较3次，因此查找不成功的次数为3。比如要查找的数为28，H(28) &#x3D; (28 * 3) % 7 &#x3D; 0。即28对应的地址是0，由于存放在0位置的数是7，所以往后挪移一位，发现在1位置存放的数是14，继续往后挪一位，发现位置2上没有数。至此就知道28不在这个哈希表里，即查找28失败。<br>地址1，到第一个关键字为空的地址2需要比较2次，因此查找不成功的次数为2。<br>地址2，到第一个关键字为空的地址2需要比较1次，因此查找不成功的次数为1。<br>地址3，到第一个关键字为空的地址4需要比较2次，因此查找不成功的次数为2。<br>地址4，到第一个关键字为空的地址4需要比较1次，因此查找不成功的次数为1。<br>地址5，到第一个关键字为空的地址9需要比较5次，因此查找不成功的次数为5。<br>比如要查找的数为4，H(4) &#x3D; (4 * 3) % 7 &#x3D; 5，所以从地址5开始查找，最终发现地址5、地址6、地址7、地址8上存放的数都不是5，并且地址9的位置上没放数据，至此可知5不在这个哈希表里。<br>地址6，到第一个关键字为空的地址9需要比较4次，因此查找不成功的次数为4。<br>所以，查找不成功的平均查找长度为（3 + 2 + 1 + 2 + 1 + 5 + 4）&#x2F; 7 &#x3D; 18 &#x2F; 7。</p>
+<h5 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h5><p>为了提高阅读和理解的效率，在这边强调一下：</p>
+<ul>
+<li>求成功的ASL是针对于每个数字的，即你要把所有数字的查找后的次数做个累加，<strong>最后除的数字是元素的个数</strong>！这个很好理解，因为我们研究的也是所有元素的查找次数。</li>
+<li>求不成功的ASL针对的是<strong>每个位置</strong>！即<strong>每个位置往后找第一个为空的位置所比较的次数，然后累加最后除以哈希表的规模（如果是除留余数法，这个规模就是那个模数）</strong>。显然，这里的每个位置是要在哈希表内的位置，即你使用的哈希函数求出的所有可能的位置，<strong>对于除留余数法哈希表的大小取决于你选的那个p（大部分情况下是质数），而不是本身数组的大小</strong>。具体原因可以看上面那个例子，或者这里再举个例子：假如你模的是2，显然哈希函数算出来的数字非0即1，只有这两个位置，即使你存放的空间由10000，哈希表的大小还是只有2，所以你最后除的分母仍是2而不是10000。</li>
+</ul>
+<h4 id="散列表上的查找"><a href="#散列表上的查找" class="headerlink" title="散列表上的查找"></a>散列表上的查找</h4><p>散列表的查找过程基本上和造表过程相同。</p>
+<p>   一些关键码可通过散列函数转换的地址直接找到，另一些关键码在散列函数得到的地址上产生了冲突，需要按处理冲突的方法进行查找。</p>
+<p>   查找效率取决于产生冲突的多少，产生的冲突少，查找效率就高，产生的冲突多，查找效率就低。影响产生冲突有以下3个因素：</p>
+<ul>
+<li><p>散列函数是否均匀</p>
+</li>
+<li><p>处理冲突的方式</p>
+</li>
+<li><p>散列表的装填因子</p>
+</li>
+</ul>
+<p>第三个因素：哈希表的装填因子。装填因子是散列表装满程度的标志因子，一般选择在0.65-0.85范围。由于表长是定值，与“填入表中的元素个数”成正比，所以，越大，填入表中的元素较多，产生冲突的可能性就越大；越小，填入表中的元素较少，产生冲突的可能性就越小。</p>
+<p>   实际上，散列表的平均查找长度是装填因子的函数，只是不同处理冲突的方法有不同的函数。下页表给出几种不同处理冲突方法的平均查找长度和的关系，可供参考。</p>
+<h4 id="散列表上的删除"><a href="#散列表上的删除" class="headerlink" title="散列表上的删除"></a>散列表上的删除</h4><p>​    当在散列表上删除一个元素时，首先是查找，查找成功情况下才能做删除。</p>
+<p>   对于拉链法解决冲突构造的散列表，其删除等价于单链表上的删除；</p>
+<p>   对于开放地址法解决冲突构造的散列表，不能简单的将删除元素所在单元置为空，这样会断掉原来的探测地址序列，查找后面的元素将受到影响，删除这个元素可以将这各单元置为有别于空单元表示的特殊值，在查找时遇到这个特殊值，需要继续探测序列。</p>
+<h4 id="平均查找长度与哈希表的装填因子的关系"><a href="#平均查找长度与哈希表的装填因子的关系" class="headerlink" title="平均查找长度与哈希表的装填因子的关系"></a>平均查找长度与哈希表的装填因子的关系</h4><p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193531209.png" srcset="/img/loading.gif" lazyload alt="image-20221208193531209"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" class="category-chain-item">计算机基础</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" class="category-chain-item">数据结构和算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84408/" class="category-chain-item">数据结构408</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>查找</div>
+      <div>http://example.com/2023/11/844804e37f6d.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 1, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/12/56850d7fd034.html" title="6 Main Memory And Virtual Memory">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">6 Main Memory And Virtual Memory</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/11/69960a8693a7.html" title="选做力扣练习题">
+                        <span class="hidden-mobile">选做力扣练习题</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

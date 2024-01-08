@@ -1,0 +1,750 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/flower.png">
+  <link rel="icon" href="/img/flower.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#0f1f15">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="DPDP基本思想：如果各个子问题不是独立的（即：重复的），不同的子问题的个数只是多项式量级（即：有限的），如果我们能够保存已经解决的子问题的答案（一般用数组），而在需要的时候再找出已求得的答案，这样就可以避免大量的重复计算。 概念 最优子结构：一个大问题的最优解，必定包含小问题的最优解（数塔） 重叠子问题：保存一些数据，可以避免重复计算 无后效性 经典问题：数塔  例题：免费馅饼  Problem">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DP">
+<meta property="og:url" content="http://example.com/2023/09/fbb9b63a3781.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="DPDP基本思想：如果各个子问题不是独立的（即：重复的），不同的子问题的个数只是多项式量级（即：有限的），如果我们能够保存已经解决的子问题的答案（一般用数组），而在需要的时候再找出已求得的答案，这样就可以避免大量的重复计算。 概念 最优子结构：一个大问题的最优解，必定包含小问题的最优解（数塔） 重叠子问题：保存一些数据，可以避免重复计算 无后效性 经典问题：数塔  例题：免费馅饼  Problem">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/%E7%9F%A5%E8%AF%86%E7%82%B9/DP/image/image.png">
+<meta property="og:image" content="https://webvpn.bupt.edu.cn/https/77726476706e69737468656265737421f9fa46d1253c6757300b9aa8965c2e32a5060e/img_convert/f5bf3c42a4c0d580409572acae853c1e.png">
+<meta property="og:image" content="http://example.com/Screenshot_20220124_223931.jpg">
+<meta property="og:image" content="http://example.com/%E7%9F%A5%E8%AF%86%E7%82%B9/DP/image/image_1.png">
+<meta property="og:image" content="http://example.com/%E7%9F%A5%E8%AF%86%E7%82%B9/DP/image/image_2.png">
+<meta property="article:published_time" content="2023-09-13T23:21:52.000Z">
+<meta property="article:modified_time" content="2024-01-08T06:18:22.816Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/%E7%9F%A5%E8%AF%86%E7%82%B9/DP/image/image.png">
+  
+  
+  
+  <title>DP - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="DP"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-13 23:21" pubdate>
+          September 13, 2023 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">DP</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="DP"><a href="#DP" class="headerlink" title="DP"></a>DP</h1><h2 id="DP基本思想："><a href="#DP基本思想：" class="headerlink" title="DP基本思想："></a>DP基本思想：</h2><p>如果各个子问题不是独立的（即：重复的），不同的子问题的个数只是多项式量级（即：有限的），如果我们能够保存已经解决的子问题的答案（一般用数组），而在需要的时候再找出已求得的答案，这样就可以避免大量的重复计算。</p>
+<p>概念</p>
+<p>最优子结构：一个大问题的最优解，必定包含小问题的最优解（数塔）</p>
+<p>重叠子问题：保存一些数据，可以避免重复计算</p>
+<p>无后效性</p>
+<h2 id="经典问题：数塔"><a href="#经典问题：数塔" class="headerlink" title="经典问题：数塔"></a>经典问题：数塔</h2><p><img src="/%E7%9F%A5%E8%AF%86%E7%82%B9/DP/image/image.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><p>例题：免费馅饼<br>  <strong>Problem Description</strong><br>  都说天上不会掉馅饼，但有一天gameboy正走在回家的小径上，忽然天上掉下大把大把的馅饼。说来gameboy的人品实在是太好了，这馅饼别处都不掉，就掉落在他身旁的10米范围内。馅饼如果掉在了地上当然就不能吃了，所以gameboy马上卸下身上的背包去接。但由于小径两侧都不能站人，所以他只能在小径上接。由于gameboy平时老呆在房间里玩游戏，虽然在游戏中是个身手敏捷的高手，但在现实中运动神经特别迟钝，每秒种只有在移动不超过一米的范围内接住坠落的馅饼。现在给这条小径如图标上坐标：  </p>
+<p>  <img src="https://webvpn.bupt.edu.cn/https/77726476706e69737468656265737421f9fa46d1253c6757300b9aa8965c2e32a5060e/img_convert/f5bf3c42a4c0d580409572acae853c1e.png" srcset="/img/loading.gif" lazyload><br>  为了使问题简化，假设在接下来的一段时间里，馅饼都掉落在0-10这11个位置。开始时gameboy站在5这个位置，因此在第一秒，他只能接到4,5,6这三个位置中其中一个位置上的馅饼。问gameboy最多可能接到多少个馅饼？（假设他的背包可以容纳无穷多个馅饼）<br>  Input<br>  输入数据有多组。每组数据的第一行为以正整数n(0&lt;n&lt;100000)，表示有n个馅饼掉在这条小径上。在结下来的n行中，每行有两个整数x,T(0&lt;T&lt;100000),表示在第T秒有一个馅饼掉在x点上。同一秒钟在同一点上可能掉下多个馅饼。n&#x3D;0时输入结束。<br>  Output<br>  每一组输入数据对应一行输出。输出一个整数m，表示gameboy最多可能接到m个馅饼。<br>  提示：本题的输入数据量比较大，建议用scanf读入，用cin可能会超时。<br>  样例</p>
+  <div class="code-wrapper"><pre><code class="hljs C++">input
+<span class="hljs-number">6</span>
+<span class="hljs-number">5</span> <span class="hljs-number">1</span>
+<span class="hljs-number">4</span> <span class="hljs-number">1</span>
+<span class="hljs-number">6</span> <span class="hljs-number">1</span>
+<span class="hljs-number">7</span> <span class="hljs-number">2</span>
+<span class="hljs-number">7</span> <span class="hljs-number">2</span>
+<span class="hljs-number">8</span> <span class="hljs-number">3</span>
+<span class="hljs-number">0</span>
+output
+<span class="hljs-number">4</span></code></pre></div>
+<p>  思路<br>  类似于数塔<br>  找出输入的最大时间，从最大时间下开始向前找能接到的最多的馅饼数。最后输出时间为0，位置为5的馅饼数。<br>  状态转移方程：dp[i][j]&#x3D;max(dp[i+1][j+1],max(dp[i+1][j],dp[i+1][j-1]))<br>  实现过程：<br>  该题样例可以建立成一个二维矩阵，如图所示<br>  <img src="/Screenshot_20220124_223931.jpg" srcset="/img/loading.gif" lazyload><br>  处理所有的数据，最后取a[0][5]就行<br>  ac代码</p>
+  <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> ll long long</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> ms(a) memset(a,0,sizeof(a))</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> pi acos(-1.0)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> INF 0x3f3f3f3f</span>
+<span class="hljs-type">const</span> <span class="hljs-type">double</span> E=<span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span>);
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> maxn=<span class="hljs-number">1e5</span>+<span class="hljs-number">10</span>;
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-type">int</span> dp[maxn][<span class="hljs-number">20</span>];
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> <span class="hljs-type">const</span> *argv[])</span></span>
+<span class="hljs-function"></span>&#123;
+  <span class="hljs-comment">// 状态转移方程：dp[i]=max(dp[i+1][j+1],max(dp[i+1][j-1],dp[i+1][j]))</span>
+  <span class="hljs-type">int</span> n;
+  <span class="hljs-keyword">while</span>(~<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n)&amp;&amp;n)
+  &#123;
+    <span class="hljs-built_in">ms</span>(dp);
+    <span class="hljs-type">int</span> res=<span class="hljs-number">0</span>;
+    <span class="hljs-type">int</span> place,time;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)
+    &#123;
+      <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;place,&amp;time);
+      dp[time][place]++;
+      res=<span class="hljs-built_in">max</span>(res,time);
+    &#125;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=res;i&gt;=<span class="hljs-number">0</span>;i--)
+    &#123;
+      <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;<span class="hljs-number">11</span>;j++)
+      &#123;
+        dp[i][j]+=<span class="hljs-built_in">max</span>(dp[i+<span class="hljs-number">1</span>][j<span class="hljs-number">-1</span>],<span class="hljs-built_in">max</span>(dp[i+<span class="hljs-number">1</span>][j+<span class="hljs-number">1</span>],dp[i+<span class="hljs-number">1</span>][j]));
+      &#125;
+    &#125;  
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,dp[<span class="hljs-number">0</span>][<span class="hljs-number">5</span>]);
+  &#125;
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div></li>
+</ul>
+<h2 id="经典问题：最长有序子序列"><a href="#经典问题：最长有序子序列" class="headerlink" title="经典问题：最长有序子序列"></a>经典问题：最长有序子序列</h2><p><img src="/%E7%9F%A5%E8%AF%86%E7%82%B9/DP/image/image_1.png" srcset="/img/loading.gif" lazyload></p>
+<p>f[i]:从第二个开始往前找比自身小的数，选择比自身小的数的f[i]的最大值，然后加一成为自己的f[i]</p>
+<ul>
+<li>最少拦截系统<br>  题目<br>  某国为了防御敌国的导弹袭击,发展出一种导弹拦截系统.但是这种导弹拦截系统有一个缺陷:虽然它的第一发炮弹能够到达任意的高度,但是以后每一发炮弹都不能超过前一发的高度.某天,雷达捕捉到敌国的导弹来袭.由于该系统还在试用阶段,所以只有一套系统,因此有可能不能拦截所有的导弹.<br>  怎么办呢?多搞几套系统呗!你说说倒蛮容易,成本呢?成本是个大问题啊.所以俺就到这里来求救了,请帮助计算一下最少需要多少套拦截系统.<br>  分析<br>  Dilworth定理：对于一个偏序集，最少链划分数&#x3D;最长反链长度<br>  即求最长升序子序列长度  <div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+  <span class="hljs-type">int</span> n,i,j,a[<span class="hljs-number">5000</span>],b[<span class="hljs-number">5000</span>],max;
+  <span class="hljs-keyword">while</span>(<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n)==<span class="hljs-number">1</span>)&#123;
+    <span class="hljs-built_in">memset</span>(b,<span class="hljs-number">0</span>,<span class="hljs-built_in">sizeof</span>(b));
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;
+      <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;a[i]);
+    &#125;
+    b[<span class="hljs-number">0</span>]=<span class="hljs-number">1</span>;max=<span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;n;i++)&#123;
+      <span class="hljs-keyword">for</span>(j=<span class="hljs-number">0</span>;j&lt;i;j++)&#123;
+        <span class="hljs-keyword">if</span>(a[j]&lt;a[i] &amp;&amp; b[j]&gt;b[i])&#123;
+          b[i]=b[j];
+        &#125;
+      &#125;
+      b[i]++;
+      <span class="hljs-keyword">if</span>(b[i]&gt;max)  max=b[i];
+    &#125;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,max);
+  &#125;
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div></li>
+</ul>
+<p><img src="/%E7%9F%A5%E8%AF%86%E7%82%B9/DP/image/image_2.png" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" class="category-chain-item">计算机基础</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" class="category-chain-item">数据结构和算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/%E7%9F%A5%E8%AF%86%E7%82%B9/" class="category-chain-item">知识点</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/%E7%9F%A5%E8%AF%86%E7%82%B9/DP/" class="category-chain-item">DP</a>
+  
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>DP</div>
+      <div>http://example.com/2023/09/fbb9b63a3781.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 13, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/09/c7ebf43d9eb5.html" title="伪代码">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">伪代码</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/09/77fc900ac913.html" title="技巧">
+                        <span class="hidden-mobile">技巧</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,737 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/flower.png">
+  <link rel="icon" href="/img/flower.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#0f1f15">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="打开已保存的Excel文档导入xlwings模块，打开Excel程序，默认设置：程序可见，只打开不新建工作薄，屏幕更新关闭   import xlwings as xw   app&#x3D;xw.App(visible&#x3D;True,add_book&#x3D;False)   app.display_alerts&#x3D;False   app.screen_updating&#x3D;False 文件位置：filepath，打开te">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xlwings基本对象">
+<meta property="og:url" content="http://example.com/2022/05/113d382bfeeb.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="打开已保存的Excel文档导入xlwings模块，打开Excel程序，默认设置：程序可见，只打开不新建工作薄，屏幕更新关闭   import xlwings as xw   app&#x3D;xw.App(visible&#x3D;True,add_book&#x3D;False)   app.display_alerts&#x3D;False   app.screen_updating&#x3D;False 文件位置：filepath，打开te">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-05-13T10:17:11.000Z">
+<meta property="article:modified_time" content="2024-01-08T06:18:22.780Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>xlwings基本对象 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="xlwings基本对象"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-13 10:17" pubdate>
+          May 13, 2022 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">xlwings基本对象</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="打开已保存的Excel文档"><a href="#打开已保存的Excel文档" class="headerlink" title="打开已保存的Excel文档"></a>打开已保存的Excel文档</h2><p>导入xlwings模块，打开Excel程序，默认设置：程序可见，只打开不新建工作薄，屏幕更新关闭  </p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> xlwings <span class="hljs-keyword">as</span> xw  
+app=xw.App(visible=<span class="hljs-literal">True</span>,add_book=<span class="hljs-literal">False</span>)  
+app.display_alerts=<span class="hljs-literal">False</span>  
+app.screen_updating=<span class="hljs-literal">False</span></code></pre></div>
+<h3 id="文件位置：filepath，打开test文档，然后保存，关闭，结束程序"><a href="#文件位置：filepath，打开test文档，然后保存，关闭，结束程序" class="headerlink" title="文件位置：filepath，打开test文档，然后保存，关闭，结束程序"></a>文件位置：filepath，打开test文档，然后保存，关闭，结束程序</h3> <div class="code-wrapper"><pre><code class="hljs python">filepath=<span class="hljs-string">r&#x27;g:\Python Scripts\test.xlsx&#x27;</span>  
+wb=app.books.<span class="hljs-built_in">open</span>(filepath)  
+
+wb.save()  
+wb.close()
+app.quit()</code></pre></div>
+<h3 id="新建Excel文档，命名为test-xlsx，并保存在D盘。"><a href="#新建Excel文档，命名为test-xlsx，并保存在D盘。" class="headerlink" title="新建Excel文档，命名为test.xlsx，并保存在D盘。"></a>新建Excel文档，命名为test.xlsx，并保存在D盘。</h3><div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> xlwings <span class="hljs-keyword">as</span> xw  
+app=xw.App(visible=<span class="hljs-literal">True</span>,add_book=<span class="hljs-literal">False</span>)  
+wb=app.books.add()  
+wb.save(<span class="hljs-string">r&#x27;d:\test.xlsx&#x27;</span>)  
+wb.close()  
+app.quit()</code></pre></div>
+<h3 id="在单元格输入值"><a href="#在单元格输入值" class="headerlink" title="在单元格输入值"></a>在单元格输入值</h3>  <div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment">#新建test.xlsx，在sheet1的第一个单元格输入 “人生” ，然后保存关闭，退出Excel程序。  </span>
+  <span class="hljs-keyword">import</span> xlwings <span class="hljs-keyword">as</span> xw  
+  app=xw.App(visible=<span class="hljs-literal">True</span>,add_book=<span class="hljs-literal">False</span>)  
+  wb=app.books.add()  
+  <span class="hljs-comment"># wb就是新建的工作簿(workbook)，下面则对wb的sheet1的A1单元格赋值  </span>
+  wb.sheets[<span class="hljs-string">&#x27;sheet1&#x27;</span>].<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1&#x27;</span>).value=<span class="hljs-string">&#x27;人生&#x27;</span>  
+  wb.save(<span class="hljs-string">r&#x27;d:\test.xlsx&#x27;</span>)  
+  wb.close()  
+  app.quit()  
+  <span class="hljs-comment">#打开已保存的test.xlsx，在sheet2的第二个单元格输入“苦短”，然后保存关闭，退出Excel程序  </span>
+  <span class="hljs-keyword">import</span> xlwings <span class="hljs-keyword">as</span> xw  
+  app=xw.App(visible=<span class="hljs-literal">True</span>,add_book=<span class="hljs-literal">False</span>)  
+  wb=app.books.<span class="hljs-built_in">open</span>(<span class="hljs-string">r&#x27;d:\test.xlsx&#x27;</span>)  
+  <span class="hljs-comment"># wb就是新建的工作簿(workbook)，下面则对wb的sheet1的A1单元格赋值  </span>
+  wb.sheets[<span class="hljs-string">&#x27;sheet1&#x27;</span>].<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1&#x27;</span>).value=<span class="hljs-string">&#x27;苦短&#x27;</span>  
+  wb.save()  
+  wb.close()  
+  app.quit()</code></pre></div>
+
+<p>掌握以上代码，已经完全可以把Excel当作一个txt文本进行数据储存了，也可以读取Excel文件的数据，进行计算后，并将结果保存在Excel中。</p>
+<h3 id="引用工作簿、工作表和单元格"><a href="#引用工作簿、工作表和单元格" class="headerlink" title="引用工作簿、工作表和单元格"></a>引用工作簿、工作表和单元格</h3><ol>
+<li>引用工作簿，注意工作簿应该首先被打开<br>wb.&#x3D;xw.books[‘工作簿的名字‘]</li>
+<li>引用活动工作簿<br>wb&#x3D;xw.books.active</li>
+<li>引用工作簿中的sheet<br>sht&#x3D;xw.books[‘工作簿的名字‘].sheets[‘sheet的名字’]<br>或者<br>wb&#x3D;xw.books[‘工作簿的名字’]<br>sht&#x3D;wb.sheets[sheet的名字]</li>
+<li>引用活动sheet<br>sht&#x3D;xw.sheets.active</li>
+<li>引用A1单元格<br>rng&#x3D;xw.books[‘工作簿的名字‘].sheets[‘sheet的名字’]<br>或者<br>sht&#x3D;xw.books[‘工作簿的名字‘].sheets[‘sheet的名字’]<br>rng&#x3D;sht.range(‘A1’)</li>
+<li>引用活动sheet上的单元格<br>注意Range首字母大写<br>rng&#x3D;xw.Range(‘A1’)<br>其中需要注意的是单元格的完全引用路径是：<br>第一个Excel程序的第一个工作薄的第一张sheet的第一个单元格<br>xw.apps[0].books[0].sheets[0].range(‘A1’)<br>迅速引用单元格的方式是  <div class="code-wrapper"><pre><code class="hljs python">sht=xw.books[<span class="hljs-string">&#x27;名字&#x27;</span>].sheets[<span class="hljs-string">&#x27;名字&#x27;</span>]  
+<span class="hljs-comment"># A1单元格  </span>
+rng=sht[’A1<span class="hljs-string">&#x27;]  </span>
+<span class="hljs-string"># A1:B5单元格  </span>
+<span class="hljs-string">rng=sht[&#x27;</span>A1:B5<span class="hljs-string">&#x27;]  </span>
+<span class="hljs-string"># 在第i+1行，第j+1列的单元格  </span>
+<span class="hljs-string"># B1单元格  </span>
+<span class="hljs-string">rng=sht[0,1]  </span>
+<span class="hljs-string"># A1:J10  </span>
+<span class="hljs-string">rng=sht[:10,:10]</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">PS： 对于单元格也可以用表示行列的tuple进行引用  </span>
+<span class="hljs-string"># A1单元格的引用  </span>
+<span class="hljs-string">xw.Range(1,1)  </span>
+<span class="hljs-string">#A1:C3单元格的引用  </span>
+<span class="hljs-string">xw.Range((1,1),(3,3))</span></code></pre></div></li>
+</ol>
+<h3 id="储存数据"><a href="#储存数据" class="headerlink" title="储存数据"></a>储存数据</h3><ol>
+<li>储存单个值  <div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 注意&quot;.value&quot;</span>
+sht.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1&#x27;</span>).value=<span class="hljs-number">1</span></code></pre></div></li>
+<li>储存列表  <div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 将列表[1,2,3]储存在A1：C1中  </span>
+sht.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1&#x27;</span>).value=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]  
+<span class="hljs-comment"># 将列表[1,2,3]储存在A1:A3中  </span>
+sht.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1&#x27;</span>).options(transpose=<span class="hljs-literal">True</span>).value=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]  
+<span class="hljs-comment"># 将2x2表格，即二维数组，储存在A1:B2中，如第一行1，2，第二行3，4  </span>
+sht.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1&#x27;</span>).options(expand=<span class="hljs-string">&#x27;table&#x27;</span>).value=[[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>],[<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]]</code></pre></div></li>
+</ol>
+<h3 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h3><ol>
+<li>读取单个值  <div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 将A1的值，读取到a变量中  </span>
+a=sht.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1&#x27;</span>).value</code></pre></div></li>
+<li>将值读取到列表中  <div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment">#将A1到A2的值，读取到a列表中  </span>
+a=sht.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1:A2&#x27;</span>).value  
+<span class="hljs-comment"># 将第一行和第二行的数据按二维数组的方式读取  </span>
+a=sht.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1:B2&#x27;</span>).value</code></pre></div></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="category-chain-item">编程语言</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/" class="category-chain-item">Python</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/11-xlwings-%E5%BA%93/" class="category-chain-item">11 xlwings 库</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/python/" class="print-no-link">#python</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>xlwings基本对象</div>
+      <div>http://example.com/2022/05/113d382bfeeb.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>May 13, 2022</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/88907bb2fb3d.html" title="typora 操作">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">typora 操作</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/c4b9c2fb9ce2.html" title="vscode tip">
+                        <span class="hidden-mobile">vscode tip</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

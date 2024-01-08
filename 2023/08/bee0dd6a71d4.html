@@ -1,0 +1,778 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/flower.png">
+  <link rel="icon" href="/img/flower.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#0f1f15">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="policy gradient 策略梯度基于策略的方法是显式得学习一个目标策略首先要将策略参数化：    假设策略$\pi_{\theta}$是一个随机策略，并且处处可微，我们可以用一个线性模型或者神经网络模型来为这个策略函数建模。（输入某个状态s，输出一个动作的概率分布）目标函数：    寻找一个最优策略并最大化这个策略在环境中的期望回报    $J(\theta) &#x3D; E_{s_0}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Intro to Policy Optimization">
+<meta property="og:url" content="http://example.com/2023/08/bee0dd6a71d4.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="policy gradient 策略梯度基于策略的方法是显式得学习一个目标策略首先要将策略参数化：    假设策略$\pi_{\theta}$是一个随机策略，并且处处可微，我们可以用一个线性模型或者神经网络模型来为这个策略函数建模。（输入某个状态s，输出一个动作的概率分布）目标函数：    寻找一个最优策略并最大化这个策略在环境中的期望回报    $J(\theta) &#x3D; E_{s_0}">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/%E6%88%AA%E5%B1%8F2023-08-02%2014.24.09.png">
+<meta property="og:image" content="http://example.com/%E6%88%AA%E5%B1%8F2023-08-02%2014.42.05.png">
+<meta property="og:image" content="http://example.com/Pasted%20image%2020230802144815.png">
+<meta property="og:image" content="http://example.com/Pasted%20image%2020230802153757.png">
+<meta property="og:image" content="http://example.com/Pasted%20image%2020230802153829.png">
+<meta property="og:image" content="http://example.com/Pasted%20image%2020230802155222.png">
+<meta property="og:image" content="http://example.com/Pasted%20image%2020230802162658.png">
+<meta property="og:image" content="http://example.com/Pasted%20image%2020230802164610.png">
+<meta property="og:image" content="http://example.com/Pasted%20image%2020230802164644.png">
+<meta property="article:published_time" content="2023-08-21T05:15:13.000Z">
+<meta property="article:modified_time" content="2024-01-08T06:18:22.700Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/%E6%88%AA%E5%B1%8F2023-08-02%2014.24.09.png">
+  
+  
+  
+  <title>Intro to Policy Optimization - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Intro to Policy Optimization"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-21 05:15" pubdate>
+          August 21, 2023 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          36 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Intro to Policy Optimization</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="policy-gradient-策略梯度"><a href="#policy-gradient-策略梯度" class="headerlink" title="policy gradient 策略梯度"></a>policy gradient 策略梯度</h2><p>基于策略的方法是显式得学习一个目标策略<br>首先要将策略参数化：<br>    假设策略$\pi_{\theta}$是一个随机策略，并且处处可微，我们可以用一个线性模型或者神经网络模型来为这个策略函数建模。（输入某个状态s，输出一个动作的概率分布）<br>目标函数：<br>    寻找一个最优策略并最大化这个策略在环境中的期望回报<br>    $J(\theta) &#x3D; E_{s_0}\left [V^{\pi_{\theta}}(s_0) \right]$     $s_0$是初始状态<br>    将目标函数对策略$\theta$求导，使用策略梯度上升方法更新 $\theta$ ，使得 $J(\theta)$ 增大。设当前策略网络的参数为 $\theta_{now}$ ，做梯度上升更新参数，得到新的参数$$\theta_{new}:\theta_{new} \leftarrow \theta_{now} + \beta\cdot\nabla_\theta{J(\theta_{now})}$$<br>    此处的 $\beta$ 是学习率，需要手动调。<br>    其中的梯度： $\nabla_\theta{J(\theta_{now})} &#x3D; \frac{\partial J(\theta)}{\partial \theta} \mid <em>{\theta&#x3D;\theta</em>{now}}$ 称为<strong>策略梯度(policy gradient)<strong>。<br>    <img src="/%E6%88%AA%E5%B1%8F2023-08-02%2014.24.09.png" srcset="/img/loading.gif" lazyload alt="|375"><br>    这个梯度可以用来更新策略。需要注意的是，因为上式中期望的下标是$\pi_{\theta}$，所以策略梯度算法为</strong>在线策略（on-policy）算法</strong>，即必须使用当前策略采样得到的数据来计算梯度。直观理解一下策略梯度这个公式，可以发现在每一个状态下，梯度的修改是让策略更多地去采样到带来较高值的动作，更少地去采样到带来较低值的动作</p>
+<h2 id="REINFORCE算法"><a href="#REINFORCE算法" class="headerlink" title="REINFORCE算法"></a>REINFORCE算法</h2><p>采用蒙特卡洛方法估计$Q^{\pi_\theta}(s,a)$，对于一个有限步数的环境来说，REINFORCE算法中的策略梯度为<img src="/%E6%88%AA%E5%B1%8F2023-08-02%2014.42.05.png" srcset="/img/loading.gif" lazyload alt="|325"><br>T是和环境交互的最大步数</p>
+<p>算法具体流程<br><img src="/Pasted%20image%2020230802144815.png" srcset="/img/loading.gif" lazyload alt="|375"></p>
+<h2 id="Actor-Critic算法"><a href="#Actor-Critic算法" class="headerlink" title="Actor-Critic算法"></a>Actor-Critic算法</h2><p>既学习价值函数，又学习策略函数<br>目标是优化一个带参数大策略，但是会额外学习价值函数</p>
+<p>梯度：<br><img src="/Pasted%20image%2020230802153757.png" srcset="/img/loading.gif" lazyload alt="|250"><br><img src="/Pasted%20image%2020230802153829.png" srcset="/img/loading.gif" lazyload alt="|375"><br>下面着重介绍通过时序差分残差来指导策略梯度学习<br>由于Actor-Critic算法可以在每一步之后进行更新，因此不对任务步数做限制。</p>
+<p>将Actor-Critic算法分为两个部分：Actor（策略网络）和Critic（价值网络）</p>
+<ul>
+<li>Actor 要做的是与环境交互，并在 Critic 价值函数的指导下用策略梯度学习一个更好的策略。</li>
+<li>Critic 要做的是通过 Actor 与环境交互收集的数据学习一个价值函数，这个价值函数会用于判断在当前状态什么动作是好的，什么动作不是好的，进而帮助 Actor 进行策略更新。</li>
+</ul>
+<p>Actor 的更新采用策略梯度的原则<br>Critic采用时序差分残差的方式：<br>    价值网络表示为$V_\omega$，参数为$\omega$。<br>    定义价值函数的损失函数：<br>    <img src="/Pasted%20image%2020230802155222.png" srcset="/img/loading.gif" lazyload alt="|325"><br>算法流程：<br><img src="/Pasted%20image%2020230802162658.png" srcset="/img/loading.gif" lazyload alt="|350"></p>
+<h2 id="TRPO算法"><a href="#TRPO算法" class="headerlink" title="TRPO算法"></a>TRPO算法</h2><h2 id="PPO算法"><a href="#PPO算法" class="headerlink" title="PPO算法"></a>PPO算法</h2><h3 id="PPO-Penalty"><a href="#PPO-Penalty" class="headerlink" title="PPO-Penalty"></a>PPO-Penalty</h3><p><img src="/Pasted%20image%2020230802164610.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="PPO-Clip"><a href="#PPO-Clip" class="headerlink" title="PPO-Clip"></a>PPO-Clip</h3><p><img src="/Pasted%20image%2020230802164644.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> gym
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> rl_utils
+
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">PolicyNet</span>(torch.nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, state_dim, hidden_dim, action_dim</span>):
+        <span class="hljs-built_in">super</span>(PolicyNet, self).__init__()
+        self.fc1 = torch.nn.Linear(state_dim, hidden_dim)
+        self.fc2 = torch.nn.Linear(hidden_dim, action_dim)
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):
+        x = F.relu(self.fc1(x))
+        <span class="hljs-keyword">return</span> F.softmax(self.fc2(x), dim=<span class="hljs-number">1</span>)
+
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ValueNet</span>(torch.nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, state_dim, hidden_dim</span>):
+        <span class="hljs-built_in">super</span>(ValueNet, self).__init__()
+        self.fc1 = torch.nn.Linear(state_dim, hidden_dim)
+        self.fc2 = torch.nn.Linear(hidden_dim, <span class="hljs-number">1</span>)
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):
+        x = F.relu(self.fc1(x))
+        <span class="hljs-keyword">return</span> self.fc2(x)
+
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">PPO</span>:
+    <span class="hljs-string">&#x27;&#x27;&#x27; PPO算法,采用截断方式 &#x27;&#x27;&#x27;</span>
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, state_dim, hidden_dim, action_dim, actor_lr, critic_lr,</span>
+<span class="hljs-params">                 lmbda, epochs, eps, gamma, device</span>):
+        self.actor = PolicyNet(state_dim, hidden_dim, action_dim).to(device)
+        self.critic = ValueNet(state_dim, hidden_dim).to(device)
+        self.actor_optimizer = torch.optim.Adam(self.actor.parameters(),
+                                                lr=actor_lr)
+        self.critic_optimizer = torch.optim.Adam(self.critic.parameters(),
+                                                 lr=critic_lr)
+        self.gamma = gamma
+        self.lmbda = lmbda
+        self.epochs = epochs  <span class="hljs-comment"># 一条序列的数据用来训练轮数</span>
+        self.eps = eps  <span class="hljs-comment"># PPO中截断范围的参数</span>
+        self.device = device
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">take_action</span>(<span class="hljs-params">self, state</span>):
+        state = torch.tensor([state], dtype=torch.<span class="hljs-built_in">float</span>).to(self.device)
+        probs = self.actor(state)
+        action_dist = torch.distributions.Categorical(probs)
+        action = action_dist.sample()
+        <span class="hljs-keyword">return</span> action.item()
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">update</span>(<span class="hljs-params">self, transition_dict</span>):
+	    <span class="hljs-comment"># 从传入的 transition_dict 中提取状态、动作、奖励、下一状态和终止标志信息。</span>
+        states = torch.tensor(transition_dict[<span class="hljs-string">&#x27;states&#x27;</span>],
+                              dtype=torch.<span class="hljs-built_in">float</span>).to(self.device)
+        actions = torch.tensor(transition_dict[<span class="hljs-string">&#x27;actions&#x27;</span>]).view(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>).to(
+            self.device)
+        rewards = torch.tensor(transition_dict[<span class="hljs-string">&#x27;rewards&#x27;</span>],
+                               dtype=torch.<span class="hljs-built_in">float</span>).view(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>).to(self.device)
+        next_states = torch.tensor(transition_dict[<span class="hljs-string">&#x27;next_states&#x27;</span>],
+                                   dtype=torch.<span class="hljs-built_in">float</span>).to(self.device)
+        dones = torch.tensor(transition_dict[<span class="hljs-string">&#x27;dones&#x27;</span>],
+                             dtype=torch.<span class="hljs-built_in">float</span>).view(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>).to(self.device)
+        <span class="hljs-comment"># 计算 TD 目标（时序差分目标）</span>
+        td_target = rewards + self.gamma * self.critic(next_states) * 
+			        (<span class="hljs-number">1</span> -dones)
+        <span class="hljs-comment"># 计算时序差分误差</span>
+        td_delta = td_target - self.critic(states)
+        <span class="hljs-comment"># 计算优势函数 advantage，用于计算 PPO 损失函数。 </span>
+        <span class="hljs-comment"># 优势函数是 TD 误差经过处理后的版本，它可以帮助控制策略更新的幅度，减少方差。</span>
+        advantage = rl_utils.compute_advantage(self.gamma, self.lmbda,
+                                               td_delta.cpu()).to(self.device)
+        <span class="hljs-comment"># 计算旧的动作对数概率（用于计算比率），并将其与计算的优势函数分离。</span>
+        old_log_probs = torch.log(self.actor(states).gather(<span class="hljs-number">1</span>,
+                                                            actions)).detach()
+
+		<span class="hljs-comment"># 进行多次（self.epochs 次）参数更新，采用 PPO 算法。</span>
+        <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(self.epochs):
+	        <span class="hljs-comment"># 重新计算当前策略的动作对数概率，用于计算比率。</span>
+            log_probs = torch.log(self.actor(states).gather(<span class="hljs-number">1</span>, actions))
+            <span class="hljs-comment"># 计算概率比率，用于计算 PPO 损失函数的 surrogate。</span>
+            ratio = torch.exp(log_probs - old_log_probs)
+            <span class="hljs-comment"># 利用 PPO 中的截断操作，计算两个 surrogate。</span>
+            surr1 = ratio * advantage
+            surr2 = torch.clamp(ratio, <span class="hljs-number">1</span> - self.eps,
+                                <span class="hljs-number">1</span> + self.eps) * advantage  <span class="hljs-comment"># 截断</span>
+            <span class="hljs-comment"># 选择 surrogate 中较小的值作为 Actor Loss，采用 PPO 损失函数。</span>
+            actor_loss = torch.mean(-torch.<span class="hljs-built_in">min</span>(surr1, surr2))  <span class="hljs-comment"># PPO损失函数</span>
+            <span class="hljs-comment"># 使用均方误差损失函数计算 Critic Loss</span>
+            critic_loss = torch.mean(
+                F.mse_loss(self.critic(states), td_target.detach()))
+            <span class="hljs-comment"># 清零梯度</span>
+            self.actor_optimizer.zero_grad()
+            self.critic_optimizer.zero_grad()
+            <span class="hljs-comment"># 计算策略网络和价值网络的梯度</span>
+            actor_loss.backward()
+            critic_loss.backward()
+            <span class="hljs-comment"># 更新策略网络和价值网络的参数</span>
+            self.actor_optimizer.step()
+            self.critic_optimizer.step()
+</code></pre></div>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/AI/" class="category-chain-item">AI</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/AI/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" class="category-chain-item">强化学习</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/AI/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/spinning-up/" class="category-chain-item">spinning up</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Intro to Policy Optimization</div>
+      <div>http://example.com/2023/08/bee0dd6a71d4.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 21, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/08/b9b9632ae542.html" title="MSA">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MSA</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/08/e4daa723590b.html" title="matlab基础语法">
+                        <span class="hidden-mobile">matlab基础语法</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

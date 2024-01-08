@@ -1,0 +1,1516 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/flower.png">
+  <link rel="icon" href="/img/flower.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#0f1f15">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Spring Boot用户登录系统原理对于用户登录，我们一定都听说过cookie这个词。其实，cookie是网络编程中使用最广泛的技术之一，它用于储存用户的登录信息。它储存在用户本地，每次随着网络请求发送给服务端，服务端就用这个判断用户是否登录。可以看看这个图：  可见，用户未登录之前，http请求是不带cookie的，登录后，客户端会将登录信息放在请求中给服务端，服务端进行验证，登录成功后，服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2024/01/5aa981f9c836.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Spring Boot用户登录系统原理对于用户登录，我们一定都听说过cookie这个词。其实，cookie是网络编程中使用最广泛的技术之一，它用于储存用户的登录信息。它储存在用户本地，每次随着网络请求发送给服务端，服务端就用这个判断用户是否登录。可以看看这个图：  可见，用户未登录之前，http请求是不带cookie的，登录后，客户端会将登录信息放在请求中给服务端，服务端进行验证，登录成功后，服务">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/37b0876bf95c4db0bc01bc3138aa5068~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9948ebf6db7941f6b7efbb88ba3e8da0~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b6d704aa8eea4d5d8018a4a79da7986a~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a34a964de35645fc955a8b0995bf7daf~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9c60a2ef21074999a8ad9fb569db06d7~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/95c35e0c789f4095850f758dcf0b8ade~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="article:published_time" content="2024-01-08T06:18:22.768Z">
+<meta property="article:modified_time" content="2024-01-08T06:18:22.768Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/37b0876bf95c4db0bc01bc3138aa5068~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+  
+  
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-01-08 06:18" pubdate>
+          January 8, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          23k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          196 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Spring-Boot"><a href="#Spring-Boot" class="headerlink" title="Spring Boot"></a>Spring Boot</h1><h2 id="用户登录系统原理"><a href="#用户登录系统原理" class="headerlink" title="用户登录系统原理"></a>用户登录系统原理</h2><p>对于用户登录，我们一定都听说过<code>cookie</code>这个词。其实，<code>cookie</code>是网络编程中使用最广泛的技术之一，它用于储存用户的登录信息。它储存在用户本地，每次随着网络请求发送给服务端，服务端就用这个判断用户是否登录。可以看看这个图：</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/37b0876bf95c4db0bc01bc3138aa5068~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="用户登录网络请求示意图-Cookie机制.png"></p>
+<p>可见，用户未登录之前，http请求是不带cookie的，登录后，客户端会将登录信息放在请求中给服务端，服务端进行验证，登录成功后，服务端会把用户信息放在cookie里面，随着响应返回给客户端，客户端就会储存这个cookie。下次再访问网站，cookie会和客户端的请求一起发给服务端，服务端验证信息正确，判断这个用户是登录状态。</p>
+<p>cookie里面也是以<code>key-value</code>形式储存数据，并且cookie有它自己的属性例如生命周期、生效域名等等。</p>
+<p><strong>但是实际上，cookie里面由于存放着用户信息例如用户名密码等等，很容易存在安全隐患，cookie可以被拦截甚至伪造。</strong></p>
+<p>因此现在网站登录都使用<code>session</code>机制，它和<code>cookie</code>机制最大的区别就是<strong>用户信息不再放在客户端而是服务端</strong>，交互过程如图：</p>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9948ebf6db7941f6b7efbb88ba3e8da0~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="用户登录网络请求示意图-Session机制.png"></p>
+<p>可见<code>session</code>机制就是<strong>以cookie作为载体，cookie里面只储存一个session id，与服务端通信。每个客户端每一次登录请求都会和服务端会生成唯一的session id，相当于客户端每次只要告诉服务端session id，服务端就可以找到相对应的客户端数据。</strong></p>
+<p>至于session id是什么，其实也很好理解。session id用于标识某个电脑和服务端这一次登录的会话，也就是说在服务端看来，一个session id对应着一台电脑，并且它是唯一的。</p>
+<p>首先登录的时候，服务端验证用户名密码正确，就生成一个唯一的session id，并把这个用户信息存在服务端里面，这个信息就对应着这个session id。与此同时这个session id就放在cookie里面发给客户端保存。</p>
+<p>下次客户端访问服务端，就带着这个cookie，服务端利用里面的session id在服务端找到对应的用户信息即可进行验证。</p>
+<p>因此下面示例我们都使用<code>session</code>机制进行。使用Spring Boot可以很轻松的实现<code>session</code>读写。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><ol>
+<li>pom.xml文件</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">parent</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.0.4<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">relativePath</span>/&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">parent</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.example<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>user-login<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>UserLogin<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">description</span>&gt;</span>UserLogin<span class="hljs-tag">&lt;/<span class="hljs-name">description</span>&gt;</span>
+
+   <span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">java.version</span>&gt;</span>17<span class="hljs-tag">&lt;/<span class="hljs-name">java.version</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.source</span>&gt;</span>$&#123;java.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.source</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.target</span>&gt;</span>$&#123;java.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.target</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="hljs-tag">&lt;/<span class="hljs-name">project.build.sourceEncoding</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span>
+
+   <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
+      <span class="hljs-comment">&lt;!-- Jackson - Json注解 --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jackson-annotations<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.12.4<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+
+      <span class="hljs-comment">&lt;!-- codec - 加密 --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>commons-codec<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>commons-codec<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+
+      <span class="hljs-comment">&lt;!-- commons-lang3 - 实用工具 --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.commons<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>commons-lang3<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+
+      <span class="hljs-comment">&lt;!-- Spring Session --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.session<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-session-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+
+      <span class="hljs-comment">&lt;!-- Spring Validation - 校验工具 --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-validation<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+
+      <span class="hljs-comment">&lt;!-- Spring Web --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+
+      <span class="hljs-comment">&lt;!-- MyBatis - 数据库框架 --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.0.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+
+      <span class="hljs-comment">&lt;!-- MySQL连接驱动 --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-j<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>8.0.32<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+
+      <span class="hljs-comment">&lt;!-- Lombok --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.projectlombok<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>lombok<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">optional</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">optional</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+
+      <span class="hljs-comment">&lt;!-- Spring Test --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span>
+
+   <span class="hljs-tag">&lt;<span class="hljs-name">build</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">plugins</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
+               <span class="hljs-tag">&lt;<span class="hljs-name">excludes</span>&gt;</span>
+                  <span class="hljs-tag">&lt;<span class="hljs-name">exclude</span>&gt;</span>
+                     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.projectlombok<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+                     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>lombok<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+                  <span class="hljs-tag">&lt;/<span class="hljs-name">exclude</span>&gt;</span>
+               <span class="hljs-tag">&lt;/<span class="hljs-name">excludes</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span>
+         <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span></code></pre></div>
+
+
+
+<ol start="2">
+<li>application.properties文件</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs properties"><span class="hljs-comment"># 网站端口配置</span>
+<span class="hljs-attr">server.port</span>=<span class="hljs-string">8802</span>
+<span class="hljs-comment"></span>
+<span class="hljs-comment"># JSON配置，设定不对未知字段和空值字段进行序列化节省流量</span>
+<span class="hljs-attr">spring.jackson.deserialization.fail-on-unknown-properties</span>=<span class="hljs-string">false</span>
+<span class="hljs-attr">spring.jackson.default-property-inclusion</span>=<span class="hljs-string">non_null</span>
+<span class="hljs-comment"></span>
+<span class="hljs-comment"># MySQL数据库地址和账户配置（根据自己实际情况进行填写）</span>
+<span class="hljs-attr">spring.datasource.url</span>=<span class="hljs-string">jdbc:mysql://localhost:3306/miyakogame?serverTimezone=GMT%2B8</span>
+<span class="hljs-attr">spring.datasource.username</span>=<span class="hljs-string">swsk33</span>
+<span class="hljs-attr">spring.datasource.password</span>=<span class="hljs-string">dev-2333</span></code></pre></div>
+
+<p>对于Mybatis的Mapper XML文件，默认位于<code>src/main/resources/com/&#123;xxx&#125;/&#123;xxx&#125;/dao/</code>之下，即和你的dao包位置对应。例如我们项目的Mapper类一般会放在<code>com.example.userlogin.dao</code>下，那么Spring Boot就默认去这个地方扫描Mapper XML：<code>src/main/resources/com/example/userlogin/dao</code>，目录需手动创建。当然我们也可以进行指定：</p>
+<div class="code-wrapper"><pre><code class="hljs properties"><span class="hljs-attr">mybatis.mapper-locations</span>=<span class="hljs-string">file:Resources/mybatisMapper/*.xml</span>
+<span class="hljs-attr">复制代码</span></code></pre></div>
+
+<p>这里我们的项目就不配置MyBatis的XML位置了，就使用默认位置。配置全部根据自己实际情况进行填写。</p>
+<h2 id="封装一个请求结果类"><a href="#封装一个请求结果类" class="headerlink" title="封装一个请求结果类"></a>封装一个请求结果类</h2><p>为了方便起见，我们通常封装一个结果类，里面主要是请求结果代码、消息、是否操作成功和数据体，可以根据自己需要进行修改。</p>
+<p>新建软件包<code>model</code>，并在其中新建<code>Result&lt;T&gt;</code>内容如下：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.userlogin.model;
+
+<span class="hljs-keyword">import</span> lombok.Getter;
+<span class="hljs-keyword">import</span> lombok.NoArgsConstructor;
+<span class="hljs-keyword">import</span> lombok.Setter;
+
+<span class="hljs-keyword">import</span> java.io.Serializable;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 请求结果类</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &lt;T&gt; 数据体类型</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-meta">@Setter</span>
+<span class="hljs-meta">@Getter</span>
+<span class="hljs-meta">@NoArgsConstructor</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Result</span>&lt;T&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> &#123;
+
+	<span class="hljs-comment">/**</span>
+<span class="hljs-comment">	 * 消息</span>
+<span class="hljs-comment">	 */</span>
+	<span class="hljs-keyword">private</span> String message;
+
+	<span class="hljs-comment">/**</span>
+<span class="hljs-comment">	 * 是否操作成功</span>
+<span class="hljs-comment">	 */</span>
+	<span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> success;
+
+	<span class="hljs-comment">/**</span>
+<span class="hljs-comment">	 * 返回的数据主体（返回的内容）</span>
+<span class="hljs-comment">	 */</span>
+	<span class="hljs-keyword">private</span> T data;
+
+	<span class="hljs-comment">/**</span>
+<span class="hljs-comment">	 * 设定结果为成功</span>
+<span class="hljs-comment">	 *</span>
+<span class="hljs-comment">	 * <span class="hljs-doctag">@param</span> msg 消息</span>
+<span class="hljs-comment">	 */</span>
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setResultSuccess</span><span class="hljs-params">(String msg)</span> &#123;
+		<span class="hljs-built_in">this</span>.message = msg;
+		<span class="hljs-built_in">this</span>.success = <span class="hljs-literal">true</span>;
+		<span class="hljs-built_in">this</span>.data = <span class="hljs-literal">null</span>;
+	&#125;
+
+	<span class="hljs-comment">/**</span>
+<span class="hljs-comment">	 * 设定结果为成功</span>
+<span class="hljs-comment">	 *</span>
+<span class="hljs-comment">	 * <span class="hljs-doctag">@param</span> msg  消息</span>
+<span class="hljs-comment">	 * <span class="hljs-doctag">@param</span> data 数据体</span>
+<span class="hljs-comment">	 */</span>
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setResultSuccess</span><span class="hljs-params">(String msg, T data)</span> &#123;
+		<span class="hljs-built_in">this</span>.message = msg;
+		<span class="hljs-built_in">this</span>.success = <span class="hljs-literal">true</span>;
+		<span class="hljs-built_in">this</span>.data = data;
+	&#125;
+
+	<span class="hljs-comment">/**</span>
+<span class="hljs-comment">	 * 设定结果为失败</span>
+<span class="hljs-comment">	 *</span>
+<span class="hljs-comment">	 * <span class="hljs-doctag">@param</span> msg 消息</span>
+<span class="hljs-comment">	 */</span>
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setResultFailed</span><span class="hljs-params">(String msg)</span> &#123;
+		<span class="hljs-built_in">this</span>.message = msg;
+		<span class="hljs-built_in">this</span>.success = <span class="hljs-literal">false</span>;
+		<span class="hljs-built_in">this</span>.data = <span class="hljs-literal">null</span>;
+	&#125;
+
+&#125;</code></pre></div>
+
+<p>一般都会返回给前端这个结果对象，更加便捷的传递是否成功以及操作消息等等。</p>
+<p>注意前后端传递交互的数据都需要<strong>实现序列化接口</strong>并且要<strong>有无参构造器</strong>，这里使用了Lombok的注解，下面也一样。</p>
+<h2 id="建立用户类，并初始化数据库表"><a href="#建立用户类，并初始化数据库表" class="headerlink" title="建立用户类，并初始化数据库表"></a>建立用户类，并初始化数据库表</h2><p>创建软件包<code>dataobject</code>，并在其中建立用户类<code>User</code>，实际根据业务需要不同，用户类可能有很多属性，这里我们只建立最简单的如下：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.userlogin.dataobject;
+
+<span class="hljs-keyword">import</span> com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+<span class="hljs-keyword">import</span> jakarta.validation.constraints.NotEmpty;
+<span class="hljs-keyword">import</span> jakarta.validation.constraints.Size;
+<span class="hljs-keyword">import</span> lombok.Getter;
+<span class="hljs-keyword">import</span> lombok.NoArgsConstructor;
+<span class="hljs-keyword">import</span> lombok.Setter;
+
+
+<span class="hljs-keyword">import</span> java.io.Serializable;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 用户类</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-meta">@Setter</span>
+<span class="hljs-meta">@Getter</span>
+<span class="hljs-meta">@NoArgsConstructor</span>
+<span class="hljs-meta">@JsonIgnoreProperties(value = &#123;&quot;password&quot;&#125;, allowSetters = true)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> &#123;
+
+   <span class="hljs-comment">/**</span>
+<span class="hljs-comment">    * 用户id</span>
+<span class="hljs-comment">    */</span>
+   <span class="hljs-keyword">private</span> Integer id;
+
+   <span class="hljs-comment">/**</span>
+<span class="hljs-comment">    * 用户名</span>
+<span class="hljs-comment">    */</span>
+   <span class="hljs-meta">@NotEmpty(message = &quot;用户名不能为空！&quot;)</span>
+   <span class="hljs-keyword">private</span> String username;
+
+   <span class="hljs-comment">/**</span>
+<span class="hljs-comment">    * 密码</span>
+<span class="hljs-comment">    */</span>
+   <span class="hljs-meta">@NotEmpty(message = &quot;密码不能为空！&quot;)</span>
+   <span class="hljs-meta">@Size(min = 8, message = &quot;密码长度不能小于8！&quot;)</span>
+   <span class="hljs-keyword">private</span> String password;
+
+&#125;</code></pre></div>
+
+<p>我们设定了用户的最基本属性，并对其设定了<strong>校验规则</strong>（不熟悉Spring Validation可以看看<a target="_blank" rel="noopener" href="https://juejin.cn/post/6991866086836666381">这篇文章</a>），密码为敏感信息，因此我们<strong>使用Jackson注解设定密码字段为不允许序列化</strong>（不会传给前端）。</p>
+<p>创建了用户类，我们数据库表也需要对应起来，初始化一个用户表，我这里sql如下：</p>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">drop</span> <span class="hljs-keyword">table</span> if <span class="hljs-keyword">exists</span> `<span class="hljs-keyword">user</span>`;
+<span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> `<span class="hljs-keyword">user</span>`
+(
+	`id`	   <span class="hljs-type">int</span> unsigned auto_increment,
+	`username` <span class="hljs-type">varchar</span>(<span class="hljs-number">16</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>,
+	`password` <span class="hljs-type">varchar</span>(<span class="hljs-number">32</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>,
+	<span class="hljs-keyword">primary</span> key (`id`)
+) engine <span class="hljs-operator">=</span> InnoDB
+  <span class="hljs-keyword">default</span> charset <span class="hljs-operator">=</span> utf8mb4;</code></pre></div>
+
+<p>连接MySQL并<code>use</code>相应数据库，将这个sql文件使用<code>source</code>命令执行即可。</p>
+<p>每个对象都有主键id，且一般设为自增无符号整数，这样有最高的数据库读写效率。密码一般使用MD5加密储存，因此固定32位长度。一般每个数据库表都有创建时间gmt_created和修改时间gmt_modified字段，这里简单起见省略。</p>
+<h2 id="创建数据服务层-DAO并配置Mapper-XML"><a href="#创建数据服务层-DAO并配置Mapper-XML" class="headerlink" title="创建数据服务层-DAO并配置Mapper XML"></a>创建数据服务层-DAO并配置Mapper XML</h2><p><code>DAO</code>层主要是Java的对于数据库操作的接口和实现类。MyBatis的强大之处，就是只需定义接口，就可以实现操作数据库。</p>
+<p>创建软件包<code>dao</code>，新建接口<code>UserDAO</code>：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.userlogin.dao;
+
+<span class="hljs-keyword">import</span> com.example.userlogin.dataobject.User;
+<span class="hljs-keyword">import</span> org.apache.ibatis.annotations.Mapper;
+
+<span class="hljs-meta">@Mapper</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserDAO</span> &#123;
+
+   <span class="hljs-comment">/**</span>
+<span class="hljs-comment">    * 新增用户</span>
+<span class="hljs-comment">    *</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@param</span> user 用户对象</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@return</span> 新增成功记录条数</span>
+<span class="hljs-comment">    */</span>
+   <span class="hljs-type">int</span> <span class="hljs-title function_">add</span><span class="hljs-params">(User user)</span>;
+
+   <span class="hljs-comment">/**</span>
+<span class="hljs-comment">    * 修改用户信息</span>
+<span class="hljs-comment">    *</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@param</span> user 用户对象</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@return</span> 修改成功记录条数</span>
+<span class="hljs-comment">    */</span>
+   <span class="hljs-type">int</span> <span class="hljs-title function_">update</span><span class="hljs-params">(User user)</span>;
+
+   <span class="hljs-comment">/**</span>
+<span class="hljs-comment">    * 根据id获取用户</span>
+<span class="hljs-comment">    *</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@param</span> id 用户id</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@return</span> 用户对象</span>
+<span class="hljs-comment">    */</span>
+   User <span class="hljs-title function_">getById</span><span class="hljs-params">(Integer id)</span>;
+
+   <span class="hljs-comment">/**</span>
+<span class="hljs-comment">    * 根据用户名获取用户</span>
+<span class="hljs-comment">    *</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@param</span> username 用户名</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@return</span> 用户对象</span>
+<span class="hljs-comment">    */</span>
+   User <span class="hljs-title function_">getByUsername</span><span class="hljs-params">(String username)</span>;
+
+&#125;</code></pre></div>
+
+<p>根据实际需要定义数据库增删改查方法，这里就定义这些。注意这里接口上面要打上<code>@Mapper</code>注解表示它是个数据持久层接口。且一般来说，<strong>增删改</strong>方法的返回值都是int，表示操作成功记录条数，<strong>查</strong>方法一般是返回相应对象或者对象的<code>List</code>。</p>
+<p>然后编写Mapper XML文件，我们在项目文件夹下的<code>src/main/resources</code>目录下创建多级目录：<code>com/example/userlogin/dao</code>，在这个目录下存放XML文件。</p>
+<p>创建<code>UserDAO.xml</code>内容如下：</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">mapper</span> <span class="hljs-keyword">PUBLIC</span> <span class="hljs-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span> <span class="hljs-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">&quot;com.example.userlogin.dao.UserDAO&quot;</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;userResultMap&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;com.example.userlogin.dataobject.User&quot;</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;id&quot;</span>/&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;username&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;username&quot;</span>/&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;password&quot;</span>/&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span>
+
+	<span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;add&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;com.example.userlogin.dataobject.User&quot;</span>&gt;</span>
+		insert into `user` (username, password)
+		values (#&#123;username&#125;, #&#123;password&#125;)
+	<span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span>
+
+	<span class="hljs-tag">&lt;<span class="hljs-name">update</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;update&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;com.example.userlogin.dataobject.User&quot;</span>&gt;</span>
+		update `user`
+		set password=#&#123;password&#125;
+		where id = #&#123;id&#125;
+	<span class="hljs-tag">&lt;/<span class="hljs-name">update</span>&gt;</span>
+
+	<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getById&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;userResultMap&quot;</span>&gt;</span>
+		select *
+		from `user`
+		where id = #&#123;id&#125;
+	<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+
+	<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getByUsername&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;userResultMap&quot;</span>&gt;</span>
+		select *
+		from `user`
+		where username = #&#123;username&#125;
+	<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre></div>
+
+<p>这样，数据库操作层就完成了！</p>
+<blockquote>
+<p>一般约定某一个对象（xxx）的数据库操作层接口一般命名为xxxDAO（有的企业也命名为xxxMapper），一个xxxDAO接口对应一个xxxDAO.xml文件。</p>
+</blockquote>
+<h2 id="创建用户服务层"><a href="#创建用户服务层" class="headerlink" title="创建用户服务层"></a>创建用户服务层</h2><p>现在就要进行正式的服务层逻辑了，完成我们的主要功能：用户注册、登录、信息修改。</p>
+<p>其实，用户注册就是前端发送用户注册信息（封装为<code>User</code>对象），后端检验然后往数据库<strong>增加一条用户记录</strong>的过程；登录也是前端发送用户登录信息，同样封装为<code>User</code>对象，后端根据这个对象的<code>username</code>字段<strong>从数据库取出用户</strong>、进行比对最后设定session的过程；修改用户也是前端发送修改后的用户信息的<code>User</code>对象，后端进行比对，然后<strong>修改数据库相应记录</strong>的过程。</p>
+<p>先新建包<code>service</code>，在其中添加用户服务接口<code>UserService</code>：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.userlogin.service;
+
+<span class="hljs-keyword">import</span> com.example.userlogin.dataobject.User;
+<span class="hljs-keyword">import</span> com.example.userlogin.model.Result;
+<span class="hljs-keyword">import</span> jakarta.servlet.http.HttpSession;
+<span class="hljs-keyword">import</span> org.springframework.stereotype.Service;
+
+<span class="hljs-meta">@Service</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserService</span> &#123;
+
+   <span class="hljs-comment">/**</span>
+<span class="hljs-comment">    * 用户注册</span>
+<span class="hljs-comment">    *</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@param</span> user 用户对象</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@return</span> 注册结果</span>
+<span class="hljs-comment">    */</span>
+   Result&lt;User&gt; <span class="hljs-title function_">register</span><span class="hljs-params">(User user)</span>;
+
+   <span class="hljs-comment">/**</span>
+<span class="hljs-comment">    * 用户登录</span>
+<span class="hljs-comment">    *</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@param</span> user 用户对象</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@return</span> 登录结果</span>
+<span class="hljs-comment">    */</span>
+   Result&lt;User&gt; <span class="hljs-title function_">login</span><span class="hljs-params">(User user)</span>;
+
+   <span class="hljs-comment">/**</span>
+<span class="hljs-comment">    * 修改用户信息</span>
+<span class="hljs-comment">    *</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@param</span> user 用户对象</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@return</span> 修改结果</span>
+<span class="hljs-comment">    */</span>
+   Result&lt;User&gt; <span class="hljs-title function_">update</span><span class="hljs-params">(User user)</span> <span class="hljs-keyword">throws</span> Exception;
+
+   <span class="hljs-comment">/**</span>
+<span class="hljs-comment">    * 判断用户是否登录（实际上就是从session取出用户id去数据库查询并比对）</span>
+<span class="hljs-comment">    *</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@param</span> session 传入请求session</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@return</span> 返回结果，若用户已登录则返回用户信息</span>
+<span class="hljs-comment">    */</span>
+   Result&lt;User&gt; <span class="hljs-title function_">isLogin</span><span class="hljs-params">(HttpSession session)</span>;
+
+&#125;</code></pre></div>
+
+<p>然后再在包<code>service</code>下建立包<code>impl</code>，然后在里面新建用户服务实现类<code>UserServiceImpl</code>：</p>
+<p>用来存放接口的实现类，impl的全称为implement</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.userlogin.service.impl;
+
+<span class="hljs-keyword">import</span> com.example.userlogin.api.UserAPI;
+<span class="hljs-keyword">import</span> com.example.userlogin.dao.UserDAO;
+<span class="hljs-keyword">import</span> com.example.userlogin.dataobject.User;
+<span class="hljs-keyword">import</span> com.example.userlogin.model.Result;
+<span class="hljs-keyword">import</span> com.example.userlogin.service.UserService;
+<span class="hljs-keyword">import</span> com.example.userlogin.util.ClassExamine;
+<span class="hljs-keyword">import</span> jakarta.servlet.http.HttpSession;
+<span class="hljs-keyword">import</span> org.apache.commons.codec.digest.DigestUtils;
+<span class="hljs-keyword">import</span> org.apache.commons.lang3.StringUtils;
+<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
+<span class="hljs-keyword">import</span> org.springframework.stereotype.Component;
+
+
+<span class="hljs-meta">@Component</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">UserService</span> &#123;
+
+   <span class="hljs-meta">@Autowired</span>
+   <span class="hljs-keyword">private</span> UserDAO userDAO;
+
+   <span class="hljs-meta">@Override</span>
+   <span class="hljs-keyword">public</span> Result&lt;User&gt; <span class="hljs-title function_">register</span><span class="hljs-params">(User user)</span> &#123;
+      Result&lt;User&gt; result = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Result</span>&lt;&gt;();
+      <span class="hljs-comment">// 先去数据库找用户名是否存在</span>
+      <span class="hljs-type">User</span> <span class="hljs-variable">getUser</span> <span class="hljs-operator">=</span> userDAO.getByUsername(user.getUsername());
+      <span class="hljs-keyword">if</span> (getUser != <span class="hljs-literal">null</span>) &#123;
+         result.setResultFailed(<span class="hljs-string">&quot;该用户名已存在！&quot;</span>);
+         <span class="hljs-keyword">return</span> result;
+      &#125;
+      <span class="hljs-comment">// 加密储存用户的密码</span>
+      user.setPassword(DigestUtils.md5Hex(user.getPassword()));
+      <span class="hljs-comment">// 存入数据库</span>
+      userDAO.add(user);
+      <span class="hljs-comment">// 返回成功消息</span>
+      result.setResultSuccess(<span class="hljs-string">&quot;注册用户成功！&quot;</span>, user);
+      <span class="hljs-keyword">return</span> result;
+   &#125;
+
+   <span class="hljs-meta">@Override</span>
+   <span class="hljs-keyword">public</span> Result&lt;User&gt; <span class="hljs-title function_">login</span><span class="hljs-params">(User user)</span> &#123;
+      Result&lt;User&gt; result = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Result</span>&lt;&gt;();
+      <span class="hljs-comment">// 去数据库查找用户</span>
+      <span class="hljs-type">User</span> <span class="hljs-variable">getUser</span> <span class="hljs-operator">=</span> userDAO.getByUsername(user.getUsername());
+      <span class="hljs-keyword">if</span> (getUser == <span class="hljs-literal">null</span>) &#123;
+         result.setResultFailed(<span class="hljs-string">&quot;用户不存在！&quot;</span>);
+         <span class="hljs-keyword">return</span> result;
+      &#125;
+      <span class="hljs-comment">// 比对密码（数据库取出用户的密码是加密的，因此要把前端传来的用户密码加密再比对）</span>
+      <span class="hljs-keyword">if</span> (!getUser.getPassword().equals(DigestUtils.md5Hex(user.getPassword()))) &#123;
+         result.setResultFailed(<span class="hljs-string">&quot;用户名或者密码错误！&quot;</span>);
+         <span class="hljs-keyword">return</span> result;
+      &#125;
+      <span class="hljs-comment">// 设定登录成功消息</span>
+      result.setResultSuccess(<span class="hljs-string">&quot;登录成功！&quot;</span>, getUser);
+      <span class="hljs-keyword">return</span> result;
+   &#125;
+
+   <span class="hljs-meta">@Override</span>
+   <span class="hljs-keyword">public</span> Result&lt;User&gt; <span class="hljs-title function_">update</span><span class="hljs-params">(User user)</span> <span class="hljs-keyword">throws</span> Exception &#123;
+      Result&lt;User&gt; result = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Result</span>&lt;&gt;();
+      <span class="hljs-comment">// 去数据库查找用户</span>
+      <span class="hljs-type">User</span> <span class="hljs-variable">getUser</span> <span class="hljs-operator">=</span> userDAO.getById(user.getId());
+      <span class="hljs-keyword">if</span> (getUser == <span class="hljs-literal">null</span>) &#123;
+         result.setResultFailed(<span class="hljs-string">&quot;用户不存在！&quot;</span>);
+         <span class="hljs-keyword">return</span> result;
+      &#125;
+      <span class="hljs-comment">// 检测传来的对象里面字段值是否为空，若是就用数据库里面的对象相应字段值补上</span>
+      <span class="hljs-keyword">if</span> (!StringUtils.isEmpty(user.getPassword())) &#123;
+         <span class="hljs-comment">// 加密储存</span>
+         user.setPassword(DigestUtils.md5Hex(user.getPassword()));
+      &#125;
+      <span class="hljs-comment">// 对象互补</span>
+      ClassExamine.objectOverlap(user, getUser);
+      <span class="hljs-comment">// 存入数据库</span>
+      userDAO.update(user);
+      result.setResultSuccess(<span class="hljs-string">&quot;修改用户成功！&quot;</span>, user);
+      <span class="hljs-keyword">return</span> result;
+   &#125;
+
+   <span class="hljs-meta">@Override</span>
+   <span class="hljs-keyword">public</span> Result&lt;User&gt; <span class="hljs-title function_">isLogin</span><span class="hljs-params">(HttpSession session)</span> &#123;
+      Result&lt;User&gt; result = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Result</span>&lt;&gt;();
+      <span class="hljs-comment">// 从session中取出用户信息</span>
+      <span class="hljs-type">User</span> <span class="hljs-variable">sessionUser</span> <span class="hljs-operator">=</span> (User) session.getAttribute(UserAPI.SESSION_NAME);
+      <span class="hljs-comment">// 若session中没有用户信息这说明用户未登录</span>
+      <span class="hljs-keyword">if</span> (sessionUser == <span class="hljs-literal">null</span>) &#123;
+         result.setResultFailed(<span class="hljs-string">&quot;用户未登录！&quot;</span>);
+         <span class="hljs-keyword">return</span> result;
+      &#125;
+      <span class="hljs-comment">// 登录了则去数据库取出信息进行比对</span>
+      <span class="hljs-type">User</span> <span class="hljs-variable">getUser</span> <span class="hljs-operator">=</span> userDAO.getById(sessionUser.getId());
+      <span class="hljs-comment">// 如果session用户找不到对应的数据库中的用户或者找出的用户密码和session中用户不一致则说明session中用户信息无效</span>
+      <span class="hljs-keyword">if</span> (getUser == <span class="hljs-literal">null</span> || !getUser.getPassword().equals(sessionUser.getPassword())) &#123;
+         result.setResultFailed(<span class="hljs-string">&quot;用户信息无效！&quot;</span>);
+         <span class="hljs-keyword">return</span> result;
+      &#125;
+      result.setResultSuccess(<span class="hljs-string">&quot;用户已登录！&quot;</span>, getUser);
+      <span class="hljs-keyword">return</span> result;
+   &#125;
+
+&#125;</code></pre></div>
+
+<p>需要注意的是服务接口需要有<code>@Service</code>注解，接口实现类要有<code>@Component</code>注解，还自动注入了DAO的实例进行数据库操作。</p>
+<p>这里着重强调一下<code>update</code>操作。可以看见，在DAO层的<code>update</code>的SQL语句中并没有判断传入的用户对象的字段是否为空或者是否和原来一致，而是直接将传入的用户对象覆盖至数据库中相应的用户记录上了。因此，一般情况下，我们在<code>Service</code>层进行判断。一般来说，<code>Service</code>层<code>update</code>方法会先从数据库取出原始用户信息（上述名为<code>getUser</code>的对象），然后和传入的用户信息对象（上述名为<code>user</code>的对象）进行字段对比。<strong>如果传入的<code>user</code>中某个字段为空，说明这个字段的信息是不需要修改的，这时使用原始用户对象的相应字段值填上去，如果不为空，则保留其值，最后再传入DAO层修改数据库</strong>。也因此，前端在发起修改请求时，也会将不用修改的字段留空。这就是我们平时进行对象更新的逻辑。</p>
+<p>不过当一个用户的字段多了，我们是不是要写很多个<code>if</code>来逐一判断呢？当然是不行的。所以这里我封装了一个方法，利用反射，检测被补全的对象（传入对象）和完整对象（从数据库取出的对象）的字段，如果被补全对象某个字段为空，这说明这个字段值是不用修改的，用完整对象对应的字段值补全，不为空说明被补全对象（传入对象）中这个字段值是新的值，是要修改的，因此保持其不变。</p>
+<p>当然，密码是特殊的字段，因为需要加密储存，因此需要单独判断前端是否传入了新的密码，如果是就加密并赋给相应字段。在上述代码中我也进行了判断。</p>
+<p>这里新建<code>util</code>包，新建<code>ClassExamine</code>类封装一个补全对象的方法，如下：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.userlogin.util;
+
+<span class="hljs-keyword">import</span> org.apache.commons.lang3.StringUtils;
+
+<span class="hljs-keyword">import</span> java.lang.reflect.Field;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 类检测实用类</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ClassExamine</span> &#123;
+
+	<span class="hljs-comment">/**</span>
+<span class="hljs-comment">	 * 对象字段互补。传入一个同类型被补充对象和完整对象，如果被补充对象中有字段为null或者字符串为空，</span>
+<span class="hljs-comment">	 * 就用完整对象对应的字段值补上去；如果被补充对象中某字段不为空则保留它自己的值。</span>
+<span class="hljs-comment">	 *</span>
+<span class="hljs-comment">	 * <span class="hljs-doctag">@param</span> origin       被补充对象</span>
+<span class="hljs-comment">	 * <span class="hljs-doctag">@param</span> intactObject 完整对象</span>
+<span class="hljs-comment">	 * <span class="hljs-doctag">@param</span> &lt;T&gt;          传入对象类型</span>
+<span class="hljs-comment">	 */</span>
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; <span class="hljs-keyword">void</span> <span class="hljs-title function_">objectOverlap</span><span class="hljs-params">(T origin, T intactObject)</span> <span class="hljs-keyword">throws</span> Exception &#123;
+		Field[] fields = origin.getClass().getDeclaredFields();
+		<span class="hljs-keyword">for</span> (Field field : fields) &#123;
+			field.setAccessible(<span class="hljs-literal">true</span>);
+			<span class="hljs-keyword">if</span> (field.getType() == String.class) &#123;
+				<span class="hljs-keyword">if</span> (StringUtils.isEmpty((String) field.get(origin))) &#123;
+					field.set(origin, field.get(intactObject));
+				&#125;
+			&#125; <span class="hljs-keyword">else</span> &#123;
+				<span class="hljs-keyword">if</span> (field.get(origin) == <span class="hljs-literal">null</span>) &#123;
+					field.set(origin, field.get(intactObject));
+				&#125;
+			&#125;
+		&#125;
+	&#125;
+
+&#125;</code></pre></div>
+
+<p>以及上述判断用户登录的方法，其中的session是从Controller类中传来的，（因为Controller类可以获取请求中的session），这里先不要纠结session的问题，我们往下看。</p>
+<h2 id="创建用户登录API"><a href="#创建用户登录API" class="headerlink" title="创建用户登录API"></a>创建用户登录API</h2><p>服务层写完了，现在就是前后端交互的桥梁需要打通了-编写API，这样前端才能发送请求调用我们后端的服务。</p>
+<p>我们的API要实现用户<strong>登录</strong>、<strong>注册</strong>、<strong>判断用户是否登录</strong>、<strong>修改用户信息</strong>、<strong>用户登出</strong>这几个功能。</p>
+<p>新建包<code>api</code>，然后在里面新建类<code>UserAPI</code>：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.userlogin.api;
+
+<span class="hljs-keyword">import</span> com.example.userlogin.dataobject.User;
+<span class="hljs-keyword">import</span> com.example.userlogin.model.Result;
+<span class="hljs-keyword">import</span> com.example.userlogin.service.UserService;
+<span class="hljs-keyword">import</span> jakarta.servlet.http.HttpServletRequest;
+<span class="hljs-keyword">import</span> jakarta.servlet.http.HttpSession;
+<span class="hljs-keyword">import</span> jakarta.validation.Valid;
+<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
+<span class="hljs-keyword">import</span> org.springframework.validation.BindingResult;
+<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.*;
+
+
+<span class="hljs-meta">@RestController</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserAPI</span> &#123;
+
+   <span class="hljs-comment">/**</span>
+<span class="hljs-comment">    * session的字段名</span>
+<span class="hljs-comment">    */</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">SESSION_NAME</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;userInfo&quot;</span>;
+
+   <span class="hljs-meta">@Autowired</span>
+   <span class="hljs-keyword">private</span> UserService userService;
+
+   <span class="hljs-comment">/**</span>
+<span class="hljs-comment">    * 用户注册</span>
+<span class="hljs-comment">    *</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@param</span> user    传入注册用户信息</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@param</span> errors  Validation的校验错误存放对象</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@param</span> request 请求对象，用于操作session</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@return</span> 注册结果</span>
+<span class="hljs-comment">    */</span>
+   <span class="hljs-meta">@PostMapping(&quot;/register&quot;)</span>
+   <span class="hljs-keyword">public</span> Result&lt;User&gt; <span class="hljs-title function_">register</span><span class="hljs-params">(<span class="hljs-meta">@RequestBody</span> <span class="hljs-meta">@Valid</span> User user, BindingResult errors, HttpServletRequest request)</span> &#123;
+      Result&lt;User&gt; result;
+      <span class="hljs-comment">// 如果校验有错，返回注册失败以及错误信息</span>
+      <span class="hljs-keyword">if</span> (errors.hasErrors()) &#123;
+         result = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Result</span>&lt;&gt;();
+         result.setResultFailed(errors.getFieldError().getDefaultMessage());
+         <span class="hljs-keyword">return</span> result;
+      &#125;
+      <span class="hljs-comment">// 调用注册服务</span>
+      result = userService.register(user);
+      <span class="hljs-keyword">return</span> result;
+   &#125;
+
+   <span class="hljs-comment">/**</span>
+<span class="hljs-comment">    * 用户登录</span>
+<span class="hljs-comment">    *</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@param</span> user    传入登录用户信息</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@param</span> errors  Validation的校验错误存放对象</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@param</span> request 请求对象，用于操作session</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@return</span> 登录结果</span>
+<span class="hljs-comment">    */</span>
+   <span class="hljs-meta">@PostMapping(&quot;/login&quot;)</span>
+   <span class="hljs-keyword">public</span> Result&lt;User&gt; <span class="hljs-title function_">login</span><span class="hljs-params">(<span class="hljs-meta">@RequestBody</span> <span class="hljs-meta">@Valid</span> User user, BindingResult errors, HttpServletRequest request)</span> &#123;
+      Result&lt;User&gt; result;
+      <span class="hljs-comment">// 如果校验有错，返回登录失败以及错误信息</span>
+      <span class="hljs-keyword">if</span> (errors.hasErrors()) &#123;
+         result = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Result</span>&lt;&gt;();
+         result.setResultFailed(errors.getFieldError().getDefaultMessage());
+         <span class="hljs-keyword">return</span> result;
+      &#125;
+      <span class="hljs-comment">// 调用登录服务</span>
+      result = userService.login(user);
+      <span class="hljs-comment">// 如果登录成功，则设定session</span>
+      <span class="hljs-keyword">if</span> (result.isSuccess()) &#123;
+         request.getSession().setAttribute(SESSION_NAME, result.getData());
+      &#125;
+      <span class="hljs-keyword">return</span> result;
+   &#125;
+
+   <span class="hljs-comment">/**</span>
+<span class="hljs-comment">    * 判断用户是否登录</span>
+<span class="hljs-comment">    *</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@param</span> request 请求对象，从中获取session里面的用户信息以判断用户是否登录</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@return</span> 结果对象，已经登录则结果为成功，且数据体为用户信息；否则结果为失败，数据体为空</span>
+<span class="hljs-comment">    */</span>
+   <span class="hljs-meta">@GetMapping(&quot;/is-login&quot;)</span>
+   <span class="hljs-keyword">public</span> Result&lt;User&gt; <span class="hljs-title function_">isLogin</span><span class="hljs-params">(HttpServletRequest request)</span> &#123;
+      <span class="hljs-comment">// 传入session到用户服务层</span>
+      <span class="hljs-keyword">return</span> userService.isLogin(request.getSession());
+   &#125;
+
+   <span class="hljs-comment">/**</span>
+<span class="hljs-comment">    * 用户信息修改</span>
+<span class="hljs-comment">    *</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@param</span> user    修改后用户信息对象</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@param</span> request 请求对象，用于操作session</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@return</span> 修改结果</span>
+<span class="hljs-comment">    */</span>
+   <span class="hljs-meta">@PutMapping(&quot;/update&quot;)</span>
+   <span class="hljs-keyword">public</span> Result&lt;User&gt; <span class="hljs-title function_">update</span><span class="hljs-params">(<span class="hljs-meta">@RequestBody</span> User user, HttpServletRequest request)</span> <span class="hljs-keyword">throws</span> Exception &#123;
+      Result&lt;User&gt; result = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Result</span>&lt;&gt;();
+      <span class="hljs-type">HttpSession</span> <span class="hljs-variable">session</span> <span class="hljs-operator">=</span> request.getSession();
+      <span class="hljs-comment">// 检查session中的用户（即当前登录用户）是否和当前被修改用户一致</span>
+      <span class="hljs-type">User</span> <span class="hljs-variable">sessionUser</span> <span class="hljs-operator">=</span> (User) session.getAttribute(SESSION_NAME);
+      <span class="hljs-keyword">if</span> (sessionUser.getId() != user.getId().intValue()) &#123;
+         result.setResultFailed(<span class="hljs-string">&quot;当前登录用户和被修改用户不一致，终止！&quot;</span>);
+         <span class="hljs-keyword">return</span> result;
+      &#125;
+      result = userService.update(user);
+      <span class="hljs-comment">// 修改成功则刷新session信息</span>
+      <span class="hljs-keyword">if</span> (result.isSuccess()) &#123;
+         session.setAttribute(SESSION_NAME, result.getData());
+      &#125;
+      <span class="hljs-keyword">return</span> result;
+   &#125;
+
+   <span class="hljs-comment">/**</span>
+<span class="hljs-comment">    * 用户登出</span>
+<span class="hljs-comment">    *</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@param</span> request 请求，用于操作session</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@return</span> 结果对象</span>
+<span class="hljs-comment">    */</span>
+   <span class="hljs-meta">@GetMapping(&quot;/logout&quot;)</span>
+   <span class="hljs-keyword">public</span> Result&lt;Void&gt; <span class="hljs-title function_">logout</span><span class="hljs-params">(HttpServletRequest request)</span> &#123;
+      Result&lt;Void&gt; result = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Result</span>&lt;&gt;();
+      <span class="hljs-comment">// 用户登出很简单，就是把session里面的用户信息设为null即可</span>
+      request.getSession().setAttribute(SESSION_NAME, <span class="hljs-literal">null</span>);
+      result.setResultSuccess(<span class="hljs-string">&quot;用户退出登录成功！&quot;</span>);
+      <span class="hljs-keyword">return</span> result;
+   &#125;
+
+&#125;</code></pre></div>
+
+<p>因为是API，所以使用<code>@RestController</code>标注类，可见注册是通过前端发送POST请求后端接收，修改用的则是PUT请求，且在各个方法中加入参数<code>HttpServletRequest request</code>，<strong>这个名为<code>request</code>的对象就代表客户端这次对这个接口的访问的请求</strong>。可以通过这个名为<code>request</code>对象对session进行获取。每一个不同的请求都会有一个唯一的<code>session</code>，每个<code>session</code>中的信息都是<code>key-value</code>形式储存，这里我们只在session里面储存用户信息，因此我们把用户信息的key设为一个固定的名字<code>userInfo</code>，通过建立个常量<code>SESSION_NAME</code>。</p>
+<p>每个不同机器的请求都会生成独一无二的session，上面这段代码操作，我们可以理解为：登录&#x2F;注册用户后，取得了用户信息，我们将每个不同机器的用户信息储存在了与它们相对应的session里面，并在其中设定用户信息的<code>key</code>为<code>userInfo</code>。</p>
+<blockquote>
+<p>其实，session中内容储存形式和cookie是一样的，都是key-value的形式，我们可以理解为和Java中的Map对象是差不多的。这里session指的是session机制中储存在服务端的用户信息。</p>
+</blockquote>
+<p>通过<code>HttpServletRequest</code>的<code>getSession</code>方法，即可获取这个请求对应的session对象，为<code>HttpSession</code>类型，其中<code>setAttribute</code>方法用于设定session中的键值对，<code>getAttribute</code>方法用于获取session中信息。</p>
+<blockquote>
+<p>可见，session中的内容是由我们自定义的，只不过通常我们需要把用户对象存进去以验证是否登录。上述我们只存放了用户对象在session里面，实际开发中大家还可以存点别的东西进去。当然不建议存太多信息，否则会增加服务器负载。</p>
+</blockquote>
+<p>这里我们还将session对象传入上述Service层的判断用户是否登录方法中，在其中对session中用户信息进行读取，然后利用session中用户对象的id去数据库中取出并进行比对判断用户是否有效登录。</p>
+<p>用户没有登录，则session获取到的用户对象就一定是<code>null</code>。</p>
+<p>对于这里API类的代码，建议大家可以联系上面的session机制示意图一起看，这样就更好理解。</p>
+<h2 id="配置cookie属性"><a href="#配置cookie属性" class="headerlink" title="配置cookie属性"></a>配置cookie属性</h2><p>其实到上面第7步，我们的功能基本上完整了，但是还有一些重要配置需要进行。</p>
+<p>我们还要开启session功能，并配置cookie属性例如过期时间等等。</p>
+<p>新建包<code>config</code>，在其中建立配置类<code>SessionConfig</code>：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.userlogin.config;
+
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;
+<span class="hljs-keyword">import</span> org.springframework.session.MapSessionRepository;
+<span class="hljs-keyword">import</span> org.springframework.session.config.annotation.web.http.EnableSpringHttpSession;
+<span class="hljs-keyword">import</span> org.springframework.session.web.http.CookieSerializer;
+<span class="hljs-keyword">import</span> org.springframework.session.web.http.DefaultCookieSerializer;
+
+<span class="hljs-keyword">import</span> java.util.concurrent.ConcurrentHashMap;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * session配置类</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-meta">@Configuration</span>
+<span class="hljs-meta">@EnableSpringHttpSession</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SessionConfig</span> &#123;
+
+	<span class="hljs-comment">/**</span>
+<span class="hljs-comment">	 * 设定cookie序列化器的属性</span>
+<span class="hljs-comment">	 */</span>
+	<span class="hljs-meta">@Bean</span>
+	<span class="hljs-keyword">public</span> CookieSerializer <span class="hljs-title function_">cookieSerializer</span><span class="hljs-params">()</span> &#123;
+		<span class="hljs-type">DefaultCookieSerializer</span> <span class="hljs-variable">serializer</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DefaultCookieSerializer</span>();
+		serializer.setCookieName(<span class="hljs-string">&quot;JSESSIONID&quot;</span>);
+		<span class="hljs-comment">// 用正则表达式配置匹配的域名，可以兼容 localhost、127.0.0.1 等各种场景</span>
+		serializer.setDomainNamePattern(<span class="hljs-string">&quot;^.+?\\.(\\w+\\.[a-z]+)$&quot;</span>);
+		<span class="hljs-comment">// cookie生效路径</span>
+		serializer.setCookiePath(<span class="hljs-string">&quot;/&quot;</span>);
+		<span class="hljs-comment">// 设置是否只能服务器修改，浏览器端不能修改</span>
+		serializer.setUseHttpOnlyCookie(<span class="hljs-literal">false</span>);
+		<span class="hljs-comment">// 最大生命周期的单位是分钟</span>
+		serializer.setCookieMaxAge(<span class="hljs-number">24</span> * <span class="hljs-number">60</span> * <span class="hljs-number">60</span>);
+		<span class="hljs-keyword">return</span> serializer;
+	&#125;
+
+	<span class="hljs-comment">/**</span>
+<span class="hljs-comment">	 * 注册序列化器</span>
+<span class="hljs-comment">	 */</span>
+	<span class="hljs-meta">@Bean</span>
+	<span class="hljs-keyword">public</span> MapSessionRepository <span class="hljs-title function_">sessionRepository</span><span class="hljs-params">()</span> &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MapSessionRepository</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ConcurrentHashMap</span>&lt;&gt;());
+	&#125;
+
+&#125;</code></pre></div>
+
+<p>注意配置类打上<code>@Configuration</code>注解，<code>@EnableSpringHttpSession</code>开启session。</p>
+<h2 id="配置拦截器"><a href="#配置拦截器" class="headerlink" title="配置拦截器"></a>配置拦截器</h2><p>虽然我们有判断用户登录的API，但是如果我们页面很多，每一个都要判断登录，就会很麻烦。通过拦截器即可对指定的路径设定拦截点。</p>
+<p>继续在<code>config</code>包下创建拦截器类<code>UserInterceptor</code>：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.userlogin.config;
+
+<span class="hljs-keyword">import</span> com.example.userlogin.service.UserService;
+<span class="hljs-keyword">import</span> jakarta.servlet.http.HttpServletRequest;
+<span class="hljs-keyword">import</span> jakarta.servlet.http.HttpServletResponse;
+<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
+<span class="hljs-keyword">import</span> org.springframework.web.servlet.HandlerInterceptor;
+<span class="hljs-keyword">import</span> org.springframework.web.servlet.ModelAndView;
+
+
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 拦截器</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserInterceptor</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">HandlerInterceptor</span> &#123;
+
+	<span class="hljs-meta">@Autowired</span>
+	<span class="hljs-keyword">private</span> UserService userService;
+
+	<span class="hljs-comment">// Controller方法执行之前</span>
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">preHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="hljs-keyword">throws</span> Exception &#123;
+		<span class="hljs-comment">// 同样在这里调用用户服务传入session，判断用户是否登录或者有效</span>
+		<span class="hljs-comment">// 未登录则重定向至主页（假设主页就是/）</span>
+		<span class="hljs-keyword">if</span> (!userService.isLogin(request.getSession()).isSuccess()) &#123;
+			response.sendRedirect(<span class="hljs-string">&quot;/&quot;</span>);
+			<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+		&#125;
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+	&#125;
+
+	<span class="hljs-comment">// Controller方法执行之后</span>
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">postHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</span> <span class="hljs-keyword">throws</span> Exception &#123;
+
+	&#125;
+
+	<span class="hljs-comment">// 整个请求完成后（包括Thymeleaf渲染完毕）</span>
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">afterCompletion</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> <span class="hljs-keyword">throws</span> Exception &#123;
+
+	&#125;
+
+&#125;</code></pre></div>
+
+<p>可见拦截器有三个方法，分别对应三个切入点。一般我们只需要修改在Controller执行之前的那个，它可以像API一样操作session，返回true时表示允许继续访问这个Controller，否则终止访问。通过<code>HttpServletResponse</code>的<code>sendRedirect</code>方法可以发送重定向。</p>
+<p>拦截器类写好了，接下来就是注册拦截器了。在<code>config</code>类中创建配置类<code>InterceptorRegister</code>：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.userlogin.config;
+
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;
+<span class="hljs-keyword">import</span> org.springframework.web.servlet.HandlerInterceptor;
+<span class="hljs-keyword">import</span> org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+<span class="hljs-keyword">import</span> org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 拦截器注册</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-meta">@Configuration</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">InterceptorRegister</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">WebMvcConfigurer</span> &#123;
+
+   <span class="hljs-comment">/**</span>
+<span class="hljs-comment">    * 把我们定义的拦截器类注册为Bean</span>
+<span class="hljs-comment">    */</span>
+   <span class="hljs-meta">@Bean</span>
+   <span class="hljs-keyword">public</span> HandlerInterceptor <span class="hljs-title function_">getInterceptor</span><span class="hljs-params">()</span> &#123;
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">UserInterceptor</span>();
+   &#125;
+
+   <span class="hljs-comment">/**</span>
+<span class="hljs-comment">    * 添加拦截器，并配置拦截地址</span>
+<span class="hljs-comment">    */</span>
+   <span class="hljs-meta">@Override</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addInterceptors</span><span class="hljs-params">(InterceptorRegistry registry)</span> &#123;
+      List&lt;String&gt; pathPatterns = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();
+      pathPatterns.add(<span class="hljs-string">&quot;/update&quot;</span>);
+      registry.addInterceptor(getInterceptor()).addPathPatterns(pathPatterns);
+   &#125;
+
+&#125;</code></pre></div>
+
+<p>在<code>addInterceptors</code>方法里面，我们进行拦截器注册，并配置拦截地址。上述例子只添加拦截<code>/update</code>这个路径，其余不拦截。</p>
+<p>还可以设定拦截全部，只排除<code>/login</code>，如下写<code>addInterceptors</code>方法：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addInterceptors</span><span class="hljs-params">(InterceptorRegistry registry)</span> &#123;
+	List&lt;String&gt; pathPatterns = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();
+	pathPatterns.add(<span class="hljs-string">&quot;/login&quot;</span>);
+	registry.addInterceptor(getInterceptor()).excludePathPatterns(pathPatterns);
+&#125;</code></pre></div>
+
+
+
+<h2 id="体验一下"><a href="#体验一下" class="headerlink" title="体验一下"></a>体验一下</h2><p>启动程序，并使用ApiPost软件来体验一下用户登录等服务接口的功能。</p>
+<h3 id="1-注册一个用户"><a href="#1-注册一个用户" class="headerlink" title="(1) 注册一个用户"></a>(1) 注册一个用户</h3><p>先访问<code>/register</code>注册一个用户：</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b6d704aa8eea4d5d8018a4a79da7986a~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="2-测试判断登录接口"><a href="#2-测试判断登录接口" class="headerlink" title="(2) 测试判断登录接口"></a>(2) 测试判断登录接口</h3><p>先不急着登录，访问<code>/is-login</code>看看：</p>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a34a964de35645fc955a8b0995bf7daf~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>可见由于我们还未登录，所以请求中没有<code>sessionId</code>，后端也无法找到这个请求的session数据，因此返回未登录。</p>
+<h3 id="3-登录然后再次判断"><a href="#3-登录然后再次判断" class="headerlink" title="(3) 登录然后再次判断"></a>(3) 登录然后再次判断</h3><p>这次我们访问<code>/login</code>登录：</p>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9c60a2ef21074999a8ad9fb569db06d7~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>然后再访问<code>/is-login</code>接口：</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/95c35e0c789f4095850f758dcf0b8ade~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>可见这一次，我们的请求中就带着<code>sessionId</code>了！服务端也可以找到对应的<code>session</code>。</p>
+<p>现在许多系统都是前后端分离的系统，因此这个判断登录<code>/is-login</code>接口也是很有必要的，除了判断这个请求是否已经登录之外，还可以直接拿取已登录的用户的信息，而无需传入<code>id</code>去查询。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>用户登录注册看起来要写的东西很多，但实际上流程很清晰，也不难理解。</p>
+<p>我们发现，DAO层就是单纯操作数据库，返回用户对象；Service层基本上就是用于验证信息正确性，返回封装的<code>Result</code>对象；Controller层进一步设定session，也是返回封装<code>Result</code>对象。每个不同的部分各司其职，完成了我们整个业务逻辑。</p>
+<p>其实不仅仅是用户登录系统，我们使用Spring Boot搭建任何系统，无外乎都是以下几个大步骤：</p>
+<ol>
+<li>构建数据模型：<code>dataobject</code>包的内容和<code>model</code>包的内容，<code>dataobject</code>一般是数据库中的对象，最好是画个类图</li>
+<li>编写DAO层：用于操作数据库，定义好需要用到的操作数据库的方法例如增删改查、根据用户名查找用户等等</li>
+<li>编写Service层：即为服务层，用于调用DAO层，一般来说我们会把大量的代码写在这里，这里包含了许多逻辑，一个网站有哪些服务（用户登录，注册等等），都定义在这层，这一层是操作DAO层并处理数据的一层，也包含了业务逻辑</li>
+<li>编写API层：即为接口，是处在最外面的一层了，调用Service层，是前后端交流的桥梁</li>
+</ol>
+<ul>
+<li>示例程序仓库地址：<a href="https://link.juejin.cn/?target=https://gitee.com/swsk33/examples-and-learning/tree/master/Spring%20Boot%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95">传送门</a></li>
+<li>ApiPost测试配置：<a href="https://link.juejin.cn/?target=https://console-docs.apipost.cn/preview/f9e270de687f5013/4333094879904391">传送门</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="category-chain-item">编程语言</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/" class="category-chain-item">Java</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2024/01/5aa981f9c836.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 8, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/01/772a06476b28.html" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/01/70e202646aa2.html" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

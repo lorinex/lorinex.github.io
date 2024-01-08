@@ -1,0 +1,813 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/flower.png">
+  <link rel="icon" href="/img/flower.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#0f1f15">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="线性表线性表四个特征：唯一的第一个元素 唯一的最后元素 除了最后元素之外，其他元素有唯一的后继 除了第一元素之外，其他元素有唯一的前驱 线性表定义线性表是最简单、最基本、也是最常用的线性结构   ​     具有相同数据类型的n(n&gt;&#x3D;0)个数据元素的有限序列，通常记为：   (a1，a2，… ai-1，ai，ai+1，…an)   其中n为表长， n＝0 时称为空表。 线性表基本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性表">
+<meta property="og:url" content="http://example.com/2023/11/4a3e931a3c5e.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="线性表线性表四个特征：唯一的第一个元素 唯一的最后元素 除了最后元素之外，其他元素有唯一的后继 除了第一元素之外，其他元素有唯一的前驱 线性表定义线性表是最简单、最基本、也是最常用的线性结构   ​     具有相同数据类型的n(n&gt;&#x3D;0)个数据元素的有限序列，通常记为：   (a1，a2，… ai-1，ai，ai+1，…an)   其中n为表长， n＝0 时称为空表。 线性表基本">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101215429648.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221102094317692.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221102094726942.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221102095046425.png">
+<meta property="og:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221102095425775.png">
+<meta property="article:published_time" content="2023-11-01T14:56:50.000Z">
+<meta property="article:modified_time" content="2024-01-08T06:18:22.816Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101215429648.png">
+  
+  
+  
+  <title>线性表 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="线性表"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-01 14:56" pubdate>
+          November 1, 2023 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          29 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">线性表</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h1><h2 id="线性表-1"><a href="#线性表-1" class="headerlink" title="线性表"></a>线性表</h2><h3 id="四个特征："><a href="#四个特征：" class="headerlink" title="四个特征："></a>四个特征：</h3><p>唯一的第一个元素</p>
+<p>唯一的最后元素</p>
+<p>除了最后元素之外，其他元素有唯一的后继</p>
+<p>除了第一元素之外，其他元素有唯一的前驱</p>
+<h3 id="线性表定义"><a href="#线性表定义" class="headerlink" title="线性表定义"></a>线性表定义</h3><p>线性表是最简单、最基本、也是最常用的线性结构  </p>
+<p>​     具有相同数据类型的n(n&gt;&#x3D;0)个数据元素的有限序列，通常记为：</p>
+<p>  (a1，a2，… ai-1，ai，ai+1，…an)</p>
+<p>  其中n为表长， n＝0 时称为空表。</p>
+<h3 id="线性表基本操作"><a href="#线性表基本操作" class="headerlink" title="线性表基本操作"></a>线性表基本操作</h3><p>(1) 线性表初始化：InitList(&amp;L)</p>
+<p>(2) 销毁线性表：DestroyList(&amp;L)</p>
+<p>(3) 将线性表置空：ClearList(&amp;L)</p>
+<p>(4) 判断线性表是否为空：ListEmpty(L)</p>
+<p>(5) 求线性表的长度：ListLength (L)</p>
+<p>(6) 取表元：GetElem(L,i,&amp;e)</p>
+<p>(7)按值查找：LocateElem(L,e,compare())</p>
+<p>返回满足条件的数据元素的位序，如果不存在返回0</p>
+<p>(8)前驱：PriorElem(L,cur_e, &amp;pre_e)</p>
+<p>(9)后继：NextElem(L,cur_e,&amp;next_e)</p>
+<p>(10)插入操作：ListInsert (&amp;L,i,e)</p>
+<p>(11) 删除操作：ListDelete (&amp;L,i,&amp;e)   </p>
+<p>(12) 遍历操作：ListTraverse (L,visit()) </p>
+<p>依次对L的每个数据元素调用函数visit()</p>
+<h2 id="线性表的顺序存储（顺序表）"><a href="#线性表的顺序存储（顺序表）" class="headerlink" title="线性表的顺序存储（顺序表）"></a>线性表的顺序存储（顺序表）</h2><p>“用一组地址连续的存储单元依次存放线性表中的数据元素”，即以“存储位置相邻”表示“位序相继的两个数据元素之间的前驱和后继的关系(有序对&lt; ai-1,ai &gt;)”，并以表中第一个元素的存储位置作为线性表的起始地址，称作线性表的基地址。</p>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span> 
+    ElemType *elem;　<span class="hljs-comment">// 存储空间基址 </span>
+    <span class="hljs-type">int</span> length; 　　　<span class="hljs-comment">// 当前长度 </span>
+    <span class="hljs-type">int</span> listsize;　　　<span class="hljs-comment">// 允许的最大存储容量</span>
+&#125; SqList;　　　　　　 <span class="hljs-comment">// 俗称 顺序表</span></code></pre></div>
+
+<h3 id="初始化操作"><a href="#初始化操作" class="headerlink" title="初始化操作"></a>初始化操作</h3><div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-type">bool</span> <span class="hljs-title function_">InitList_Sq</span><span class="hljs-params">(SqList &amp;L)</span> 
+&#123;
+    <span class="hljs-comment">// 构造一个空的线性表 L</span>
+    L.elem = (ElemType*)<span class="hljs-built_in">malloc</span>(LIST_INIT_SIZE*<span class="hljs-keyword">sizeof</span>(ElemType)); 
+    <span class="hljs-keyword">if</span> (!L.elem) 　<span class="hljs-built_in">exit</span>(OVERFLOW);　　 <span class="hljs-comment">// 存储分配失败</span>
+    L.length = <span class="hljs-number">0</span>;　　　　　　<span class="hljs-comment">// 顺序表的初始长度为0</span>
+    L.listsize = LIST_INIT_SIZE; <span class="hljs-comment">// 初始存储容量</span>
+	<span class="hljs-keyword">return</span> OK;
+&#125; <span class="hljs-comment">// InitList_Sq</span>
+此算法的时间复杂度为O (<span class="hljs-number">1</span>)。</code></pre></div>
+
+<h3 id="取表元操作"><a href="#取表元操作" class="headerlink" title="取表元操作"></a>取表元操作</h3><div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-comment">// 取线性表中的第i个元素即L.elem[i-1]存到e中，1&lt;=i&lt;=L.length</span>
+<span class="hljs-type">bool</span> <span class="hljs-title function_">GetElem_Sq</span><span class="hljs-params">(L, i, &amp;e)</span>
+&#123;
+      <span class="hljs-keyword">if</span> (i &lt; <span class="hljs-number">1</span> || i &gt; L.length)
+            <span class="hljs-keyword">return</span> ERROR; <span class="hljs-comment">// i值不合法</span>
+      e = L.elem[i - <span class="hljs-number">1</span>];
+      <span class="hljs-keyword">return</span> OK;
+&#125;</code></pre></div>
+
+<h3 id="插入元素操作"><a href="#插入元素操作" class="headerlink" title="插入元素操作"></a>插入元素操作</h3><div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-comment">// 把e放到第pos位，后面元素后移</span>
+<span class="hljs-type">bool</span> <span class="hljs-title function_">ListInsert_Sq</span><span class="hljs-params">(SqList &amp;L, <span class="hljs-type">int</span> pos, ElemType e)</span>
+&#123;
+      <span class="hljs-keyword">if</span> (pos &lt; <span class="hljs-number">1</span> || pos &gt; L.length + <span class="hljs-number">1</span>)
+            <span class="hljs-keyword">return</span> ERROR; <span class="hljs-comment">// 插入位置不合法</span>
+      <span class="hljs-keyword">if</span> (L.length &gt;= L.listsize)
+            <span class="hljs-keyword">return</span> ERROR; <span class="hljs-comment">// 当前存储空间已满，无法插入</span>
+      <span class="hljs-keyword">for</span> (j = L.length; j &gt;= pos; j--)
+      &#123; <span class="hljs-comment">// 从最后一个到插入位置</span>
+            L.elem[j] = L.elem[j - <span class="hljs-number">1</span>];
+      &#125;                    <span class="hljs-comment">// 插入位置及之后元素右移</span>
+      L.elem[pos - <span class="hljs-number">1</span>] = e; <span class="hljs-comment">// 插入 e</span>
+      L.length++;          <span class="hljs-comment">// 表长增1</span>
+      <span class="hljs-keyword">return</span> TRUE;
+&#125; <span class="hljs-comment">// ListInsert</span></code></pre></div>
+
+<p>优化：</p>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-type">bool</span> <span class="hljs-title function_">ListInsert_Sq</span><span class="hljs-params">(SqList &amp;L, <span class="hljs-type">int</span> pos, ElemType e)</span>
+&#123;
+      <span class="hljs-keyword">if</span> (pos &lt; <span class="hljs-number">1</span> || pos &gt; L.length + <span class="hljs-number">1</span>)
+            <span class="hljs-keyword">return</span> ERROR; <span class="hljs-comment">// 插入位置不合法　</span>
+      <span class="hljs-keyword">if</span> (L.length &gt;= L.listsize)
+            <span class="hljs-keyword">return</span> ERROR;     <span class="hljs-comment">// 当前存储空间已满，无法插入</span>
+      q = &amp;(L.elem[pos - <span class="hljs-number">1</span>]); <span class="hljs-comment">// q为插入位置</span>
+      <span class="hljs-keyword">for</span> (p = &amp;(L.elem[L.length - <span class="hljs-number">1</span>]); p &gt;= q; --p)
+      &#123;
+            *(p + <span class="hljs-number">1</span>) = *p;
+      &#125; <span class="hljs-comment">// 插入位置及之后元素右移</span>
+      L.elem[pos - <span class="hljs-number">1</span>] = e;
+      　　 <span class="hljs-comment">// 插入 e</span>
+          L.length++;
+      　　　　　 <span class="hljs-comment">// 表长增1</span>
+          <span class="hljs-keyword">return</span> TRUE;
+&#125; <span class="hljs-comment">// ListInsert</span></code></pre></div>
+
+<p> 本算法中注意以下问题：</p>
+<p>   ① 顺序表中数据区域有MAXSIZE个存储单元，所以在向顺序表中做插入时先检查表空间是否满了，在表满的情况下除非扩展空间否则不能再做插入。</p>
+<p>   ② 要检验插入位置的有效性，这里 pos 的有效范围是：1≤pos≤n+1，其中 n 为原表长。</p>
+<p>   ③ 注意数据的移动方向。</p>
+<p>   ④ 表长的修改。</p>
+<h3 id="删除元素操作"><a href="#删除元素操作" class="headerlink" title="删除元素操作"></a>删除元素操作</h3><div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-type">bool</span> <span class="hljs-title function_">ListDelete_Sq</span><span class="hljs-params">(SqList &amp;L, <span class="hljs-type">int</span> pos, ElemType &amp;e)</span>
+&#123; <span class="hljs-keyword">if</span> ((pos &lt; <span class="hljs-number">1</span>) || (pos &gt; L.length)) <span class="hljs-keyword">return</span> FALSE ; <span class="hljs-comment">// 删除位置不合法</span>
+  e = L.elem[pos<span class="hljs-number">-1</span>] 
+      <span class="hljs-keyword">for</span> (j = pos+<span class="hljs-number">1</span>; j&lt;=L.length; ++j) &#123;<span class="hljs-comment">//从pos后面一个开始一直到最后</span>
+          L.elem[j<span class="hljs-number">-2</span>] = L.elem[j<span class="hljs-number">-1</span>]; &#125;   <span class="hljs-comment">// 被删除元素之后的元素左移   　　</span>
+	   L.length--; 　　　　　　　　　　 <span class="hljs-comment">// 表长减1</span>
+ <span class="hljs-keyword">return</span> TRUE;
+&#125; <span class="hljs-comment">// ListDelete </span></code></pre></div>
+
+<p>本算法中注意以下问题：</p>
+<p> ① 删除第i个元素，i的取值为 1≤i≤n ,否则第i个元素不存在，因此，要检查删除位置的有效性。</p>
+<p> ② 当表空时不能做删除，因表空时 L.length的值为0，条件（i&lt;1||i&gt;L.length）也包括了对表空的检查。</p>
+<p> ③ 删除ai 之后，该数据已不存在，如果需要，先取出，再做删除。</p>
+<p> ④ 修改表长。 </p>
+<h3 id="元素定位操作"><a href="#元素定位操作" class="headerlink" title="元素定位操作"></a>元素定位操作</h3><div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">LocateElem_Sq</span><span class="hljs-params">(SqList L, ElemType e)</span>
+&#123;<span class="hljs-comment">// 在顺序表L中查找第1个值与 e 满足相等条件的元素</span>
+        <span class="hljs-comment">// 若找到，则返回其在 L 中的位序，否则返回0。</span>
+    i = <span class="hljs-number">1</span>;　　　　　　　　　<span class="hljs-comment">// i 的初值为第1元素的位序</span>
+    p = L.elem; 　　　　　　<span class="hljs-comment">// p 的初值为第1元素的存储位置</span>
+    <span class="hljs-keyword">while</span> (i &lt;= L.length &amp;&amp; !equal(*p++,e))
+        ++i;　 　　　　　　　<span class="hljs-comment">// 依次进行判定</span>
+    <span class="hljs-keyword">if</span> (i &lt;= L.length) 
+        <span class="hljs-keyword">return</span> i; <span class="hljs-comment">// 找到满足判定条件的数据元素为第 i 个元素</span>
+    <span class="hljs-keyword">else</span> 
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;　<span class="hljs-comment">// 该线性表中不存在满足判定的数据元素</span>
+&#125; <span class="hljs-comment">// LocateElem </span>
+</code></pre></div>
+
+
+
+<h2 id="线性表的链式存储（链表）"><a href="#线性表的链式存储（链表）" class="headerlink" title="线性表的链式存储（链表）"></a>线性表的链式存储（链表）</h2><div class="code-wrapper"><pre><code class="hljs c">结点定义如下：
+   <span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LNode</span></span>
+<span class="hljs-class">    &#123;</span>  ElemType data;
+        <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LNode</span> *<span class="hljs-title">next</span>;</span>  
+    &#125; LNode，*LinkList；
+定义头指针变量： LinkList  H；</code></pre></div>
+
+<h3 id="建立链表"><a href="#建立链表" class="headerlink" title="建立链表"></a>建立链表</h3><p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101215429648.png" srcset="/img/loading.gif" lazyload alt="image-20221101215429648"></p>
+<h3 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h3><p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221102094317692.png" srcset="/img/loading.gif" lazyload alt="image-20221102094317692"></p>
+<h3 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h3><p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221102094726942.png" srcset="/img/loading.gif" lazyload alt="image-20221102094726942"></p>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>  <span class="hljs-title">dlnode</span></span>
+<span class="hljs-class">&#123;</span>ElemType data;
+  <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">dlnode</span> *<span class="hljs-title">prior</span>,*<span class="hljs-title">next</span>;</span>
+&#125;DLNode,*DLinkList;</code></pre></div>
+
+<p>在双向链表中，通过某结点的指针p既可以直接得到它的后继结点的指针p-&gt;next，也可以直接得到它的前驱结点的的指针p-&gt;prior。</p>
+<p> <code>p-&gt;prior-&gt;next == p== p-&gt;next-&gt;prior</code></p>
+<h4 id="在双向链表中插入一个结点"><a href="#在双向链表中插入一个结点" class="headerlink" title="在双向链表中插入一个结点"></a>在双向链表中插入一个结点</h4><p>设p指向双向链表中某结点，s指向待插入的值为x的新结点，将<em>s插入到</em>p的前面。操作如下：</p>
+<p>  ①s-&gt;prior&#x3D;p-&gt;prior;</p>
+<p>  ②p-&gt;prior-&gt;next&#x3D;s;</p>
+<p>  ③s-&gt;next&#x3D;p;</p>
+<p>  ④p-&gt;prior&#x3D;s;</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221102095046425.png" srcset="/img/loading.gif" lazyload alt="image-20221102095046425"></p>
+<p>上面指针操作的顺序不是唯一的，但也不是任意的，操作①必须要放到操作④的前面完成，否则*p的前驱结点的指针就丢掉了。</p>
+<h4 id="在双向链表中删除指定结点"><a href="#在双向链表中删除指定结点" class="headerlink" title="在双向链表中删除指定结点"></a>在双向链表中删除指定结点</h4><p>设p指向双向链表中某结点，删除*p。</p>
+<p>操作如下：</p>
+<p>①p-&gt;prior-&gt;next&#x3D;p-&gt;next;</p>
+<p>②p-&gt;next-&gt;prior&#x3D;p-&gt;prior;</p>
+<p>③free(p);</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221102095425775.png" srcset="/img/loading.gif" lazyload alt="image-20221102095425775"></p>
+<h2 id="顺序表和链表的比较"><a href="#顺序表和链表的比较" class="headerlink" title="顺序表和链表的比较"></a>顺序表和链表的比较</h2><h2 id="单链表的应用：多项式及其运算"><a href="#单链表的应用：多项式及其运算" class="headerlink" title="单链表的应用：多项式及其运算"></a>单链表的应用：多项式及其运算</h2>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" class="category-chain-item">计算机基础</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" class="category-chain-item">数据结构和算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84408/" class="category-chain-item">数据结构408</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84408/%E7%BA%BF%E6%80%A7%E8%A1%A8/" class="category-chain-item">线性表</a>
+  
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>线性表</div>
+      <div>http://example.com/2023/11/4a3e931a3c5e.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 1, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/11/abbc77c72f83.html" title="树">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">树</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/11/3f128b19cc4b.html" title="绪论">
+                        <span class="hidden-mobile">绪论</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
