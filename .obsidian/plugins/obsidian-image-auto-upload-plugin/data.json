@@ -9,6 +9,7 @@
   "fixPath": false,
   "applyImage": true,
   "newWorkBlackDomains": "",
-  "deleteSource": true,
-  "imageDesc": "removeDefault"
+  "deleteSource": false,
+  "imageDesc": "origin",
+  "remoteServerMode": false
 }

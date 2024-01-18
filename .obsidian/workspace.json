@@ -74,12 +74,11 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 248.5,
-    "collapsed": true
+    "width": 248.5
   },
   "right": {
     "id": "bad03ea09745a182",
@@ -179,6 +178,7 @@
   },
   "active": "195759f4b3f0aa6f",
   "lastOpenFiles": [
+    "content/post/计算机网络/1 计算机网络体系结构.assets/image-20240118215417554.png",
     "content/post/计算机网络/1 计算机网络体系结构.assets/image-20240118184111807.png",
     "content/post/计算机网络/1 计算机网络体系结构.assets",
     "_templates/template-计网.md",
@@ -211,7 +211,6 @@
     "themes/hugo-theme-stack/assets/icons/tag.svg",
     "themes/hugo-theme-stack/assets/icons/rss.svg",
     "themes/hugo-theme-stack/assets/icons/link.svg",
-    "themes/hugo-theme-stack/assets/icons/language.svg",
     "themes/hugo-theme-stack/archetypes/tags.md",
     "themes/hugo-theme-stack/archetypes/default.md",
     "themes/hugo-theme-stack/archetypes/categories.md",
