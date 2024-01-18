@@ -1,8 +1,8 @@
 {
   "contextAwareMode": true,
-  "sourceSupport": false,
+  "sourceSupport": true,
   "codeHighlightSupport": false,
-  "inlineID": true,
+  "inlineID": false,
   "contextSeparator": " > ",
   "deck": "Default",
   "folderBasedDeck": true,
