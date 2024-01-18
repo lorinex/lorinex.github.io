@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='File-System File Concept 连续的逻辑地址空间指的是操作系统为用户提供了统一的逻辑视图来访问存储设备上的信息。文件是一个命名的、相关的信息的集合，这些信息被记录在'>
+<title>7 File-System | Bethel's Blog</title>
+
+<link rel='canonical' href='https://www.xxx.blog/post/7-file-system/'>
+
+<link rel="stylesheet" href="/scss/style.min.c3c7ecff622b4ad3ac6aacf17244c017cc674f0e82b470bfb8f4de85243313d0.css"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"K3aYNEt3ZeYoZwhE",ck:"K3aYNEt3ZeYoZwhE"})</script>
+<script async src="https://umami.xalaok.top/uanalytics" data-website-id="095ee454-e560-4d9b-bf1c-869f8529c17f"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script><meta property='og:title' content='7 File-System'>
+<meta property='og:description' content='File-System File Concept 连续的逻辑地址空间指的是操作系统为用户提供了统一的逻辑视图来访问存储设备上的信息。文件是一个命名的、相关的信息的集合，这些信息被记录在'>
+<meta property='og:url' content='https://www.xxx.blog/post/7-file-system/'>
+<meta property='og:site_name' content='Bethel'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-12-30T12:45:59&#43;00:00'/><meta property='article:modified_time' content='2023-12-30T12:45:59&#43;00:00'/>
+<meta name="twitter:title" content="7 File-System">
+<meta name="twitter:description" content="File-System File Concept 连续的逻辑地址空间指的是操作系统为用户提供了统一的逻辑视图来访问存储设备上的信息。文件是一个命名的、相关的信息的集合，这些信息被记录在">
+    <link rel="shortcut icon" href="/favicon.png" />
+<link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont@1.7.0/lxgwwenkaigbscreen.css" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/tx_hu92c04046da3d4074953cad185e3935e5_62559_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Bethel</a></h1>
+            <h2 class="site-description">Live and learn. ✍️</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-high" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" />
+  <path d="M6.343 17.657l-1.414 1.414" />
+  <path d="M6.343 6.343l-1.414 -1.414" />
+  <path d="M17.657 6.343l1.414 -1.414" />
+  <path d="M17.657 17.657l1.414 1.414" />
+  <path d="M4 12h-2" />
+  <path d="M12 4v-2" />
+  <path d="M20 12h2" />
+  <path d="M12 20v2" />
+</svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+  <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+  <path d="M19 11h2m-1 -1v2" />
+</svg>
+                    <span>深色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#file-concept">File Concept</a>
+      <ol>
+        <li><a href="#file-attributes">File Attributes</a></li>
+        <li><a href="#file-operations">File Operations</a></li>
+        <li><a href="#open-file-locking">Open File Locking</a></li>
+        <li><a href="#file-types">File types</a></li>
+        <li><a href="#file-structure">File Structure</a></li>
+        <li><a href="#internal-file-structure">Internal file structure</a></li>
+      </ol>
+    </li>
+    <li><a href="#access-methods">Access Methods</a></li>
+    <li><a href="#directory-structure">Directory Structure</a>
+      <ol>
+        <li><a href="#single-level-directory">Single-Level Directory</a></li>
+        <li><a href="#文件系统的基本结构">文件系统的基本结构</a></li>
+        <li><a href="#two-level-directory">Two-Level Directory</a></li>
+        <li><a href="#tree-structured-directories">Tree-Structured Directories</a>
+          <ol>
+            <li><a href="#特点">特点</a></li>
+            <li><a href="#优势">优势</a></li>
+            <li><a href="#当前目录工作目录">当前目录（工作目录）</a></li>
+            <li><a href="#创建新的子目录">创建新的子目录</a></li>
+            <li><a href="#删除子目录">删除子目录</a></li>
+          </ol>
+        </li>
+        <li><a href="#acyclic-graph-directories">Acyclic-Graph Directories</a>
+          <ol>
+            <li><a href="#特点-1">特点</a></li>
+            <li><a href="#实现共享文件和子目录的方式">实现共享文件和子目录的方式</a></li>
+            <li><a href="#问题">问题</a></li>
+            <li><a href="#删除共享文件的问题续">删除共享文件的问题（续）</a></li>
+          </ol>
+        </li>
+        <li><a href="#general-graph-directory">General Graph Directory</a>
+          <ol>
+            <li><a href="#优势-1">优势</a></li>
+            <li><a href="#问题-1">问题</a></li>
+            <li><a href="#文件删除的判定">文件删除的判定</a></li>
+            <li><a href="#避免循环的方法">避免循环的方法</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#file-system-mounting">File System Mounting</a></li>
+    <li><a href="#file-sharing">File Sharing</a>
+      <ol>
+        <li><a href="#remote-file-systems">Remote File Systems</a></li>
+        <li><a href="#failure-modes">Failure Modes</a></li>
+        <li><a href="#consistency-semantics">Consistency Semantics</a></li>
+      </ol>
+    </li>
+    <li><a href="#protection">Protection</a>
+      <ol>
+        <li><a href="#access-control">Access control</a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#file-system-structure">File System Structure</a>
+      <ol>
+        <li><a href="#文件定义">文件定义</a></li>
+        <li><a href="#磁盘特性">磁盘特性</a></li>
+        <li><a href="#文件系统位置">文件系统位置</a></li>
+        <li><a href="#功能">功能</a></li>
+        <li><a href="#文件系统结构">文件系统结构</a></li>
+        <li><a href="#layered-file-system">Layered File System</a></li>
+        <li><a href="#file-systems">File Systems</a></li>
+      </ol>
+    </li>
+    <li><a href="#file-system-implementation-1">File System Implementation</a>
+      <ol>
+        <li><a href="#on-disk-file-system-structures">On-disk File System Structures</a></li>
+        <li><a href="#in-memory-file-system-structures">In-Memory File System Structures</a></li>
+        <li><a href="#内存中的结构">内存中的结构</a></li>
+        <li><a href="#partitions-and-mounting">Partitions and Mounting</a></li>
+        <li><a href="#virtual-file-systems">Virtual File Systems</a></li>
+      </ol>
+    </li>
+    <li><a href="#directory-implementation">Directory Implementation</a></li>
+    <li><a href="#allocation-methods">Allocation Methods</a>
+      <ol>
+        <li><a href="#contiguous-allocation">Contiguous Allocation</a></li>
+        <li><a href="#linked-allocation">Linked Allocation</a></li>
+        <li><a href="#indexed-allocation">Indexed Allocation</a></li>
+        <li><a href="#performance">Performance</a></li>
+      </ol>
+    </li>
+    <li><a href="#free-space-management">Free-Space Management</a>
+      <ol>
+        <li><a href="#bit-map--bit-vector">Bit map / Bit vector</a></li>
+        <li><a href="#linked-list">Linked list</a></li>
+        <li><a href="#grouping">Grouping</a></li>
+        <li><a href="#counting">Counting</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/os/" style="background-color: #2a9d8f; color: #fff;">
+                操作系统
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/7-file-system/">7 File-System</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-12-30</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 25 分钟
+                </time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+  <path d="M13.5 6.5l4 4" />
+</svg>
+                <time class="article-words">
+                    字数: 12089 字
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="file-system">File-System<a hidden class="anchor" aria-hidden="true" href="#file-system">#</a></h1>
+<h2 id="file-concept">File Concept<a hidden class="anchor" aria-hidden="true" href="#file-concept">#</a></h2>
+<p>连续的逻辑地址空间指的是操作系统为用户提供了统一的逻辑视图来访问存储设备上的信息。文件是一个命名的、相关的信息的集合，这些信息被记录在次级存储设备上。文件是逻辑次级存储的最小分配单元。常见的文件类型包括程序源代码、目标代码和数据文件(数字、字符、二进制)。文件可以是自由格式的，也可以是格式固定的。文件的信息由其创建者定义。文件通过其名称进行命名，并可以通过名称进行访问，是独立的。</p>
+<h3 id="file-attributes">File Attributes<a hidden class="anchor" aria-hidden="true" href="#file-attributes">#</a></h3>
+<p>文件属性包括：</p>
+<ul>
+<li>名称(Name): 仅以人类可读的形式保存的信息。</li>
+<li>标识符(Identifier): 在系统中唯一标识文件的数字，非人类可读的文件名。</li>
+<li>类型(Type): 用于支持不同类型的系统。</li>
+<li>位置(Location): 设备上文件的位置指针。</li>
+<li>大小(Size): 文件当前的大小。</li>
+<li>保护(Protection): 访问控制信息，控制谁可以进行读、写、执行操作。</li>
+<li>时间、日期和用户标识(Time, date, and user identification): 用于保护、安全性和使用监控的数据。</li>
+</ul>
+<p>这些文件属性保存在目录结构中，该结构由维护在磁盘上的目录条目组成。目录条目由文件名和唯一的id组成，id反过来指向其他文件属性。</p>
+<h3 id="file-operations">File Operations<a hidden class="anchor" aria-hidden="true" href="#file-operations">#</a></h3>
+<p>文件是一个抽象数据类型。文件操作的最小集合包括：</p>
+<ul>
+<li>Create - 找到空间，在目录中为文件创建条目。</li>
+<li>Write - 文件名，要写入的信息，写入指针。</li>
+<li>Read - 文件名，内存中的位置，读取指针。每个进程有一个当前文件位置指针。</li>
+<li>Reposition within file - 文件seek，不需要I/O。</li>
+<li>Delete - 文件名，释放文件空间，删除目录条目。</li>
+<li>Truncate - 将长度重置为0，释放文件空间。
+这些基本操作可以组合起来执行其他文件操作，比如复制。大多数文件操作涉及搜索目录以查找与文件名相关联的条目。</li>
+</ul>
+<p>Open-file table是一个内核数据结构，包含有关所有打开文件的的信息。
+Open(Fi)操作会在磁盘上的目录结构中查找Fi的条目，并将该条目的内容移动到打开文件表中。它还会返回打开文件表中该条目的一个指针，并接受访问模式信息，如创建、只读、读写、只追加等。
+Close(Fi)操作会将打开文件表中Fi的条目的内容移动到磁盘上的目录结构中。</p>
+<p>文件共享意味着多个进程和应用程序可以同时打开同一个文件。
+为此，需要两个级别的内部表：</p>
+<ul>
+<li>进程打开文件表：每个进程都有一个进程打开文件表，用于跟踪该进程打开的所有文件以及进程对文件的使用信息，如当前文件指针、访问权限、计费信息等。</li>
+<li>系统打开文件表：包含进程无关的信息，如文件在磁盘上的位置、访问日期、文件大小等。每个进程打开文件表的条目都指向一个系统打开文件表的条目。
+这样，进程可以独立地使用进程打开文件表，而系统可以使用系统打开文件表来维护进程无关的信息。</li>
+</ul>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231230161451023.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231230161451023"
+	
+	
+></p>
+<h3 id="open-file-locking">Open File Locking<a hidden class="anchor" aria-hidden="true" href="#open-file-locking">#</a></h3>
+<p>文件锁允许一个进程锁定文件，防止其他进程访问它。
+一些操作系统和文件系统提供文件锁，它类似读写锁，包括共享锁和独占锁。共享锁允许多个进程同时获取，独占锁类似写锁，只允许一个进程获取。
+文件锁可以调解进程对文件的访问。操作系统可以提供强制或建议的文件锁机制。强制机制根据持有的锁和请求的锁来拒绝访问，而建议机制允许进程查看锁的状态并决定如何操作。</p>
+<h3 id="file-types">File types<a hidden class="anchor" aria-hidden="true" href="#file-types">#</a></h3>
+<p>操作系统是否应该识别并支持文件类型是一个常见的问题。实现文件类型的常见技术是将类型作为文件名的一部分。文件名被分割成两部分：文件名和扩展名，以点字符分隔。系统使用扩展名来表示文件的类型和可以对该文件进行的操作类型。应用程序也使用扩展名来表示它们感兴趣的文件类型。一些操作系统，每个文件都有一个类型和创作者属性，包含创建该文件的应用程序的名称。在UNIX系统中，一些文件在开头存储一个魔法数字，以大致表示文件的类型。</p>
+<h3 id="file-structure">File Structure<a hidden class="anchor" aria-hidden="true" href="#file-structure">#</a></h3>
+<p>文件结构可以分为三种：</p>
+<ul>
+<li>无结构 - 顺序的字符串或字节</li>
+<li>简单记录结构 - 行、固定长度、可变长度</li>
+<li>复杂结构 - 格式化文档、可重定位加载文件</li>
+</ul>
+<p>操作系统和程序都可以决定文件的内部结构。</p>
+<h3 id="internal-file-structure">Internal file structure<a hidden class="anchor" aria-hidden="true" href="#internal-file-structure">#</a></h3>
+<p>逻辑结构分为两类：</p>
+<ul>
+<li>文本文件：一系列8位字节</li>
+<li>记录文件：一系列固定或可变长度的记录</li>
+</ul>
+<p>逻辑地址包括文件起始位置的偏移量和逻辑记录号。
+物理结构是一组磁盘块。基本I/O函数以块为单位操作。
+逻辑地址到物理地址的映射包括逻辑块号、物理磁盘块号和块内偏移量。
+内部碎片化是由于逻辑记录大小、物理块大小和打包技术决定的逻辑记录数与物理块数之间的差异。磁盘空间总是以块为单位分配的。</p>
+<h2 id="access-methods">Access Methods<a hidden class="anchor" aria-hidden="true" href="#access-methods">#</a></h2>
+<p>文件组织方式主要根据以下几个标准进行分类：</p>
+<ol>
+<li>反映不同的文件结构 - 不同的存储和处理数据的方式。</li>
+<li>快速访问 - 单记录访问时需要快速访问，而在批处理模式下不需要。</li>
+<li>更新方便性 - CD-ROM上的文件不需要更新，所以这不需要考虑。</li>
+<li>存储经济性 - 数据冗余度最小化，冗余度可以用来加速访问，如索引。</li>
+<li>维护简单性 - 可靠性。
+根据这些标准，文件组织方式主要分为：</li>
+<li>堆积文件(Pile File)</li>
+<li>顺序文件(Sequential File)</li>
+<li>索引顺序文件(Indexed Sequential File)</li>
+<li>索引文件(Indexed File)</li>
+<li>直接文件(Direct File，或散列文件(Hashed File))</li>
+</ol>
+<p>顺序访问方式包括：</p>
+<ul>
+<li>读取下一个记录</li>
+<li>写入下一个记录</li>
+<li>重置</li>
+<li>重写，最后一次写入后不再读取</li>
+</ul>
+<p>直接访问方式包括：</p>
+<ul>
+<li>读取(n)</li>
+<li>写入(n)</li>
+<li>定位(n)</li>
+<li>读取下一个记录，写入下一个记录</li>
+<li>重写(n)
+n为相对块号，第一个为0。
+直接访问方式可以模拟顺序访问。</li>
+</ul>
+<p>其他访问方式可以建立在直接访问方式之上，通常涉及为文件创建索引。索引可以保存在内存中，以快速确定要操作的数据的位置。如果索引太大，可以使用二级或多级索引文件。索引文件和相对文件的区别在于，索引文件使用索引来定位数据，而相对文件直接使用文件中的偏移量来定位数据。</p>
+<h2 id="directory-structure">Directory Structure<a hidden class="anchor" aria-hidden="true" href="#directory-structure">#</a></h2>
+<p>每个系统中的磁盘至少包含一个分区。有些系统允许分区的大小大于磁盘，以便将磁盘组合成一个逻辑结构。
+磁盘或分区可以以原始状态使用，例如交换空间。也可以格式化一个文件系统。</p>
+<ol>
+<li>包含文件系统的实体被称为卷(volume)。</li>
+<li>每个卷包含的文件系统也在设备目录或卷表目(volume table of contents)中跟踪该文件系统信息。</li>
+<li>目录中包含文件名、文件类型、文件位置等信息。</li>
+<li>磁盘或分区可以通过RAID(Redundant Arrays of Independent Drives)来防止故障。</li>
+</ol>
+<p>目录结构可以看作是一个符号表，它将文件名转换成目录项(directory entry)。
+目录结构为文件名和文件本身提供了映射。
+目录结构本身是由操作系统拥有的一个文件。
+目录结构和文件都存储在磁盘上。</p>
+<h3 id="single-level-directory">Single-Level Directory<a hidden class="anchor" aria-hidden="true" href="#single-level-directory">#</a></h3>
+<h3 id="文件系统的基本结构">文件系统的基本结构<a hidden class="anchor" aria-hidden="true" href="#文件系统的基本结构">#</a></h3>
+<ul>
+<li>
+<p><strong>所有文件都包含在同一个目录中</strong>：这意味着文件系统没有使用子目录或分层结构，所有文件都存储在一个共同的位置。</p>
+</li>
+<li>
+<p>文件的索引方式</p>
+<ul>
+<li><strong>文件列表，每个文件一个条目</strong>：这种方式下，系统会维护一个列表，列表中每个条目代表一个文件。这有点类似于目录，其中每个文件都有对应的条目。</li>
+<li><strong>顺序文件，以文件名作为关键字</strong>：这里的顺序文件可能指的是索引文件，它根据文件名（作为关键字）来组织文件，允许按文件名顺序访问文件。</li>
+</ul>
+</li>
+<li>
+<p>遇到的问题</p>
+<ul>
+<li><strong>命名问题</strong>
+<ul>
+<li><strong>文件必须有唯一的名称</strong>：在这样的系统中，由于所有文件都在同一个目录下，因此每个文件的名称必须是唯一的，以避免混淆。</li>
+<li><strong>文件名的长度</strong>：文件名的长度可能受限，这可能影响到如何命名文件和组织数据。</li>
+</ul>
+</li>
+<li><strong>分组问题</strong>：这可能指的是如何有效地将文件分组以便管理，尤其是当所有文件都在一个目录下时。在没有子目录或分类的情况下，组织和检索文件可能会变得更加困难。</li>
+</ul>
+</li>
+</ul>
+<h3 id="two-level-directory">Two-Level Directory<a hidden class="anchor" aria-hidden="true" href="#two-level-directory">#</a></h3>
+<p>这种文件系统结构设计用来解决单级目录系统中文件命名冲突和文件组织问题。</p>
+<p><strong>特点</strong></p>
+<ol>
+<li><strong>为每个用户创建单独的目录</strong>：在双级目录系统中，每个用户都有自己的目录，这有助于隔离不同用户的文件。</li>
+<li><strong>主文件目录和用户文件目录</strong>：
+<ul>
+<li><strong>主文件目录</strong>：包含每个用户的条目，这些条目可以通过用户名或账号进行索引。它提供了用户目录的地址和访问控制信息。</li>
+<li><strong>用户文件目录</strong>：每个用户都有一个自己的文件目录，这个目录是该用户文件的简单列表。不同用户可以有同名的文件，因为它们存储在各自的目录中。</li>
+</ul>
+</li>
+</ol>
+<p><strong>优势</strong></p>
+<ul>
+<li><strong>高效的搜索</strong>：由于文件被组织在各自的用户目录中，搜索特定用户的文件变得更加高效。</li>
+</ul>
+<p><strong>限制</strong></p>
+<ul>
+<li><strong>没有分组能力</strong>：这种系统不支持跨用户的文件分组，每个用户的文件都被限制在自己的目录中。</li>
+</ul>
+<p><strong>文件共享</strong></p>
+<ul>
+<li><strong>路径名</strong>：由用户名和文件名定义。例如，如果一个用户想要访问另一个用户的文件，他们可能需要使用特定的路径名。</li>
+<li><strong>特殊的用户目录</strong>：包含系统文件。这可能是为了系统管理而设置的，不同于普通用户的目录。</li>
+<li><strong>搜索路径</strong>：是指系统搜索文件时遍历的目录序列。这可以帮助系统决定在哪些目录中查找文件。</li>
+</ul>
+<h3 id="tree-structured-directories">Tree-Structured Directories<a hidden class="anchor" aria-hidden="true" href="#tree-structured-directories">#</a></h3>
+<p>这是一种常见的目录结构，其中每个文件都有一个独特的路径名。</p>
+<h4 id="特点">特点<a hidden class="anchor" aria-hidden="true" href="#特点">#</a></h4>
+<ol>
+<li><strong>允许用户创建自己的子目录</strong>：用户可以组织文件，将它们放在不同的子目录中。</li>
+<li><strong>每个用户目录可能包含一个或多个子目录和文件作为条目</strong>。</li>
+<li><strong>所有目录具有相同的内部格式</strong>。</li>
+<li><strong>目录条目中的一个位用于定义条目是文件（0）还是子目录（1）</strong>。</li>
+</ol>
+<h4 id="优势">优势<a hidden class="anchor" aria-hidden="true" href="#优势">#</a></h4>
+<ul>
+<li><strong>高效搜索</strong>：由于其树形结构，可以快速定位文件和目录。</li>
+<li><strong>命名方便</strong>：每个文件的路径名是唯一的，方便用户识别和访问。</li>
+<li><strong>分组能力</strong>：用户可以通过创建子目录来有效地组织和管理文件。</li>
+</ul>
+<h4 id="当前目录工作目录">当前目录（工作目录）<a hidden class="anchor" aria-hidden="true" href="#当前目录工作目录">#</a></h4>
+<ul>
+<li><strong>在会计文件中，存储了指向用户初始目录的指针或名称</strong>。该信息被复制到该用户的本地变量中。</li>
+<li><strong>创建新文件默认在当前目录中进行</strong>。</li>
+<li><strong>删除文件</strong>：使用命令 <code>rm &lt;文件名&gt;</code>。</li>
+<li><strong>更改当前目录</strong>：使用命令 <code>cd /路径</code>。可以使用绝对或相对路径名。</li>
+</ul>
+<h4 id="创建新的子目录">创建新的子目录<a hidden class="anchor" aria-hidden="true" href="#创建新的子目录">#</a></h4>
+<ul>
+<li>在当前目录下创建新的子目录，使用命令 <code>mkdir &lt;目录名&gt;</code>。</li>
+<li>例如，在当前目录 <code>/mail</code> 下，创建一个名为 <code>count</code> 的新目录：<code>mkdir count</code>。</li>
+</ul>
+<h4 id="删除子目录">删除子目录<a hidden class="anchor" aria-hidden="true" href="#删除子目录">#</a></h4>
+<ul>
+<li><strong>删除空目录</strong>：在某些系统（如MS-DOS）中，只能删除空目录。</li>
+<li><strong>删除所有文件和子目录</strong>：在某些系统（如UNIX）中，可以删除包含所有文件和子目录的目录。</li>
+</ul>
+<h3 id="acyclic-graph-directories">Acyclic-Graph Directories<a hidden class="anchor" aria-hidden="true" href="#acyclic-graph-directories">#</a></h3>
+<p>这种目录结构允许共享子目录和文件，是一种较为复杂的文件系统结构。</p>
+<h4 id="特点-1">特点<a hidden class="anchor" aria-hidden="true" href="#特点-1">#</a></h4>
+<ol>
+<li><strong>相同的文件或子目录可以出现在两个不同的目录中</strong>。</li>
+<li><strong>共享的文件/目录与文件/目录的两份拷贝不同</strong>。</li>
+</ol>
+<h4 id="实现共享文件和子目录的方式">实现共享文件和子目录的方式<a hidden class="anchor" aria-hidden="true" href="#实现共享文件和子目录的方式">#</a></h4>
+<ol>
+<li><strong>创建一个新的目录条目，称为链接</strong>（例如UNIX中的链接）：这是指向另一个文件或子目录的指针。
+<ul>
+<li>路径名：目录条目被标记为链接。</li>
+<li>解析链接：遵循指针定位文件。</li>
+<li>链接与原始目录条目明显不同。</li>
+</ul>
+</li>
+<li><strong>在所有共享目录中复制有关共享文件的所有信息</strong>：
+<ul>
+<li>两个条目相同且等价。</li>
+<li>原始文件和副本无法区分。</li>
+<li>问题：修改文件时如何保持一致性？</li>
+</ul>
+</li>
+</ol>
+<h4 id="问题">问题<a hidden class="anchor" aria-hidden="true" href="#问题">#</a></h4>
+<ol>
+<li><strong>一个文件可能有多个绝对路径名</strong>：不同的文件名可能指向同一个文件（别名问题）。</li>
+<li><strong>遍历整个文件系统</strong>：累计所有文件的统计信息，将所有文件复制到备份存储中。</li>
+<li><strong>共享文件的删除</strong>：
+<ul>
+<li>删除任何人删除的文件时出现悬挂指针（dangling pointers）。</li>
+<li>例如，如果字典删除了计数➢链接，删除链接不会影响原始文件。</li>
+<li>删除文件条目，留下悬挂的链接。</li>
+<li>文件引用列表，反向指针。</li>
+</ul>
+</li>
+</ol>
+<h4 id="删除共享文件的问题续">删除共享文件的问题（续）<a hidden class="anchor" aria-hidden="true" href="#删除共享文件的问题续">#</a></h4>
+<ul>
+<li><strong>保留文件直到删除了对它的所有引用</strong>：
+<ul>
+<li>解决方案：文件引用列表、文件引用计数、反向指针，以便我们可以删除所有指针。</li>
+<li>可变大小记录可能是一个问题。</li>
+</ul>
+</li>
+</ul>
+<h3 id="general-graph-directory">General Graph Directory<a hidden class="anchor" aria-hidden="true" href="#general-graph-directory">#</a></h3>
+<p>与无环图目录（Acyclic-Graph Directory）相比，通用图目录允许目录结构中存在循环（cycles），这意味着目录可以直接或间接地引用自身。</p>
+<h4 id="优势-1">优势<a hidden class="anchor" aria-hidden="true" href="#优势-1">#</a></h4>
+<ul>
+<li><strong>无环图的主要优势</strong>是遍历图的算法相对简单。例如，可以避免对共享子目录的重复搜索，也更容易确定何时没有更多对文件的引用。</li>
+</ul>
+<h4 id="问题-1">问题<a hidden class="anchor" aria-hidden="true" href="#问题-1">#</a></h4>
+<ul>
+<li><strong>设计不良的算法可能导致无限循环</strong>，不断地在循环中搜索而永远不会结束。</li>
+</ul>
+<h4 id="文件删除的判定">文件删除的判定<a hidden class="anchor" aria-hidden="true" href="#文件删除的判定">#</a></h4>
+<ol>
+<li><strong>在无环图目录结构中</strong>，当引用计数为0时可以删除文件。</li>
+<li><strong>在通用图目录结构中</strong>，由于存在循环，即使无法再引用目录或文件，引用计数可能不为0。
+<ul>
+<li>这种异常情况源于自引用的可能性（即循环）。</li>
+<li>解决方案：使用垃圾收集。
+<ul>
+<li>第一遍：遍历整个文件系统，标记所有可以访问的内容。</li>
+<li>第二遍：收集所有未标记的内容到自由空间列表中。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="避免循环的方法">避免循环的方法<a hidden class="anchor" aria-hidden="true" href="#避免循环的方法">#</a></h4>
+<ol>
+<li><strong>仅允许链接到文件而非子目录</strong>：这样可以保证没有循环。</li>
+<li><strong>在添加新链接时使用循环检测算法</strong>来确定是否可行。但这种方法非常昂贵，尤其是当图在磁盘存储上时。</li>
+<li><strong>更简单的算法</strong>：在目录遍历期间绕过链接。</li>
+</ol>
+<h2 id="file-system-mounting">File System Mounting<a hidden class="anchor" aria-hidden="true" href="#file-system-mounting">#</a></h2>
+<ol>
+<li>文件系统必须挂载后才能被访问。</li>
+<li>挂载过程包括：操作系统被提供设备名称和挂载点(mount point) - 文件结构中用于挂载文件系统的位置。</li>
+<li>操作系统通过设备驱动程序读取设备目录并验证目录具有期望的格式，来验证设备包含有效的文件系统。</li>
+<li>操作系统在目录结构中记录文件系统已挂载在指定的挂载点。</li>
+</ol>
+<p>系统通过语义(semantics)来明确功能：</p>
+<ul>
+<li>可能不允许在包含文件的目录上挂载文件系统。</li>
+<li>可能使挂载的文件系统在该目录上可用，直到卸载文件系统才会遮挡该目录中现有的文件。</li>
+<li>可能允许同一文件系统在不同的挂载点上重复挂载。</li>
+<li>可能只允许每个文件系统挂载一次。</li>
+</ul>
+<h2 id="file-sharing">File Sharing<a hidden class="anchor" aria-hidden="true" href="#file-sharing">#</a></h2>
+<p>多用户系统中共享文件是必要的。文件和目录的共享可以通过保护机制来实现。多用户系统需要更多的文件和目录属性，包括文件/目录所有者、文件/目录用户、访问权限等。在多用户系统中，用户ID可以识别用户，允许为每个用户设置权限和保护。组ID可以让用户属于组，允许组访问权限。文件/目录的所有者和组可以设置访问权限。</p>
+<h3 id="remote-file-systems">Remote File Systems<a hidden class="anchor" aria-hidden="true" href="#remote-file-systems">#</a></h3>
+<p>远程文件系统使用网络允许不同系统之间的文件系统访问。 主要有三种方法：
+通过像FTP这样的程序手动传输文件，适用于匿名和认证访问。
+使用分布式文件系统(DFS)，远程目录对本地机器可见，机器间集成更紧密。
+通过WWW自动访问，需要浏览器，使用匿名文件交换。
+云计算正在被使用。</p>
+<h3 id="failure-modes">Failure Modes<a hidden class="anchor" aria-hidden="true" href="#failure-modes">#</a></h3>
+<p>所有文件系统都有故障模式。本地文件系统故障的原因包括磁盘故障、磁盘控制器故障、电缆故障、主机适配器故障、目录结构或其他非用户数据的损坏、用户或系统管理员的错误。远程文件系统增加了新的故障模式，例如网络故障、服务器故障。从故障中恢复可能需要涉及每个远程请求的状态信息。如果服务器和客户端都维护它们当前的活动和打开的文件的知识，那么它们就可以无缝地从故障中恢复。无状态协议像NFS V3将所有信息包含在每项请求中，这使得恢复很容易，但安全性较低。在NFS V4中，它被设计成有状态的，以证明其安全性、性能和功能。</p>
+<h3 id="consistency-semantics">Consistency Semantics<a hidden class="anchor" aria-hidden="true" href="#consistency-semantics">#</a></h3>
+<p>一致性语义(Consistency semantics)规定了多个用户如何同时访问共享文件。它指定了一个用户对数据的修改何时对其他用户可见。它类似于第6章中的进程同步算法，但由于磁盘I/O和网络延迟(对于远程文件系统)，通常比较简单。UFS(Unix文件系统)实现了以下一致性语义：</p>
+<ul>
+<li>每个文件关联到单个物理映像。</li>
+<li>对同一打开文件的其他用户的写入立即可见。</li>
+<li>共享文件指针以允许多个用户并发地读取和写入。</li>
+</ul>
+<p>一致性语义(Consistency semantics)规定了多个用户如何同时访问共享文件。</p>
+<ul>
+<li>AFS(Andrew File System)实现了复杂的远程文件共享语义：服务器记录客户端的行为，并保留客户端缓存的文件信息。当客户端更改文件时，服务器使用回调承诺技术通知其他客户端。只有在文件关闭后，写入才对会话可见。</li>
+<li>不可变的共享文件，由其创建者声明为只读的。文件名不能重复，内容不能更改。</li>
+</ul>
+<h2 id="protection">Protection<a hidden class="anchor" aria-hidden="true" href="#protection">#</a></h2>
+<p>可靠性涉及文件副本的备份，保护涉及对文件的访问控制，文件所有者/创建者应该能够控制对文件可以进行什么操作以及由谁进行操作。文件访问类型包括读取、写入、执行、追加、删除、列出等。</p>
+<h3 id="access-control">Access control<a hidden class="anchor" aria-hidden="true" href="#access-control">#</a></h3>
+<p><strong>访问模式：读、写、执行</strong></p>
+<ul>
+<li><strong>读（Read, R）</strong>：查看文件内容的权限。</li>
+<li><strong>写（Write, W）</strong>：修改或删除文件的权限。</li>
+<li><strong>执行（Execute, X）</strong>：运行文件的权限，对于脚本或程序尤其重要。</li>
+</ul>
+<p><strong>取决于用户的身份</strong></p>
+<p>根据用户的身份，访问权限可能会有所不同。这通常通过以下方式管理：</p>
+<ul>
+<li><strong>访问控制列表（Access-Control List, ACL）</strong>：一种表格，将每个文件与特定用户关联，并定义每个用户拥有的访问类型（读、写、执行）。</li>
+</ul>
+<p><strong>三类用户</strong></p>
+<ol>
+<li><strong>拥有者（Owner）</strong>：创建文件的用户。通常拥有最多的权限。</li>
+<li><strong>群组（Group）</strong>：一组需要类似访问权限的共享文件的用户。</li>
+<li><strong>普通用户（Universe/Public）</strong>：系统中的所有其他用户。</li>
+</ol>
+<p><strong>访问控制信息</strong></p>
+<ul>
+<li><strong>用户访问</strong>：读写执行（RWX，二进制表示为111，十进制表示为7）</li>
+<li><strong>群组访问</strong>：读写（RW，二进制表示为110，十进制表示为6）</li>
+<li><strong>公共访问</strong>：执行（X，二进制表示为001，十进制表示为1）</li>
+</ul>
+<p><strong>权限控制的优势与问题</strong></p>
+<ul>
+<li><strong>优势</strong>：增强安全性，确保只有授权用户才能访问特定的文件或目录。</li>
+<li><strong>问题</strong>：可能导致配置复杂，如果不正确设置，可能会不慎阻止合法用户的访问或允许非授权访问。</li>
+</ul>
+<p><strong>群组的创建和修改</strong></p>
+<ul>
+<li>只有管理员或超级用户（superuser）能创建和修改群组。</li>
+<li>管理员可以创建一个具有唯一名称的群组，比如G，并向群组中添加用户。</li>
+<li>对于特定的文件（比如“game”）或子目录，可以定义适当的访问权限。</li>
+</ul>
+<p><strong>更改用户的访问方法</strong></p>
+<p>例如，使用chmod命令更改文件权限：</p>
+<ul>
+<li><code>chmod G +w o=x file</code> 表示给群组G增加写权限，给其他用户（public）设置执行权限。</li>
+<li><code>chgrp G game</code> 表示将文件“game”关联到群组G。</li>
+</ul>
+<h1 id="file-system-implementation">File System Implementation<a hidden class="anchor" aria-hidden="true" href="#file-system-implementation">#</a></h1>
+<h2 id="file-system-structure">File System Structure<a hidden class="anchor" aria-hidden="true" href="#file-system-structure">#</a></h2>
+<h3 id="文件定义">文件定义<a hidden class="anchor" aria-hidden="true" href="#文件定义">#</a></h3>
+<ul>
+<li><strong>文件</strong>：是相关信息的集合，是逻辑存储单元。它可以包含文本、图像、程序或其他数据类型。</li>
+</ul>
+<h3 id="磁盘特性">磁盘特性<a hidden class="anchor" aria-hidden="true" href="#磁盘特性">#</a></h3>
+<ul>
+<li><strong>磁盘可就地写入</strong>：即在磁盘上直接修改数据，而无需先移动数据。</li>
+<li><strong>磁盘可直接访问任意给定的信息块</strong>：这意味着可以高效地检索和存储数据。</li>
+<li><strong>内存与磁盘间的I/O传输以块为单位</strong>：数据在内存和磁盘之间以块的形式进行传输。</li>
+</ul>
+<h3 id="文件系统位置">文件系统位置<a hidden class="anchor" aria-hidden="true" href="#文件系统位置">#</a></h3>
+<ul>
+<li>文件系统位于**次级存储（如磁盘）**上，它提供了用户对存储的接口，将逻辑地址映射到物理地址。</li>
+</ul>
+<h3 id="功能">功能<a hidden class="anchor" aria-hidden="true" href="#功能">#</a></h3>
+<ul>
+<li><strong>提供有效且方便的磁盘访问</strong>：允许数据被轻松存储、定位和检索。</li>
+</ul>
+<h3 id="文件系统结构">文件系统结构<a hidden class="anchor" aria-hidden="true" href="#文件系统结构">#</a></h3>
+<ol>
+<li><strong>主要设计问题</strong>
+<ul>
+<li><strong>用户界面</strong>：涉及定义文件及其属性、文件操作和目录结构。</li>
+<li><strong>将逻辑文件系统映射到物理次级存储设备的算法和数据结构</strong>。</li>
+</ul>
+</li>
+<li><strong>文件控制块</strong>：存储有关文件的信息的存储结构。</li>
+<li><strong>设备驱动程序</strong>：控制物理设备。</li>
+<li><strong>文件系统组织成层</strong>：这有助于管理和优化存储和检索操作。</li>
+</ol>
+<p>总的来说，文件是存储在磁盘等次级存储设备上的逻辑存储单位，文件系统提供了有效的方式来组织、存储、检索和管理这些文件。文件系统的设计要考虑用户界面、存储映射算法和数据结构、以及文件和设备管理的不同层次。</p>
+<h3 id="layered-file-system">Layered File System<a hidden class="anchor" aria-hidden="true" href="#layered-file-system">#</a></h3>
+<ol>
+<li><strong>应用程序层</strong>（application programs）：
+<ul>
+<li>系统调用用于文件操作。</li>
+</ul>
+</li>
+<li><strong>逻辑文件系统层</strong>（logical file system）：
+<ul>
+<li>管理元数据信息。</li>
+<li>管理目录结构。</li>
+<li>通过文件控制块（FCB，例如索引节点inodes）维护文件结构。</li>
+<li>负责保护和安全性。</li>
+</ul>
+</li>
+<li><strong>文件组织模块层</strong>（file-organization module）：
+<ul>
+<li>理解文件、逻辑地址和物理块。</li>
+<li>将逻辑块地址转换为物理块地址。</li>
+<li>空闲空间管理器，磁盘分配。</li>
+</ul>
+</li>
+<li><strong>基本文件系统层</strong>（basic file system）：
+<ul>
+<li>向适当的设备驱动程序发出通用命令来读写磁盘上的物理块。</li>
+<li>管理内存缓冲区和缓存（分配、释放、替换），例如I/O缓冲区、目录/数据的磁盘缓存。</li>
+</ul>
+</li>
+<li><strong>I/O控制层</strong>（I/O control）：
+<ul>
+<li>设备驱动程序和中断处理程序。</li>
+<li>在主内存和磁盘系统之间传输信息。</li>
+<li>将如“读取驱动器1，柱面72，磨道2，扇区10”的命令转换为内存位置1060的低级硬件特定命令。</li>
+</ul>
+</li>
+<li><strong>设备层</strong>（devices）：
+<ul>
+<li>这一层与物理硬件直接交互。</li>
+</ul>
+</li>
+</ol>
+<h3 id="file-systems">File Systems<a hidden class="anchor" aria-hidden="true" href="#file-systems">#</a></h3>
+<p>在操作系统中，存在多种文件系统，每种都有自己的格式：</p>
+<ol>
+<li><strong>CD-ROM使用ISO 9660格式</strong>：这是一个由制造商共同商定的标准格式。</li>
+<li><strong>Unix系统通常使用UFS（Unix File System）</strong>：它基于伯克利快速文件系统（Berkeley FFS）。</li>
+<li><strong>Windows支持多种文件系统</strong>：
+<ul>
+<li><strong>FAT（File Allocation Table）</strong>：较老的文件系统，曾广泛用于早期Windows版本和可移动存储设备。</li>
+<li><strong>FAT32</strong>：FAT的扩展版本，支持更大的磁盘和文件尺寸。</li>
+<li><strong>NTFS（New Technology File System）</strong>：Windows的现代文件系统，提供安全性、文件恢复和大文件支持等特性。</li>
+<li>此外，Windows也支持软盘、CD、DVD等多种存储媒介的文件系统。</li>
+</ul>
+</li>
+<li><strong>Linux支持40多种类型的文件系统</strong>：
+<ul>
+<li><strong>标准Linux文件系统</strong>：扩展文件系统（extended file system），包括ext2。</li>
+<li><strong>常用的文件系统</strong>：ext3和ext4，它们提供了日志功能和更高的数据完整性。</li>
+<li><strong>分布式文件系统</strong>：专门用于分布式计算环境，如网络文件系统（NFS）等。</li>
+</ul>
+</li>
+<li><strong>新的文件系统仍在不断推出</strong>：
+<ul>
+<li><strong>ZFS（Zettabyte File System）</strong>：一种高容量、高性能的文件系统，提供了卓越的数据完整性保护。</li>
+<li><strong>OpenZFS</strong>：ZFS的一个开源版本。</li>
+<li><strong>Google GFS（Google File System）</strong>：用于大规模分布式计算系统的文件系统。</li>
+<li><strong>Oracle ASM（Automatic Storage Management）</strong>：一种数据库文件系统，用于简化数据库数据的存储管理。</li>
+<li><strong>FUSE（Filesystem in Userspace）</strong>：一种允许用户在用户空间中创建文件系统的接口，增加了灵活性和安全性。</li>
+</ul>
+</li>
+</ol>
+<h2 id="file-system-implementation-1">File System Implementation<a hidden class="anchor" aria-hidden="true" href="#file-system-implementation-1">#</a></h2>
+<h3 id="on-disk-file-system-structures">On-disk File System Structures<a hidden class="anchor" aria-hidden="true" href="#on-disk-file-system-structures">#</a></h3>
+<p>在磁盘上，文件系统可能包含以下部分：</p>
+<ol>
+<li>
+<p><strong>启动操作系统的信息</strong>：如果操作系统存储在该磁盘上，这部分信息会告诉计算机如何从磁盘启动操作系统。</p>
+</li>
+<li>
+<p><strong>块的总数</strong>：磁盘上数据存储的基本单位，文件系统会跟踪总共有多少块。</p>
+</li>
+<li>
+<p><strong>空闲块的数量和位置</strong>：文件系统需要管理空闲块以便存储新的数据。</p>
+</li>
+<li>
+<p><strong>目录结构</strong>：包含文件和子目录的组织结构。</p>
+</li>
+<li>
+<p><strong>个别文件</strong>：具体的数据内容。</p>
+</li>
+</ol>
+<p>磁盘结构</p>
+<ol>
+<li><strong>启动控制块（Boot Control Block）</strong>（每个卷）：
+<ul>
+<li>通常是卷的第一个块。</li>
+<li>在UFS中称为启动块，在NTFS中称为分区启动扇区。</li>
+</ul>
+</li>
+<li><strong>卷/分区控制块（Volume/Partition Control Block）</strong>（每个卷）：
+<ul>
+<li>包含块的详细信息、块大小、空闲块计数和空闲块指针、空闲文件控制块（FCB）计数和空闲FCB指针。</li>
+<li>在UFS中称为超级块，在NTFS中是主文件表（Master File Table）的一部分。</li>
+</ul>
+</li>
+<li><strong>目录结构</strong>（每个文件系统）：
+<ul>
+<li>在UFS中包含文件名和关联的inode编号。</li>
+<li>在NTFS中包含在主文件表中。</li>
+</ul>
+</li>
+<li><strong>文件控制块（FCB）</strong>（每个文件）：
+<ul>
+<li>包含关于文件的信息的存储结构，包括所有权、权限和文件内容的位置。</li>
+<li>在UFS中称为inode，在NTFS中也是主文件表（作为关系数据库）的一部分。</li>
+</ul>
+</li>
+</ol>
+<p>以上结构确保了文件系统能够有效地管理和定位磁盘上的数据，同时也保证了数据的安全和可访问性。每种文件系统（如UFS、NTFS）都有其特定的实现方式和数据结构。</p>
+<h3 id="in-memory-file-system-structures">In-Memory File System Structures<a hidden class="anchor" aria-hidden="true" href="#in-memory-file-system-structures">#</a></h3>
+<p>在内存中的文件系统结构用于：</p>
+<ol>
+<li><strong>文件系统管理</strong>：这包括管理文件系统的挂载、目录结构、文件的打开和关闭等。</li>
+<li><strong>通过缓存改善性能</strong>：数据缓存可以减少对次级存储（如硬盘）的访问次数，从而提高系统性能。</li>
+</ol>
+<h3 id="内存中的结构">内存中的结构<a hidden class="anchor" aria-hidden="true" href="#内存中的结构">#</a></h3>
+<ol>
+<li><strong>内存中的挂载表（In-memory mount table）</strong>：
+<ul>
+<li>存储文件系统的挂载信息、挂载点、文件系统类型等。</li>
+</ul>
+</li>
+<li><strong>内存中的目录结构缓存</strong>：
+<ul>
+<li>加速目录访问和查找操作。</li>
+</ul>
+</li>
+<li><strong>系统范围的打开文件表（System-wide open-file table）</strong>（系统中只有一张表）：
+<ul>
+<li>包含每个打开文件的文件控制块（FCB）的副本。</li>
+<li>每个打开的文件有一个条目。</li>
+</ul>
+</li>
+<li><strong>每个进程的打开文件表（Per-process open-file table）</strong>（每个进程一张表）：
+<ul>
+<li>包含指向系统范围打开文件表中相应条目的指针。</li>
+<li>每个由该进程打开的文件有一个条目。</li>
+</ul>
+</li>
+<li><strong>缓冲区</strong>：
+<ul>
+<li>存放来自次级存储的数据块。</li>
+</ul>
+</li>
+</ol>
+<h3 id="partitions-and-mounting">Partitions and Mounting<a hidden class="anchor" aria-hidden="true" href="#partitions-and-mounting">#</a></h3>
+<p>分区与挂载是操作系统管理磁盘存储的基本概念。</p>
+<p>分区</p>
+<ul>
+<li>一个磁盘可以被分成多个分区，或者一个分区可以跨越多个磁盘。</li>
+<li>每个分区可以是：
+<ul>
+<li><strong>“原始”（raw）</strong>：不包含文件系统，只是一系列的块。</li>
+<li><strong>“已格式化”（cooked）</strong>：包含文件系统。</li>
+</ul>
+</li>
+</ul>
+<p>启动信息</p>
+<ul>
+<li>启动信息可以存储在一个单独的分区中，它有自己的格式，并作为一个镜像加载到内存中，在预定义的位置开始执行。</li>
+</ul>
+<p>引导加载程序（Boot loader）</p>
+<ul>
+<li>知道足够的文件系统结构信息，能够找到并加载内核并开始执行。</li>
+<li>理解多个文件系统和多个操作系统可以占用启动空间。</li>
+</ul>
+<p>根分区</p>
+<ul>
+<li>在启动时挂载的根分区，包含操作系统内核和可能的其他系统文件。</li>
+</ul>
+<p>其他分区</p>
+<ul>
+<li>其他分区可以在启动时自动挂载，或者稍后手动挂载。</li>
+</ul>
+<p>挂载时检查</p>
+<ul>
+<li>在挂载时，会检查文件系统的一致性。
+<ul>
+<li>通过请求设备驱动程序读取目录并验证目录是否具有预期的格式。</li>
+<li>检查所有元数据是否正确。
+<ul>
+<li>如果不正确，则修复后重试。</li>
+<li>如果正确，则添加到挂载表中，允许访问。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>挂载表（Mount table）</p>
+<ul>
+<li>包含已挂载文件系统的信息。</li>
+</ul>
+<p>分区允许操作系统将磁盘空间划分为独立的区域，每个区域可以独立管理和挂载。挂载是操作系统识别和准备访问文件系统的过程。通过挂载表，系统可以跟踪所有已挂载的文件系统及其相关信息。这些概念对于操作系统有效管理存储和确保数据的完整性至关重要。</p>
+<h3 id="virtual-file-systems">Virtual File Systems<a hidden class="anchor" aria-hidden="true" href="#virtual-file-systems">#</a></h3>
+<p>现代操作系统需要同时支持多种类型的文件系统。这是如何实现的，以及用户如何在不同类型的文件系统之间无缝切换？</p>
+<p>虚拟文件系统（Virtual File System, VFS）</p>
+<ol>
+<li>
+<p><strong>支持多种文件系统</strong>：</p>
+<ul>
+<li>操作系统必须能够支持多种不同的文件系统类型，包括网络文件系统。</li>
+</ul>
+</li>
+<li>
+<p><strong>集成到目录结构中</strong>：</p>
+<ul>
+<li>操作系统如何允许多种类型的文件系统被集成到一个目录结构中？</li>
+</ul>
+</li>
+<li>
+<p><strong>用户无缝切换</strong>：</p>
+<ul>
+<li>用户如何在文件系统空间中无缝地在不同文件系统类型之间移动？</li>
+</ul>
+</li>
+</ol>
+<p>VFS的实现方法</p>
+<ul>
+<li>大多数操作系统（包括Unix）使用面向对象的技术来实现文件系统，这就是VFS。</li>
+</ul>
+<p>VFS的功能</p>
+<ol>
+<li>
+<p><strong>允许不同的文件系统类型在同一个结构内实现</strong>：</p>
+<ul>
+<li>这包括本地文件系统和网络文件系统。</li>
+</ul>
+</li>
+<li>
+<p><strong>简化、组织和模块化实现</strong>：</p>
+<ul>
+<li>通过数据结构和过程来隔离基本的系统调用功能与实现细节。</li>
+</ul>
+</li>
+</ol>
+<p>VFS如何工作</p>
+<ol>
+<li>
+<p><strong>将文件系统通用操作与实现细节分离</strong>：</p>
+<ul>
+<li>实现可以是众多文件系统类型之一，或者是网络文件系统。</li>
+</ul>
+</li>
+<li>
+<p><strong>实现了节点（vnodes）</strong>：</p>
+<ul>
+<li>节点持有索引节点（inodes）或网络文件的详细信息。</li>
+</ul>
+</li>
+<li>
+<p><strong>将操作分派给适当的文件系统实现例程</strong>：</p>
+<ul>
+<li>这样用户通过相同的系统调用接口（API）就可以访问不同类型的文件系统。</li>
+</ul>
+</li>
+<li>
+<p><strong>API针对的是VFS接口</strong>：</p>
+<ul>
+<li>而不是任何特定类型的文件系统。</li>
+</ul>
+</li>
+</ol>
+<p>综上所述，VFS提供了一个抽象层，使得操作系统可以通过一个统一的接口与多种不同的文件系统交互。这样，无论用户正在访问的是本地文件系统、外部存储设备上的文件系统，还是网络文件系统，体验都是一致的。VFS的设计允许操作系统开发者在不改变用户界面的情况下，增加对新文件系统类型的支持。</p>
+<h2 id="directory-implementation">Directory Implementation<a hidden class="anchor" aria-hidden="true" href="#directory-implementation">#</a></h2>
+<p>在文件系统中，文件名通常与它们数据块的指针关联，这样的结构可以用多种方式组织：</p>
+<p>线性列表</p>
+<ul>
+<li><strong>优点</strong>：编程简单。</li>
+<li><strong>缺点</strong>：执行时间消耗大，因为每次搜索都需要遍历整个列表。
+<ul>
+<li><strong>线性搜索时间</strong>：查找文件时可能需要遍历整个文件列表，这在文件数量很多时效率低下。</li>
+</ul>
+</li>
+</ul>
+<p>排序列表</p>
+<ul>
+<li>通过对文件名列表排序，可以使用二分搜索，这样可以减少平均搜索时间。</li>
+</ul>
+<p>平衡树</p>
+<ul>
+<li>平衡树（如AVL树或红黑树）可以进一步优化搜索时间，因为它们保证了在最坏的情况下仍然具有较好的搜索效率。</li>
+</ul>
+<p>哈希表</p>
+<ul>
+<li>使用哈希数据结构的线性列表可以减少目录搜索时间。</li>
+<li><strong>碰撞问题</strong>：两个文件名可能映射到同一哈希位置（哈希冲突）。
+<ul>
+<li><strong>链式溢出</strong>：一种解决哈希冲突的方法，即在冲突发生时使用链表将冲突的元素连接起来。</li>
+</ul>
+</li>
+<li><strong>困难</strong>：
+<ul>
+<li><strong>固定大小</strong>：哈希表的大小通常是固定的，这可能限制了文件系统的扩展性。</li>
+<li><strong>哈希函数选择</strong>：一个好的哈希函数应该减少冲突，同时均匀地分布数据。选择或设计一个适合文件系统需求的哈希函数可能具有挑战性。</li>
+</ul>
+</li>
+</ul>
+<h2 id="allocation-methods">Allocation Methods<a hidden class="anchor" aria-hidden="true" href="#allocation-methods">#</a></h2>
+<h3 id="contiguous-allocation">Contiguous Allocation<a hidden class="anchor" aria-hidden="true" href="#contiguous-allocation">#</a></h3>
+<ul>
+<li>将一组连续的磁盘块一次性分配给文件。</li>
+<li>记录文件<strong>起始位置</strong>和<strong>长度</strong>。</li>
+<li>它支持<strong>顺序访问和直接访问</strong>。</li>
+<li>优势
+<ul>
+<li><strong>读写性能高</strong>：由于数据块是连续的，读取文件时磁头移动最小，可以快速连续地读写数据。</li>
+<li><strong>管理简单</strong>：文件系统不需要复杂的算法来跟踪文件的各个部分，因为它们总是在一起的。</li>
+<li><strong>不会产生外部碎片</strong>：每个文件保存为一连串连续的块，因此不会在文件之间留下未使用的空间。</li>
+</ul>
+</li>
+<li>逻辑地址转物理地址
+<ul>
+<li>假设文件开始于磁盘上的块号 <code>B</code>，并且每个块有 <code>S</code> 个字节。如果你想访问文件中的逻辑地址 <code>L</code>（例如，文件的第 <code>L</code> 个字节），你可以使用以下步骤来找到对应的物理地址：
+<ol>
+<li>计算逻辑地址 <code>L</code> 所在的块号：<code>BlockNum = L / S</code>。</li>
+<li>计算逻辑地址 <code>L</code> 在其块内的偏移量：<code>Offset = L % S</code>。</li>
+<li>然后，物理块号就是 <code>PhysicalBlock = B + BlockNum</code>。</li>
+<li>物理地址就是 <code>PhysicalBlock</code> 块的起始地址加上 <code>Offset</code>。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231230174756505.png" alt="image-20231230174756505" style="zoom:50%;" />
+<h3 id="linked-allocation">Linked Allocation<a hidden class="anchor" aria-hidden="true" href="#linked-allocation">#</a></h3>
+<ul>
+<li>链接分配是一种基于单个块的分配方式，每个文件都是一组散布在磁盘上的磁盘块的链表。</li>
+<li>目录包含<strong>第一个和最后一个块的指针</strong>，每个块包含指向链表中<strong>下一个块的指针</strong>。</li>
+<li>没有外部碎片化，任何空闲块都可以用于满足请求。</li>
+<li>缺点是：没有随机访问，空间用于指针，可靠性较差。</li>
+<li>访问第n块逻辑块时需要依次读$0-(n-1)$块，即$n-1$次磁盘IO</li>
+<li>逻辑地址转物理地址
+<ul>
+<li>假设你要访问文件的第 <code>L</code> 字节，这里的 <code>L</code> 是文件内的逻辑地址：
+<ol>
+<li><strong>确定起始块</strong>：从文件的目录项中获取指向文件第一个数据块的指针。</li>
+<li><strong>计算块号</strong>：确定 <code>L</code> 所在的数据块。这需要知道每个数据块的大小 <code>S</code>（不包括存储下一个块指针的空间）。计算逻辑地址 <code>L</code> 所在的数据块编号为 <code>BlockNum = L / S</code>。</li>
+<li><strong>遍历数据块链</strong>：从文件的第一个数据块开始，遵循每个块中的指针，直到到达第 <code>BlockNum</code> 个块。</li>
+<li><strong>计算块内偏移量</strong>：确定 <code>L</code> 在找到的数据块内的位置，即块内偏移量 <code>Offset = L % S</code>。</li>
+<li><strong>定位物理地址</strong>：使用块号和块内偏移量来确定数据的物理地址。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231230174907377.png" alt="image-20231230174907377" style="zoom:50%;" />
+<h3 id="indexed-allocation">Indexed Allocation<a hidden class="anchor" aria-hidden="true" href="#indexed-allocation">#</a></h3>
+<ul>
+<li>每个文件都有自己的索引块，索引块是一个磁盘块地址的数组。</li>
+<li>目录包含<strong>索引块的块号</strong>。</li>
+<li>索引块可以避免外部碎片化，并实现文件的随机访问。</li>
+<li>逻辑地址转物理地址
+<ul>
+<li>假设文件最大大小为256KB，块大小为1KB，逻辑地址为 <code>LA</code>：</li>
+<li>一级索引分配
+<ol>
+<li>
+<p><strong>计算逻辑块号和块内偏移</strong>：</p>
+<ul>
+<li>$Q = \frac{LA}{1024}$：确定逻辑地址 <code>LA</code> 所在的数据块编号。</li>
+<li>$R = LA \mod 1024$：确定 <code>LA</code> 在其数据块中的偏移量。</li>
+</ul>
+</li>
+<li>
+<p><strong>在索引表中找到相应的数据块</strong>：</p>
+<ul>
+<li>使用Q作为索引，在索引块中找到指向实际数据块的指针。</li>
+<li>该指针指向的是文件中第Q个块的物理位置。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>二级索引分配
+<ol>
+<li><strong>第一级索引块号 ( Q1 )</strong> 和 <strong>第一级块内偏移 ( R1 )</strong>：
+<ul>
+<li>$Q1 = \frac{LA}{1024}$</li>
+<li>$Q2 = \frac{Q1}{256}$ ：第二级索引块序号。</li>
+<li>$R2 = Q1 \mod 256$：第二级索引块内偏移。</li>
+</ul>
+</li>
+<li>使用 ( Q2 ) 在外索引块中找到内索引块的物理块号；然后使用 ( R2 ) 在该内索引块中找到实际数据块的物理块号。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231230180042034.png" alt="image-20231230180042034" style="zoom:50%;" />
+<h3 id="performance">Performance<a hidden class="anchor" aria-hidden="true" href="#performance">#</a></h3>
+<p>文件访问方式的选择取决于文件访问类型。</p>
+<p>对于连续访问，索引块和数据块的连续分配方式比较适合。而对于链接访问，索引块和数据块的链接分配方式更适合。</p>
+<p>在文件创建时声明访问类型，可以选择连续分配或链接分配。索引分配方式更复杂，需要根据索引结构、文件大小以及所需块的位置来决定。</p>
+<p>单块访问可能需要2次I/O操作来读取索引块，然后1次操作读取数据块。或者需要3次I/O操作来读取2次索引块，然后1次操作读取数据块。群集可以提高吞吐量，减少CPU开销，将连续分配与索引分配结合使用，对于小文件(最多3-4个块)使用连续分配，如果文件变得很大，则自动切换到索引分配。</p>
+<h2 id="free-space-management">Free-Space Management<a hidden class="anchor" aria-hidden="true" href="#free-space-management">#</a></h2>
+<h3 id="bit-map--bit-vector">Bit map / Bit vector<a hidden class="anchor" aria-hidden="true" href="#bit-map--bit-vector">#</a></h3>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231230181225908.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231230181225908"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231230181249096.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231230181249096"
+	
+	
+></p>
+<h3 id="linked-list">Linked list<a hidden class="anchor" aria-hidden="true" href="#linked-list">#</a></h3>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231230181336671.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231230181336671"
+	
+	
+></p>
+<h3 id="grouping">Grouping<a hidden class="anchor" aria-hidden="true" href="#grouping">#</a></h3>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231230181440971.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231230181440971"
+	
+	
+></p>
+<h3 id="counting">Counting<a hidden class="anchor" aria-hidden="true" href="#counting">#</a></h3>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231230181458449.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231230181458449"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.css"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.js"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        &copy; 
+        
+        2024 Bethel<br>共 97.40k 字 · 共 10 篇文章
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://stack.jimmycai.com/" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> 由 <a href="https://jimmycai.com/" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
+
+
+<script src="https://mecdn.mcserverx.com/gh/zhixuan2333/gh-blog/master/js/nprogress.min.js" integrity="sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://mecdn.mcserverx.com/gh/zhixuan2333/gh-blog/master/css/nprogress.css" integrity="sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE" crossorigin="anonymous" />
+<script>
+    NProgress.start();
+    document.addEventListener("readystatechange", () => {
+        if (document.readyState === "interactive") NProgress.inc(0.8);
+        if (document.readyState === "complete") NProgress.done();
+    });
+</script>
+    </body>
+</html>

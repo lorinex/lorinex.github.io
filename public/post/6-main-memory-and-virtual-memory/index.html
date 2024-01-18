@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Main Memory Background 计算机内存由大量存储单元组成，每个单元有地址。程序需要将指令和数据加载到内存中才能运行。 内存和寄存器是CPU可以直接访问的存储单元。寄'>
+<title>6 Main Memory And Virtual Memory | Bethel's Blog</title>
+
+<link rel='canonical' href='https://www.xxx.blog/post/6-main-memory-and-virtual-memory/'>
+
+<link rel="stylesheet" href="/scss/style.min.c3c7ecff622b4ad3ac6aacf17244c017cc674f0e82b470bfb8f4de85243313d0.css"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"K3aYNEt3ZeYoZwhE",ck:"K3aYNEt3ZeYoZwhE"})</script>
+<script async src="https://umami.xalaok.top/uanalytics" data-website-id="095ee454-e560-4d9b-bf1c-869f8529c17f"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script><meta property='og:title' content='6 Main Memory And Virtual Memory'>
+<meta property='og:description' content='Main Memory Background 计算机内存由大量存储单元组成，每个单元有地址。程序需要将指令和数据加载到内存中才能运行。 内存和寄存器是CPU可以直接访问的存储单元。寄'>
+<meta property='og:url' content='https://www.xxx.blog/post/6-main-memory-and-virtual-memory/'>
+<meta property='og:site_name' content='Bethel'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-12-25T19:54:47&#43;00:00'/><meta property='article:modified_time' content='2023-12-25T19:54:47&#43;00:00'/>
+<meta name="twitter:title" content="6 Main Memory And Virtual Memory">
+<meta name="twitter:description" content="Main Memory Background 计算机内存由大量存储单元组成，每个单元有地址。程序需要将指令和数据加载到内存中才能运行。 内存和寄存器是CPU可以直接访问的存储单元。寄">
+    <link rel="shortcut icon" href="/favicon.png" />
+<link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont@1.7.0/lxgwwenkaigbscreen.css" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/tx_hu92c04046da3d4074953cad185e3935e5_62559_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Bethel</a></h1>
+            <h2 class="site-description">Live and learn. ✍️</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-high" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" />
+  <path d="M6.343 17.657l-1.414 1.414" />
+  <path d="M6.343 6.343l-1.414 -1.414" />
+  <path d="M17.657 6.343l1.414 -1.414" />
+  <path d="M17.657 17.657l1.414 1.414" />
+  <path d="M4 12h-2" />
+  <path d="M12 4v-2" />
+  <path d="M20 12h2" />
+  <path d="M12 20v2" />
+</svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+  <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+  <path d="M19 11h2m-1 -1v2" />
+</svg>
+                    <span>深色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#background">Background</a></li>
+    <li><a href="#swapping">Swapping</a></li>
+    <li><a href="#contiguous-memory-allocation">Contiguous Memory Allocation</a>
+      <ol>
+        <li><a href="#fixed-partitioning">Fixed Partitioning</a></li>
+        <li><a href="#placement-algorithm-with-partitions">Placement Algorithm with Partitions</a></li>
+        <li><a href="#variable-partition">Variable-partition</a></li>
+        <li><a href="#dynamic-storage-allocation-problem">Dynamic Storage-Allocation Problem</a></li>
+        <li><a href="#fragmentation">Fragmentation</a></li>
+      </ol>
+    </li>
+    <li><a href="#paging">Paging</a>
+      <ol>
+        <li><a href="#paging-1">Paging</a></li>
+        <li><a href="#address-structure">Address structure</a></li>
+        <li><a href="#fragmentation-1">Fragmentation</a></li>
+        <li><a href="#hardware-support">Hardware support</a></li>
+        <li><a href="#tlb---translation-look-aside-buffer">TLB &ndash;Translation Look-aside Buffer</a></li>
+        <li><a href="#effective-access-time-eat">Effective Access Time (EAT)</a></li>
+        <li><a href="#memory-protection">Memory Protection</a></li>
+        <li><a href="#shared-pages">Shared Pages</a></li>
+      </ol>
+    </li>
+    <li><a href="#structure-of-the-page-table">Structure of the Page Table</a>
+      <ol>
+        <li><a href="#hierarchical-paging">Hierarchical Paging</a></li>
+        <li><a href="#hashed-page-tables">Hashed Page Tables</a></li>
+        <li><a href="#inverted-page-tables">Inverted Page Tables</a></li>
+      </ol>
+    </li>
+    <li><a href="#segmentation">Segmentation</a>
+      <ol>
+        <li><a href="#segmentation-architecture">Segmentation Architecture</a></li>
+        <li><a href="#fragmentation-2">Fragmentation</a></li>
+      </ol>
+    </li>
+    <li><a href="#segmentation-with-paging">Segmentation With Paging</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#background-1">Background</a></li>
+    <li><a href="#demand-paging">Demand Paging</a>
+      <ol>
+        <li><a href="#valid-invalid-bit">Valid-Invalid Bit</a></li>
+        <li><a href="#steps-in-handling-a-page-fault">Steps in Handling a Page Fault</a></li>
+        <li><a href="#aspects-of-demand-paging">Aspects of Demand Paging</a></li>
+        <li><a href="#stages-in-demand-paging-worse-case">Stages in Demand Paging (worse case)</a></li>
+        <li><a href="#performance-of-demand-paging">Performance of Demand Paging</a></li>
+      </ol>
+    </li>
+    <li><a href="#copy-on-write">Copy-on-write</a></li>
+    <li><a href="#page-replacement">Page Replacement</a>
+      <ol>
+        <li><a href="#basic-page-replacement">Basic Page Replacement</a></li>
+        <li><a href="#reference-strings">reference strings</a></li>
+        <li><a href="#fifo-first-in-first-out-algorithm">FIFO (First-In-First-Out) Algorithm</a></li>
+        <li><a href="#optimal-algorithm">Optimal Algorithm</a></li>
+        <li><a href="#least-recently-used-algorithm">Least Recently Used Algorithm</a></li>
+        <li><a href="#lru-implementation">LRU implementation</a></li>
+        <li><a href="#lru-approximation-algorithms">LRU Approximation Algorithms</a></li>
+        <li><a href="#page-buffering-algorithm">Page-Buffering Algorithm</a></li>
+      </ol>
+    </li>
+    <li><a href="#allocation-of-frames">Allocation of Frames</a>
+      <ol>
+        <li><a href="#fixed-allocation">Fixed Allocation</a></li>
+        <li><a href="#priority-allocation">Priority Allocation</a></li>
+        <li><a href="#global-vs-local-replacement">Global vs. Local replacement</a></li>
+      </ol>
+    </li>
+    <li><a href="#thrashing">Thrashing</a>
+      <ol>
+        <li><a href="#thrashing-1">Thrashing</a></li>
+        <li><a href="#working-set-model">Working-Set Model</a></li>
+        <li><a href="#page-fault-frequency-scheme">Page-Fault Frequency Scheme</a></li>
+      </ol>
+    </li>
+    <li><a href="#memory-mapped-file">Memory-mapped file</a></li>
+    <li><a href="#allocating-kernel-memory">Allocating Kernel Memory</a>
+      <ol>
+        <li><a href="#buddy-system">Buddy System</a></li>
+        <li><a href="#slab-allocation">Slab Allocation</a></li>
+      </ol>
+    </li>
+    <li><a href="#other-considerations">Other considerations</a>
+      <ol>
+        <li><a href="#prepaging">Prepaging</a></li>
+        <li><a href="#page-size">Page Size</a></li>
+        <li><a href="#tlb-reach">TLB Reach</a></li>
+        <li><a href="#inverted-page-tables-1">Inverted Page Tables</a></li>
+        <li><a href="#program-structure">Program Structure</a></li>
+        <li><a href="#io-interlock">I/O interlock</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/os/" style="background-color: #2a9d8f; color: #fff;">
+                操作系统
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/6-main-memory-and-virtual-memory/">6 Main Memory And Virtual Memory</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-12-25</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 33 分钟
+                </time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+  <path d="M13.5 6.5l4 4" />
+</svg>
+                <time class="article-words">
+                    字数: 16293 字
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="main-memory">Main Memory<a hidden class="anchor" aria-hidden="true" href="#main-memory">#</a></h1>
+<h2 id="background">Background<a hidden class="anchor" aria-hidden="true" href="#background">#</a></h2>
+<p>计算机内存由大量存储单元组成，每个单元有地址。程序需要将指令和数据加载到内存中才能运行。
+内存和寄存器是CPU可以直接访问的存储单元。寄存器访问速度快，内存访问速度较慢。
+Cache位于内存和CPU之间，用于暂存常用数据，以加速CPU的访问。
+指令执行需要经历取指令、解码、取操作数、执行和存储结果等多个步骤。内存访问是其中较慢的一步。
+为了保护内存，需要硬件提供地址映射功能，确保每个进程只能访问自己的地址空间。
+内存管理的目标是高效地为多个进程分配内存，同时满足进程对内存的需求。</p>
+<h2 id="swapping">Swapping<a hidden class="anchor" aria-hidden="true" href="#swapping">#</a></h2>
+<p>进程可以暂时从内存中交换到备份存储设备上，然后被重新调入内存以继续执行。
+进程的物理内存空间可以超过物理内存的大小。
+备份存储设备Backing store - fast disk，足以容纳所有用户的内存映像副本。
+交换出的进程是否会被交换回它之前使用的相同内存空间，取决于地址绑定方法。
+Roll out, Roll in - 基于优先级的调度算法。
+就绪队列 - 包含所有在备份存储设备上或在内存中并且准备运行的过程。
+调度程序 - CPU调度器决定执行一个进程时被调用。
+<strong>如果下一个进程不在内存中，且没有空闲内存区域，调度程序会交换掉当前内存中的一个进程，并调入所需进程。</strong>
+上下文切换时间可能非常高。
+总传输时间与交换的内存量成正比。
+用户必须告知系统其对内存需求的任何变化。
+永不交换带有未决I/O操作的过程。
+标准交换在现代操作系统中不使用。</p>
+<h2 id="contiguous-memory-allocation">Contiguous Memory Allocation<a hidden class="anchor" aria-hidden="true" href="#contiguous-memory-allocation">#</a></h2>
+<ol>
+<li>内存需要同时满足操作系统和用户进程的需求。</li>
+<li>内存通常被划分为操作系统分区(低内存，包含中断向量)和用户进程分区(高内存)。</li>
+<li>用户空间进一步划分为多个分区。</li>
+<li>对每个进程进行单分区分配。</li>
+<li>使用重定位寄存器方案（relocation-register scheme）来保护用户进程，使其相互隔离，并防止改变操作系统代码和数据。
+<ol>
+<li>重定位寄存器Relocation/base register包含最小物理地址值。</li>
+<li>限制寄存器limit register包含逻辑地址范围。</li>
+<li>每个逻辑地址必须小于限制寄存器的值。</li>
+</ol>
+</li>
+</ol>
+<p>MMU动态映射逻辑地址到物理地址，调度程序加载重定位和限制寄存器，逻辑地址必须小于限制寄存器的值，否则会导致越界访问，触发trap异常。</p>
+<blockquote>
+<p>重定位寄存器的作用：</p>
+<ol>
+<li><strong>基址调整</strong>：重定位寄存器的主要作用是存储一个基址值，这个值在运行时被加到进程的虚拟地址上，以产生实际的物理地址。这种机制允许系统动态地改变进程在物理内存中的位置。</li>
+<li><strong>支持进程隔离</strong>：通过使用重定位寄存器，操作系统可以确保一个进程不能访问到其他进程的内存空间。这提高了系统的安全性和稳定性。</li>
+<li><strong>内存保护</strong>：重定位寄存器也被用于内存保护。操作系统可以设置边界，以保证进程只能访问分配给它的内存区域。如果进程尝试访问超出这个范围的内存，会触发一个异常，例如段错误。</li>
+<li><strong>简化链接和加载</strong>：在程序加载时，重定位寄存器使得程序无需知道其在物理内存中的实际位置。程序可以在编译时使用相对地址，加载时由操作系统通过重定位寄存器调整这些地址。</li>
+<li><strong>上下文切换时的更新</strong>：在多任务操作系统中，当CPU从一个进程切换到另一个进程时，操作系统会更新重定位寄存器以反映新进程的内存基址。</li>
+<li><strong>与虚拟内存的关系</strong>：在现代操作系统中，虚拟内存的使用使得重定位寄存器的角色变得不那么直接显著，因为地址转换更多地依赖于分页机制和页表。然而，在某些体系结构和早期系统中，重定位寄存器仍然是内存管理的重要组成部分。</li>
+</ol>
+</blockquote>
+<h3 id="fixed-partitioning">Fixed Partitioning<a hidden class="anchor" aria-hidden="true" href="#fixed-partitioning">#</a></h3>
+<p>固定分区方式将内存分成多个固定大小的分区(partitions)。</p>
+<ul>
+<li>如果分区大小等于或小于进程大小，则可以将进程加载到可用的分区中。</li>
+<li>所有分区都充满后，操作系统可以将进程从某个分区交换出去。</li>
+<li>如果程序大小超过分区大小，程序员需要设计程序使用覆盖(overlay)技术。</li>
+<li>分区大小不同时，内存使用效率低，任何大小程序都会占用整个分区，导致内部碎片。</li>
+</ul>
+<h3 id="placement-algorithm-with-partitions">Placement Algorithm with Partitions<a hidden class="anchor" aria-hidden="true" href="#placement-algorithm-with-partitions">#</a></h3>
+<p>内存分区的放置算法</p>
+<ul>
+<li>相等大小分区(Equal-size partitions)：所有分区大小相等，使用哪个分区并不重要。</li>
+<li>不等大小分区(Unequal-size partitions)：可以为每个进程分配其最适合的较小分区。为每个分区创建一个队列，进程的分配方式要尽量减少分区内的浪费内存。</li>
+<li>数据结构：每个分区包含分区ID、基地址、限制地址、状态等信息。</li>
+</ul>
+<h3 id="variable-partition">Variable-partition<a hidden class="anchor" aria-hidden="true" href="#variable-partition">#</a></h3>
+<p>可变分区(Variable-partition scheme)内存管理方式
+可变分区(也称为动态分区，Dynamic Partitioning)是一种动态分配内存的方式。</p>
+<ul>
+<li>内存被分成大小和数量可变的分区(partitions)。</li>
+<li>初始时，所有内存都可供用户进程使用，形成一个大的空闲区(hole)。</li>
+<li>内存中散布着各种大小的空闲区。</li>
+<li>操作系统维护一个表，包含哪些分区已被分配以及给哪个进程使用等信息。</li>
+<li>当一个进程到达时，它从足够大的空闲区中分配内存。</li>
+<li>进程退出时，释放其分区，相邻的空闲分区合并。</li>
+</ul>
+<h3 id="dynamic-storage-allocation-problem">Dynamic Storage-Allocation Problem<a hidden class="anchor" aria-hidden="true" href="#dynamic-storage-allocation-problem">#</a></h3>
+<p>动态存储分配问题是如何从一组空闲区中满足大小为n的请求。</p>
+<ul>
+<li>First-fit：选择第一个足够大的空闲区分配。</li>
+<li>Best-fit：选择最小且足够大的空闲区分配。</li>
+<li>Worst-fit：选择最大的空闲区分配。
+首次适应法和最佳适应法在速度和存储利用率方面优于最差适应法。但是这些算法都存在外部碎片问题。</li>
+</ul>
+<h3 id="fragmentation">Fragmentation<a hidden class="anchor" aria-hidden="true" href="#fragmentation">#</a></h3>
+<p>内存碎片(Fragmentation)</p>
+<ul>
+<li>外部碎片(External Fragmentation)：存在足够的内存空间来满足请求，但是这些内存空间不连续。</li>
+<li>内部碎片(Internal Fragmentation)：分配的内存可能比请求的内存略大，这个大小差异是分区内的内存，但是没有被使用。</li>
+<li>对首次适应法(First Fit)的统计分析表明，给定N个块被分配，另外0.5N个块将因碎片化而无法使用。</li>
+<li>1/3的内存可能无法使用 -&gt; 50%规则。
+该段内容主要介绍了内存碎片(Fragmentation)的问题以及通过整理内存来减少碎片的方法。</li>
+<li>通过整理内存(Compaction)来减少外部碎片，即将所有空闲内存移动到一起形成一个大的内存块。整理内存需要在执行时动态地进行，并且需要锁定内存中的作业以避免在进行I/O操作时出现错误。</li>
+<li>备份存储(Backing store)也会存在类似的问题。</li>
+</ul>
+<h2 id="paging">Paging<a hidden class="anchor" aria-hidden="true" href="#paging">#</a></h2>
+<h3 id="paging-1">Paging<a hidden class="anchor" aria-hidden="true" href="#paging-1">#</a></h3>
+<ol>
+<li><strong>进程的物理地址空间可以是离散的</strong>：这意味着一个进程的不同部分可以存储在物理内存的不同位置，而不是必须连续。</li>
+<li><strong>实现分页的基本方法</strong>：
+<ul>
+<li><strong>物理内存分块</strong>：物理内存被划分为固定大小的块，称为帧（frames）。</li>
+<li><strong>逻辑内存分块</strong>：逻辑内存（即进程视角下的内存）也被划分为与帧大小相同的块，称为页（pages）。</li>
+<li><strong>备份存储分块</strong>：备份存储（如硬盘）被划分为与内存帧相同大小的块，以便存储不在物理内存中的页。</li>
+<li><strong>页的大小</strong>：页的大小通常是2的幂次方，范围在512字节到16MB之间。</li>
+</ul>
+</li>
+<li><strong>页的加载与内存分配</strong>：
+<ul>
+<li>当进程需要执行时，它的页被加载到内存中任何可用的帧中。</li>
+<li>进程在帧可用时被分配内存，这有助于避免外部碎片（内存中未被使用的空间）和不同大小内存块带来的问题。</li>
+</ul>
+</li>
+<li><strong>运行进程所需的内存分配</strong>：要运行一个包含n个页的程序，需要找到n个空闲的帧并将程序加载到这些帧中。</li>
+<li><strong>页表的作用</strong>：
+<ul>
+<li>操作系统为每个进程维护一个页表（page table）。</li>
+<li>页表包含每个页在物理内存中的帧位置信息。</li>
+<li>页表用于将进程的逻辑地址转换为物理地址。</li>
+</ul>
+</li>
+<li><strong>内部碎片问题</strong>：内部碎片（internal fragmentation）通常发生在内存分配的最后一个页中，当页未完全使用时。</li>
+<li><strong>逻辑地址的分解</strong>：
+<ul>
+<li>每个逻辑地址分为两部分：页号（p）和页偏移（d）。</li>
+<li>页号用作在页表中索引，以找到每个页在物理内存中的基地址。</li>
+<li>页偏移与基地址组合，定义了发送给内存单元的实际物理地址。</li>
+</ul>
+</li>
+<li>内存访问次数
+<ol>
+<li>对于简单的分页系统，可能只需要一次额外的内存访问来获取页表项。两次访问内存。</li>
+<li>对于多级页表（如现代操作系统中常用的），可能需要多次内存访问。每一级页表都可能需要单独的内存访问。n级页表访问n+1次内存。</li>
+</ol>
+</li>
+</ol>
+<h3 id="address-structure">Address structure<a hidden class="anchor" aria-hidden="true" href="#address-structure">#</a></h3>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/20231225214116.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/20231225215035.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/20231225215145.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<blockquote>
+<p>逻辑地址的大小一般要大于物理地址的大小。</p>
+<p>相等的情况：在某些系统中，逻辑地址空间的大小可以与物理地址空间的大小相等。这通常发生在不使用特殊内存管理技术（如分页或分段）的简单系统中。
+逻辑地址空间大于物理地址空间：在使用虚拟内存技术的系统中，逻辑地址空间通常大于物理地址空间。这是因为虚拟内存允许操作系统利用硬盘空间作为扩展的内存，使得进程看起来拥有比实际物理内存更多的内存。在这种情况下，逻辑地址用于表示进程的地址空间，而物理地址则是实际存储在物理内存中的地址。
+物理地址空间大于逻辑地址空间：这种情况较少见，但在某些特殊的硬件或操作系统设计中可能发生。例如，某些高端服务器或特殊用途的计算机可能具有更大的物理内存，而操作系统可能只允许每个进程访问其中的一部分。
+动态关系：在某些系统中，逻辑地址空间和物理地址空间的大小关系可能不是静态固定的，而是根据当前的内存使用情况和操作系统策略动态变化的。</p>
+</blockquote>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/20231225215613.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/20231225215645.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>页的大小跟帧的大小相同，以便进行无缝映射。</p>
+<h3 id="fragmentation-1">Fragmentation<a hidden class="anchor" aria-hidden="true" href="#fragmentation-1">#</a></h3>
+<p>分页式内存管理避免了外部碎片化，但存在内部碎片化问题。
+例如，如果页面大小为2048字节，进程大小为72766字节，则需要35个页面，但进程只使用了1086字节的内部碎片。
+最坏情况下内部碎片化等于1个页面大小，平均碎片化等于页面大小的一半。
+所以页面大小越小越好吗？不是，因为每个页面表项都需要内存，页面大小越小，需要的页面表项越多。</p>
+<h3 id="hardware-support">Hardware support<a hidden class="anchor" aria-hidden="true" href="#hardware-support">#</a></h3>
+<ol>
+<li>使用一组寄存器用于页表的管理(&lt;256项)。</li>
+<li>对于较大的页表(例如100万项)，页表会保存在主内存中。</li>
+<li>页表基址寄存器(PTBR)指向页表的位置。</li>
+<li>页表长度寄存器(PTLR)表示页表的大小。</li>
+<li>在这种方案中，每次数据/指令访问都需要访问两次内存，一次是页表项，一次是数据/指令。</li>
+<li>为了解决两次内存访问的问题，使用了一种特殊的、小型的、快速查找的硬件高速缓存，称为翻译旁路缓冲(TLBs)或关联内存。</li>
+<li>TLB的功能与内存高速缓存相似，它保存了最近使用的页表项，以加速页号到帧号的映射查找。</li>
+</ol>
+<h3 id="tlb---translation-look-aside-buffer">TLB &ndash;Translation Look-aside Buffer<a hidden class="anchor" aria-hidden="true" href="#tlb---translation-look-aside-buffer">#</a></h3>
+<p>TLB是一个高速的关联存储器，它包含最近使用的页表项。每个TLB项包含两个部分：键和值(页号，帧号)。给定一个逻辑地址，处理器会同时比较所有键，如果找到匹配的键(命中)，则直接获取对应的帧号并形成物理地址；如果没有找到匹配的键(未命中)，则使用逻辑地址中的页号去索引进程的页表以获取帧号。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/20231226101851.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>当TLB未命中时(miss)，会将页表项的值加载到TLB中，以便下次更快地访问。TLB通常比较小(64到1024个条目)。需要考虑替换策略(例如LRU)。一些TLB条目可以永久性地固定下来，以便快速访问，例如关键的内核代码的条目。
+一些TLB在每条目中存储地址空间标识符(ASID),ASID唯一标识每个进程，用于为该进程提供地址空间保护。ASID允许多个不同的进程同时拥有TLB条目。</p>
+<h3 id="effective-access-time-eat">Effective Access Time (EAT)<a hidden class="anchor" aria-hidden="true" href="#effective-access-time-eat">#</a></h3>
+<p>EAT(有效访问时间)是CPU访问内存所需的时间，包括查找TLB的时间和访问内存的时间。其中查找TLB的时间取决于TLB的命中率，即找到页表项的概率。TLB的查找时间是一个常数，假设为ε nanoseconds。访问内存的时间取决于内存的周期时间，假设为θ nanoseconds。
+当TLB命中时，有效访问时间EAT = ε + θ；
+当TLB未命中时，有效访问时间EAT = (ε + 2θ) * (1 - α) + α * θ
+其中α是TLB的命中率。
+例如，如果TLB查找时间为20ns，内存周期时间为100ns, TLB命中率为0.8，则有效访问时间为：
+EAT = (20 + 100) * 0.8 + 20 * 0.2 * 100 = 140ns
+如果TLB查找时间为20ns，内存周期时间为100ns, TLB命中率为0.98，则有效访问时间为：
+EAT = (20 + 100) * 0.98 + 20 * 0.02 * 100 = 122ns</p>
+<h3 id="memory-protection">Memory Protection<a hidden class="anchor" aria-hidden="true" href="#memory-protection">#</a></h3>
+<ol>
+<li>内存保护通过在每个帧(frame)上关联保护位来实现。通常这些保护位保存在页表中。</li>
+<li>RW位可以定义一个页是可读写的还是只读的，还可以添加更多位来指示页是只执行的等。</li>
+<li>页表中的每个条目都带有有效位。
+<ol>
+<li>“有效”表示对应的页在进程的逻辑地址空间内，因此是合法的页。</li>
+<li>“无效”表示对应的页不在进程的逻辑地址空间内。</li>
+<li>也可以使用页表长度寄存器(PTLR)。</li>
+</ol>
+</li>
+<li>任何违反都会导致陷入内核。</li>
+</ol>
+<h3 id="shared-pages">Shared Pages<a hidden class="anchor" aria-hidden="true" href="#shared-pages">#</a></h3>
+<p>Shared Pages是指多个进程共享同一只读(不可变)代码的内存页。这些共享代码必须出现在所有进程的逻辑地址空间中的相同位置。这类似于多个线程共享同一个进程空间。Shared Pages也可以用于进程间通信，如果允许共享读写页的话。
+而Private Pages则是指每个进程都有自己的代码和数据的独立内存页。这些私有的代码和数据页可以在逻辑地址空间的任意位置出现。</p>
+<h2 id="structure-of-the-page-table">Structure of the Page Table<a hidden class="anchor" aria-hidden="true" href="#structure-of-the-page-table">#</a></h2>
+<h3 id="hierarchical-paging">Hierarchical Paging<a hidden class="anchor" aria-hidden="true" href="#hierarchical-paging">#</a></h3>
+<p>层次页表结构：将页表自身也进行分页，可以减少内存占用。常见的有双级页表。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/20231226195032.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/20231226195115.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="hashed-page-tables">Hashed Page Tables<a hidden class="anchor" aria-hidden="true" href="#hashed-page-tables">#</a></h3>
+<p>Hashed Page Tables(散列表页表)在地址空间大于32位时常见。
+散列表中的每个条目包含一个链表，其中元素通过哈希函数散列到同一位置。每个元素包含三个字段：
+(1)虚拟页号
+(2)对应的物理页号
+(3)指向下一个元素的指针
+逻辑页号通过哈希函数散列到散列表中，并与链表中元素的(1)字段进行比较查找匹配项。如果找到匹配项，则提取对应的物理页号(2)。如果没有匹配项，则继续搜索链表中的后续元素以查找匹配逻辑页号。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/20231226195906.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="inverted-page-tables">Inverted Page Tables<a hidden class="anchor" aria-hidden="true" href="#inverted-page-tables">#</a></h3>
+<p>Inverted Page Table(反向页表)是一种内存管理的数据结构，其包含每个真实内存帧(frame)的一个条目，每个条目包含该帧的虚拟地址以及该帧所属进程的地址空间标识符(ASID)等信息。与标准页表相比，反向页表将虚拟地址空间和物理地址空间颠倒了，从而需要额外的地址空间来存储进程的地址空间信息。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/20231226200504.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="segmentation">Segmentation<a hidden class="anchor" aria-hidden="true" href="#segmentation">#</a></h2>
+<p>分段是将程序划分为逻辑上的段（如代码段、数据段、堆段和栈段）的过程，这些段在程序的执行过程中被映射到物理内存。</p>
+<p>程序由多个段组成，每个段是一个逻辑单元，如主程序、过程/函数/方法、公共块、对象、栈/符号表/数组、局部变量/全局变量等。
+段的长度各不相同。
+段内的元素通过相对于段起始地址的偏移来标识。
+分段是一种支持用户对内存这种视图的内存管理方案。
+每个段都有自己的名称和长度。</p>
+<p>以下是决定程序分段的几个关键步骤：</p>
+<ol>
+<li><strong>编译阶段</strong>：
+<ul>
+<li>在编译时，编译器将源代码转换为机器代码，并将其组织成不同的段。</li>
+<li>例如，编译器会将程序的函数和方法放入代码段，静态变量放入数据段，等等。</li>
+</ul>
+</li>
+<li><strong>链接阶段</strong>：
+<ul>
+<li>链接器将编译后的代码（和库代码）合并，形成一个完整的可执行文件。</li>
+<li>在这个过程中，链接器决定了各个段的相对位置，并创建了一个包含这些信息的段表。</li>
+</ul>
+</li>
+<li><strong>加载时</strong>：
+<ul>
+<li>当程序被加载到内存中执行时，操作系统根据可执行文件中的信息，将这些段映射到物理内存。</li>
+<li>操作系统还处理如何为这些段分配内存，以及这些段的保护和权限设置。</li>
+</ul>
+</li>
+<li><strong>动态链接</strong>：
+<ul>
+<li>对于使用动态链接库（DLLs）的程序，某些段可能在程序运行时动态加载。</li>
+<li>这种情况下，具体的段分配可能会在程序执行期间发生，而不是在程序启动时一次性完成。</li>
+</ul>
+</li>
+</ol>
+<h3 id="segmentation-architecture">Segmentation Architecture<a hidden class="anchor" aria-hidden="true" href="#segmentation-architecture">#</a></h3>
+<ul>
+<li>逻辑地址由段号和偏移组成，如&lt;段号，偏移&gt;</li>
+<li>分段表将二维的用户定义地址映射为一维的物理地址，每个表项包含段基址(包含段在内存中的起始物理地址)和段限制(指定段的长度)</li>
+<li>分段表基址寄存器(STBR)指向分段表在内存中的位置</li>
+<li>分段表长度寄存器(STLR)表示程序使用的段数</li>
+<li>如果段号s小于STLR，则段号s是合法的。</li>
+</ul>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231229170935685.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231229170935685"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231229170949879.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231229170949879"
+	
+	
+></p>
+<h3 id="fragmentation-2">Fragmentation<a hidden class="anchor" aria-hidden="true" href="#fragmentation-2">#</a></h3>
+<ul>
+<li>在分段式内存管理中，内存是根据段的大小动态分配的。每个段的大小根据程序的需求而定，并不是固定的。</li>
+<li>然而，随着程序的加载和卸载，内存中会出现不连续的空闲区域。这些零散的空闲区域可能无法被有效利用，尤其是当需要分配一个大的内存段时，即使总空闲内存量足够，但由于这些空闲区域是分散的，无法满足连续内存的需求。</li>
+<li>这种情况称为外部碎片。它发生在已分配内存块的外部，因此得名“外部碎片”。</li>
+</ul>
+<h2 id="segmentation-with-paging">Segmentation With Paging<a hidden class="anchor" aria-hidden="true" href="#segmentation-with-paging">#</a></h2>
+<p>段页式内存管理是一种计算机内存管理技术，它结合了分段和分页两种方法。在这种方案中，地址空间被分成多个段，每个段进一步被划分为多个页。地址映射表在段页式内存管理中扮演着至关重要的角色，它负责将虚拟地址转换为物理地址。下面是段页式内存管理中地址映射的基本过程：</p>
+<ol>
+<li><strong>虚拟地址结构</strong>：在段页式管理中，虚拟地址通常包含两部分——段号和段内偏移。段内偏移进一步分为页号和页内偏移。</li>
+<li><strong>段表</strong>：系统为每个进程维护一个段表，段表存储每个段的信息，如段的基址、大小等。段表还包括指向页表的指针。</li>
+<li><strong>页表</strong>：每个段有一个页表，页表存储页的物理地址信息。页表负责将段内的虚拟页号映射到物理内存的页帧号。</li>
+<li><strong>地址转换过程</strong>：
+<ul>
+<li>根据虚拟地址中的段号，访问段表，获取段的基本信息和对应的页表地址。</li>
+<li>使用虚拟地址中的页号，访问该段的页表，找到对应页的物理帧号。</li>
+<li>将物理帧号与虚拟地址中的页内偏移结合，形成最终的物理地址。</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/20240105205607.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>段页存储不会产生外部碎片，因位先分段，再分页，分页后就离散化了，每个页可以分在内存的任何一个页，这个段页就成了逻辑上的概念，实质上变成了分页的管理，所以按照分页来看，是没有外部碎片的。那些理解成在一个段内再分页的同鞋，你们理解错啦！比如A页和B页逻辑上是在1号段里面，但是分页后，A页可以存在内存的任何地方B页也是，在实际的内存存放这两个页的时候，并不是先在内存化出一个段的长度出来，然后在段内分页的！</p>
+<h1 id="virtual-memory">Virtual Memory<a hidden class="anchor" aria-hidden="true" href="#virtual-memory">#</a></h1>
+<h2 id="background-1">Background<a hidden class="anchor" aria-hidden="true" href="#background-1">#</a></h2>
+<ol>
+<li>代码需要加载到内存中才能执行，但整个程序很少被全部使用到。例如错误代码、不寻常的程序、大的数据结构等只需要程序的一部分代码。</li>
+<li>整个程序代码不需要同时都在内存中。</li>
+<li>考虑执行只部分加载的程序的能力。程序不再受物理内存的限制，每个程序在运行时需要更少的内存，因此可以在相同时间内运行更多的程序。</li>
+<li>提高了CPU利用率和吞吐量，而响应时间和周转时间没有增加。</li>
+<li>加载或交换程序到内存时需要的I/O更少，每个用户程序运行得更快。</li>
+</ol>
+<p>虚拟内存将用户逻辑内存与物理内存分离。其主要优点包括：</p>
+<ol>
+<li>只需要程序的一部分在内存中执行，逻辑地址空间可以比物理地址空间大很多。</li>
+<li>允许多个进程共享逻辑地址空间。</li>
+<li>允许更高效地创建进程。</li>
+<li>可以并发运行更多的程序。</li>
+<li>加载或交换进程时需要的I/O更少。</li>
+<li>按需分配内存，提高内存利用率。</li>
+</ol>
+<p>Virtual-address Space虚拟地址空间是进程在内存中的逻辑视图。
+它从地址0开始，地址连续直到空间结束。
+物理内存以页框(page frames)的形式组织。
+内存管理单元(MMU)将逻辑地址映射到物理地址。
+虚拟地址空间可以比物理内存大。</p>
+<h2 id="demand-paging">Demand Paging<a hidden class="anchor" aria-hidden="true" href="#demand-paging">#</a></h2>
+<p>需求分页是在程序需要使用某页时才将其调入内存，而不是预先将整个程序加载到内存中。它通过延迟换页(Lazy swapper)来避免不必要的内存交换。需求分页由交换程序(Swapper)负责操作整个进程，而页面程序(Pager)负责操作进程中的单个页面。当程序需要某页时，会引用它，如果该页已经在内存中，则无需换页；如果该页不在内存中，则需要检测并将其调入内存。需求分页不需要改变程序的行为，也不需要程序员改变代码。它实现了按需分配内存，提高了内存利用率。</p>
+<h3 id="valid-invalid-bit">Valid-Invalid Bit<a hidden class="anchor" aria-hidden="true" href="#valid-invalid-bit">#</a></h3>
+<p>Valid-Invalid Bit(有效无效位)是与每个页表项相关联的一个位。它表示该页表项所对应的页面是否有效且在内存中。</p>
+<ul>
+<li>如果有效无效位是v，则表示页面有效且在内存中。</li>
+<li>如果有效无效位是i，则表示页面无效或有效但不在内存中。
+初始时，页表中所有页表项的有效无效位都设置为i。
+当一个页面被加载到帧中时，该帧的帧号会被写入页表项，并将有效无效位设置为v。
+在地址转换过程中，如果页表项中的有效无效位是i，则表示产生缺页异常。</li>
+</ul>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231227224400719.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231227224400719"
+	
+	
+></p>
+<h3 id="steps-in-handling-a-page-fault">Steps in Handling a Page Fault<a hidden class="anchor" aria-hidden="true" href="#steps-in-handling-a-page-fault">#</a></h3>
+<ol>
+<li>如果程序访问一个未在内存中的页面，首先会产生一个页面错误中断。</li>
+<li>操作系统会查看一个内部表格(一般指页表，与进程控制块PCB一起保存)来决定如何处理：
+<ul>
+<li>如果是无效的访问，则中止进程。</li>
+<li>如果访问有效但页面不在内存中，则将页面调入内存。</li>
+</ul>
+</li>
+<li>找到一个空闲的帧(frame)。</li>
+<li>通过计划磁盘操作将页面读入帧中。</li>
+<li>重置页面表，将帧号写入页面表项，设置验证位&quot;v&quot;。</li>
+<li>重新启动导致页面错误的指令。</li>
+</ol>
+<h3 id="aspects-of-demand-paging">Aspects of Demand Paging<a hidden class="anchor" aria-hidden="true" href="#aspects-of-demand-paging">#</a></h3>
+<ul>
+<li>纯按需分页是一种极端情况，在进程启动时，内存中没有任何页面。操作系统会将指令指针设置为进程的第一个指令，由于页面不在内存中，会导致缺页异常。</li>
+<li>对于每个进程，在第一次访问时也会发生页面错误。</li>
+<li>实际上，一个指令可能需要访问多个页面，所以会导致多次页面错误。例如，取指令和译码指令从内存中取出两个数字并存储结果，会访问4个页面，导致4次页面错误。但由于参考的局部性，这种痛苦程度会减小。</li>
+<li>按需分页需要硬件支持，包括带有有效位无效位的页表和用于交换的二级存储(交换设备)。</li>
+<li>在缺页异常时，需要重置指令指针，重新启动进程。</li>
+</ul>
+<h3 id="stages-in-demand-paging-worse-case">Stages in Demand Paging (worse case)<a hidden class="anchor" aria-hidden="true" href="#stages-in-demand-paging-worse-case">#</a></h3>
+<p>需求页面的最坏情况下的步骤如下：</p>
+<ol>
+<li>中断到操作系统。</li>
+<li>保存用户寄存器和进程状态。</li>
+<li>确定中断是一个页面故障。</li>
+<li>检查页面引用是否合法，并确定页面在磁盘上的位置。</li>
+<li>从磁盘向一个空闲帧发出读取请求：
+① 在此设备队列中等待读取请求得到服务。
+② 等待设备查找和/或延迟时间。
+③ 开始将页面传输到空闲帧。</li>
+<li>在等待期间，将CPU分配给其他用户。</li>
+<li>从磁盘输入/输出子系统接收中断(I/O完成)。</li>
+<li>保存其他用户的寄存器和进程状态。</li>
+<li>确定中断来自磁盘。</li>
+<li>修改页表和其他表，以显示页面现在在内存中。</li>
+<li>准备好，等待CPU再次分配给此进程。</li>
+<li>恢复用户寄存器，进程状态和新页表，然后继续中断的指令。</li>
+</ol>
+<h3 id="performance-of-demand-paging">Performance of Demand Paging<a hidden class="anchor" aria-hidden="true" href="#performance-of-demand-paging">#</a></h3>
+<p>有效访问时间EAT=(1-p)×memory access time+p×page fault service time</p>
+<h2 id="copy-on-write">Copy-on-write<a hidden class="anchor" aria-hidden="true" href="#copy-on-write">#</a></h2>
+<p>COW(Copy-on-Write)允许父进程和子进程在内存中共享相同的页面。只有当一个进程修改共享页面时，才会进行页面复制。这可以更高效地进行进程创建，因为只需要复制修改过的页面。只需要标记可以修改的页面为COW即可。</p>
+<p>空闲页面通常从一个空闲页面池中分配。池中应该总是有空的页面帧，以便快速执行按需页面替换。在分配页面之前，通常会使用零填充技术，将页面清零，擦除其之前的内容。
+<code>vfork()</code>不使用写时复制技术。它通过挂起父进程并让子进程使用父进程的地址空间来实现高效的进程创建。
+如果子进程修改了父进程的地址空间中的任何页面，这些修改在父进程恢复时将可见。
+<code>vfork()</code>的设计是让子进程立即调用<code>exec()</code>函数。它是一种非常高效的进程创建方法，有时用于实现UNIX命令行shell接口。</p>
+<h2 id="page-replacement">Page Replacement<a hidden class="anchor" aria-hidden="true" href="#page-replacement">#</a></h2>
+<ol>
+<li>页面替换是因为进程页面和内核/I/O缓冲区等都需要使用内存空间。</li>
+<li>需要决定为进程页面、内核和I/O缓冲区等分配多少内存空间。</li>
+<li>可以为I/O缓冲区预留一个固定的内存百分比。也可以让用户进程和I/O子系统竞争使用全部内存。</li>
+<li>如果内存中没有空闲页面，可以终止用户进程、交换进程或者进行页面替换。</li>
+<li>页面替换可以提高内存利用率，让更多进程并发执行，对用户透明。</li>
+</ol>
+<h3 id="basic-page-replacement">Basic Page Replacement<a hidden class="anchor" aria-hidden="true" href="#basic-page-replacement">#</a></h3>
+<p>基本页面替换算法包括以下步骤：</p>
+<ol>
+<li>在磁盘上查找所需页面的位置。</li>
+<li>找到一个空闲页面帧：
+<ul>
+<li>如果有一个空闲页面帧，就使用它。</li>
+<li>如果没有空闲页面帧，使用页面替换算法选择一个牺牲页面帧。</li>
+<li>将牺牲页面帧写入磁盘，如果脏页面，还需要更改页面和页面帧表。</li>
+</ul>
+</li>
+<li>将所需页面读入到刚释放的页面帧中。</li>
+<li>更新页面和页面帧表。</li>
+<li>通过重新启动引起中断的指令，继续执行进程。</li>
+<li>现在可能需要2次页面传输(1次出栈和1次进栈)，增加了有效访问时间。</li>
+</ol>
+<p>当发生页面替换，例如将内存中的 <code>page0</code> 替换为 <code>page1</code> 时，操作系统需要执行以下步骤来更新页表和内存：</p>
+<ol>
+<li><strong>选择替换页面</strong>：首先，操作系统使用页面置换算法（如 LRU、FIFO、时钟算法等）来选择一个要被替换出内存的页面。假设 <code>page0</code> 被选中。</li>
+<li><strong>检查替换页面的状态</strong>：
+<ul>
+<li>如果 <code>page0</code> 被修改过（脏页面），操作系统需要将它的内容写回到辅助存储（如硬盘）。这确保了修改被保存，以便将来再次访问时可以从辅助存储中重新加载。</li>
+<li>如果 <code>page0</code> 未被修改（干净页面），可以直接将其从内存中移除，因为辅助存储上已有其最新副本。</li>
+</ul>
+</li>
+<li><strong>更新页表</strong>：
+<ul>
+<li>修改 <code>page0</code> 对应的页表项，将其有效-无效位设置为无效（i）。这表明 <code>page0</code> 不再位于物理内存中。</li>
+<li>为 <code>page1</code> 创建或更新相应的页表项，包括指向新分配的物理帧的帧号，并将其有效-无效位设置为有效（v）。</li>
+</ul>
+</li>
+<li><strong>将新页面调入内存</strong>：
+<ul>
+<li>将 <code>page1</code> 从辅助存储读取到刚刚释放的帧中。这个过程可能涉及到磁盘的I/O操作。</li>
+</ul>
+</li>
+<li><strong>重置访问控制信息</strong>：对于新调入内存的 <code>page1</code>，可能需要重置或更新与其相关的访问控制信息，如使用频率、最近访问时间等，这些信息常用于页面置换算法。</li>
+<li><strong>重新执行指令</strong>：最后，操作系统将控制权返回给导致缺页异常的程序，允许它重试原本失败的内存访问操作。由于 <code>page1</code> 现在已经在内存中，该操作应能够成功执行。</li>
+</ol>
+<p>整个过程中，操作系统确保了内存中的数据与辅助存储之间的一致性，并通过页表项的更新保持了虚拟地址到物理地址映射的准确性。这样，进程就可以无缝地继续运行，即使其内存页面发生了替换。</p>
+<p>使用修改位(dirty bit)可以减少页面传输的开销。修改位用于表示页面自从上次加载到内存后是否被修改过。只有修改过的页面才会被写入磁盘。页面替换完成了逻辑内存和物理内存的分离。大容量的虚拟内存可以在较小的物理内存上提供。如果没有按需页面替换，一个进程的所有页面仍然必须驻留在物理内存中。</p>
+<p>帧分配算法决定了每个进程应该获得多少帧以及当发生缺页时应该替换哪些帧。页面替换算法希望在首次访问和再次访问时都能获得最低的缺页率，被替换的页面应该是未来最不可能被引用的页面。页面替换算法旨在获得页面故障的最小数量。评估页面替换算法的方法是，在特定的内存引用序列上运行算法，并计算该序列上的页面故障数量。</p>
+<h3 id="reference-strings">reference strings<a hidden class="anchor" aria-hidden="true" href="#reference-strings">#</a></h3>
+<h3 id="fifo-first-in-first-out-algorithm">FIFO (First-In-First-Out) Algorithm<a hidden class="anchor" aria-hidden="true" href="#fifo-first-in-first-out-algorithm">#</a></h3>
+<p>先进先出</p>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231229101441346.png" alt="image-20231229101441346" style="zoom:50%;" />
+<p>Belady’s anomaly证明了在使用先入先出(FIFO)页面替换算法时，增加页面帧数量反而可能导致更多缺页中断。例如，对于参考字符串3,2,1,0,3,2,4,3,2,1,0,4,3槽，总共获得9次缺页中断，但如果增加槽数到4，则总共获得10次缺页中断。</p>
+<h3 id="optimal-algorithm">Optimal Algorithm<a hidden class="anchor" aria-hidden="true" href="#optimal-algorithm">#</a></h3>
+<p>替换将来最长时间没被使用的。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231229101740235.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231229101740235"
+	
+	
+></p>
+<h3 id="least-recently-used-algorithm">Least Recently Used Algorithm<a hidden class="anchor" aria-hidden="true" href="#least-recently-used-algorithm">#</a></h3>
+<p>选择最长时间未被访问的页面进行替换。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231229102706588.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231229102706588"
+	
+	
+></p>
+<h3 id="lru-implementation">LRU implementation<a hidden class="anchor" aria-hidden="true" href="#lru-implementation">#</a></h3>
+<p>LRU(Least Recently Used)页面置换算法的实现需要硬件支持，主要问题是确定各个页面最后一次被使用的顺序。每个页面都包含一个计数器和时间使用字段，CPU需要增加一个逻辑时钟或计数器，每次内存访问时都会增加该计数器的值。每次访问页面时，会将计数器的值复制到页表中该页面的时间使用字段。当需要替换页面时，会查看各个计数器的值，选择具有最小时间值的页面进行替换。</p>
+<p>页面置换算法的实现可以使用栈来维护一个页面号码的双链表。当页面被引用时，将其移动到栈顶；不需要搜索替换页面，LRU页面总是在栈底。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231229104419308.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231229104419308"
+	
+	
+></p>
+<h3 id="lru-approximation-algorithms">LRU Approximation Algorithms<a hidden class="anchor" aria-hidden="true" href="#lru-approximation-algorithms">#</a></h3>
+<p>LRU 需要特殊硬件并且仍然缓慢。</p>
+<ul>
+<li>
+<p>为每个页面条目关联一个比特，初始设置为0。</p>
+</li>
+<li>
+<p>当页面被引用时，由硬件将该比特置为1。</p>
+</li>
+<li>
+<p>替换值为0的页面条目(如果存在的话)。</p>
+</li>
+<li>
+<p>问题：我们不知道页面的顺序。</p>
+</li>
+<li>
+<p>每个页面在内存中的表中关联一个8位的字节。</p>
+</li>
+<li>
+<p>在定期的定时器中断中，操作系统将每个页面的引用位移入8位字节的最高位，将其他位右移1位并丢弃最低位。</p>
+</li>
+<li>
+<p>每个8位字节包含过去8个时间段中页面使用的状态。</p>
+</li>
+<li>
+<p>数值最低的页面是LRU页面，可以被替换。</p>
+</li>
+</ul>
+<p>Second chance 算法是一个FIFO页面置换算法的变种，它需要额外的参考位(reference bit)来跟踪每个页面的最近访问时间。当需要替换一个页面时，如果该页面最近被访问过(参考位为1)，则不替换该页面，而是将下一个页面(按时钟顺序)替换出去。这样可以减少页面替换的次数，提高效率。</p>
+<p>Enhanced Second-Chance算法考虑了参考位和修改位，将每个页面分为四个类别：</p>
+<ul>
+<li>(0,0) 既未被最近访问也未被修改的页面，是最理想的替换对象。</li>
+<li>(0,1) 未被最近访问但已被修改的页面，在替换前需要先写回磁盘。</li>
+<li>(1,0) 最近被访问但内容未被修改的页面，很可能很快会被再次访问。</li>
+<li>(1,1) 最近被访问且内容已被修改的页面，在替换前需要先写回磁盘。
+根据页面所属类别，从最低的非空类别中遇到的第一个页面开始替换。可能需要多次搜索环形队列。</li>
+</ul>
+<p>Counting-based page replacement 算法通过为每个页面维护一个引用计数器来统计页面被访问的次数。
+LFU (Least Frequently Used) 算法根据计数器的值选择引用次数最少的页面进行替换。
+MFU (Most Frequently Used) 算法则选择引用次数最多的页面进行替换，认为引用次数最多的页面最有可能正在被使用。
+这两种算法都不太常见，因为它们需要为每个页面维护引用计数器，增加了实现的复杂性。</p>
+<h3 id="page-buffering-algorithm">Page-Buffering Algorithm<a hidden class="anchor" aria-hidden="true" href="#page-buffering-algorithm">#</a></h3>
+<p>该算法维护一个空闲帧的池子。当发生页面错误时，先选择一个受害帧，然后在受害帧被写出之前，将所需页面读入池中的一个空闲帧。当受害帧稍后被写出时，其帧被添加到空闲帧池中。可能还会维护一个被修改页面的列表。每当分页设备空闲时，选择一个被修改的页面并将其写入磁盘，然后重置其修改位。还可能保持一个空闲帧的池子，但要记住每个帧中有哪个页面。如果在该帧被重用之前需要旧页面，可以直接从空闲帧池中重用该页面。</p>
+<h2 id="allocation-of-frames">Allocation of Frames<a hidden class="anchor" aria-hidden="true" href="#allocation-of-frames">#</a></h2>
+<p>操作系统中每个进程需要的最小页面数。</p>
+<p>这个需求根据进程使用的指令类型和内存寻址方式而变化。例如，仅使用单一内存地址指令的进程至少需要两个帧，而允许一级间接寻址的进程至少需要三个帧。特定指令，如PDP-11上的移动指令或IBM 370上的MVC指令，可能需要六页，因为它们复杂并可能涉及间接引用。该部分还提到了两种主要的帧分配方案：固定分配和优先级分配。这些分配方法确保了内存的有效使用，避免浪费。</p>
+<h3 id="fixed-allocation">Fixed Allocation<a hidden class="anchor" aria-hidden="true" href="#fixed-allocation">#</a></h3>
+<ol>
+<li><strong>等量分配</strong>：例如，如果有93个帧和5个进程，每个进程分配18个帧，剩余的3个帧用作空闲帧缓冲池。</li>
+<li><strong>比例分配</strong>：根据每个进程的大小分配可用内存。具体来说，每个进程的虚拟内存大小为si，总虚拟内存为S（所有si之和）。每个进程的分配比例（ai）是其虚拟内存大小（si）除以总虚拟内存（S），乘以总帧数（m）。每个进程的分配数（ai）调整为大于其最小帧数的整数，且总和不超过m。分配可能根据多程序级别而变化。</li>
+</ol>
+<h3 id="priority-allocation">Priority Allocation<a hidden class="anchor" aria-hidden="true" href="#priority-allocation">#</a></h3>
+<p>使用基于优先级而非大小的比例分配方案，或者结合大小和优先级来进行分配。</p>
+<p>这种分配是动态的，随着多程序级别和进程大小的变化而变化。</p>
+<p>如果进程 P i 发生页面错误，选择替换它的某个帧。局部替换是从优先级较低的进程中选择替换一个帧。全局替换则是从整个系统范围内选择替换一个帧。</p>
+<h3 id="global-vs-local-replacement">Global vs. Local replacement<a hidden class="anchor" aria-hidden="true" href="#global-vs-local-replacement">#</a></h3>
+<p>全局替换（Global Replacement）和局部替换（Local Replacement）是操作系统中页面替换策略的两种不同方法，它们用于决定当发生页面错误（Page Fault）时，应该从内存中移除哪个页面以便为新页面腾出空间。</p>
+<ol>
+<li><strong>全局替换 (Global Replacement)</strong>:
+<ul>
+<li>在全局替换策略中，当某个进程需要替换页面时，它可以从整个系统的内存帧中选择一个页面进行替换。这意味着一个进程可能会取代（或“偷取”）另一个进程的内存页面。</li>
+<li>这种方法由操作系统来管理，它维护一个所有空闲帧的列表。当发生页面错误时，操作系统会从这个列表中选择一个页面来替换。</li>
+<li>优点是可以提高系统吞吐量（即整个系统的效率和性能），因为它可以更灵活地分配和管理内存资源。</li>
+<li>缺点是单个进程可能无法有效控制自己的页面错误率，因为它的页面可能被其他进程所替换。</li>
+</ul>
+</li>
+<li><strong>局部替换 (Local Replacement)</strong>:
+<ul>
+<li>局部替换策略限制页面替换仅在发生页面错误的那个进程的内存帧中进行。这意味着进程只能替换属于自己的页面。</li>
+<li>在这种策略下，每个进程的页面错误完全由该进程自己的分页行为决定，不受其他进程的影响。</li>
+<li>优点是进程对自己的内存管理有更大的控制权，可以更好地优化自己的页面错误率。</li>
+<li>缺点是可能导致整体系统吞吐量降低，因为内存资源分配可能不如全局替换那样灵活和高效。</li>
+</ul>
+</li>
+</ol>
+<h2 id="thrashing">Thrashing<a hidden class="anchor" aria-hidden="true" href="#thrashing">#</a></h2>
+<h3 id="thrashing-1">Thrashing<a hidden class="anchor" aria-hidden="true" href="#thrashing-1">#</a></h3>
+<p>Thrashing(过度换页)是指当一个进程没有足够数量的页面时，页面故障率非常高。每次页面故障需要获取页面，替换现有的页面，但很快需要替换回原来的页面，这会导致：</p>
+<ul>
+<li>低CPU利用率，因为大部分时间都在进行页面替换</li>
+<li>操作系统认为需要增加多进程的程度</li>
+<li>向系统中添加另一个进程
+当一个进程花费大部分时间在页面替换而不是执行时，就说明该进程处于过度换页状态。要避免过度换页，必须为进程分配足够数量的页面。</li>
+</ul>
+<p>thrashing的发生是因为：</p>
+<ul>
+<li>进程的局部性大小(locality size)大于总内存大小(total memory size)。</li>
+<li>使用了局部(或优先级)页面替换算法，这可以限制抖动的影响。
+为了防止抖动，必须为进程提供它需要的所有页面。</li>
+</ul>
+<p>如何知道进程需要多少页面？</p>
+<ul>
+<li>通过查看进程实际上使用的页面数量来确定。</li>
+</ul>
+<p>进程执行的局部性模型是：</p>
+<ul>
+<li>局部性：一组正在一起使用的页面。</li>
+<li>进程从一个局部性迁移到另一个局部性。</li>
+<li>局部性可能重叠。</li>
+</ul>
+<h3 id="working-set-model">Working-Set Model<a hidden class="anchor" aria-hidden="true" href="#working-set-model">#</a></h3>
+<ol>
+<li><strong>工作集窗口大小Δ</strong>: 这是衡量工作集大小的一个关键参数，表示在一定数量的页面引用中考虑的页面集合。例如，如果Δ是10,000，那么工作集包括最近10,000个页面引用。</li>
+<li><strong>工作集（Working Set）</strong>: 它是在最近Δ个页面引用中出现的那些页面的集合。这反映了一个进程在最近一段时间内的内存使用情况。</li>
+<li><strong>WSSi（进程Pi的工作集大小）</strong>: 这是指在特定时刻进程Pi的工作集中页面的数量。这个数字随时间变化，因为进程的内存需求可能会增加或减少。</li>
+<li><strong>工作集大小的准确性与Δ的选择有关</strong>: 如果Δ设置得太小，可能无法准确反映进程的内存需求；如果设置得太大，可能会过度估计所需的内存。理想的Δ值应该能够合理反映进程的实际内存使用模式。</li>
+<li><strong>总工作集大小D</strong>: 它是所有进程工作集大小的总和，用于近似表示程序的局部性（即内存访问的局限性）。如果D超过了系统中可用的内存帧数量m，可能会导致频繁的页面调度和内存抖动，就需要挂起一个进程。难点在于持续跟踪工作集。</li>
+<li><strong>跟踪工作集的方法</strong>：通过定期中断和维护页面访问位来跟踪工作集。这种方法有助于识别哪些页面属于当前的工作集，但可能无法精确反映快速变化的工作集。
+<ol>
+<li>使用定时器定期中断，例如每隔5000时间单位中断一次。</li>
+<li>为每个页面维护两个内存位，一个用于记录页面最近一次被访问的时间，一个用于记录页面是否在工作集中。</li>
+<li>在定时器中断时，将所有页面的访问时间位清零，并将工作集中的页面的访问时间位置1。</li>
+<li>根据页面访问时间位判断页面是否在工作集中。</li>
+</ol>
+</li>
+<li><strong>改进方法</strong>: 通过增加历史位数量和提高定时器中断频率，可以更准确地跟踪页面的工作集。这有助于操作系统更有效地管理内存，减少页面错误和提高系统性能。</li>
+</ol>
+<h3 id="page-fault-frequency-scheme">Page-Fault Frequency Scheme<a hidden class="anchor" aria-hidden="true" href="#page-fault-frequency-scheme">#</a></h3>
+<p>Page-Fault Frequency Scheme是一种更直接的工作集模型替代方法。
+它通过建立一个可接受的页面故障率，并使用局部替换策略来控制页面故障频率。如果实际的页面故障率过低，进程会丢失一个页面框；如果实际的页面故障率过高，进程会增加一个页面框。选择一个进程，将其交换到外部存储设备。</p>
+<h2 id="memory-mapped-file">Memory-mapped file<a hidden class="anchor" aria-hidden="true" href="#memory-mapped-file">#</a></h2>
+<p>Memory-mapped files(内存映射文件)通过将磁盘块映射到内存页中来简化并加速文件访问。文件初始化时使用按需调页，将文件系统中的一个页大小的文件块装入物理帧。后续的读写操作都被视为普通的内存访问。当数据被写入内存时，会在页缓存扫描脏页时或者文件关闭时才写入磁盘。</p>
+<p>一些操作系统(例如Solaris)选择通过特定的系统调用(如mmap())将文件映射到内存，而一些操作系统则通过特定的系统调用(如mmap())将文件映射到内核地址空间。这使得进程可以像访问内存一样访问文件，而不需要通过标准的I/O操作(open(), read(), write(), close())。这种方式利用了高效的内存管理子系统。</p>
+<p>Memory-mapped files允许多个进程同时映射同一个文件，从而在内存中共享该文件的页面。</p>
+<p>COW(Copy-on-Write)可以用于读/写非共享页面。它允许进程以只读模式共享文件，但每个进程都可以对其修改的数据保留自己的副本。
+内存映射文件可以用于共享内存。</p>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231229153649258.png" alt="image-20231229153649258" style="zoom: 50%;" />
+<p>Memory-mapped I/O是将内存地址映射到设备寄存器，通过读写这些内存地址来在CPU和设备之间传输数据。这种方式适用于响应时间较快的设备，如视频控制器。它也可以用于其他设备，如串口和并口，用于连接调制解调器和打印机到计算机。通过这种方式，CPU通过读写几个设备寄存器(I/O端口)来与这些设备进行数据传输。</p>
+<h2 id="allocating-kernel-memory">Allocating Kernel Memory<a hidden class="anchor" aria-hidden="true" href="#allocating-kernel-memory">#</a></h2>
+<p>内核内存与用户内存不同，它通常从一个不同的空闲内存池中分配，而不是和普通用户模式进程使用的内存池相同。原因有两点：</p>
+<ul>
+<li>内核请求不同大小的数据结构内存，有些小于一个页面的大小。</li>
+<li>一些内核内存需要是连续的，例如用于设备I/O。某些硬件设备需要直接与物理内存交互，可能需要连续的内存页面。</li>
+</ul>
+<p>内核内存分配使用Buddy System伙伴系统和Slab allocation两种方式。</p>
+<h3 id="buddy-system">Buddy System<a hidden class="anchor" aria-hidden="true" href="#buddy-system">#</a></h3>
+<p>伙伴系统(Buddy System)将内存从一个固定大小的内存段中分配，该内存段由物理上连续的页面组成。 伙伴系统使用2的幂次方大小的分配器。 内存以2的幂次方大小的单元分配。 请求大小向上取2的下一个最高幂次方。 整个可用的内存空间被看作是一个大小为2U的单一块。 如果请求大小在2U-1和2U之间，则整个块被分配。 否则，块被分成两个大小相等的伙伴块。 进程继续，直到生成一个最小大小为s的块。</p>
+<h3 id="slab-allocation">Slab Allocation<a hidden class="anchor" aria-hidden="true" href="#slab-allocation">#</a></h3>
+<ol>
+<li>将物理内存划分为固定大小的内存块，称为slab。</li>
+<li>将多个slab组成一个缓存(cache)。</li>
+<li>为每个内核数据结构(如进程控制块PCB)创建一个单独的缓存。</li>
+<li>在创建缓存时，先将缓存填充一些初始化的空对象。</li>
+<li>当需要使用该内核数据结构时，从缓存中分配一个对象(实例)并标记为已使用。</li>
+<li>当缓存中的对象都标记为已使用时，需要分配新的slab来扩展缓存。</li>
+<li>该分配方式可以避免内存碎片，同时可以快速地满足内存请求。</li>
+</ol>
+<h2 id="other-considerations">Other considerations<a hidden class="anchor" aria-hidden="true" href="#other-considerations">#</a></h2>
+<h3 id="prepaging">Prepaging<a hidden class="anchor" aria-hidden="true" href="#prepaging">#</a></h3>
+<p>Prepaging是为了减少进程启动或者换出进程重新启动时产生的大量缺页中断。它通过提前将进程需要的页面加载到内存中来实现。如果预加载的页面没有被使用，就会浪费I/O和内存资源。预加载页面有一定的优势，需要比较使用预加载页面的成本和处理相应缺页中断的成本，来判断是否使用预加载页面。例如，如果预加载S个页面，实际上只使用了S<em>a个页面(0&lt;a&lt;1)，那么预加载S个页面的成本是否小于处理S</em>(1-a)个不必要的缺页中断的成本。如果a接近1，预加载就更有优势。</p>
+<h3 id="page-size">Page Size<a hidden class="anchor" aria-hidden="true" href="#page-size">#</a></h3>
+<ol>
+<li>页面表的大小：每个活跃进程都需要一个自己的页面表副本，所以较大的页面大小是可取的。</li>
+<li>碎片化：为了最小化内部碎片化，需要较小的页面大小。</li>
+<li>I/O开销：I/O时间主要由搜索时间和延迟时间组成，而传输时间通常较小。为了最小化I/O时间，需要较大的页面大小。</li>
+<li>局部性：较小的页面大小可以改善局部性，减少总的I/O。但是为了最小化页面错误，需要较大的页面大小。</li>
+<li>页面大小通常在4KB到4MB之间选择。
+所以页面大小需要在减小碎片化和I/O开销与提高局部性和减少页面错误之间做权衡。</li>
+</ol>
+<h3 id="tlb-reach">TLB Reach<a hidden class="anchor" aria-hidden="true" href="#tlb-reach">#</a></h3>
+<p>TLB Reach指的是从TLB(Translation Lookaside Buffer)可以访问的内存范围。
+TLB Reach = (TLB Size) x (Page Size)
+理想情况下，每个进程的工作集应该存储在TLB中。否则，页面错误率会很高，进程会在页表中花费大量时间而不是TLB中解析内存引用。
+增加TLB Reach的方法包括：</p>
+<ul>
+<li>增加Page Size，但这可能会导致碎片化增加，因为不是所有应用程序都需要大Page Size。</li>
+<li>提供多种Page Size，这可以让需要大Page Size的应用程序使用它们，而不会增加碎片化。</li>
+</ul>
+<h3 id="inverted-page-tables-1">Inverted Page Tables<a hidden class="anchor" aria-hidden="true" href="#inverted-page-tables-1">#</a></h3>
+<p>Inverted Page Tables的目的是减少跟踪虚拟到物理地址转换所需的物理内存。它使用一个表项来跟踪每个物理帧中的虚拟内存页，表项由进程ID和页面号索引。当发生页面错误时，还需要其他信息，例如每个虚拟页的位置和页面数量。必须为每个进程保留一个外部页面表，根据需要进行页面换入和换出。页面错误现在可能需要生成另一个页面错误来换入需要的页面表。</p>
+<h3 id="program-structure">Program Structure<a hidden class="anchor" aria-hidden="true" href="#program-structure">#</a></h3>
+<p>仔细选择数据结构和编程结构可以提高局部性，从而降低缺页错误率和工作集中的页面数量。例如，栈具有很好的局部性，因为访问总是从栈顶开始。而散列表则设计成散布引用，产生较差的局部性。编译器和加载器对页面管理有很大影响。将代码和数据分离并生成可重入代码意味着代码页可以只读，永远不会被修改。加载器可以避免将程序段放在跨页面边界位置。经常相互调用的程序段可以打包到同一页面中。</p>
+<h3 id="io-interlock">I/O interlock<a hidden class="anchor" aria-hidden="true" href="#io-interlock">#</a></h3>
+<ol>
+<li>
+<p><strong>考虑挂起的I/O操作</strong>：</p>
+<ul>
+<li>用于设备I/O的内存页必须被锁定，防止被页面替换算法选中用于淘汰。</li>
+<li>不允许直接对用户内存执行I/O操作。</li>
+<li>数据在系统内存和用户内存之间进行复制。</li>
+<li>I/O操作只在系统内存和I/O设备之间进行。</li>
+</ul>
+</li>
+<li>
+<p><strong>允许将页面锁定到内存中</strong>：</p>
+<ul>
+<li>每个帧都关联一个锁定位。</li>
+<li>被锁定的页面不能被替换。</li>
+<li>当I/O完成后，页面解锁。</li>
+</ul>
+</li>
+<li>
+<p><strong>页面固定来锁定到内存中</strong>：</p>
+<ul>
+<li>操作系统内核的部分或全部被锁定在内存中。</li>
+<li>用户进程可能需要将页面锁定到内存中。</li>
+<li>考虑到具有需求分页、优先级调度和全局替换的系统：
+<ul>
+<li>低优先级进程L发生缺页。</li>
+<li>操作系统选择一个替换帧，并调入所需页面。</li>
+<li>然后，L进入就绪队列，可能长时间不被选中。</li>
+<li>当L等待时，高优先级进程H发生缺页。</li>
+<li>寻找替换页面时，可能是L刚调入的页面—它是干净的，且长时间未使用。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>使用锁定位来防止新调入页面的替换</strong>，直到至少被使用一次：</p>
+<ul>
+<li>当页面被选为替换对象时，其锁定位被打开。</li>
+<li>锁定保持到引起缺页的进程再次被调度。</li>
+</ul>
+</li>
+<li>
+<p><strong>大多数操作系统都提供系统调用</strong>，允许应用请求将其逻辑地址空间的一部分固定。</p>
+</li>
+<li>
+<p><strong>危险性</strong>：锁定位可能被打开但永远不关闭。</p>
+<ul>
+<li>被锁定的帧变得无法使用。</li>
+</ul>
+</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.css"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.js"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        &copy; 
+        
+        2024 Bethel<br>共 97.40k 字 · 共 10 篇文章
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://stack.jimmycai.com/" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> 由 <a href="https://jimmycai.com/" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
+
+
+<script src="https://mecdn.mcserverx.com/gh/zhixuan2333/gh-blog/master/js/nprogress.min.js" integrity="sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://mecdn.mcserverx.com/gh/zhixuan2333/gh-blog/master/css/nprogress.css" integrity="sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE" crossorigin="anonymous" />
+<script>
+    NProgress.start();
+    document.addEventListener("readystatechange", () => {
+        if (document.readyState === "interactive") NProgress.inc(0.8);
+        if (document.readyState === "complete") NProgress.done();
+    });
+</script>
+    </body>
+</html>

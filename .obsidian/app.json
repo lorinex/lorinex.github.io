@@ -1,0 +1,20 @@
+{
+  "userIgnoreFilters": [
+    "node_modules/",
+    "public/",
+    "scaffolds/",
+    "themes/"
+  ],
+  "promptDelete": true,
+  "newFileLocation": "current",
+  "attachmentFolderPath": "./搭建博客Hugo+github+obsidian.assets",
+  "useMarkdownLinks": true,
+  "newLinkFormat": "relative",
+  "pdfExportSettings": {
+    "pageSize": "Letter",
+    "landscape": false,
+    "margin": "0",
+    "downscalePercent": 100
+  },
+  "autoConvertHtml": false
+}

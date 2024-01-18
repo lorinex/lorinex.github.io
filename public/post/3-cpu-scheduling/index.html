@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='CPU Scheduling Basic Concepts The objective of multiprogramming is to have some process running at all times. To maximize CPU utilization. 多程序调度目标：最大化 CPU 利用率 CPU-I/O burst 周期 CPU burst 分布 CPU Scheduler CPU调度器（Scheduler）的主要任务是从'>
+<title>3 CPU Scheduling | Bethel's Blog</title>
+
+<link rel='canonical' href='https://www.xxx.blog/post/3-cpu-scheduling/'>
+
+<link rel="stylesheet" href="/scss/style.min.c3c7ecff622b4ad3ac6aacf17244c017cc674f0e82b470bfb8f4de85243313d0.css"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"K3aYNEt3ZeYoZwhE",ck:"K3aYNEt3ZeYoZwhE"})</script>
+<script async src="https://umami.xalaok.top/uanalytics" data-website-id="095ee454-e560-4d9b-bf1c-869f8529c17f"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script><meta property='og:title' content='3 CPU Scheduling'>
+<meta property='og:description' content='CPU Scheduling Basic Concepts The objective of multiprogramming is to have some process running at all times. To maximize CPU utilization. 多程序调度目标：最大化 CPU 利用率 CPU-I/O burst 周期 CPU burst 分布 CPU Scheduler CPU调度器（Scheduler）的主要任务是从'>
+<meta property='og:url' content='https://www.xxx.blog/post/3-cpu-scheduling/'>
+<meta property='og:site_name' content='Bethel'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-10-21T21:12:53&#43;00:00'/><meta property='article:modified_time' content='2023-10-21T21:12:53&#43;00:00'/>
+<meta name="twitter:title" content="3 CPU Scheduling">
+<meta name="twitter:description" content="CPU Scheduling Basic Concepts The objective of multiprogramming is to have some process running at all times. To maximize CPU utilization. 多程序调度目标：最大化 CPU 利用率 CPU-I/O burst 周期 CPU burst 分布 CPU Scheduler CPU调度器（Scheduler）的主要任务是从">
+    <link rel="shortcut icon" href="/favicon.png" />
+<link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont@1.7.0/lxgwwenkaigbscreen.css" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/tx_hu92c04046da3d4074953cad185e3935e5_62559_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Bethel</a></h1>
+            <h2 class="site-description">Live and learn. ✍️</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-high" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" />
+  <path d="M6.343 17.657l-1.414 1.414" />
+  <path d="M6.343 6.343l-1.414 -1.414" />
+  <path d="M17.657 6.343l1.414 -1.414" />
+  <path d="M17.657 17.657l1.414 1.414" />
+  <path d="M4 12h-2" />
+  <path d="M12 4v-2" />
+  <path d="M20 12h2" />
+  <path d="M12 20v2" />
+</svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+  <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+  <path d="M19 11h2m-1 -1v2" />
+</svg>
+                    <span>深色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#basic-concepts">Basic Concepts</a>
+      <ol>
+        <li><a href="#cpu-scheduler">CPU Scheduler</a></li>
+        <li><a href="#decision-mode">Decision Mode</a></li>
+        <li><a href="#dispatcher">Dispatcher</a></li>
+      </ol>
+    </li>
+    <li><a href="#scheduling-criteria-调度准则">Scheduling Criteria 调度准则</a></li>
+    <li><a href="#scheduling-algorithms">Scheduling Algorithms</a>
+      <ol>
+        <li><a href="#first-come-first-served-fcfs-scheduling">First-Come, First-Served (FCFS) Scheduling</a></li>
+        <li><a href="#shortest-job-first-sjf-scheduling">Shortest-Job-First (SJF) Scheduling</a>
+          <ol>
+            <li><a href="#prediction-of-the-length-of-the-next-cpu-burst">Prediction of the Length of the Next CPU Burst</a></li>
+          </ol>
+        </li>
+        <li><a href="#priority-scheduling">Priority Scheduling</a>
+          <ol>
+            <li><a href="#静态优先级非抢占式调度">静态优先级、非抢占式调度</a></li>
+            <li><a href="#静态优先级抢占式调度">静态优先级、抢占式调度</a></li>
+          </ol>
+        </li>
+        <li><a href="#round-robin-rr-scheduling">Round Robin (RR) Scheduling</a></li>
+        <li><a href="#multilevel-queue-scheduling">Multilevel Queue Scheduling</a></li>
+        <li><a href="#multilevel-feedback-queue-scheduling">Multilevel Feedback Queue Scheduling</a></li>
+        <li><a href="#highest-response-ratio-next-scheduling">Highest Response-Ratio Next Scheduling</a></li>
+      </ol>
+    </li>
+    <li><a href="#multiple-processor-scheduling">Multiple-Processor Scheduling</a>
+      <ol>
+        <li><a href="#approaches-to-multiple-processor-scheduling">Approaches to Multiple-Processor Scheduling</a></li>
+        <li><a href="#processor-affinity">Processor Affinity</a></li>
+        <li><a href="#load-balancing">Load balancing</a></li>
+        <li><a href="#multiprocessor-thread-scheduling">Multiprocessor Thread Scheduling</a></li>
+      </ol>
+    </li>
+    <li><a href="#thread-scheduling">Thread Scheduling</a></li>
+    <li><a href="#operating-system-examples">Operating System Examples</a>
+      <ol>
+        <li><a href="#linux-scheduling">Linux Scheduling</a></li>
+        <li><a href="#windows-scheduling">Windows Scheduling</a></li>
+        <li><a href="#solaris-scheduling">Solaris Scheduling</a></li>
+      </ol>
+    </li>
+    <li><a href="#algorithm-evaluation">Algorithm Evaluation</a>
+      <ol>
+        <li><a href="#deterministic-modeling">Deterministic modeling</a></li>
+        <li><a href="#queuing-models">Queuing models</a></li>
+        <li><a href="#simulations">Simulations</a></li>
+        <li><a href="#implementation">Implementation</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/os/" style="background-color: #2a9d8f; color: #fff;">
+                操作系统
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/3-cpu-scheduling/">3 CPU Scheduling</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-10-21</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 18 分钟
+                </time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+  <path d="M13.5 6.5l4 4" />
+</svg>
+                <time class="article-words">
+                    字数: 8716 字
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="cpu-scheduling">CPU Scheduling<a hidden class="anchor" aria-hidden="true" href="#cpu-scheduling">#</a></h1>
+<h2 id="basic-concepts">Basic Concepts<a hidden class="anchor" aria-hidden="true" href="#basic-concepts">#</a></h2>
+<p>The objective of multiprogramming is to have some process running at all times.
+To maximize CPU utilization.
+多程序调度目标：最大化 CPU 利用率
+CPU-I/O burst 周期
+CPU burst 分布</p>
+<h3 id="cpu-scheduler">CPU Scheduler<a hidden class="anchor" aria-hidden="true" href="#cpu-scheduler">#</a></h3>
+<p>CPU调度器（Scheduler）的主要任务是从内存中准备执行的进程中选择一个，并将CPU分配给其中一个进程。
+CPU调度决策可能在以下情况下发生：</p>
+<ol>
+<li>进程终止。</li>
+<li>进程从运行状态切换到等待状态。</li>
+<li>进程从运行状态切换到就绪状态。</li>
+<li>进程从等待状态切换到就绪状态。
+这些情况导致了CPU调度器重新选择下一个要执行的进程，以确保CPU资源得到有效利用。</li>
+</ol>
+<h3 id="decision-mode">Decision Mode<a hidden class="anchor" aria-hidden="true" href="#decision-mode">#</a></h3>
+<p>决策模式是关于操作系统中CPU调度方式的两种主要类型：</p>
+<ol>
+<li><strong>非抢占式</strong>（Nonpreemptive）：
+<ul>
+<li>一旦进程进入运行状态，它将一直运行，直到终止或因I/O操作而阻塞自己。</li>
+<li>一旦CPU被分配给一个进程，该进程将一直保持CPU，直到它释放CPU（要么因终止，要么切换到等待状态）。</li>
+<li>非抢占式调度可能导致一个进程长时间独占处理器。</li>
+</ul>
+</li>
+<li><strong>抢占式</strong>（Preemptive）：
+<ul>
+<li>当前运行的进程可能会被操作系统中断并移动到就绪状态。</li>
+<li>抢占式调度允许更好的服务，因为任何一个进程不能长时间占用处理器。</li>
+<li>抢占式调度有时可能会导致竞争条件，尤其当数据被多个进程共享时。
+抢占式调度允许操作系统随时暂停正在执行的进程，以便分配CPU时间给其他进程，这有助于确保公平地共享CPU资源。非抢占式调度则在分配CPU时较为保守，只有在进程主动释放CPU时才会切换。</li>
+</ul>
+</li>
+</ol>
+<h3 id="dispatcher">Dispatcher<a hidden class="anchor" aria-hidden="true" href="#dispatcher">#</a></h3>
+<p>进程调度器，它是操作系统中的一个关键模块，负责分配和调度 CPU 时间片给各个就绪状态的进程。
+Dispatcher 的主要功能如下：</p>
+<ol>
+<li>控制 CPU：Dispatcher 负责将 CPU 控制权交给选定的进程。在操作系统中，有一个短期调度器（也称为 Dispatcher）负责在就绪队列中的进程之间分配 CPU 时间片。</li>
+<li>切换上下文：当 CPU 控制权发生变化时，Dispatcher 负责在各个进程之间切换上下文。这包括保存当前进程的状态，加载下一个进程的状态，以及将 CPU 执行环境切换到下一个进程。</li>
+<li>进程切换：Dispatcher 负责实现进程之间的切换。当一个进程完成执行或者主动让出 CPU 时，Dispatcher 会选取下一个就绪进程并将其投入执行。</li>
+<li>调度 latency：Dispatcher 决定了进程切换所需的时间，即调度 latency。这是 Dispatcher 停止一个进程并开始执行另一个进程所需的时间。</li>
+<li>优先级调度：Dispatcher 还负责根据进程的优先级进行调度。优先级较高的进程更容易获得 CPU 时间片，以确保系统资源得到合理分配。
+总之，Dispatcher 是操作系统中的核心模块，负责管理 CPU 时间片分配和进程调度。它确保系统资源得到高效利用，同时确保进程能够在合适的时机获得执行。</li>
+</ol>
+<h2 id="scheduling-criteria-调度准则">Scheduling Criteria 调度准则<a hidden class="anchor" aria-hidden="true" href="#scheduling-criteria-调度准则">#</a></h2>
+<p>是指用于评估和选择调度算法的标准或指标。这些准则通常用于衡量操作系统中进程调度器的性能和效率。
+调度准则可以分为两类：性能相关和性能无关。</p>
+<ol>
+<li>性能相关：这类准则关注的是调度算法在提高系统性能方面的表现，主要包括以下几个方面：
+<ul>
+<li>CPU 利用率：尽量让 CPU 保持繁忙，提高系统资源利用率。</li>
+<li>吞吐量：衡量单位时间内完成进程数量的表现。</li>
+<li>周转时间（Turnaround Time）：从进程提交到完成执行所花费的时间。</li>
+<li>等待时间：进程在就绪队列中等待 CPU 分配的时间。</li>
+<li>响应时间：从提交请求到产生第一个响应的时间（对于时间共享环境）。</li>
+</ul>
+</li>
+<li>性能无关：这类准则主要关注调度算法的公平性和可预测性，包括以下几个方面：
+<ul>
+<li>公平性：确保各个进程能够公平地获得 CPU 资源。</li>
+<li>截止日期（Deadline）：确保关键任务在规定的时间内完成。</li>
+<li>系统导向：通过优化系统整体性能，提高系统的稳定性和可靠性。
+在选择调度算法时，需要根据具体场景和需求来权衡这些准则的相对重要性。常见的调度算法评估方法包括确定性建模、排队论、模拟和实现等。根据这些评估结果，可以选择最适合特定系统的调度算法。</li>
+</ul>
+</li>
+</ol>
+<h2 id="scheduling-algorithms">Scheduling Algorithms<a hidden class="anchor" aria-hidden="true" href="#scheduling-algorithms">#</a></h2>
+<h3 id="first-come-first-served-fcfs-scheduling">First-Come, First-Served (FCFS) Scheduling<a hidden class="anchor" aria-hidden="true" href="#first-come-first-served-fcfs-scheduling">#</a></h3>
+<blockquote>
+<p>先来先服务调度算法。在这种算法中，每个进程加入就绪队列，形成一个先进先出的队列。当当前进程执行结束时，选择就绪队列中the oldest的进程继续执行。FCFS 算法是非抢占式的，即当前进程在执行过程中不会被其他进程中断。</p>
+</blockquote>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%E6%88%AA%E5%9B%BE_20231030095616.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="截图_20231030095616.png"
+	
+	
+></p>
+<h3 id="shortest-job-first-sjf-scheduling">Shortest-Job-First (SJF) Scheduling<a hidden class="anchor" aria-hidden="true" href="#shortest-job-first-sjf-scheduling">#</a></h3>
+<blockquote>
+<p>短作业优先调度算法。SJF 算法根据进程的预计下一个 CPU burst 时间来设置进程的优先级，优先级越高的进程越有可能被调度执行。SJF 算法可以分为抢占式和非抢占式两种，其中非抢占式算法只是在进程到达时将其放入队列末尾，不会中断当前进程。</p>
+</blockquote>
+<p><img src="C:/Users/xxx/AppData/Roaming/Typora/typora-user-images/image-20231030100208288.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231030100208288"
+	
+	
+></p>
+<p><img src="C:/Users/xxx/AppData/Roaming/Typora/typora-user-images/image-20231030100231516.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231030100231516"
+	
+	
+></p>
+<h4 id="prediction-of-the-length-of-the-next-cpu-burst">Prediction of the Length of the Next CPU Burst<a hidden class="anchor" aria-hidden="true" href="#prediction-of-the-length-of-the-next-cpu-burst">#</a></h4>
+<p><img src="C:/Users/xxx/AppData/Roaming/Typora/typora-user-images/image-20231030100647190.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231030100647190"
+	
+	
+></p>
+<p>由于下一个 CPU burst 的实际长度是不确定的，所以我们只能对其进行估计。预测可以通过使用之前 CPU burst 的长度，采用指数平均法来实现。
+具体计算公式如下：
+下一次 CPU burst 预测长度 = α * 上一次 CPU burst 实际长度 + (1 - α) * 指数平均法预测长度
+其中，α 是一个在 0 到 1 之间的参数，表示预测权重。当α接近 1 时，表示更倾向于选择上一次 CPU burst 的实际长度；当α接近 0 时，表示更倾向于选择指数平均法预测的长度。</p>
+<p><img src="C:/Users/xxx/AppData/Roaming/Typora/typora-user-images/image-20231030100738579.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231030100738579"
+	
+	
+></p>
+<h3 id="priority-scheduling">Priority Scheduling<a hidden class="anchor" aria-hidden="true" href="#priority-scheduling">#</a></h3>
+<blockquote>
+<p>优先级调度算法。这种算法根据进程的优先级来决定调度顺序，优先级高的进程优先执行。（通常数字越小优先级越高）优先级可以根据进程的性质（如交互式进程、批量进程等）或进程的 burst 时间来设置。优先级调度可以是抢占式的，也可以是非抢占式的。</p>
+</blockquote>
+<h4 id="静态优先级非抢占式调度">静态优先级、非抢占式调度<a hidden class="anchor" aria-hidden="true" href="#静态优先级非抢占式调度">#</a></h4>
+<p><img src="C:/Users/xxx/AppData/Roaming/Typora/typora-user-images/image-20231030101228198.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231030101228198"
+	
+	
+></p>
+<h4 id="静态优先级抢占式调度">静态优先级、抢占式调度<a hidden class="anchor" aria-hidden="true" href="#静态优先级抢占式调度">#</a></h4>
+<p><img src="C:/Users/xxx/AppData/Roaming/Typora/typora-user-images/image-20231030101246639.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231030101246639"
+	
+	
+></p>
+<p>优先级调度算法会导致饥饿问题，解决办法是随着时间的增长优先级提高。</p>
+<h3 id="round-robin-rr-scheduling">Round Robin (RR) Scheduling<a hidden class="anchor" aria-hidden="true" href="#round-robin-rr-scheduling">#</a></h3>
+<blockquote>
+<p>轮转调度算法。RR 算法为每个进程分配一个固定的时间片，进程按照顺序轮流执行。当一个进程的时间片用完后，将其放回队列末尾，继续下一个进程执行。RR 算法保证了每个进程都能得到公平的 CPU 时间片，但可能导致较长作业长时间无法执行。</p>
+</blockquote>
+<p>Example of RR with Time Quantum=20</p>
+<p><img src="C:/Users/xxx/AppData/Roaming/Typora/typora-user-images/image-20231030101721213.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231030101721213"
+	
+	
+></p>
+<p>在就绪队列中有 n 个进程，时间片为 q 的情况下，每个进程将获得 CPU 时间的 1/n，且每个进程等待时间不会超过 (n-1)q。
+性能取决于时间片的大小：</p>
+<ul>
+<li>如果时间片 q 非常大（无限大），那么将实现先来先服务（FCFS）调度算法；</li>
+<li>如果时间片 q 非常小，那么将导致大量上下文切换；</li>
+<li>为了避免过高的时间片切换开销，时间片 q 必须相对于上下文切换较大。
+总之，合适的时间片大小对于 CPU 调度性能至关重要。时间片过大或过小都会导致性能下降。因此，在实际应用中，需要根据系统实际情况和需求来设置合适的时间片大小。</li>
+</ul>
+<h3 id="multilevel-queue-scheduling">Multilevel Queue Scheduling<a hidden class="anchor" aria-hidden="true" href="#multilevel-queue-scheduling">#</a></h3>
+<blockquote>
+<p>多级队列调度算法。这种算法将进程分为多个队列，根据进程的性质和优先级将它们放入相应的队列。每个队列都有自己的调度算法，如前台进程使用 RR 算法，后台进程使用 FCFS 算法。多级队列调度可以在不同队列之间实现抢占式或非抢占式调度。</p>
+</blockquote>
+<h3 id="multilevel-feedback-queue-scheduling">Multilevel Feedback Queue Scheduling<a hidden class="anchor" aria-hidden="true" href="#multilevel-feedback-queue-scheduling">#</a></h3>
+<blockquote>
+<p>多级反馈队列调度算法。这种算法在多级队列的基础上，根据进程的执行情况和反馈信息调整进程的优先级。进程可以在队列之间流动，根据优先级和反馈信息进行调度。这种算法旨在平衡系统性能和资源利用率，实现公平和高效的调度。</p>
+</blockquote>
+<ul>
+<li>
+<p>如果一个进程使用太多的 CPU 时间，它将被移动到较低优先级的队列。</p>
+<ul>
+<li>将I/O绑定和交互式进程留在较高优先级的队列中。</li>
+</ul>
+</li>
+<li>
+<p>如果一个进程在较低优先级的队列中等待太久，它可能被移动到更高优先级的队列。</p>
+<ul>
+<li>这种老化方式防止了饥饿现象。</li>
+</ul>
+</li>
+<li>
+<p>Three queues：</p>
+<ul>
+<li>
+<p>Q0 &ndash; 最高优先级 &ndash; 时间片为 8 毫秒</p>
+</li>
+<li>
+<p>Q1 &ndash; 较低优先级 &ndash; 时间片为 16 毫秒</p>
+</li>
+<li>
+<p>Q2 &ndash; 最低优先级 &ndash; FCFS</p>
+</li>
+</ul>
+</li>
+<li>
+<p>多级反馈队列调度器由以下参数定义：</p>
+<ul>
+<li>
+<p>队列的数量。</p>
+</li>
+<li>
+<p>每个队列的调度算法。</p>
+</li>
+<li>
+<p>确定何时将进程升级到更高优先级队列的方法。</p>
+</li>
+<li>
+<p>确定何时将进程降级到更低优先级队列的方法。</p>
+</li>
+<li>
+<p>确定进程在需要服务时进入哪个队列的方法。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="highest-response-ratio-next-scheduling">Highest Response-Ratio Next Scheduling<a hidden class="anchor" aria-hidden="true" href="#highest-response-ratio-next-scheduling">#</a></h3>
+<blockquote>
+<p>最高响应比优先调度是一种非抢占式调度算法，它综合考虑了进程的等待时间和 CPU burst 时间。响应比是指进程完成任务所需的响应时间与任务执行时间的比值。响应比越高，说明进程完成任务的速度越快，因此优先级越高。
+在该算法中，系统会实时计算每个进程的响应比，并选择响应比最高的进程进行调度。这种算法旨在优化系统的响应时间，提高用户满意度。然而，该算法的缺点是计算响应比的过程较为复杂，会带来一定的系统开销。</p>
+</blockquote>
+<p>Response-Ratio ： R=(W+T)/T=1+W/T
+W：waiting time in ready queue
+T：CPU-burst time</p>
+<h2 id="multiple-processor-scheduling">Multiple-Processor Scheduling<a hidden class="anchor" aria-hidden="true" href="#multiple-processor-scheduling">#</a></h2>
+<p>多处理器系统的分类：</p>
+<p>a. 松耦合多处理器（Loosely coupled multiprocessor）：每个处理器具有自己的内存和 I/O 通道。这种结构中的处理器之间相互独立，互不干扰。</p>
+<p>b. 紧耦合多处理器（Tightly coupled multiprocessing）：处理器共享主内存。这种结构中的处理器在执行任务时需要更多的协作和同步。</p>
+<p>c. 功能专业化处理器：如 I/O 处理器，这种处理器专门负责处理 I/O 操作，由主处理器控制。
+homogeneous 处理器：在多处理器系统中，任何可用的处理器都可以运行队列中的任何进程。这意味着系统中的所有处理器具有相同的性能和功能。
+Heterogeneous 系统：在这种系统中，只有为特定处理器指令集编译的程序才能在该处理器上运行。这意味着系统中的处理器具有不同的指令集和性能。</p>
+<h3 id="approaches-to-multiple-processor-scheduling">Approaches to Multiple-Processor Scheduling<a hidden class="anchor" aria-hidden="true" href="#approaches-to-multiple-processor-scheduling">#</a></h3>
+<p>Asymmetric multiprocessing（非对称多处理器）和 Symmetric multiprocessing（对称多处理器）是两种不同的多处理器调度方式。
+在非对称多处理器系统中，有一个主处理器负责处理所有的调度决策、I/O 处理和其他系统活动。其他从处理器仅执行用户代码。主处理器访问系统数据结构，从而减少了数据共享的需求。从处理器向主处理器发送服务请求。这种方法的缺点是，如果主处理器出现故障，整个系统将受到影响；此外，主处理器可能会成为性能瓶颈。
+在对称多处理器（SMP）系统中，架构是对等的，操作系统可以在任何处理器上执行。每个处理器都可以自行调度。准备队列有两种方式：一是每个处理器拥有自己的私有准备队列；二是共享一个公共准备队列。使用私有队列时，可以为主处理器提供专用短期队列，但可能会导致负载不平衡。使用公共队列时，需要确保两个处理器不会选择相同的进程，并且进程不会从队列中丢失。</p>
+<h3 id="processor-affinity">Processor Affinity<a hidden class="anchor" aria-hidden="true" href="#processor-affinity">#</a></h3>
+<p>处理器亲和力（Processor Affinity）</p>
+<p>非统一内存访问（NUMA，Non-Uniform Memory Access）</p>
+<p>处理器亲和力是指操作系统将进程分配给特定处理器的能力。在这个过程中，操作系统尽量让一个进程在同一处理器上运行，但并不保证一定实现。这主要是为了提高系统的性能和资源利用率。
+非统一内存访问（NUMA）是一种现象，指的是 CPU 对内存的不同部分访问速度不同。通常，这种情况出现在含有 CPU 和内存板的系统中。在这种系统中，一个主板上的 CPU 访问该主板上的内存速度要比访问其他主板上的内存速度快。</p>
+<h3 id="load-balancing">Load balancing<a hidden class="anchor" aria-hidden="true" href="#load-balancing">#</a></h3>
+<p>负载均衡是指在 SMP（对称多处理器）系统中，保持工作负载在所有处理器上均匀分布。
+负载均衡仅在每个处理器都有自己的准备队列（private ready queue）的系统中才有必要。
+负载均衡有两种方法：</p>
+<ol>
+<li>推迁移（Push migration）：特定任务周期性地检查每个处理器的负载，如果存在负载不平衡，将从负载过重的处理器上将进程推到空闲或较不繁忙的处理器上。</li>
+<li>拉迁移（Pull migration）：空闲处理器从繁忙的处理器中拉取等待的任务。
+然而，负载均衡往往抵消了处理器亲和性（processor affinity）的优点。</li>
+</ol>
+<h3 id="multiprocessor-thread-scheduling">Multiprocessor Thread Scheduling<a hidden class="anchor" aria-hidden="true" href="#multiprocessor-thread-scheduling">#</a></h3>
+<ol>
+<li>负载分享（Load sharing）：在这种策略下，进程不会被分配到特定的处理器上。这意味着处理器会在多个进程之间共享，以实现更高的资源利用率。</li>
+<li>组调度（Gang scheduling）：这种策略是指一组相关的线程同时在一组处理器上运行。这种方法可以提高程序的执行效率，特别是当这些线程之间存在很强的相关性时。</li>
+<li>专用处理器分配（Dedicated processor assignment）：在这种策略下，线程被分配到特定的处理器上。这种方法可以确保每个线程都能获得固定的处理器资源，从而提高程序的执行效率。</li>
+<li>动态调度（Dynamic scheduling）：这种策略是指在程序执行过程中，可以动态地改变线程的数量。这使得系统可以根据当前的系统负载和资源状况，灵活地调整线程数量，以实现更高的资源利用率。
+总的来说，这段内容主要介绍了多处理器线程调度的一些基本概念和策略，以及如何根据不同的需求和场景选择合适的调度方法。这些策略可以提高系统的资源利用率、执行效率，并确保程序的正常运行。</li>
+</ol>
+<h2 id="thread-scheduling">Thread Scheduling<a hidden class="anchor" aria-hidden="true" href="#thread-scheduling">#</a></h2>
+<p>线程是独立于进程其他部分执行的，一个应用程序可以是一组合作的线程，在相同的地址空间中并行执行。线程在不同的处理器上运行可以带来性能的显著提升。线程可以分为内核级线程和用户级线程，内核级线程由操作系统调度，用户级线程由线程库管理，内核无法感知到它们。要在一台 CPU 上运行，用户级线程最终必须映射到相关的内核级线程，这个映射可能是间接的，可能使用轻量级进程（LWP）。</p>
+<p>竞争范围（Contention Scope）包括进程竞争范围（PCS）和系统竞争范围（SCS）。在 PCS 中，线程库将用户级线程调度到可用的 LWP 上。CPU 的竞争仅在同一进程的线程之间进行。在 SCS 中，内核决定将哪个内核级线程调度到 CPU 上。CPU 与 SCS 的竞争发生在系统中的所有线程之间。</p>
+<p>线程调度包括局部调度（PCS）和全局调度（SCS）。局部调度指的是进程竞争范围，采用 m:1 和 m:n 模型。全局调度指的是系统竞争范围，采用 1:1 模型。Pthread 调度 API 允许在创建线程时指定 PCS 或 SCS。在实现多对多模型的系统中，PTHREAD_SCOPE_PROCESS 策略将用户级线程调度到可用的 LWP 上，线程库维护 LWP 的数量。PTHREAD_SCOPE_SYSTEM 策略将为每个用户级线程创建并绑定一个 LWP，实际上将线程映射为一对一策略。操作系统可能会限制这些选项，例如 Linux 和 Mac OS X 仅允许 PTHREAD_SCOPE_SYSTEM。</p>
+<h2 id="operating-system-examples">Operating System Examples<a hidden class="anchor" aria-hidden="true" href="#operating-system-examples">#</a></h2>
+<h3 id="linux-scheduling">Linux Scheduling<a hidden class="anchor" aria-hidden="true" href="#linux-scheduling">#</a></h3>
+<p>Linux调度算法，是Linux操作系统中用于分配CPU资源的进程调度策略。其核心目标是公平、高效地为各进程分配CPU时间片，以实现最大的系统资源利用率。</p>
+<p><strong>1. 任务优先级</strong></p>
+<ul>
+<li>任务的优先级与其数值成反比。
+<ul>
+<li>实时任务：优先级为0-99，拥有较高的优先级。</li>
+<li>非实时任务：优先级为100-140，拥有较低的优先级。</li>
+</ul>
+</li>
+</ul>
+<p><strong>2. 时间共享 (100-140)</strong></p>
+<ul>
+<li>优先给予具有最多积分的进程CPU时间片。</li>
+<li>定时器中断发生时，进程积分逐渐减少。</li>
+<li>积分为0时，切换至另一进程。</li>
+<li>所有进程积分归零时，重新分配积分。</li>
+</ul>
+<p><strong>3. 实时调度 (0-99)</strong></p>
+<ul>
+<li>符合Posix.1b标准的软实时调度。
+<ul>
+<li>先来先服务（FCFS）</li>
+<li>循环轮转（RR）</li>
+</ul>
+</li>
+<li>总是优先执行最高优先级的进程。</li>
+</ul>
+<p><strong>4. 任务优先级的类别</strong></p>
+<ul>
+<li>实时任务：分配固定的静态优先级，因需满足严格的时间限制。</li>
+<li>其他任务：动态优先级，由其&quot;nice&quot;值（相对优先级）决定，取值范围为-20到19。值越低，优先级越高。调度时根据此优先级确定。</li>
+</ul>
+<p><strong>5. 优先级索引的任务列表</strong></p>
+<ul>
+<li>该列表根据任务优先级排序，存放所有就绪状态的任务。</li>
+<li>高优先级任务优先执行，保证关键和实时任务获得足够资源。</li>
+<li>低优先级任务在资源充裕时得以执行，以保证系统的公平与效率。</li>
+<li>调度器会按照此列表优先级，从高到低地选择并执行任务。</li>
+</ul>
+<h3 id="windows-scheduling">Windows Scheduling<a hidden class="anchor" aria-hidden="true" href="#windows-scheduling">#</a></h3>
+<p><strong>基于优先级的抢先式调度</strong></p>
+<ul>
+<li>
+<p><strong>调度器</strong>：调度器即为分派器。</p>
+</li>
+<li>
+<p><strong>线程的运行状态</strong>：</p>
+<ul>
+<li>遭遇阻塞。</li>
+<li>时间片用完。</li>
+<li>被高优先级的线程抢占。</li>
+<li>线程终止。</li>
+</ul>
+</li>
+<li>
+<p><strong>实时线程与非实时线程</strong>：实时线程可以抢占非实时线程。</p>
+</li>
+<li>
+<p><strong>优先级方案</strong>：</p>
+<ul>
+<li>共有32个优先级。</li>
+<li>变量类的优先级范围是1-15，实时类的优先级范围是16-31。</li>
+<li>优先级0被分配给内存管理线程。</li>
+</ul>
+</li>
+<li>
+<p><strong>多级队列</strong>：每个优先级都有一个对应的队列。</p>
+</li>
+<li>
+<p><strong>无可运行线程时的状态</strong>：如果没有可运行的线程，系统会运行空闲线程。</p>
+</li>
+</ul>
+<p><strong>Windows XP的优先级制度</strong></p>
+<ul>
+<li><strong>线程的优先级</strong>：每个线程的优先级都是基于其优先级类和相对优先级来决定的。
+<ul>
+<li>进程的优先级通常设为NORMAL_PRIORITY_CLASS。</li>
+<li>线程的初始优先级通常是进程的基础优先级。</li>
+</ul>
+</li>
+<li><strong>时间片用尽时的处理</strong>：当时间片用尽时，线程的优先级会被降低，但绝不会低于基础优先级；当线程从等待操作恢复时，其优先级会被提高。</li>
+</ul>
+<h3 id="solaris-scheduling">Solaris Scheduling<a hidden class="anchor" aria-hidden="true" href="#solaris-scheduling">#</a></h3>
+<p><strong>基于优先级的线程调度</strong></p>
+<ul>
+<li>
+<p><strong>相同优先级的处理方式</strong>：当线程具有相同的优先级时，采用循环轮转（RR，Round Robin）方式进行调度。</p>
+</li>
+<li>
+<p><strong>线程分类</strong>：每个线程都属于以下六个类别中的一个：</p>
+<ol>
+<li>时间共享（Time Sharing, TS）</li>
+<li>交互式（Interactive, IA）</li>
+<li>实时（Real Time, RT）</li>
+<li>系统（System, SYS）</li>
+<li>公平共享（Fair Share, FSS）</li>
+<li>固定优先级（Fixed Priority, FP）</li>
+</ol>
+</li>
+<li>
+<p><strong>每类特点</strong>：在每个类别中，都有不同的优先级和调度算法。</p>
+</li>
+<li>
+<p><strong>默认调度类别</strong>：对于进程，其默认的调度类别是时间共享。</p>
+</li>
+</ul>
+<h2 id="algorithm-evaluation">Algorithm Evaluation<a hidden class="anchor" aria-hidden="true" href="#algorithm-evaluation">#</a></h2>
+<ol>
+<li><strong>度量标准</strong>：
+<ul>
+<li><strong>CPU利用率</strong>：这是一个度量CPU活跃程度的指标，通常表示为百分比。理想情况下，我们希望CPU保持高效的利用，但同时也要确保它不会过载。</li>
+<li><strong>响应时间</strong>：表示从请求提交到收到第一个响应所需的时间。对于交互式系统或实时系统，响应时间是一个关键指标。</li>
+<li><strong>吞吐量</strong>：在单位时间内完成的任务数量。对于批处理系统或高性能计算系统，吞吐量是一个重要指标。</li>
+</ul>
+</li>
+<li><strong>度量标准的相对重要性</strong>：
+<ul>
+<li><strong>CPU利用率的最大化</strong>：但要在一个限制下，即响应时间的最大值不能超过1秒。这意味着，尽管我们希望CPU尽可能多地被利用，但我们也希望系统的响应时间保持在用户可以接受的范围内。</li>
+<li><strong>吞吐量的最大化</strong>：但要满足一个条件，即周转时间（从任务提交到任务完成的总时间）与任务的总执行时间成线性关系。这意味着，随着任务执行时间的增加，周转时间也会按相同的比例增加，从而确保系统的公平性。</li>
+</ul>
+</li>
+</ol>
+<h3 id="deterministic-modeling">Deterministic modeling<a hidden class="anchor" aria-hidden="true" href="#deterministic-modeling">#</a></h3>
+<p>这段内容主要介绍了确定性建模（Deterministic modeling）的概念。确定性建模是一种针对特定预先确定的工作负载（workload）来评估调度算法性能的方法。在这种方法中，系统会对每种算法在工作负载下的性能进行定义。
+举一个例子来说明，假设我们有以下的工作负载：</p>
+<ol>
+<li>FCFS（First-Come-First-Serve，先来先服务）算法</li>
+<li>SJF（Shortest Job First，最短作业优先）算法</li>
+<li>RR（Round Robin，轮转）算法，其中队列长度为 10
+接下来，我们需要比较这三种算法的平均等待时间。
+进程的 burst time（执行时间）如下：</li>
+</ol>
+<ul>
+<li>P1:10</li>
+<li>P2:29</li>
+<li>P3:3</li>
+<li>P4:7</li>
+<li>P5:12
+计算每种算法的平均等待时间：</li>
+<li>FCFS：((0+10+39+42+49)/5)=28</li>
+<li>SJF：((10+32+0+3+20)/5)=13</li>
+<li>RR：((0+32+20+23+40)/5)=23
+通过这个例子，我们可以看到不同调度算法在同一工作负载下的性能表现。在这个案例中，FCFS、SJF 和 RR 算法的平均等待时间分别为 28、13 和 23。</li>
+</ul>
+<h3 id="queuing-models">Queuing models<a hidden class="anchor" aria-hidden="true" href="#queuing-models">#</a></h3>
+<p>排队模型（Queuing models）是一种用于描述系统中进程等待服务的模型。在这个模型中，关键的概念是进程到达时间分布、服务时间分布以及进程队列的类型。
+排队模型的主要目的是分析系统在给定资源限制下的性能表现，例如计算平均等待时间、响应时间等指标。在排队模型中，通常会考虑以下几个方面：
+进程到达时间分布：这是指进程在系统中的到达时间是如何分布的。常见的到达时间分布有泊松分布、均匀分布等。
+服务时间分布：这是指进程在获得 CPU 资源后执行的时间分布。常见的服务时间分布有指数分布、均匀分布等。
+进程队列类型：根据系统中的进程队列类型，排队模型可以分为单队列模型和多队列模型。在单队列模型中，所有进程按照到达顺序排队等待服务；而在多队列模型中，进程会被分为多个队列，每个队列有自己的服务规则。
+通过对这些参数进行建模，可以分析不同调度算法在特定系统负载下的性能表现。排队模型有助于我们了解系统在不同条件下的响应时间、吞吐量等性能指标，从而为系统优化提供依据。</p>
+<h3 id="simulations">Simulations<a hidden class="anchor" aria-hidden="true" href="#simulations">#</a></h3>
+<p>模拟（Simulations）在评估 CPU 调度算法性能中的应用。模拟是指通过编写计算机系统的模型来进行实验，以评估不同调度算法的性能。
+在模拟过程中，主要涉及以下几个方面：</p>
+<ol>
+<li>编程模型：模拟过程中需要编写计算机系统的软件数据结构，这是系统的主要组成部分。</li>
+<li>变量：模拟中使用的一个关键变量是时钟（clock），它可以表示时间的推移。</li>
+<li>性能统计：在模拟执行过程中，会收集和打印表明算法性能的统计数据。</li>
+<li>数据生成：模拟所需的数据可以通过随机数生成器（random-number generator）来生成。</li>
+<li>分布定义：模拟中的数据分布可以通过数学方式或经验方式（empirically）定义。</li>
+<li>分布驱动模拟：但由于实际系统中连续事件之间的关系，分布驱动的模拟可能存在一定的不准确性。</li>
+</ol>
+<p>这段内容主要介绍了模拟仿真在评估 CPU 调度算法性能时的优势。它与队列模型相比，具有更高的准确性。
+simulations，即模拟仿真，是一种通过程序构建计算机系统模型的方式，用于评估不同调度算法的性能。在模拟过程中，钟（clock）被作为一个变量，用以表示时间的推移。通过模拟，可以收集表明算法性能的统计数据。
+与之相比，队列模型（queueing models）的限制在于它们是基于固定的概率分布和系统参数进行建模的，而这些参数可能在实际运行过程中发生变化。模拟仿真则更灵活，可以生成不同分布的数据来驱动仿真，从而更准确地反映实际情况。
+模拟仿真的数据可以通过以下方式收集：</p>
+<ol>
+<li>随机数生成器（random number generator）：根据设定的概率生成不同的事件序列。</li>
+<li>数学或经验定义的分布（distributions defined mathematically or empirically）：根据实际情况设定进程到达、执行时间和完成时间的分布。</li>
+<li>轨迹带（trace tapes）：记录实际系统中真实事件的序列。
+通过这些数据，可以对不同的调度算法进行性能评估。从而为 CPU 调度算法的选择和优化提供依据。</li>
+</ol>
+<h3 id="implementation">Implementation<a hidden class="anchor" aria-hidden="true" href="#implementation">#</a></h3>
+<p>Implementation 部分指的是将实际的调度算法在现实系统中进行评估。这个过程需要在现实操作系统的环境下运行，以便更好地了解算法的性能和适用性。
+在实施过程中，主要面临以下困难：
+成本问题：实施算法不仅需要编写算法代码和修改操作系统以支持它，以及其所需的数据结构，还需要考虑用户对不断变化的操作系统的反应。这可能导致额外的成本支出。
+环境变化：环境变化不仅来自于新程序的编写和问题类型的变化，而且还可能是调度器性能的结果。这使得调度算法在现实系统中的实施变得更加困难，因为需要不断地调整和优化算法以适应不断变化的环境。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.css"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.js"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        &copy; 
+        
+        2024 Bethel<br>共 97.40k 字 · 共 10 篇文章
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://stack.jimmycai.com/" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> 由 <a href="https://jimmycai.com/" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
+
+
+<script src="https://mecdn.mcserverx.com/gh/zhixuan2333/gh-blog/master/js/nprogress.min.js" integrity="sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://mecdn.mcserverx.com/gh/zhixuan2333/gh-blog/master/css/nprogress.css" integrity="sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE" crossorigin="anonymous" />
+<script>
+    NProgress.start();
+    document.addEventListener("readystatechange", () => {
+        if (document.readyState === "interactive") NProgress.inc(0.8);
+        if (document.readyState === "complete") NProgress.done();
+    });
+</script>
+    </body>
+</html>

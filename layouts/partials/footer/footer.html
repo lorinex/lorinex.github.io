@@ -1,0 +1,27 @@
+{{- $ThemeVersion := "3.16.0" -}}
+<footer class="site-footer">
+    <section class="copyright">
+        {{$scratch := newScratch}}
+        {{ range (where .Site.Pages "Kind" "page" )}}
+            {{$scratch.Add "total" .WordCount}}
+        {{ end }}
+        &copy; 
+        {{ if and (.Site.Params.footer.since) (ne .Site.Params.footer.since (int (now.Format "2006"))) }}
+            {{ .Site.Params.footer.since }} - 
+        {{ end }}
+        {{ now.Format "2006" }} {{ .Site.Title }}<br>共 {{ div ($scratch.Get "total") 1000.0 | lang.FormatNumber 2 }}k 字 · 共 {{ len (where .Site.RegularPages "Section" "post") }} 篇文章
+    </section>
+    
+    <section class="powerby">
+        {{ with .Site.Params.footer.customText }}
+            {{ . | safeHTML }} <br/>
+        {{ end }}
+
+        {{- $Generator := `<a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>` -}}
+        {{- $Theme := printf `<b><a href="https://stack.jimmycai.com/" target="_blank" rel="noopener" data-version="%s">Stack</a></b>` $ThemeVersion -}}
+        {{- $DesignedBy := `<a href="https://jimmycai.com/" target="_blank" rel="noopener">Jimmy</a>` -}}
+
+        {{ T "footer.builtWith" (dict "Generator" $Generator) | safeHTML }} <br />
+        {{ T "footer.designedBy" (dict "Theme" $Theme "DesignedBy" $DesignedBy) | safeHTML }}
+    </section>
+</footer>

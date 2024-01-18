@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Deadlocks System Model Resource types：系统中有多种资源类型，包括 CPU、内存空间、文件、I/O 设备（如打印机等）。 资源可以分为物理资源和逻辑资源。 physical resou'>
+<title>5  Deadlocks | Bethel's Blog</title>
+
+<link rel='canonical' href='https://www.xxx.blog/post/5-deadlocks/'>
+
+<link rel="stylesheet" href="/scss/style.min.c3c7ecff622b4ad3ac6aacf17244c017cc674f0e82b470bfb8f4de85243313d0.css"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"K3aYNEt3ZeYoZwhE",ck:"K3aYNEt3ZeYoZwhE"})</script>
+<script async src="https://umami.xalaok.top/uanalytics" data-website-id="095ee454-e560-4d9b-bf1c-869f8529c17f"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script><meta property='og:title' content='5  Deadlocks'>
+<meta property='og:description' content='Deadlocks System Model Resource types：系统中有多种资源类型，包括 CPU、内存空间、文件、I/O 设备（如打印机等）。 资源可以分为物理资源和逻辑资源。 physical resou'>
+<meta property='og:url' content='https://www.xxx.blog/post/5-deadlocks/'>
+<meta property='og:site_name' content='Bethel'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-10-21T21:27:13&#43;00:00'/><meta property='article:modified_time' content='2023-10-21T21:27:13&#43;00:00'/>
+<meta name="twitter:title" content="5  Deadlocks">
+<meta name="twitter:description" content="Deadlocks System Model Resource types：系统中有多种资源类型，包括 CPU、内存空间、文件、I/O 设备（如打印机等）。 资源可以分为物理资源和逻辑资源。 physical resou">
+    <link rel="shortcut icon" href="/favicon.png" />
+<link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont@1.7.0/lxgwwenkaigbscreen.css" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/tx_hu92c04046da3d4074953cad185e3935e5_62559_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Bethel</a></h1>
+            <h2 class="site-description">Live and learn. ✍️</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-high" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" />
+  <path d="M6.343 17.657l-1.414 1.414" />
+  <path d="M6.343 6.343l-1.414 -1.414" />
+  <path d="M17.657 6.343l1.414 -1.414" />
+  <path d="M17.657 17.657l1.414 1.414" />
+  <path d="M4 12h-2" />
+  <path d="M12 4v-2" />
+  <path d="M20 12h2" />
+  <path d="M12 20v2" />
+</svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+  <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+  <path d="M19 11h2m-1 -1v2" />
+</svg>
+                    <span>深色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#system-model">System Model</a></li>
+    <li><a href="#deadlock-characterization">Deadlock Characterization</a>
+      <ol>
+        <li><a href="#resource-allocation-graph">Resource-Allocation Graph</a></li>
+      </ol>
+    </li>
+    <li><a href="#methods-for-handling-deadlocks">Methods for Handling Deadlocks</a></li>
+    <li><a href="#deadlock-prevention">Deadlock Prevention</a></li>
+    <li><a href="#deadlock-avoidance">Deadlock Avoidance</a>
+      <ol>
+        <li><a href="#safe-state">Safe State</a></li>
+        <li><a href="#resource-allocation-graph-algorithm">Resource-Allocation Graph Algorithm</a></li>
+        <li><a href="#bankers-algorithm">Banker’s Algorithm</a></li>
+        <li><a href="#safety-algorithm">Safety Algorithm</a></li>
+        <li><a href="#resource-request-algorithm">Resource-Request Algorithm</a></li>
+      </ol>
+    </li>
+    <li><a href="#deadlock-detection">Deadlock Detection</a>
+      <ol>
+        <li><a href="#single-instance-of-each-resource-type">Single Instance of Each Resource Type</a></li>
+        <li><a href="#several-instances-of-a-resource-type">Several Instances of a Resource Type</a></li>
+        <li><a href="#detection-algorithm">Detection Algorithm</a>
+          <ol>
+            <li><a href="#example-of-detection-algorithm">Example of Detection Algorithm</a></li>
+            <li><a href="#detection-algorithm-usage">Detection-Algorithm Usage</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#recovery-from-deadlock">Recovery from Deadlock</a>
+      <ol>
+        <li><a href="#process-termination">Process Termination</a></li>
+        <li><a href="#resource-preemption">Resource Preemption</a></li>
+        <li><a href="#combined-approach-to-deadlock-handling">Combined Approach to Deadlock Handling</a></li>
+      </ol>
+    </li>
+    <li><a href="#期末考计算题">期末考计算题</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/os/" style="background-color: #2a9d8f; color: #fff;">
+                操作系统
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/5-deadlocks/">5  Deadlocks</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-10-21</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 13 分钟
+                </time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+  <path d="M13.5 6.5l4 4" />
+</svg>
+                <time class="article-words">
+                    字数: 6347 字
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="deadlocks">Deadlocks<a hidden class="anchor" aria-hidden="true" href="#deadlocks">#</a></h1>
+<h2 id="system-model">System Model<a hidden class="anchor" aria-hidden="true" href="#system-model">#</a></h2>
+<ol>
+<li>Resource types：系统中有多种资源类型，包括 CPU、内存空间、文件、I/O 设备（如打印机等）。</li>
+<li>资源可以分为<strong>物理资源</strong>和<strong>逻辑资源</strong>。
+<ul>
+<li>physical resources：preemptive resources，如 CPU、内存；non-preemptive resources，如打印机。</li>
+<li>logical resources：temporary resources, known as consumable resources</li>
+</ul>
+</li>
+<li>资源实例：每个资源类型都有若干个实例。</li>
+<li>进程如何使用资源：每个进程根据其需求请求、使用和释放资源。</li>
+<li>system table：系统表记录了每个资源的状态（自由或分配），以及若资源分配给哪个进程。</li>
+<li>请求、使用和释放：进程在需要资源时发起请求，获得资源后进行使用，并在完成任务后释放资源。</li>
+</ol>
+<h2 id="deadlock-characterization">Deadlock Characterization<a hidden class="anchor" aria-hidden="true" href="#deadlock-characterization">#</a></h2>
+<p>死锁特征是指一组进程在运行过程中，由于资源争用导致的一种特殊状态，即这些进程都在等待对方释放资源，从而导致进程无法继续执行。</p>
+<p>死锁的特征主要包括以下几点：</p>
+<ol>
+<li>互斥性：至少有两个进程在争夺同一资源，且至少有一个进程已经持有了该资源。</li>
+<li>请求与等待：进程请求获取它所需要的资源，但该资源已被其他进程占用，因此请求进程处于等待状态。</li>
+<li>不可剥夺性：已分配给进程的资源在未被该进程释放前，其他进程无法强行占用。</li>
+<li>循环等待：存在一个进程链，每个进程都在等待下一个进程所持有的资源。
+当以上特征同时满足时，系统就容易出现死锁现象。理解死锁特征有助于分析和预防死锁的发生，从而确保系统资源的合理分配和进程的正常运行。</li>
+</ol>
+<h3 id="resource-allocation-graph">Resource-Allocation Graph<a hidden class="anchor" aria-hidden="true" href="#resource-allocation-graph">#</a></h3>
+<p>资源分配图是一种用于描述多个进程在请求和分配资源过程中的关系图表。
+在资源分配图中，每个进程用一个节点表示，每条边表示一个进程请求或分配一个资源。</p>
+<ol>
+<li>节点V：图表中的节点代表进程。每个节点包含当前进程已经分配的资源数量以及尚未请求的资源数量。</li>
+<li>P表示进程</li>
+<li>R表示资源</li>
+<li>边E：图表中的边表示进程之间的资源请求关系。边有两种类型：
+<ul>
+<li>请求边request edge：表示一个进程可能请求另一个进程所持有的资源。请求边用虚线表示。</li>
+<li>分配边assignment edge：表示一个进程已经分配了某个资源。分配边用实线表示。</li>
+</ul>
+</li>
+<li>循环：在资源分配图中，如果存在一个进程链，每个进程都在等待下一个进程所持有的资源，那么就形成了循环等待。循环等待是导致死锁的一个关键条件。</li>
+<li>循环在资源分配图中起着关键作用，可以用来判断系统是否会发生死锁。当循环中每个资源类型只有一个实例时，系统必然会发生死锁。而当循环中的资源类型有多个实例时，虽然死锁的可能性较高，但并非必然发生死锁。</li>
+<li>安全状态与不安全状态：
+<ul>
+<li>安全状态是指不存在循环等待的情况下，系统可以分配资源给进程而不会导致死锁。</li>
+<li>不安全状态是指存在循环等待，系统分配资源可能导致死锁的情况。
+通过检查资源分配图中的循环等待，系统可以确定哪些资源分配是安全的，哪些是不安全的。在不安全情况下，系统可以采取措施推迟进程的资源分配，直到资源请求不会导致死锁。</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231031082908858.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231031082908858"
+	
+	
+></p>
+<h2 id="methods-for-handling-deadlocks">Methods for Handling Deadlocks<a hidden class="anchor" aria-hidden="true" href="#methods-for-handling-deadlocks">#</a></h2>
+<ul>
+<li>死锁预防 Deadlock-prevention：通过制定严格的资源请求顺序，预先避免死锁的发生。例如，为所有资源类型设定一个全局排序，并要求进程按照资源编号的升序请求资源。</li>
+<li>死锁避免 Deadlock-avoidance：在系统运行过程中，通过检测潜在的死锁情况并采取措施避免它们。例如，使用银行家算法（Banker Algorithm）来预先分配资源，确保不会发生资源请求冲突。</li>
+<li>允许系统进入死锁状态，检测到死锁后进行恢复（Deadlock Detection and Recovery）：
+<ul>
+<li>检测：通过一定的算法和策略检测到系统中的死锁情况。</li>
+<li>恢复：当死锁发生时，通过终止进程、抢占资源或回滚进程状态等方法解除死锁。</li>
+</ul>
+</li>
+<li>忽略问题（Deadlock Ignoration）：假装死锁在系统中永远不会发生。大多数操作系统（包括 UNIX 和 Windows）都采用这种方法。</li>
+</ul>
+<h2 id="deadlock-prevention">Deadlock Prevention<a hidden class="anchor" aria-hidden="true" href="#deadlock-prevention">#</a></h2>
+<ul>
+<li>互斥性（Mutual Exclusion）是指对于不可共享的资源，进程之间需要相互排斥，确保同一时间只有一个进程可以使用该资源；而对于可共享的资源，则不需要互斥性。</li>
+<li>持有等待（Hold and Wait）意味着进程在请求新资源时，不能持有其他资源。
+<ul>
+<li>这里提供了两种持有等待的策略：
+<ul>
+<li>进程在开始执行前，需要请求并分配所有所需资源。但这种方法的缺点是资源利用率低。</li>
+<li>只在进程没有资源时才请求资源（先释放资源）。但这种方法的缺点是可能导致进程饥饿（starvation）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>不预先分配资源（No Preemption）。
+<ul>
+<li>该策略有两种实现方式：
+<ul>
+<li>当一个进程请求资源时，其已经持有的资源会被抢占。进程必须在没有资源的情况下等待。
+<ul>
+<li>如果一个持有资源的进程请求一个无法立即分配的资源，那么它将释放当前持有的所有资源。</li>
+<li>被抢占的资源会被添加到进程等待的资源列表中。</li>
+</ul>
+</li>
+<li>进程在持有资源的情况下等待，但持有的资源可能会被其他请求这些资源的进程抢占。
+<ul>
+<li>这种策略通常适用于状态容易保存和恢复的资源，如 CPU 寄存器和内存空间。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>循环等待（Circular Wait）。该策略要求对所有资源类型进行 total 排序，并规定每个进程按资源类型请求的顺序递增。
+<ul>
+<li>每个资源的排序位置由 F(Ri) 确定。</li>
+<li>该策略有两种实现方式：
+<ul>
+<li>进程可以请求资源类型 Rj 的实例，条件是 F(Rj) &gt; F(Ri)。如果需要多个相同资源类型的实例，进程必须一次请求所有实例。
+<ul>
+<li>每当进程请求资源类型 Rj 的实例时，它需要释放任何 F(Ri) ≥ F(Rj) 的资源。
+这样可以确保系统在资源分配时遵循一定的顺序，从而降低死锁的可能性。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="deadlock-avoidance">Deadlock Avoidance<a hidden class="anchor" aria-hidden="true" href="#deadlock-avoidance">#</a></h2>
+<p>每个进程声明可能需要的每种资源的最大数量。
+死锁避免算法动态检查资源分配状态，以防止循环等待条件出现。
+资源分配状态包括可用资源、已分配资源和进程的最大需求。</p>
+<h3 id="safe-state">Safe State<a hidden class="anchor" aria-hidden="true" href="#safe-state">#</a></h3>
+<p>安全状态（Safe State）是指在系统中，所有进程都能够继续执行，且不会发生死锁的状态。在安全状态下，系统的资源分配满足以下条件：</p>
+<ol>
+<li>对于每个进程 Pi，其尚未请求到的资源可以通过当前可用的资源加上所有进程 Pj（其中 j&lt;i）已持有的资源来满足。</li>
+<li>如果某个进程需要的资源暂时不可用，那么该进程需要等待，直到所有进程 Pj 完成任务。</li>
+<li>当一个进程完成任务后，它释放已持有的资源，然后继续执行下一个任务。</li>
+</ol>
+<h3 id="resource-allocation-graph-algorithm">Resource-Allocation Graph Algorithm<a hidden class="anchor" aria-hidden="true" href="#resource-allocation-graph-algorithm">#</a></h3>
+<p>资源分配图算法被用来检测系统是否处于<strong>安全状态</strong>，以避免死锁的发生。
+该算法主要应用于<strong>单实例资源分配</strong>系统，通过分析资源分配图，判断资源分配是否会导致死锁。</p>
+<ol>
+<li>创建一个资源分配图，其中节点表示进程，边表示进程对资源的请求，框里点的个数表示资源个数。</li>
+<li>使用深度优先搜索（DFS）或广度优先搜索（BFS）算法检测图中是否存在循环。
+<ol>
+<li>如果no circle，说明系统处于安全状态，一定没有死锁，可以进行资源分配。</li>
+<li>如果找到循环，说明系统处于不安全状态，此时进程必须等待其他进程释放资源以避免死锁。
+<ol>
+<li>如果每个资源类型只有一个实例，并且这个实例被循环中的进程所持有，那么就会发生死锁。</li>
+<li>如果循环中涉及到的每个资源类型都有多个实例，那么可能会发生死锁。
+<ol>
+<li>在这种情况下，尽管图中存在循环，这表明至少有一个进程在等待另一个进程释放资源，但由于每个资源类型有多个实例，因此理论上，如果循环中的进程能够获取到它们需要的资源的一个替代实例，那么死锁可以避免。因此，循环是死锁存在的必要条件，但不是充分条件。即使存在循环，只要资源分配得当，死锁是可以避免的。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>&ldquo;一个实例&quot;通常指的是一种特定类型的资源的单个副本。假设有一个资源类型是“打印机”，那么系统中可能会有多台打印机。</p>
+<p>在资源分配图算法中，进程请求资源的过程如下：</p>
+<ol>
+<li>进程 Pi 请求资源 Rj。</li>
+<li>检查将 Pi → Rj 转换为 Rj → Pi 是否会导致图中的循环。</li>
+<li>如果没有导致循环，则允许资源分配，进程继续执行；否则，进程 Pi 需要等待。</li>
+</ol>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/20240105120908.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="bankers-algorithm">Banker’s Algorithm<a hidden class="anchor" aria-hidden="true" href="#bankers-algorithm">#</a></h3>
+<p>银行家算法（Banker&rsquo;s Algorithm），它适用于<strong>多个实例的资源分配系统</strong>。进程需要在事先声明它们可能需要的<strong>每种资源的最大数量</strong>。当进程请求一组资源时，系统必须检查分配这些资源是否会使得系统处于安全状态。如果可以，则分配资源；否则，进程必须等待其他进程释放足够的资源。当进程获得所有所需资源后，它必须在有限的时间内归还这些资源。
+银行家算法所需的数据结构:</p>
+<ol>
+<li>n：表示进程的数量。</li>
+<li>m：表示资源类型的数量。
+以下是数据结构的具体组成部分：</li>
+<li>Available：一个长度为 m 的向量。如果 <code>Available[j] = k</code>，意味着有 k 个 Rj 类型的资源可用。</li>
+<li>Max：一个 n×m 的矩阵。如果 <code>Max[i, j] = k</code>，表示进程 Pi 最多可能请求 k 个 Rj 类型的资源。</li>
+<li>Allocation：一个 n×m 的矩阵。如果 <code>Allocation[i, j] = k</code>，说明进程 Pi 目前分配了 k 个 Rj 类型的资源。</li>
+<li>Need：一个 n×m 的矩阵。如果 <code>Need[i, j] = k</code>，表示进程 Pi 可能还需要 k 个 Rj 类型的资源来完成任务。
+<code>Need[i, j]</code> 的计算公式为：<code>Need[i, j] = Max[i, j] - Allocation[i, j]</code>。
+向量 X 和 Y，长度都是 n。X≤Y 表示向量 X 中的每个元素都小于或等于向量 Y 中的对应元素。也就是说，对于所有的 i=1，2，&hellip;，n，都有 <code>X[i]≤Y[i]</code>。
+矩阵 allocution 和 need 的每一行都可以看作是一个向量，分别被称为 $allocution_i$ 和 $need_i$。其中：
+$Allocation_i$ 表示当前分配给进程 Pi 的资源。
+$Need_i$ 表示进程 Pi 可能还需要完成的任务所需的额外资源。</li>
+</ol>
+<h3 id="safety-algorithm">Safety Algorithm<a hidden class="anchor" aria-hidden="true" href="#safety-algorithm">#</a></h3>
+<p>Safety Algorithm 的主要步骤：</p>
+<ol>
+<li>初始化：设置 Work 向量为可用资源，Finish 向量为长度为 n 的 vector，初始状态下，所有进程的 Finish 变量都为 false。</li>
+<li>寻找一个索引 i，满足以下条件：
+a. Finish[i] 为 false
+b. Needi ≤ Work
+如果找不到这样的 i，则执行步骤 4。</li>
+<li>分配资源：将分配给进程 Pi 的资源添加到 Work 向量中，并将 Finish[i] 设置为 true。然后返回步骤 2。</li>
+<li>检查系统状态：如果所有进程的 Finish[i] 都为 true，则系统处于安全状态。</li>
+</ol>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231031090922016.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231031090922016"
+	
+	
+></p>
+<h3 id="resource-request-algorithm">Resource-Request Algorithm<a hidden class="anchor" aria-hidden="true" href="#resource-request-algorithm">#</a></h3>
+<p>【资源请求算法】（Resource-Request Algorithm）是一种在操作系统中处理资源分配和死锁问题的一种方法。该算法主要涉及到进程在请求资源时，如何判断和处理请求是否会影响系统的安全性。
+在资源请求算法中，有以下几个关键点：</p>
+<ol>
+<li>每个进程都有一个请求向量（request vector），用于表示该进程所需的各种资源类型及其数量。</li>
+<li>当一个进程请求某个资源时，系统需要检查该请求是否符合以下条件：<br>
+a. 请求的资源数量不超过进程所需的最大资源数量。<br>
+b. 请求资源后，系统仍然处于安全状态。</li>
+<li>系统通过检查进程的请求向量和当前系统中的可用资源，来判断请求是否可以被满足。如果满足条件，系统将为进程分配资源；否则，进程需要等待其他进程释放足够的资源。</li>
+<li>进程在获得所需资源后，需要在有限时间内释放这些资源，以避免资源锁定现象。
+资源请求算法的主要目的是确保系统在分配资源时始终保持安全状态，避免死锁的发生。通过进程提交资源请求，系统可以动态地检查资源分配状态，以便在满足进程需求的同时，确保系统资源的有效分配。这种算法有助于维护系统的稳定性和安全性，从而提高操作系统的性能。</li>
+</ol>
+<p>Example of Banker’s Algorithm</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231031091028134.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231031091028134"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231031091100682.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231031091100682"
+	
+	
+></p>
+<h2 id="deadlock-detection">Deadlock Detection<a hidden class="anchor" aria-hidden="true" href="#deadlock-detection">#</a></h2>
+<h3 id="single-instance-of-each-resource-type">Single Instance of Each Resource Type<a hidden class="anchor" aria-hidden="true" href="#single-instance-of-each-resource-type">#</a></h3>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240105125855588.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240105125855588"
+	
+	
+></p>
+<p>死锁等价于wait-for graph有环</p>
+<h3 id="several-instances-of-a-resource-type">Several Instances of a Resource Type<a hidden class="anchor" aria-hidden="true" href="#several-instances-of-a-resource-type">#</a></h3>
+<ul>
+<li>可用资源（Available）：一个长度为m的向量，用来表示每种类型资源的可用数量。在进程需要资源时，这个向量会动态变化，以反映当前系统内每种资源的剩余数量。</li>
+<li>分配（Allocation）：一个n×m的矩阵，用来定义当前分配给每个进程的每种类型资源的数量。矩阵的每一行代表了对应进程所分配到的资源类型和数量。</li>
+<li>请求（Request）：一个n×m的矩阵，表示每个进程当前的资源请求。如果<code>Request[i, j] = k</code>，那么进程Pi正在请求k个资源类型Rj的实例。这个矩阵帮助系统了解各个进程还需要哪些资源，以便进行相应的分配。</li>
+</ul>
+<p>在分配和请求矩阵中，每一行都可以被视为一个向量，分别称为Allocation i和Request i，这样可以更方便地表示和引用每个进程的分配和请求情况。</p>
+<h3 id="detection-algorithm">Detection Algorithm<a hidden class="anchor" aria-hidden="true" href="#detection-algorithm">#</a></h3>
+<h4 id="example-of-detection-algorithm">Example of Detection Algorithm<a hidden class="anchor" aria-hidden="true" href="#example-of-detection-algorithm">#</a></h4>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240105130536139.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240105130536139"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240105130606885.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240105130606885"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240105131609792.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240105131609792"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240105131631556.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240105131631556"
+	
+	
+></p>
+<h4 id="detection-algorithm-usage">Detection-Algorithm Usage<a hidden class="anchor" aria-hidden="true" href="#detection-algorithm-usage">#</a></h4>
+<p>何时以及多久调用一次死锁检测算法取决于以下几个因素：</p>
+<ul>
+<li>死锁多久可能发生一次？</li>
+<li>需要回滚多少个进程？</li>
+</ul>
+<p>对于每个不相关的循环，都需要一个回滚。
+死锁只有在某个进程提出了一个不能立即满足的请求时才会发生。</p>
+<ul>
+<li>每当有资源分配的请求不能立即被满足时，就调用死锁检测算法。</li>
+<li>这样做可能会在计算时间上产生相当大的开销。因此，可以定义一个时间间隔，比如每小时调用一次算法，或者当CPU利用率低于40%时调用。</li>
+</ul>
+<p>如果随意调用检测算法，资源图（resource graph）中可能会有许多循环，这样我们就无法判断是哪个死锁进程“导致了”死锁。因此，需要合理地安排死锁检测的频率，以确保能够有效地识别和处理死锁，同时又不至于过度增加系统的开销。</p>
+<h2 id="recovery-from-deadlock">Recovery from Deadlock<a hidden class="anchor" aria-hidden="true" href="#recovery-from-deadlock">#</a></h2>
+<p>当系统中存在死锁时：</p>
+<ul>
+<li>告知操作员，手动处理死锁。或者让系统自动从死锁中恢复。</li>
+</ul>
+<p>为了打破死锁：</p>
+<ul>
+<li>终止一个或多个进程。</li>
+<li>预占有一些资源，从死锁的进程中的一个或多个进程中。</li>
+</ul>
+<p>在处理死锁时，需要考虑以下问题：</p>
+<ul>
+<li>成本：终止进程或抢占资源可能会带来一定的成本，比如重新启动进程的开销，或者可能导致系统性能下降。</li>
+<li>规则：需要有一套明确的规则来决定如何识别和打破死锁，比如银行家算法就是一种常用的避免死锁的算法。</li>
+<li>公平：在抢占资源时，需要考虑公平性问题，确保不会对任何进程造成不公平的待遇。</li>
+</ul>
+<p>为了预防死锁，可以制定以下规则：</p>
+<ul>
+<li>资源分配规则：确保资源的分配不会导致循环等待条件的发生。</li>
+<li>进程调度规则：合理安排进程的执行顺序，避免多个进程因为资源竞争而相互等待。</li>
+<li>死锁检测和恢复机制：定期检测系统是否存在死锁，并在发现死锁时采取恢复措施，比如终止或抢占资源。</li>
+</ul>
+<h3 id="process-termination">Process Termination<a hidden class="anchor" aria-hidden="true" href="#process-termination">#</a></h3>
+<p>为了通过终止进程来消除死锁：</p>
+<ul>
+<li>终止所有死锁的进程。</li>
+<li>逐个终止进程，直到死锁循环被消除。</li>
+</ul>
+<p>系统会回收所有分配给已终止进程的资源。那么，我们应该按照什么顺序选择一个进程来终止呢？这里涉及到成本考虑：</p>
+<ul>
+<li>进程的优先级。</li>
+<li>进程已经计算了多长时间，以及还需要多长时间才能完成。</li>
+<li>进程已经使用了多少资源，以及是什么类型的资源。</li>
+<li>进程完成还需要多少更多的资源。</li>
+<li>需要终止多少个进程。</li>
+<li>进程是交互式的还是批处理的？</li>
+</ul>
+<h3 id="resource-preemption">Resource Preemption<a hidden class="anchor" aria-hidden="true" href="#resource-preemption">#</a></h3>
+<p>连续从进程预占一些资源，并将这些资源分配给其他进程，直到打破死锁循环。选择一个牺牲品——哪些资源和哪些进程应该被预占？</p>
+<ul>
+<li>最小化成本。</li>
+<li>回滚——将进程恢复到某个安全状态，并从该状态重新启动。
+<ul>
+<li>总体回滚：终止进程，然后重新启动它。</li>
+</ul>
+</li>
+<li>饥饿——同一个进程可能总是被选为牺牲品。</li>
+<li>在成本因素中包括回滚的次数。</li>
+</ul>
+<p>在选择牺牲品时，需要考虑以下因素来最小化成本：</p>
+<ol>
+<li>优先级：通常，优先级较低的进程更容易被选为牺牲品。</li>
+<li>资源使用情况：已经占用较多资源的进程可能更容易导致死锁，因此可能被选为牺牲品。</li>
+<li>进程的状态：如果进程处于一个可以安全回滚的状态，那么它可能被选为牺牲品。</li>
+<li>回滚的代价：如果一个进程需要频繁回滚，那么它的成本可能较高，因此可能被选为牺牲品。
+为了避免饥饿现象，即同一个进程总是被选为牺牲品，可以采取一些策略，比如轮流选择牺牲品，或者在选择牺牲品时考虑进程的公平性。
+在考虑成本时，需要将回滚的次数作为一个重要因素。如果一个进程经常因为死锁而需要回滚，那么它的总体成本可能会很高，因此在选择牺牲品时需要考虑这一情况。</li>
+</ol>
+<h3 id="combined-approach-to-deadlock-handling">Combined Approach to Deadlock Handling<a hidden class="anchor" aria-hidden="true" href="#combined-approach-to-deadlock-handling">#</a></h3>
+<p>综合方法处理死锁：</p>
+<ul>
+<li>预防（Prevention）</li>
+<li>避免（Avoidance）</li>
+<li>检测（Detection）</li>
+</ul>
+<p>将三种基本方法结合起来，允许针对系统中每种资源使用最优方法。</p>
+<ul>
+<li>将资源划分为层次结构化的类别。</li>
+<li>在每个类别内使用最合适的死锁处理技术。</li>
+</ul>
+<h2 id="期末考计算题">期末考计算题<a hidden class="anchor" aria-hidden="true" href="#期末考计算题">#</a></h2>
+<ol>
+<li>根据资源、进程间的请求关系，画出Resource-Allocation Graph</li>
+<li>根据资源分配图分析死锁出现的资源条件，或避免死锁的资源条件</li>
+<li>Deadlock Avoidance
+<ol>
+<li>当每类资源只有一个资源实例，利用Resource-Allocation Graph Algorithm判断有无死锁/系统是否安全</li>
+<li>当资源可有多个资源实例时，利用Banker Algorithm判断系统是否安全?(无死锁?), 进程的资源请求是否be granted</li>
+</ol>
+</li>
+<li>Deadlock Detecting
+<ol>
+<li>当每类资源只有一个资源实例，利用waiting graph判断有无死锁?</li>
+<li>当资源可有多个资源实例时，利用deadlock detecting algorithm 判断有死锁?</li>
+</ol>
+</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.css"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.js"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        &copy; 
+        
+        2024 Bethel<br>共 97.40k 字 · 共 10 篇文章
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://stack.jimmycai.com/" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> 由 <a href="https://jimmycai.com/" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
+
+
+<script src="https://mecdn.mcserverx.com/gh/zhixuan2333/gh-blog/master/js/nprogress.min.js" integrity="sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://mecdn.mcserverx.com/gh/zhixuan2333/gh-blog/master/css/nprogress.css" integrity="sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE" crossorigin="anonymous" />
+<script>
+    NProgress.start();
+    document.addEventListener("readystatechange", () => {
+        if (document.readyState === "interactive") NProgress.inc(0.8);
+        if (document.readyState === "complete") NProgress.done();
+    });
+</script>
+    </body>
+</html>
