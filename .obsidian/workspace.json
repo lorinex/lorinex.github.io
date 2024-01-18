@@ -19,8 +19,12 @@
             "id": "c56370e5b86a0e69",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "content/post/计算机网络/1 计算机网络体系结构.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ],
@@ -42,7 +46,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "content/post/计算机网络/1 计算机网络体系结构.md"
+              }
             }
           },
           {
@@ -97,6 +103,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "content/post/计算机网络/1 计算机网络体系结构.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,6 +120,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "content/post/计算机网络/1 计算机网络体系结构.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -177,8 +185,9 @@
       "flashcards-obsidian:Generate flashcards": false
     }
   },
-  "active": "84df0b07e44a3ad5",
+  "active": "c56370e5b86a0e69",
   "lastOpenFiles": [
+    "content/post/计算机网络/1 计算机网络体系结构.md",
     "_templates/template.md",
     "_templates",
     "未命名文件夹",
@@ -223,7 +232,6 @@
     "themes/stack/archetypes/default.md",
     "themes/stack/archetypes/categories.md",
     "source/_posts/计算机基础/计算机网络/test.md",
-    "source/_posts/计算机基础/数据结构和算法/数据结构408/线性表/线性表.md",
-    "source/_posts/计算机基础/数据结构和算法/数据结构408/1 绪论.md"
+    "source/_posts/计算机基础/数据结构和算法/数据结构408/线性表/线性表.md"
   ]
 }
