@@ -179,6 +179,8 @@
   },
   "active": "195759f4b3f0aa6f",
   "lastOpenFiles": [
+    "content/post/计算机网络/1 计算机网络体系结构.assets/image-20240118184111807.png",
+    "content/post/计算机网络/1 计算机网络体系结构.assets",
     "_templates/template-计网.md",
     "content/post/计算机网络/Untitled.md",
     "_templates/template-计组.md",
@@ -200,7 +202,6 @@
     "themes/hugo-theme-stack/layouts/partials/comments/provider/waline.html",
     "themes/hugo-theme-stack/layouts/partials/comments/provider/vssue.html",
     "themes/hugo-theme-stack/layouts/partials/comments/provider/utterances.html",
-    "themes/hugo-theme-stack/layouts/partials/comments/provider/twikoo.html",
     "themes/hugo-theme-stack/assets/img/avatar.png",
     "themes/hugo-theme-stack/assets/icons/messages.svg",
     "themes/hugo-theme-stack/assets/icons/user.svg",
@@ -223,7 +224,6 @@
     "content/post/OS/4 Process Synchronization.md",
     "content/post/OS/3 CPU Scheduling.md",
     "content/post/OS/2 Processes And Threads.md",
-    "content/post/OS/1   Introduction.md",
-    "content/page/search/index.md"
+    "content/post/OS/1   Introduction.md"
   ]
 }
