@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='概述 概念 计算机网络和分布式系统 计算机网络 (Computer Networks)：由==自主计算机互联起来的集合体== (a group of interconnected computers)，与主从计算的'>
+<title>1 计算机网络体系结构 | Bethel's Blog</title>
+
+<link rel='canonical' href='https://www.xxx.blog/post/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/'>
+
+<link rel="stylesheet" href="/scss/style.min.c3c7ecff622b4ad3ac6aacf17244c017cc674f0e82b470bfb8f4de85243313d0.css"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"K3aYNEt3ZeYoZwhE",ck:"K3aYNEt3ZeYoZwhE"})</script>
+<script async src="https://umami.xalaok.top/uanalytics" data-website-id="095ee454-e560-4d9b-bf1c-869f8529c17f"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script><meta property='og:title' content='1 计算机网络体系结构'>
+<meta property='og:description' content='概述 概念 计算机网络和分布式系统 计算机网络 (Computer Networks)：由==自主计算机互联起来的集合体== (a group of interconnected computers)，与主从计算的'>
+<meta property='og:url' content='https://www.xxx.blog/post/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/'>
+<meta property='og:site_name' content='Bethel'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-01-18T17:06:34&#43;00:00'/><meta property='article:modified_time' content='2024-01-18T17:06:34&#43;00:00'/>
+<meta name="twitter:title" content="1 计算机网络体系结构">
+<meta name="twitter:description" content="概述 概念 计算机网络和分布式系统 计算机网络 (Computer Networks)：由==自主计算机互联起来的集合体== (a group of interconnected computers)，与主从计算的">
+    <link rel="shortcut icon" href="/favicon.png" />
+<link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont@1.7.0/lxgwwenkaigbscreen.css" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/tx_hu92c04046da3d4074953cad185e3935e5_62559_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Bethel</a></h1>
+            <h2 class="site-description">Live and learn. ✍️</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-high" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" />
+  <path d="M6.343 17.657l-1.414 1.414" />
+  <path d="M6.343 6.343l-1.414 -1.414" />
+  <path d="M17.657 6.343l1.414 -1.414" />
+  <path d="M17.657 17.657l1.414 1.414" />
+  <path d="M4 12h-2" />
+  <path d="M12 4v-2" />
+  <path d="M20 12h2" />
+  <path d="M12 20v2" />
+</svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+  <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+  <path d="M19 11h2m-1 -1v2" />
+</svg>
+                    <span>深色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#概述">概述</a>
+      <ol>
+        <li><a href="#概念">概念</a>
+          <ol>
+            <li><a href="#计算机网络和分布式系统">计算机网络和分布式系统</a></li>
+          </ol>
+        </li>
+        <li><a href="#组成">组成</a>
+          <ol>
+            <li><a href="#从组成部分看">从组成部分看</a></li>
+            <li><a href="#从工作方式上看">从工作方式上看</a></li>
+            <li><a href="#从功能组成上">从功能组成上</a></li>
+          </ol>
+        </li>
+        <li><a href="#功能">功能</a></li>
+        <li><a href="#分类">分类</a>
+          <ol>
+            <li><a href="#按分布范固分类">按分布范固分类</a></li>
+            <li><a href="#按传输技术分类">按传输技术分类</a></li>
+            <li><a href="#按拓扑结构分类">按拓扑结构分类</a></li>
+            <li><a href="#按交换技术分类">按交换技术分类</a></li>
+          </ol>
+        </li>
+        <li><a href="#性能指标">性能指标</a></li>
+      </ol>
+    </li>
+    <li><a href="#计算机网络体系结构和参考模型">计算机网络体系结构和参考模型</a>
+      <ol>
+        <li><a href="#计算机网络分层结构">计算机网络分层结构</a></li>
+        <li><a href="#计算机网络协议接口服务的概念">计算机网络协议、接口、服务的概念</a></li>
+        <li><a href="#isoosi-参考模型和-tcpip模型">ISO/OSI 参考模型和 TCP/IP模型</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/">1 计算机网络体系结构</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-01-18</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 9 分钟
+                </time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+  <path d="M13.5 6.5l4 4" />
+</svg>
+                <time class="article-words">
+                    字数: 4046 字
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="概述">概述<a hidden class="anchor" aria-hidden="true" href="#概述">#</a></h2>
+<h3 id="概念">概念<a hidden class="anchor" aria-hidden="true" href="#概念">#</a></h3>
+<h4 id="计算机网络和分布式系统">计算机网络和分布式系统<a hidden class="anchor" aria-hidden="true" href="#计算机网络和分布式系统">#</a></h4>
+<p>计算机网络 (Computer Networks)：由==自主计算机互联起来的集合体== (a group of  interconnected  computers)，与主从计算的的区别，每台计算机都有独立的操作系统，不从属某台主机。</p>
+<p>分布式系统 (Distributed  System)：对用户看起来是一个==单独系统==的计算机集合。存在着一个能为用户自动管理资源的网络操作系统。</p>
+<p>关系：计算机网络是分布式系统的技术基础，而分布式系统是计算机网发展的高级阶段。www是原型在Internet 的分布式系统。</p>
+<h3 id="组成">组成<a hidden class="anchor" aria-hidden="true" href="#组成">#</a></h3>
+<h4 id="从组成部分看">从组成部分看<a hidden class="anchor" aria-hidden="true" href="#从组成部分看">#</a></h4>
+<p>一个完整的计算机网络主要由==硬件、软件、协议==三大部分组成，缺一不可。
+==硬件==主要由主机（也称端系统）、通信链路（如双绞线、光纤）、交换设备（如路由器、交换机等）和通信处理机（如网卡）等组成。
+==软件==主要包括各种实现资源共享的软件和方便用户使用的各种工具软件（如网络操作系统、邮件收发程序、 FTP 程序、聊天程序等）。软件部分多属千应用层。
+==协议==是计算机网络的核心，如同交通规则制约汽车 驾驶一样，协议规定了网络传输数据时所遵循的规范。</p>
+<h4 id="从工作方式上看">从工作方式上看<a hidden class="anchor" aria-hidden="true" href="#从工作方式上看">#</a></h4>
+<p>计算机网络（这里主要指 Internet,即因特网）可分为==边缘部分和核心部分==。
+==边缘部分==由所有连接到因特网上、供用户直接使用的主机组成，用来进行通信（如 传输数据、音频或视频）和资源共享；
+==核心部分==由大量的网络和连接这些网络的路由器组成，它为边缘部分提供连通性和交换服务。图I. I 给出了这两部分的示意图。</p>
+<h4 id="从功能组成上">从功能组成上<a hidden class="anchor" aria-hidden="true" href="#从功能组成上">#</a></h4>
+<p>计算机网络由==通信子网和资源子网==组成。
+==通信子网==由各种传输介质、 通信设备和相应的网络协议组成，它使网络具有数据传输、交换、控制和存储的能力， 实现联网计算机之间的数据通信。
+==资源子网==是实现资源共享功能的设备及其软件的集合， 向网络用户提供共享其他计算机上的硬件资源、软件资源和数据资源的服务。</p>
+<h3 id="功能">功能<a hidden class="anchor" aria-hidden="true" href="#功能">#</a></h3>
+<ol>
+<li>==数据通信==是计算机网络最基本和最重要的功能，用来实现联网计算机之间各种信息的传输，并将分散在不同地理位置的计算机联系起来，进行统一的调配、控制和管理。例如，文件传输、电子邮件等应用，离开了计算机网络将无法实现。</li>
+<li>==资源共享==可以是软件共享、数据共享，也可以是硬件共享。它使计算机网络中的资源互通有无、分工协作，从而极大地提高硬件资源、软件资源和数据资源的利用率。</li>
+<li>==分布式存储==：当计算机网络中的某个计算机系统负荷过重时，可以将其处理的某个复杂任务分配给网络中的其他计算机系统，从而利用空闲计算机资源以提高整个系统的利用率。</li>
+<li>==提高可靠性==：计算机网络中的各台计算机可以通过网络互为替代机。</li>
+<li>==负载均衡==：将工作任务均衡地分配给计算机网络中的各台计算机。</li>
+</ol>
+<h3 id="分类">分类<a hidden class="anchor" aria-hidden="true" href="#分类">#</a></h3>
+<h4 id="按分布范固分类">按分布范固分类<a hidden class="anchor" aria-hidden="true" href="#按分布范固分类">#</a></h4>
+<ul>
+<li>广域网 (WAN) 。
+<ul>
+<li>广域网的任务是==提供长距离通信==，运送主机所发送的数据，其覆盖范围通常是直径为几十千米到几于千米的区域，因而有时也称远程网。广域网是因特网的核心部分。连接广域网的各结点交换机的链路一般都是==高速链路==，具有较大的==通信容址==。</li>
+</ul>
+</li>
+<li>城域网(MAN) 。
+<ul>
+<li>城域网的覆盖范围可以跨越几个街区甚至整个城市，覆盖区域的直径范围是 5~50km。城域网大多采用==以太网==技术，因此有时也常并入局域网的范围讨论。</li>
+</ul>
+</li>
+<li>局域网 (LAN) 。
+<ul>
+<li>局域网一般用微机或工作站通过高速线路相连，覆盖范围==较小==，通常是直径为几十米到几千米的区域。局域网在计算机配置的数量上没有太多的限制，少的可以只有两台，多的可达几百台。传统上，局域网使用==广播==技术，而广域网使用==交换==技术。</li>
+</ul>
+</li>
+<li>个人区域网 (PAN) 。
+<ul>
+<li>个人区域网是指在个人工作的地方将消费电子设备（如平板电脑、 智能手机等）用无线技术连接起来的网络，也常称为无线个人区域网 (WPAN），覆盖区域的直径约为 10m。</li>
+</ul>
+</li>
+</ul>
+<h4 id="按传输技术分类">按传输技术分类<a hidden class="anchor" aria-hidden="true" href="#按传输技术分类">#</a></h4>
+<ul>
+<li>广播式网络。
+<ul>
+<li>所有联网计算机都共享==一个公共通信信道==。当一台计算机利用共享通信信道发送报文分组时，所有其他的计算机都会“收听”到这个分组。接收到该分组的计算机将通过检查目的地址来决定是否接收该分组。</li>
+<li>==局域网==基本上都采用广播式通信技术，广域网中的无线、卫星通信网络也采用广播式通信技术。</li>
+</ul>
+</li>
+<li>点对点网络。
+<ul>
+<li>==每条物理线路连接一对计算机==。</li>
+<li>若通信的两台主机之间没有直接连接的线路，则它们之间的分组传输就要通过中间结点进行接收、存储和转发，直至目的结点。</li>
+</ul>
+</li>
+</ul>
+<h4 id="按拓扑结构分类">按拓扑结构分类<a hidden class="anchor" aria-hidden="true" href="#按拓扑结构分类">#</a></h4>
+<p>网络拓扑结构是指由网中结点（路由器、主机等）与通信线路（网线）之间的几何关系（如 总线形、环形）表示的网络结构，主要指通信子网的拓扑结构。
+按网络的拓扑结构，主要分为总线形、星形、环形和网状网络等。#card
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/20240118184111.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<ol>
+<li>总线形网络。用单根传输线把计算机连接起来。总线形网络的优点是建网容易、增／减结点方便、节省线路。缺点是重负载时通信效率不高、总线任意一处对故障敏感。</li>
+<li>星型网络。每个终端或计算机都以单独的线路与中央设备相连。中央设备早期是计算机，现在一般是交换机或路由器。星形网络便于集中控制和管理，因为端用户之间的通信必须经过中央设备。缺点是成本高、中央设备对故障敏感。</li>
+<li>环形网络。所有计算机接口设备连接成一个环。环形网络最典型的例子是令牌环局域网。环可以是单环，也可以是双环，环中信号是单向传输的。</li>
+<li>网状网络。一般情况下，每个结点至少有两条路径与其他结点相连，多用在广域网中。</li>
+</ol>
+<p>星形、总线形和环形网络多用于局域网，网状网络多用于广域网。</p>
+<h4 id="按交换技术分类">按交换技术分类<a hidden class="anchor" aria-hidden="true" href="#按交换技术分类">#</a></h4>
+<p>交换技术是指各台主机之间、各通信设备之间或主机与通信设备之间为交换信息所采用的数 据格式和交换装置的方式。按交换技术可将网络分为如下几种。</p>
+<ol>
+<li>电路交换网络。==在源结点和目的结点之间建立一条专用的通路用于传送数据，包括建立连接、传输数据和断开连接三个阶段。==最典型的电路交换网是传统电话网络。该类网络的主要特点是整个报文的比特流连续地从源点直达终点，好像是在一条管道中传 送。优点是数据直接传送、时延小。缺点是线路利用率低、不能充分利用线路容盘、不便于进行差错控制。</li>
+<li>报文交换网络。用户数据加上源地址、目的地址、校验码等辅助信息，然后封装成报文。整个报文传送到相邻结点，全部存储后，再转发给下一个结点，重复这一过程直到到达目的结点。每个报文可以单独选择到达目的结点的路径。报文交换网络也称==存储－转发网==络，主要特点是==整个报文先传送到相邻结点，全部存储后查找转发表，转发到下一个结点。==优点是可以较为充分地利用线路容量，可以实现不同链路之间不同数据传输速率的转换，可以实现格式转换，可以实现一对多、多对一的访问，可以实现差错控制。缺点是增大了资源开销（如辅助信息导致处理时间和存储资源的开销），增加了缓冲时延，需要额外的控制机制来保证多个报文的顺序不乱序，缓冲区 难以管理（因为报文的大小不确定，接收方在接收到报文之前不能预知报文的大小）。</li>
+<li>分组交换网络，也称包交换网络。其原理是，将数据分成较短的固定长度的数据块，在每个数据块中加上目的地址、源地址等辅助信息组成分组（包），以存储－转发方式传输。 其主要特点是==单个分组（它只是整个报文的一部分）传送到相邻结点，存储后查找转发表，转发到下一个结点。==除具备报文交换网络的优点外，分组交换网络还具有自身的优点：缓冲易于管理；包的平均时延更小，网络占用的平均缓冲区更少；更易于标准化；</li>
+</ol>
+<p>更适合应用。现在的主流网络基本上都可视为分组交换网络。</p>
+<h3 id="性能指标">性能指标<a hidden class="anchor" aria-hidden="true" href="#性能指标">#</a></h3>
+<ul>
+<li><strong>带宽(Bandwidth)</strong>。本来表示通信线路允许通过的信号频带范围，单位是赫兹(Hz) 。而 在计算机网络中，带宽表示==网络的通信线路所能传送数据的能力==，是数字信道所能传送 的“最高数据传输速率”的同义语，单位是比特／秒 (bis) 。</li>
+<li><strong>时延(Delay)</strong>。指数据（一个报文或分组）从网络（或链路）的一端传送到另一端所需要的总时间，它由 4 部分构成：==发送时延、传播时延、处理时延和排队时延==。
+<ul>
+<li><strong>发送时延</strong>。结点将分组的所有比特推向（传输）链路所需的时间，即从发送分组的第一个比特算起，到该分组的最后一个比特发送完毕所需的时间，因此也称传输时延。计算公式为==发送时延＝分组长度／信道宽度==</li>
+<li><strong>传播时延</strong>。电磁波在信道中传播一定的距离需要花费的时间，即一个比特从链路的一端传播到另一端所用的时间。计算公式为==传播时延＝信道长度／电磁波在信道上的传播速率==</li>
+<li><strong>处理时延</strong>。数据==在交换结点为存储转发而进行的工作==所花费的时间。例如，分析分组的首部、从分组中提取数据部分、进行差错检验或查找适当的路由等。</li>
+<li><strong>排队时延</strong>。分组在进入路由器后要先在输入队列中排队等待处理。路由器确定转发端口后，还要在输出队列中排队等待转发，这就产生了排队时延。</li>
+</ul>
+</li>
+<li>时延带宽积。指发送端发送的第一个比特即将到达终点时，发送端已经发出了多少个比特，因此又称以比特为单位的链路长度，即==时延带宽积＝传播时延×信道带宽==。
+<ul>
+<li>考虑一个代表链路的圆柱形管道，其长度表示链路的传播时延，横截面积表示链路带宽，则时延带宽积表示该管道可以容纳的比特数量。</li>
+<li><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/20240118215417.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></li>
+</ul>
+</li>
+<li><strong>往返时延</strong> (Round-Trip Time, RTT) 。指==从发送端发出一个短分组，到发送端收到来自接收端的确认（接收端收到数据后立即发送确认），总共经历的时延。==在互联网中，往返时延还包括各中间结点的处理时延、排队时延及转发数据时的发送时延。</li>
+<li><strong>吞吐量(Throughput)</strong>。指==单位时间内通过某个网络（或信道、接口）的数据量==。吞吐量受网络带宽或网络额定速率的限制。</li>
+<li><strong>速率 (Speed)</strong> 。网络中的速率是指连接到计算机网络上的主机在数字信道上传送数据的速率，也称==数据传送速率、数据率或比特率==，单位为 b/s （比特／秒） （或 bit/s, 有时也写为bps) 。数据率较高时，可用 kb/s (k= 10^3) 、 Mb/s (M= 10^6) 或 Gb/s (G= 10^9) 表示。 在计算机网络中，通常把最高数据传输速率称为带宽。</li>
+<li>信道利用率。指出某一信道有百分之多少的时间是有数据通过的，即==信道利用率＝有数据通过时间／（有＋无）数据通过时间==。</li>
+</ul>
+<h2 id="计算机网络体系结构和参考模型">计算机网络体系结构和参考模型<a hidden class="anchor" aria-hidden="true" href="#计算机网络体系结构和参考模型">#</a></h2>
+<h3 id="计算机网络分层结构">计算机网络分层结构<a hidden class="anchor" aria-hidden="true" href="#计算机网络分层结构">#</a></h3>
+<h3 id="计算机网络协议接口服务的概念">计算机网络协议、接口、服务的概念<a hidden class="anchor" aria-hidden="true" href="#计算机网络协议接口服务的概念">#</a></h3>
+<h3 id="isoosi-参考模型和-tcpip模型">ISO/OSI 参考模型和 TCP/IP模型<a hidden class="anchor" aria-hidden="true" href="#isoosi-参考模型和-tcpip模型">#</a></h3>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.css"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.js"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        &copy; 
+        
+        2024 Bethel<br>共 102.68k 字 · 共 11 篇文章
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://stack.jimmycai.com/" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> 由 <a href="https://jimmycai.com/" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
+
+
+<script src="https://mecdn.mcserverx.com/gh/zhixuan2333/gh-blog/master/js/nprogress.min.js" integrity="sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://mecdn.mcserverx.com/gh/zhixuan2333/gh-blog/master/css/nprogress.css" integrity="sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE" crossorigin="anonymous" />
+<script>
+    NProgress.start();
+    document.addEventListener("readystatechange", () => {
+        if (document.readyState === "interactive") NProgress.inc(0.8);
+        if (document.readyState === "complete") NProgress.done();
+    });
+</script>
+    </body>
+</html>

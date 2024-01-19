@@ -176,8 +176,10 @@
       "flashcards-obsidian:Generate flashcards": false
     }
   },
-  "active": "195759f4b3f0aa6f",
+  "active": "84df0b07e44a3ad5",
   "lastOpenFiles": [
+    "public/post/1-计算机网络体系结构/index.html",
+    "public/post/1-计算机网络体系结构",
     "content/post/数据结构/1 绪论.md",
     "content/post/数据结构/2 线性表.md",
     "content/post/计算机网络/1 计算机网络体系结构.md",
@@ -203,7 +205,6 @@
     "themes/hugo-theme-stack/layouts/partials/footer/components/custom-font.html",
     "themes/hugo-theme-stack/layouts/partials/comments/provider/waline.html",
     "themes/hugo-theme-stack/layouts/partials/comments/provider/vssue.html",
-    "themes/hugo-theme-stack/layouts/partials/comments/provider/utterances.html",
     "themes/hugo-theme-stack/assets/img/avatar.png",
     "themes/hugo-theme-stack/assets/icons/messages.svg",
     "themes/hugo-theme-stack/assets/icons/user.svg",
