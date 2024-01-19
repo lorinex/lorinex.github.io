@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/post/计算机网络/1 计算机网络体系结构.md",
+                "file": "content/post/数据结构/2 线性表.md",
                 "mode": "source",
                 "source": false
               }
@@ -38,7 +38,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "content/post/计算机网络/1 计算机网络体系结构.md"
+                "file": "content/post/数据结构/2 线性表.md"
               }
             }
           },
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "content/post/计算机网络/1 计算机网络体系结构.md",
+                "file": "content/post/数据结构/2 线性表.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "content/post/计算机网络/1 计算机网络体系结构.md",
+                "file": "content/post/数据结构/2 线性表.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -178,6 +178,9 @@
   },
   "active": "195759f4b3f0aa6f",
   "lastOpenFiles": [
+    "content/post/数据结构/1 绪论.md",
+    "content/post/数据结构/2 线性表.md",
+    "content/post/计算机网络/1 计算机网络体系结构.md",
     "content/post/计算机网络/1 计算机网络体系结构.assets/image-20240118215417554.png",
     "content/post/计算机网络/1 计算机网络体系结构.assets/image-20240118184111807.png",
     "content/post/计算机网络/1 计算机网络体系结构.assets",
@@ -186,7 +189,6 @@
     "_templates/template-计组.md",
     "_templates/template-ds.md",
     "_templates/template-os.md",
-    "content/post/计算机网络/1 计算机网络体系结构.md",
     "_templates/template_副本5.md",
     "_templates/template_副本4.md",
     "_templates/template_副本3.md",
@@ -210,12 +212,9 @@
     "themes/hugo-theme-stack/assets/icons/search.svg",
     "themes/hugo-theme-stack/assets/icons/tag.svg",
     "themes/hugo-theme-stack/assets/icons/rss.svg",
-    "themes/hugo-theme-stack/assets/icons/link.svg",
     "themes/hugo-theme-stack/archetypes/tags.md",
     "themes/hugo-theme-stack/archetypes/default.md",
     "themes/hugo-theme-stack/archetypes/categories.md",
-    "content/post/数据结构/2 线性表.md",
-    "content/post/数据结构/1 绪论.md",
     "content/post/OS/8 Mass-Storage Structure.md",
     "content/post/OS/7 File-System.md",
     "content/post/OS/6 Main Memory And Virtual Memory.md",
