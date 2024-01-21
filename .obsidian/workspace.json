@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/post/计算机网络/3 数据链路层.md",
+                "file": "content/post/数据结构/3 栈、队列和数组.md",
                 "mode": "source",
                 "source": false
               }
@@ -38,7 +38,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "content/post/计算机网络/3 数据链路层.md"
+                "file": "content/post/数据结构/3 栈、队列和数组.md"
               }
             }
           },
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "content/post/计算机网络/3 数据链路层.md",
+                "file": "content/post/数据结构/3 栈、队列和数组.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "content/post/计算机网络/3 数据链路层.md",
+                "file": "content/post/数据结构/3 栈、队列和数组.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -178,8 +178,8 @@
   },
   "active": "84df0b07e44a3ad5",
   "lastOpenFiles": [
-    "content/post/计算机网络/2 物理层.md",
     "content/post/计算机网络/3 数据链路层.md",
+    "content/post/计算机网络/2 物理层.md",
     "content/post/数据结构/3 栈、队列和数组.md",
     "content/post/数据结构/3 栈、队列和数组~.md",
     "content/post/数据结构/2 线性表.md",
