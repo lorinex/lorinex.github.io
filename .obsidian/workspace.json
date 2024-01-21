@@ -176,8 +176,9 @@
       "flashcards-obsidian:Generate flashcards": false
     }
   },
-  "active": "195759f4b3f0aa6f",
+  "active": "84df0b07e44a3ad5",
   "lastOpenFiles": [
+    "content/post/数据结构/3 栈、队列和数组~.md",
     "content/post/数据结构/2 线性表.md",
     "content/post/数据结构/3 栈、队列和数组.md",
     "content/post/计算机网络/2 物理层.md",
@@ -222,7 +223,6 @@
     "content/post/OS/6 Main Memory And Virtual Memory.md",
     "content/post/OS/5  Deadlocks.md",
     "content/post/OS/4 Process Synchronization.md",
-    "content/post/OS/3 CPU Scheduling.md",
-    "content/post/OS/2 Processes And Threads.md"
+    "content/post/OS/3 CPU Scheduling.md"
   ]
 }
