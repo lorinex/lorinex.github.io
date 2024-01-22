@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/post/计算机网络/3 数据链路层.md",
+                "file": "content/post/数据结构/4 串.md",
                 "mode": "source",
                 "source": false
               }
@@ -38,7 +38,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "content/post/计算机网络/3 数据链路层.md"
+                "file": "content/post/数据结构/4 串.md"
               }
             }
           },
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "content/post/计算机网络/3 数据链路层.md",
+                "file": "content/post/数据结构/4 串.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "content/post/计算机网络/3 数据链路层.md",
+                "file": "content/post/数据结构/4 串.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -176,11 +176,14 @@
       "flashcards-obsidian:Generate flashcards": false
     }
   },
-  "active": "84df0b07e44a3ad5",
+  "active": "195759f4b3f0aa6f",
   "lastOpenFiles": [
+    "content/post/数据结构/树.md",
+    "content/post/计算机网络/3 数据链路层.md",
+    "content/post/数据结构/4 串.md",
+    "content/post/数据结构/4 串.md",
     "content/post/计算机网络/3 数据链路层~.md",
     "content/post/数据结构/3 栈、队列和数组.md",
-    "content/post/计算机网络/3 数据链路层.md",
     "content/post/计算机网络/2 物理层.md",
     "content/post/数据结构/3 栈、队列和数组~.md",
     "content/post/数据结构/2 线性表.md",
@@ -220,9 +223,6 @@
     "themes/hugo-theme-stack/archetypes/tags.md",
     "themes/hugo-theme-stack/archetypes/default.md",
     "themes/hugo-theme-stack/archetypes/categories.md",
-    "content/post/OS/8 Mass-Storage Structure.md",
-    "content/post/OS/7 File-System.md",
-    "content/post/OS/6 Main Memory And Virtual Memory.md",
-    "content/post/OS/5  Deadlocks.md"
+    "content/post/OS/8 Mass-Storage Structure.md"
   ]
 }
