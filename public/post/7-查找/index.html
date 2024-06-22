@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='查找 概念和术语 查找表是一种以集合为逻辑结构，以查找为核心运算的数据结构。 查找指定某个值，在查找表中确定是否存在一个记录，该记录的关键字等于给'>
+<title>7 查找 | Bethel's Blog</title>
+
+<link rel='canonical' href='http://localhost:1313/post/7-%E6%9F%A5%E6%89%BE/'>
+
+<link rel="stylesheet" href="/scss/style.min.c3c7ecff622b4ad3ac6aacf17244c017cc674f0e82b470bfb8f4de85243313d0.css"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"K3aYNEt3ZeYoZwhE",ck:"K3aYNEt3ZeYoZwhE"})</script>
+<script async src="https://umami.xalaok.top/uanalytics" data-website-id="095ee454-e560-4d9b-bf1c-869f8529c17f"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script><meta property='og:title' content='7 查找'>
+<meta property='og:description' content='查找 概念和术语 查找表是一种以集合为逻辑结构，以查找为核心运算的数据结构。 查找指定某个值，在查找表中确定是否存在一个记录，该记录的关键字等于给'>
+<meta property='og:url' content='http://localhost:1313/post/7-%E6%9F%A5%E6%89%BE/'>
+<meta property='og:site_name' content='Bethel'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-01-22T13:38:02&#43;00:00'/><meta property='article:modified_time' content='2024-01-22T13:38:02&#43;00:00'/>
+<meta name="twitter:title" content="7 查找">
+<meta name="twitter:description" content="查找 概念和术语 查找表是一种以集合为逻辑结构，以查找为核心运算的数据结构。 查找指定某个值，在查找表中确定是否存在一个记录，该记录的关键字等于给">
+    <link rel="shortcut icon" href="/favicon.png" />
+<link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont@1.7.0/lxgwwenkaigbscreen.css" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/tx_hu92c04046da3d4074953cad185e3935e5_62559_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Bethel</a></h1>
+            <h2 class="site-description">Live and learn. ✍️</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="http://localhost:1313/" selected></option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-high" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" />
+  <path d="M6.343 17.657l-1.414 1.414" />
+  <path d="M6.343 6.343l-1.414 -1.414" />
+  <path d="M17.657 6.343l1.414 -1.414" />
+  <path d="M17.657 17.657l1.414 1.414" />
+  <path d="M4 12h-2" />
+  <path d="M12 4v-2" />
+  <path d="M20 12h2" />
+  <path d="M12 20v2" />
+</svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+  <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+  <path d="M19 11h2m-1 -1v2" />
+</svg>
+                    <span>深色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#概念和术语">概念和术语</a></li>
+    <li><a href="#静态查找表">静态查找表</a>
+      <ol>
+        <li><a href="#顺序表查找">顺序表查找</a></li>
+        <li><a href="#有序表查找补充跳表">有序表查找（补充：跳表）</a>
+          <ol>
+            <li><a href="#二分查找">二分查找</a></li>
+            <li><a href="#跳表">跳表</a></li>
+          </ol>
+        </li>
+        <li><a href="#静态树表查找">静态树表查找</a>
+          <ol>
+            <li><a href="#静态最优查找树">静态最优查找树</a></li>
+            <li><a href="#静态次优查找树">静态次优查找树</a></li>
+          </ol>
+        </li>
+        <li><a href="#索引顺序表查找">索引顺序表查找</a></li>
+      </ol>
+    </li>
+    <li><a href="#动态查找表">动态查找表</a>
+      <ol>
+        <li><a href="#二叉排序树和平衡二叉树补充内容红黑树">二叉排序树和平衡二叉树（补充内容：红黑树）</a>
+          <ol>
+            <li><a href="#二叉排序树">二叉排序树</a></li>
+            <li><a href="#平衡二叉树avl树">平衡二叉树（AVL树）</a></li>
+            <li><a href="#红黑树">红黑树</a></li>
+          </ol>
+        </li>
+        <li><a href="#b-树和b树">B-树和B+树</a>
+          <ol>
+            <li><a href="#b-树">B-树</a></li>
+            <li><a href="#b树">B+树</a></li>
+          </ol>
+        </li>
+        <li><a href="#键树">键树</a></li>
+      </ol>
+    </li>
+    <li><a href="#哈希表">哈希表</a>
+      <ol>
+        <li><a href="#概述">概述</a></li>
+        <li><a href="#哈希函数的基本构造方法">哈希函数的基本构造方法</a>
+          <ol>
+            <li><a href="#直接定址法">直接定址法</a></li>
+            <li><a href="#数字分析法">数字分析法</a></li>
+            <li><a href="#平方取中法">平方取中法</a></li>
+            <li><a href="#折叠法">折叠法</a></li>
+            <li><a href="#除留余数法">除留余数法</a></li>
+            <li><a href="#随机数法">随机数法</a></li>
+          </ol>
+        </li>
+        <li><a href="#处理冲突的常用方法">处理冲突的常用方法</a>
+          <ol>
+            <li><a href="#开放定址法-空缺编址法">开放定址法 (空缺编址法)</a></li>
+            <li><a href="#再哈希法">再哈希法</a></li>
+            <li><a href="#链地址法">链地址法</a></li>
+            <li><a href="#建立一个公共溢出区">建立一个公共溢出区</a></li>
+          </ol>
+        </li>
+        <li><a href="#哈希表的建立查找及其asl分析">哈希表的建立、查找及其ASL分析</a>
+          <ol>
+            <li><a href="#hash表查找成功和查找不成功的平均查找长度">Hash表查找成功和查找不成功的平均查找长度</a></li>
+            <li><a href="#散列表上的查找">散列表上的查找</a></li>
+            <li><a href="#散列表上的删除">散列表上的删除</a></li>
+            <li><a href="#平均查找长度与哈希表的装填因子的关系">平均查找长度与哈希表的装填因子的关系</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="background-color: #2a9d8f; color: #fff;">
+                数据结构
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/7-%E6%9F%A5%E6%89%BE/">7 查找</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-01-22</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 22 分钟
+                </time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+  <path d="M13.5 6.5l4 4" />
+</svg>
+                <time class="article-words">
+                    字数: 10846 字
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="查找">查找<a hidden class="anchor" aria-hidden="true" href="#查找">#</a></h1>
+<h2 id="概念和术语">概念和术语<a hidden class="anchor" aria-hidden="true" href="#概念和术语">#</a></h2>
+<p><strong>查找表</strong>是一种以集合为逻辑结构，以查找为核心运算的数据结构。
+<strong>查找</strong>指定某个值，在查找表中确定是否存在一个记录，该记录的关键字等于给定值。
+<strong>关键字</strong>记录(数据元素)中的某个数据项的值。
+<strong>主关键字</strong>   该关键字可以唯一地标识一个记录。  如学生花名册中的学号
+<strong>次关键字</strong>   该关键字不能唯一标识一个记录。如学生花名册中的姓名</p>
+<p>查找表<strong>以集合为逻辑结构</strong>，因此数据元素之间是没有“关系”的，在实现时就不受“关系”的约束，根据实际应用去组织查找表，以提高查找的效率，常见的存储结构有：顺序结构、链式结构、索引结构、散列结构。</p>
+<p>基于在查找表中操作的不同，查找表又分为以下两种:</p>
+<p><strong>静态查找表</strong>  对查找表的查找仅是以查询为目的，不改动查找表中的数据。</p>
+<p><strong>动态查找表</strong>  查找过程中还会有插入、删除操作。</p>
+<p><strong>查找成功</strong>  查找表中存在满足查找条件的记录。</p>
+<p><strong>查找不成功</strong>  查找表中不存在满足查找条件的记录。</p>
+<p><strong>内查找</strong>  整个查找过程都在内存中进行。</p>
+<p><strong>外查找</strong>  在查找过程中需要访问外存。</p>
+<p><strong>平均查找长度ASL</strong>（ Average Search Length ）——查找方法时效的度量</p>
+<p>​      为确定记录在查找表中的位置，需将关键字和给定值比较次数的期望值。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207110935141.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221207110935141"
+	
+	
+></p>
+<h2 id="静态查找表">静态查找表<a hidden class="anchor" aria-hidden="true" href="#静态查找表">#</a></h2>
+<h3 id="顺序表查找">顺序表查找<a hidden class="anchor" aria-hidden="true" href="#顺序表查找">#</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">Search_Seq2</span><span class="p">(</span><span class="n">SSTable</span> <span class="n">ST</span><span class="p">,</span> <span class="n">KeyType</span> <span class="n">key</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>	
+</span></span><span class="line"><span class="cl">	<span class="n">ST</span><span class="p">.</span><span class="n">elem</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">;</span> <span class="c1">//哨兵
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">ST</span><span class="p">.</span><span class="n">length</span><span class="p">;</span> <span class="n">ST</span><span class="p">.</span><span class="n">elem</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">key</span><span class="o">!=</span><span class="n">key</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span><span class="err">；</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="c1">//Search_Seq2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">设置监视哨，查找时每一步不必检测位置是否越界，提高算法效率。</span>
+</span></span></code></pre></div><p><strong>[性能分析]</strong></p>
+<p>空间：一个辅助空间。</p>
+<p>时间：</p>
+<p>1)查找成功时的平均查找长度</p>
+<p>​      设表中各记录查找概率相等</p>
+<p>$ASL_s(n)=\sum_{i=1}^{n}P_{i} C_i  =(1+2+ &hellip; +n)/n =(n+1)/2$</p>
+<p>2)查找不成功时的平均查找长度   $ ASL_f =n+1$</p>
+<p><strong>[算法特点]</strong></p>
+<p>算法简单，对表中元素排列顺序无任何要求</p>
+<p>n很大时查找效率较低</p>
+<p>改进措施：非等概率查找时，可将查找概率高的记录尽量排在表前部。</p>
+<p>逐个查找的方法也可用于<strong>线性链表</strong>表示的静态查找表</p>
+<h3 id="有序表查找补充跳表">有序表查找（补充：跳表）<a hidden class="anchor" aria-hidden="true" href="#有序表查找补充跳表">#</a></h3>
+<h4 id="二分查找">二分查找<a hidden class="anchor" aria-hidden="true" href="#二分查找">#</a></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">Search_Bin</span><span class="p">(</span><span class="n">SSTable</span> <span class="n">ST</span><span class="p">,</span> <span class="n">keytype</span> <span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">low</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">high</span> <span class="o">=</span> <span class="n">ST</span><span class="p">.</span><span class="n">length</span><span class="p">;</span> <span class="c1">// 置区间初值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>                           <span class="c1">//  要点1：结束条件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">//  要点2：mid计算
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="o">==</span> <span class="n">ST</span><span class="p">.</span><span class="n">elem</span><span class="p">[</span><span class="n">mid</span><span class="p">].</span><span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">mid</span><span class="p">;</span>                  <span class="c1">// 找到待查元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">ST</span><span class="p">.</span><span class="n">elem</span><span class="p">[</span><span class="n">mid</span><span class="p">].</span><span class="n">key</span><span class="p">)</span> <span class="c1">// 要点3：low和high更新
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>              <span class="c1">// 继续在前半区间进行查找
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 继续在后半区间进行查找
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 顺序表中不存在待查元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span> <span class="c1">// Search_Bin
+</span></span></span></code></pre></div><p>变体问题</p>
+<p>查找第一个值等于给定值的元素</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">Search_Bin</span><span class="p">(</span><span class="n">SSTable</span> <span class="n">ST</span><span class="p">,</span> <span class="n">keytype</span> <span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">low</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">high</span> <span class="o">=</span> <span class="n">ST</span><span class="p">.</span><span class="n">length</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="o">==</span> <span class="n">ST</span><span class="p">.</span><span class="n">elem</span><span class="p">[</span><span class="n">mid</span><span class="p">].</span><span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">mid</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">ST</span><span class="p">.</span><span class="n">elem</span><span class="p">[</span><span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">].</span><span class="n">key</span> <span class="o">!=</span> <span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">mid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">ST</span><span class="p">.</span><span class="n">elem</span><span class="p">[</span><span class="n">mid</span><span class="p">].</span><span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 顺序表中不存在待查元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span> <span class="c1">// Search_Bin
+</span></span></span></code></pre></div><p>查找最后一个值等于给定值的元素</p>
+<p>略</p>
+<p>查找第一个值大于或等于给定值的元素</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="o">&lt;=</span> <span class="n">ST</span><span class="p">.</span><span class="n">elem</span><span class="p">[</span><span class="n">mid</span><span class="p">].</span><span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">((</span><span class="n">mid</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">key</span> <span class="o">&gt;</span> <span class="n">ST</span><span class="p">.</span><span class="n">elem</span><span class="p">[</span><span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">].</span><span class="n">key</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">mid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>查找最后一个值小于或等于给定值的元素</p>
+<p>略</p>
+<p>1.<a class="link" href="https://so.csdn.net/so/search?q=%e6%8a%98%e5%8d%8a%e6%9f%a5%e6%89%be&amp;spm=1001.2101.3001.7020"  target="_blank" rel="noopener"
+    >折半查找</a>和二叉排序树的时间性能分析：</p>
+<ul>
+<li>从查找过程看，二叉排序树与二分查找相似。就平均时间性能而言，二叉排序树上的查找和二分查找差不多，但不完全一致；</li>
+<li>折半查找的性能分析可以用二叉判定树来衡量，平均查找长度和最大查找长度都是O（logn）；</li>
+<li>二叉排序树的查找性能与数据的输入顺序有关，最好情况下的平均查找长度与折半查找相同，但最坏情况时，即形成单支树时，其查找长度为O(n)。</li>
+<li>折半查找的判定树唯一，而二叉排序树不唯一，相同的关键字其插入顺序不同可能生成不同的二叉排序树。</li>
+</ul>
+<p>2.就维护表的有序性而言，<a class="link" href="https://so.csdn.net/so/search?q=%e4%ba%8c%e5%8f%89%e6%8e%92%e5%ba%8f%e6%a0%91&amp;spm=1001.2101.3001.7020"  target="_blank" rel="noopener"
+    >二叉排序树</a>无需移动节点，只需修改指针即可完成插入和删除操作，平均执行时间是O（logn）。二分查找的对象是有序顺序表，若有插入和删除结点的操作，所花的代价是O（n）。</p>
+<p>3.当有序表是静态查找表时，宜用顺序表作为其存储结构，而采用<a class="link" href="https://so.csdn.net/so/search?q=%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be&amp;spm=1001.2101.3001.7020"  target="_blank" rel="noopener"
+    >二分查找</a>实现其查找操作；若有序表是动态查找表，则应选择二叉排序树作为其逻辑结构。</p>
+<p>4.折半查找过程所对应的判定树是一棵平衡二叉树：每次把一个数组从中间分割时，总是把数组分为结点数相差最多不超过1的两个子数组，从而使得对应的判定树的两颗子树高度差绝对值不超过1。</p>
+<h4 id="跳表">跳表<a hidden class="anchor" aria-hidden="true" href="#跳表">#</a></h4>
+<p>实现简单，性能优良，插入、删除、查找的复杂度均为O(logN)</p>
+<p>Redis的有序集合（Sorted Set）用跳表实现</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207115458897.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221207115458897"
+	
+	
+></p>
+<p>核心思路：对链表建立多层“索引”，上图中-1表示 INT_MIN，链表的最小值，1表示INT_MAX。如果索引层足够，相对于实现了二分查找。</p>
+<h5 id="查找-1">查找<a hidden class="anchor" aria-hidden="true" href="#查找-1">#</a></h5>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207120019903.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221207120019903"
+	
+	
+></p>
+<h5 id="插入">插入<a hidden class="anchor" aria-hidden="true" href="#插入">#</a></h5>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207120051931.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221207120051931"
+	
+	
+></p>
+<h5 id="删除">删除<a hidden class="anchor" aria-hidden="true" href="#删除">#</a></h5>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207120115276.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221207120115276"
+	
+	
+></p>
+<h3 id="静态树表查找">静态树表查找<a hidden class="anchor" aria-hidden="true" href="#静态树表查找">#</a></h3>
+<h4 id="静态最优查找树">静态最优查找树<a hidden class="anchor" aria-hidden="true" href="#静态最优查找树">#</a></h4>
+<p>定义：查找性能最佳的判定树。</p>
+<p>性质：带权内路径长度之和PH为最小值。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207120923313.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221207120923313"
+	
+	
+></p>
+<p>最优查找体现的原则：</p>
+<p>1）最先访问的结点应是访问概率最大的结点；</p>
+<p>2）每次访问应使结点两边尚未访问的结点的被访概率之和尽可能相等。</p>
+<h4 id="静态次优查找树">静态次优查找树<a hidden class="anchor" aria-hidden="true" href="#静态次优查找树">#</a></h4>
+<p>PH值近似为最小</p>
+<p>比静态最优查找树易于构造，时间开销少</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207153452832.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221207153452832"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207153627144.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221207153627144"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207153708122.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221207153708122"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207153728644.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221207153728644"
+	
+	
+></p>
+<p>[次优查找树上的查找步骤]</p>
+<p>设给定的查找值为K</p>
+<p>将根结点作为当前考察的结点</p>
+<p>1）若当前结点指针为NULL，则返回空指针</p>
+<p>2）将当前结点的关键字key与K比较，</p>
+<p>若K=key，则返回当前结点的指针；</p>
+<p>若K&gt;key，将其右孩子作为当前结点，转1）；</p>
+<p>若K&lt;key，将其左孩子作为当前结点，转1）；</p>
+<p>[查找性能]</p>
+<p>比较次数不超过树的深度，O(log2n)</p>
+<h3 id="索引顺序表查找">索引顺序表查找<a hidden class="anchor" aria-hidden="true" href="#索引顺序表查找">#</a></h3>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207154641487.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221207154641487"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20231101145535707.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20231101145535707"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207154713081.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221207154713081"
+	
+	
+></p>
+<h2 id="动态查找表">动态查找表<a hidden class="anchor" aria-hidden="true" href="#动态查找表">#</a></h2>
+<h3 id="二叉排序树和平衡二叉树补充内容红黑树">二叉排序树和平衡二叉树（补充内容：红黑树）<a hidden class="anchor" aria-hidden="true" href="#二叉排序树和平衡二叉树补充内容红黑树">#</a></h3>
+<h4 id="二叉排序树">二叉排序树<a hidden class="anchor" aria-hidden="true" href="#二叉排序树">#</a></h4>
+<p><strong>1.</strong> <strong>定义</strong></p>
+<p>二叉排序树或者是空树，或者是满足如下性质的二叉树：</p>
+<p>1)若其左子树非空，则左子树上所有结点的值均小于根结点的值；</p>
+<p>2)若其右子树非空，则右子树上所有结点的值均大于根结点的值；</p>
+<p>3)其左右子树本身又各是一棵二叉排序树</p>
+<p><strong>2.</strong> <strong>性质</strong></p>
+<p>中序遍历一棵二叉排序树，将得到一个以关键字递增排列的有序序列</p>
+<p>3.<strong>在二叉排序树上的操作</strong></p>
+<p>通常，取二叉链表作为存储结构</p>
+<p>1）查找</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Bitree</span> <span class="nf">SearchBST</span><span class="p">(</span><span class="n">BiTree</span> <span class="n">T</span><span class="p">,</span> <span class="n">KeyType</span> <span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 在二叉排序树T中查找关键字值为 key 的结点，
+</span></span></span><span class="line"><span class="cl"><span class="c1">//找到返回该结点的地址，否则返回空。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">((</span><span class="o">!</span><span class="n">T</span><span class="p">)</span> <span class="o">||</span> <span class="nf">EQ</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">T</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">key</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">(</span><span class="n">T</span><span class="p">);</span> <span class="c1">// T为空或者查找成功
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nf">LT</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">T</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">key</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">(</span><span class="nf">SearchBST</span><span class="p">(</span><span class="n">T</span><span class="o">-&gt;</span><span class="n">lchild</span><span class="p">,</span> <span class="n">key</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">(</span><span class="nf">SearchBST</span><span class="p">(</span><span class="n">T</span><span class="o">-&gt;</span><span class="n">rchild</span><span class="p">,</span> <span class="n">key</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="c1">// SearchBST  P228-9.5（a）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="o">==</span> <span class="mi">11</span> <span class="o">&amp;&amp;</span> <span class="n">idFlag</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">idFlag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">idFlag</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;x&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;u&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span> <span class="o">=</span> <span class="sc">&#39;*&#39;</span><span class="p">;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Status</span> <span class="nf">SearchBST</span><span class="p">(</span><span class="n">BiTree</span> <span class="n">T</span><span class="p">,</span> <span class="n">KeyType</span> <span class="n">key</span><span class="p">,</span> <span class="n">BiTree</span> <span class="n">f</span><span class="p">,</span> <span class="n">BiTree</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//f指向T的父结点,初始调用值为NULL。
+</span></span></span><span class="line"><span class="cl"><span class="c1">//查找成功，p指向该结点，并返回TRUE；
+</span></span></span><span class="line"><span class="cl"><span class="c1">//查找失败，p指向查找路径上的最后一个结点，并返回FALSE
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">T</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p</span> <span class="o">=</span> <span class="n">f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="c1">//查找失败，p=f，即p指向父结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">else</span> <span class="k">if</span> <span class="nf">EQ</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">T</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p</span> <span class="o">=</span> <span class="n">T</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">TRUE</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="c1">//查找成功，p指向该结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">else</span> <span class="k">if</span> <span class="nf">LT</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">T</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nf">SearchBST</span><span class="p">(</span><span class="n">T</span><span class="o">-&gt;</span><span class="n">lchild</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nf">SearchBST</span><span class="p">(</span><span class="n">T</span><span class="o">-&gt;</span><span class="n">rchild</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="c1">// SearchBST   P228-9.5(b)
+</span></span></span></code></pre></div><p>2）插入</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Status</span> <span class="nf">InsertBST</span> <span class="p">(</span><span class="n">BiTree</span> <span class="o">&amp;</span><span class="n">T</span><span class="p">,</span><span class="n">ElemType</span> <span class="n">e</span><span class="p">){</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nf">SearchBST</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">key</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span> <span class="p">{</span><span class="c1">//未找到
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    	<span class="n">s</span><span class="o">=</span><span class="p">(</span><span class="n">BiTree</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">BiTNode</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span><span class="o">-&gt;</span><span class="n">data</span><span class="o">=</span><span class="n">e</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span><span class="o">-&gt;</span><span class="n">lchild</span><span class="o">=</span><span class="n">s</span><span class="o">-&gt;</span><span class="n">rchild</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">T</span><span class="p">)</span>  <span class="n">T</span><span class="o">=</span><span class="n">s</span><span class="p">;</span> <span class="c1">//若T为空，T直接指向s
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nf">LT</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">key</span><span class="p">,</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">key</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        	<span class="n">p</span><span class="o">-&gt;</span><span class="n">lchild</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span> <span class="c1">//放p的左侧
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">else</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">p</span><span class="o">-&gt;</span><span class="n">rchild</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span> <span class="c1">//放p的右侧
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">TRUE</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span> 
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">FALSE</span><span class="err">；</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="c1">//InsertBST   P228-9.6
+</span></span></span></code></pre></div><p>3)删除结点</p>
+<ol>
+<li>
+<p>p结点为叶结点</p>
+</li>
+<li>
+<p>p结点只有右子树pR或只有左子树pL</p>
+</li>
+<li>
+<p>p结点既有左子树PL又有右子树PR，可按中序遍历保持有序进行调整。</p>
+<p>左孩子或右孩子跟上去</p>
+<p>把左子树的最右叶子结点拿上去或者把右子树的最左叶子结点拿上去</p>
+</li>
+</ol>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207204421630.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221207204421630"
+	
+	
+></p>
+<p><strong>最优/次优查找树与二叉排序树</strong>
+最优/次优查找树也符合二叉排序树的定义
+二叉排序树的性能分析的讨论是在等概率前提下进行的
+最优/次优查找树考虑了查找概率不等的问题
+最优/次优查找树是静态树表，不方便在查找的过程中进行插入/删除
+二叉排序树是动态树表，方便在查找的过程中进行插入/删除</p>
+<h4 id="平衡二叉树avl树">平衡二叉树（AVL树）<a hidden class="anchor" aria-hidden="true" href="#平衡二叉树avl树">#</a></h4>
+<ol>
+<li>平衡二叉树的定义
+或者是空树，或者是满足如下性质的二叉排序树：
+1)它的左、右子树的高度之差的绝对值不超过1；
+2)其左右子树本身又各是一棵平衡二叉树。</li>
+</ol>
+<p>二叉树上结点的平衡因子：该结点的左子树高度减去右子树的高度。</p>
+<ol start="2">
+<li>定理</li>
+</ol>
+<p>一个具有n个结点的平衡二叉树的高度h为
+$log2(n+1)≤ h≤loga(sqrt(5)*(n+1))-2$      a=(1＋sqrt(5))/2
+结论：最坏情况下，AVL树的高度约为1.44log2n，而完全平衡的二叉树高度约为log2n，因此AVL树是接近最优的，其平均查找长度与log2n 同数量级。</p>
+<ol start="3">
+<li>结点的存储结构</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">typedef</span>  <span class="k">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="n">KeyType</span> <span class="n">key</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="err">……</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="n">ElemType</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">BSTNode</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="n">ElemType</span>  <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span>  <span class="n">bf</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">struct</span>  <span class="n">BSTNode</span> <span class="o">*</span><span class="n">lchile</span><span class="p">,</span><span class="o">*</span><span class="n">rchild</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="n">BSTNode</span><span class="p">,</span> <span class="o">*</span> <span class="n">BSTree</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//lchild：左孩子指针
+</span></span></span><span class="line"><span class="cl"><span class="c1">//rchild：右孩子指针
+</span></span></span><span class="line"><span class="cl"><span class="c1">//bf：平衡因子
+</span></span></span><span class="line"><span class="cl"><span class="c1">//key：记录的关键字
+</span></span></span></code></pre></div><p><a class="link" href="https://www.bilibili.com/video/BV16m4y1F7do/?spm_id_from=333.337.search-card.all.click&amp;vd_source=e9b391c976a8e177cd022307f5d265e2"  target="_blank" rel="noopener"
+    >一秒学会 平衡二叉树的调整，非标题党！不简单你打我！ （考研数据结构）_哔哩哔哩_bilibili</a></p>
+<p>平衡二叉树(AVL树)的中序遍历值是递增的。</p>
+<h4 id="红黑树">红黑树<a hidden class="anchor" aria-hidden="true" href="#红黑树">#</a></h4>
+<p>红黑树是一种相对平衡的二叉查找树，牺牲了部分平衡性以换取插入/删除操作时少量的旋转操作</p>
+<p>红黑树的高度近似为log2n，插入、删除和查找操作的时间复杂度都是O(log2n)</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207213201344.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221207213201344"
+	
+	
+></p>
+<p>红黑树需要满足以下要求：</p>
+<p>1）结点只能是红色或黑色的；</p>
+<p>2）根结点是黑色的；</p>
+<p>3）每个叶子结点都是黑色的空结点；</p>
+<p>4）每个红色结点的两个子结点都是黑色，也就是说红色结点被黑色结点隔开；</p>
+<p>5）对于每个结点，从该结点到其叶子结点的所有路径，都包含相同数目的黑色结点。</p>
+<p><strong>从根到叶子的最长的可能路径不多于最短的可能路径的两倍长</strong></p>
+<p><a class="link" href="https://www.bilibili.com/video/BV1xG4y1b7Zu/?spm_id_from=333.337.search-card.all.click&amp;vd_source=e9b391c976a8e177cd022307f5d265e2"  target="_blank" rel="noopener"
+    >红黑树插入-别再玩什么旋转了_哔哩哔哩_bilibili</a></p>
+<h3 id="b-树和b树">B-树和B+树<a hidden class="anchor" aria-hidden="true" href="#b-树和b树">#</a></h3>
+<h4 id="b-树">B-树<a hidden class="anchor" aria-hidden="true" href="#b-树">#</a></h4>
+<h5 id="b-树的特性">B-树的特性<a hidden class="anchor" aria-hidden="true" href="#b-树的特性">#</a></h5>
+<p><strong>B-树是一种平衡的多路查找树</strong></p>
+<p>一棵 m 阶B-树，或为空树，或为满足下列特性的 m 叉树：</p>
+<ol>
+<li>树中每个结点最多有 m 棵子树，最多有m-1个关键字。</li>
+<li>若根结点不是叶子结点，则最少有两棵子树；</li>
+<li>除根之外的所有非叶子结点最少有 ⌈ m / 2 ⌉ 棵子树，最少有 ⌈ m / 2 ⌉ -1个关键字。</li>
+<li>所有非叶子结点包含 （n,A0,K1,A1,K2,…,Kn,An）信息数据；其中n为结点中关键字个数，Ai为指向子树的指针，Ki为关键字。</li>
+<li>所有叶子结点在同一层上，且不带信息(可以看做是外部结点或查找失败的结点，实际上这些结点不存在，指向这些结点的指针为空)。</li>
+<li>B树是所有结点的平衡因子均等于0的多路平衡查找树。</li>
+</ol>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20221208154402.jpg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="微信图片_20221208154402"
+	
+	
+></p>
+<p>1）结点的孩子个数等于该结点中关键字个数加1。</p>
+<p>2）如果根结点没有关键字就没有子树，此时 B 树为空；如果根结点有关键字，则其子树必然大于等于两棵，因为子树个数等于关键字个数加1。</p>
+<p>3）除根结点外的所有非终端结点至少有 ⌈ m / 2 ⌉=⌈ 5 / 2 ⌉=3棵子树（即至少有 2个关键字），至多有5棵子树（即至多有4个关键字）。</p>
+<p>4）结点中关键字从左到右递增有序，关键字两侧均有指向子树的指针，左边指针所指子树的所有关键字均小于该关键字，右边指针所指子树的所有关键字均大于该关键字。或者看成下层结点关键字总是落在由上层结点关键字所划分的区间内，如第二层最左结点的关键字划分成了3个区间：(-∞,5),(5,11),(11,+∞)，该结点3个指针所指子树的关键字均落在这3个区间内。</p>
+<p>5）所有叶结点均在第4层，代表查找失败的位置。</p>
+<h5 id="b-树的用途">B-树的用途<a hidden class="anchor" aria-hidden="true" href="#b-树的用途">#</a></h5>
+<p>当内存中不可能容纳所有数据记录时，在磁盘等直接存取设备上组织动态的查找表。</p>
+<p>B-树的根结点可以始终置于内存中；</p>
+<p>其余非叶结点放置在外存上，每一结点可作为一个读取单位（页/块）</p>
+<p>选取较大的阶次m，降低树的高度，减少外存访问次数</p>
+<p>B-树的信息组织方法</p>
+<ul>
+<li>
+<p>每个记录的其它信息与关键字一起存储。查到关键字即可获取记录的完整信息。</p>
+</li>
+<li>
+<p>将记录的外存地址(页指针)与关键字一起存储。查到关键字时，还需根据该页指针访问外存。</p>
+</li>
+</ul>
+<h5 id="b-树的存储定义">B-树的存储定义<a hidden class="anchor" aria-hidden="true" href="#b-树的存储定义">#</a></h5>
+<p>B-树节点定义</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define m 3                   </span><span class="c1">//B-树的阶
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">BTNode</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">keynum</span><span class="p">;</span>              <span class="c1">//关键字个数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">struct</span> <span class="n">BTNode</span> <span class="o">*</span><span class="n">parent</span><span class="p">;</span>   <span class="c1">//双亲指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">KeyType</span> <span class="n">key</span><span class="p">[</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>        <span class="c1">//0号未用 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">struct</span> <span class="n">BTNode</span> <span class="o">*</span><span class="n">ptr</span><span class="p">[</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Record</span> <span class="o">*</span><span class="n">recptr</span><span class="p">[</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>     <span class="c1">//0号未用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span> <span class="n">BTNode</span><span class="p">,</span> <span class="o">*</span><span class="n">BTree</span><span class="p">;</span>
+</span></span></code></pre></div><p>查找结果描述</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">BTNode</span> <span class="o">*</span><span class="n">pt</span><span class="p">;</span> <span class="c1">//指向找到的结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>      <span class="c1">//1..m ,结点内序号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">tag</span><span class="p">;</span>    <span class="c1">//1成功，0失败
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="n">Result</span><span class="p">;</span>
+</span></span></code></pre></div><h5 id="b-树上的基本运算">B-树上的基本运算<a hidden class="anchor" aria-hidden="true" href="#b-树上的基本运算">#</a></h5>
+<p>1)查找</p>
+<p>[算法思想]
+设查找时给定值为K，从根结点开始
+(a)在当前结点<code>*p</code>中顺序或者折半查找
+若找到某个i，满足<code>key[i]=K</code>，则查找成功，返回p、i、1(成功)
+否则，确定满足<code>key[i]&lt;K&lt;key[i+1]</code>的i值
+(b)若<code>*p</code>结点中的<code>ptr[i]</code>为空指针，则查找失败，返回p、i、0
+(c)从磁盘上读入<code>ptr[i]</code>指示的结点 <code>DiskRead(p-&gt;ptr[i])</code>，将此结点作为当前结点，转(a)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Result</span> <span class="nf">SearchBTree</span><span class="p">(</span><span class="n">BTree</span> <span class="n">T</span><span class="p">,</span> <span class="n">KeyType</span> <span class="n">K</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span> <span class="o">=</span> <span class="n">T</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">q</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">found</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// q指向p的双亲，找不到时q有用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span><span class="n">p</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">found</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">=</span> <span class="nf">Search</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">K</span><span class="p">);</span> <span class="c1">//在p-&gt;key[1..keynum]中找i,使得key[i]&lt;=K&lt;key[i+1]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">If</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">key</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">K</span><span class="p">)</span> <span class="n">found</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">q</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">ptr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">found</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="c1">// SearchBTree
+</span></span></span></code></pre></div><p><strong>2)</strong> 插入</p>
+<p>设插入的关键字为K</p>
+<p>(a)定位
+找出插入该关键字的最低层中的某个非叶结点
+在查找时，会找到表示查找失败的叶结点，来确定最低层中非叶结点的插入位置</p>
+<p>(b)插入
+在B树中，每个非失败结点的关键字个数都在区间[⌈m/2⌉-1,m-1]内。
+插入后 keynum+1
+if 结点关键字个数小于m 表示当前结点未溢出(keynum&lt;m)
+可以直接插入，则写盘<code>DiskWrite(*q)</code>
+else 分裂-上溢</p>
+<p>(c)分裂
+在插入key后的原结点，从中间位置⌈m/2⌉将其分裂成两部分，⌈m/2⌉左边的部分放在原结点中，⌈m/2⌉右边的部分放在新的结点中，⌈m/2⌉的结点放到父节点中。若父节点也溢出，则继续分裂。
+以key[⌈m/2⌉]为划分点，分裂当前结点为两个结点：
+(⌈m/2⌉-1, ptr0, key1, &hellip;,key ⌈m/2⌉-1, ptr ⌈m/2⌉-1 )——q
+(m-⌈m/2⌉, ptr⌈m/2⌉, key⌈m/2⌉+1, &hellip;,keym, ptrm )——新结点q1
+写盘<code>DiskWrite(*q)</code>，<code>DiskWrite(*q1)</code>，
+读当前结点的父结点到内存<code>DiskRead(q-&gt;parent)</code>，
+将偶对(key[⌈m/2⌉], q1)插入该父结点，
+以该父结点为当前结点q，转(b)</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208162929276.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221208162929276"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208162942253.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221208162942253"
+	
+	
+></p>
+<p><strong>3)生成</strong></p>
+<p>从空树起，逐个插入关键字得到。</p>
+<p><strong>4)删除</strong></p>
+<p>设删除的关键字为K</p>
+<p>(a)在B-树中查找K，若未查找到，则返回</p>
+<p>否则查找成功，查找操作定位于某个结点q，</p>
+<p>​                且q-&gt;key[i]为K</p>
+<p>(b)若q结点不是最下层的非叶结点，则查找q-&gt;ptr[i]所指子树的最小关键字x，用x替换key[i]，使问题转换为删除最下层的非叶结点上的关键字</p>
+<p><img src="/image-20221208170015935.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221208170015935"
+	
+	
+></p>
+<p>(c) 删除最下层非叶子结点中的关键字，分三种情况处理：</p>
+<p>1）其所属结点的关键字个数&gt;⌈m/2⌉-1：简单删除</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207223943540.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221207223943540"
+	
+	
+></p>
+<p>2）兄弟够借。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208175805055.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221208175805055"
+	
+	
+></p>
+<p>3）兄弟不够借。
+若被删除关键字所在结点删除前关键字个数=⌈m/2⌉-1，且此时与该结点相邻的左右兄弟结点的关键字个数均为⌈m/2⌉-1，则将关键字删除后与左右兄弟结点及双亲结点中的关键字进行合并。
+在合并过程中，双亲结点中的关键字个数会减1。若其双亲结点是根结点且关键字个数为0，直接将根结点删除，合并后的新结点为根。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208175830815.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221208175830815"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207224010476.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221207224010476"
+	
+	
+></p>
+<h5 id="b-树的高度及性能分析">B-树的高度及性能分析<a hidden class="anchor" aria-hidden="true" href="#b-树的高度及性能分析">#</a></h5>
+<p>B树的高度不包含最后不带任何信息的叶结点的那一层</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/6e2b65dbcf4dae6bbb993592af2b52c.jpg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="6e2b65dbcf4dae6bbb993592af2b52c"
+	
+	
+></p>
+<p><strong>定理</strong>  对于任一棵具有n(n&gt;0)个关键字的m (m&gt;2)阶B-树，其树高h至多为logt((n+1)/2)+1。
+其中t=⌈ m / 2 ⌉</p>
+<p>决定B-树上操作的时间开销的两个主要因素</p>
+<ul>
+<li>外存的访问次数O(h) ——O(logtn)</li>
+<li>CPU的在结点上的比较定位时间<code>O(hm)</code>或<code>O(h*log2m)</code>
+前者起主导作用</li>
+</ul>
+<p>作为外存上的动态查找表，m越大，则B-树的高度越小，时间性能越好；仅在内存中使用的B-树必须取较小的m，通常取最小值m=3</p>
+<h4 id="b树">B+树<a hidden class="anchor" aria-hidden="true" href="#b树">#</a></h4>
+<p>B+树是一种B-树的变形树。支持按区间查询，是MySQL等数据库使用的主要索引类型之一。</p>
+<ol>
+<li>m阶B+ 树与 B-树的不同之处
+1)有 n 棵子树的结点中有 n 个关键字；</li>
+</ol>
+<ol start="2">
+<li>非叶结点可以看成是索引部分   索引集
+Ai ：第i个子结点的指针
+Ki ：第i个子结点的最大（或最小）关键字
+3)所有叶子结点中包含了全部关键字的信息及指向这些关键字记录的指针，且叶子结点以关键字大小自小至大顺序链接；数据集</li>
+</ol>
+<p>[结点结构]
+非叶结点  ( A1, K1, &hellip;,Ai, Ki, &hellip;, An,Kn)  索引集
+Ai ：第i个子结点的指针
+Ki ：第i个子结点的最大（或最小）关键字
+叶结点</p>
+<p>全部关键字及指向关键字记录的指针    数据集</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221207224608151.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221207224608151"
+	
+	
+></p>
+<ol start="2">
+<li>B+树上的基本运算</li>
+</ol>
+<p>1)查找
+方式1：从根结点开始，利用索引集结构，向下查找直到叶子结点
+方式2：从最小关键字开始，沿叶结点数据集的链结构顺序查找
+2)插入
+仅在叶子结点上进行，关键字个数大于m则分裂
+3)删除
+也仅在叶子结点上进行，关键字个数小于⌈m/2⌉时，需进行合并</p>
+<h3 id="键树">键树<a hidden class="anchor" aria-hidden="true" href="#键树">#</a></h3>
+<ol>
+<li>概念</li>
+</ol>
+<p>将关键字<strong>分解</strong>为字符的多叉树，多叉树中的每个结点只代表关键字中的一个字符，叶结点用于表示字符串的结束符(如‘$’)，并含有指向该关键字记录的指针。从根到叶子的路径上所有的结点对应的字符连接起来就代表一个关键字。约定</p>
+<p>键树是有序树</p>
+<p>结束符小于任何字符</p>
+<ol start="2">
+<li>键树的存储结构及其操作
+1)双链树
+——以树的孩子兄弟链表表示</li>
+</ol>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193623933.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221208193623933"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193632049.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221208193632049"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193641929.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221208193641929"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193839782.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221208193839782"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193851585.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221208193851585"
+	
+	
+></p>
+<ol start="2">
+<li>Trie树(来源于retrieval(检索))——以多重链表表示</li>
+</ol>
+<p>若以多重链表表示键树，则树的每个结点含有d个指针域，此时的键树称为Trie树。</p>
+<p>分支结点：num—有用指针的数量</p>
+<p>​          ptr[0..m]—指针数组</p>
+<p>叶子结点：key—关键字</p>
+<p>​          recptr—指向对应记录的指针</p>
+<p>若从键树中某个结点开始到叶子结点的路径上的每个结点中都只有一个孩子，则将该路径上的所有结点压缩成一个“叶子结点”，且叶子结点中存储有指向记录的指针。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193945472.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221208193945472"
+	
+	
+></p>
+<h2 id="哈希表">哈希表<a hidden class="anchor" aria-hidden="true" href="#哈希表">#</a></h2>
+<h3 id="概述">概述<a hidden class="anchor" aria-hidden="true" href="#概述">#</a></h3>
+<p>[哈希表的基本思想]</p>
+<p>在记录的存储地址和它的关键字之间建立一个确定的对应关系；这样，理想状态不经过比较，一次存取就能得到所查元素。</p>
+<p><code>地址index=H(key)</code></p>
+<p>[术语]</p>
+<p><strong>哈希表</strong>       一个有限的连续的地址空间，用以容纳按哈希地址存储的记录。
+<strong>哈希函数</strong>   记录的存储位置与它的关键字之间存在的一种对应关系。   Loc(ri)=H(keyi)
+<strong>冲突</strong>          对于keyi≠keyj， i ≠j，出现的H(keyi) = H(keyj)的现象。
+<strong>同义词</strong>      在同一地址出现冲突的各关键字。
+<strong>哈希(散列)地址</strong>   根据设定的哈希函数H(key)和处理冲突的方法确定的记录的存储位置。
+<strong>装填因子</strong>   表中填入的记录数n和哈希表表长m之比。    α=n/m</p>
+<p>[设计哈希表的过程]</p>
+<p>1)明确哈希表的地址空间范围。即确定哈希函数的值域。
+2)选择合理的哈希函数。该函数要保证所有可能的记录的哈希地址均在指定的值域内，并使冲突的可能性尽量小。
+3)设定处理冲突的方法。</p>
+<h3 id="哈希函数的基本构造方法">哈希函数的基本构造方法<a hidden class="anchor" aria-hidden="true" href="#哈希函数的基本构造方法">#</a></h3>
+<p>构造原则： 算法简单，运算量小；均匀分布，减少冲突。</p>
+<p><strong>若是非数字关键字，则需先对其进行数字化处理。</strong></p>
+<h4 id="直接定址法">直接定址法<a hidden class="anchor" aria-hidden="true" href="#直接定址法">#</a></h4>
+<p>$H(key)=a<em>key + b$     <em>a</em>*、**b</em>为常数</p>
+<p>特点：计算简单，冲突最少。</p>
+<p>此法仅适合于：地址集合的大小 =  关键字集合的大小</p>
+<h4 id="数字分析法">数字分析法<a hidden class="anchor" aria-hidden="true" href="#数字分析法">#</a></h4>
+<p><strong>取关键字的若干数位作为哈希地址。</strong></p>
+<p>假设关键字集合中的每个关键字都是由 s 位数字组成 (u1, u2, …, us)，分析关键字集中的全体，并从中提取分布均匀的若干位或它们的组合作为地址。</p>
+<p>此方法仅适合于：能预先估计出全体关键字的每一位上各种数字出现的频度。</p>
+<h4 id="平方取中法">平方取中法<a hidden class="anchor" aria-hidden="true" href="#平方取中法">#</a></h4>
+<p>取关键字平方后的中间几位作为哈希地址
+求“关键字的平方值” 的目的是“扩大差别” ，同时平方值的中间各位又能受到整个关键字中各位的影响。
+此方法适合于: 关键字中每一位都有某些数字重复出现频度很高的现象。</p>
+<p>使用举例
+比如key=1234 1234^2=1522756 取227作hash地址
+比如key=4321 4321^2=18671041 取671作hash地址</p>
+<h4 id="折叠法">折叠法<a hidden class="anchor" aria-hidden="true" href="#折叠法">#</a></h4>
+<p>将关键字分割成位数相同的几部分(最后一部分的位数可以不同)，然后取这几个部分的叠加和(舍去进位)作为哈希地址。
+此方法适合于: 关键字的数字位数特别多。</p>
+<h4 id="除留余数法">除留余数法<a hidden class="anchor" aria-hidden="true" href="#除留余数法">#</a></h4>
+<p>H(key) = key MOD p     (p≤m)
+m: 哈希表的表长；
+p: 最好为素数 ,更有利于“散列”</p>
+<h4 id="随机数法">随机数法<a hidden class="anchor" aria-hidden="true" href="#随机数法">#</a></h4>
+<p>H(key) = random(key)
+此方法适合于:关键字长度不等时的情况。</p>
+<h3 id="处理冲突的常用方法">处理冲突的常用方法<a hidden class="anchor" aria-hidden="true" href="#处理冲突的常用方法">#</a></h3>
+<h4 id="开放定址法-空缺编址法">开放定址法 (空缺编址法)<a hidden class="anchor" aria-hidden="true" href="#开放定址法-空缺编址法">#</a></h4>
+<p>首先有一个H (key)的哈希函数，如果$\mathrm{H}(\mathrm{key_1})=\mathrm{H} \mathrm{(key_i)}$
+那么keyi存储位置$H_{i}=\left(H(key)+d_{i}\right)$ Mod m ，m为表长，$d_{i}$有三种取法
+1）线性探测再散列        $d_{i}=1,2,3,&hellip;,m-1$
+2）二次探测再散列        $d_{i}=1^{2},-1^{2},2^{2},-2^{2} \ldots \ldots$
+3）伪随机探测在散列     $d_{i}$是一组伪随机数列
+4）双重散列函数探查法  $d_i= i*h1(key)$  (0&lt; i &lt;m- 1)
+要求：h1(key)的值与m互素
+m为素数时，h1(key)可取1到m-1之间的任何数，建议h1(key)=key mod (m-2) +1
+m为2的方幂时，h1(key)可取1到m-1之间的任何奇数</p>
+<p>开放定址法不宜执行删除操作</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208192903948.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221208192903948"
+	
+	
+></p>
+<h4 id="再哈希法">再哈希法<a hidden class="anchor" aria-hidden="true" href="#再哈希法">#</a></h4>
+<p>$H_i = RH_i(key)$       $i=1,2, &hellip; , k$</p>
+<p>$RH_i$为不同的散列函数</p>
+<h4 id="链地址法">链地址法<a hidden class="anchor" aria-hidden="true" href="#链地址法">#</a></h4>
+<p>产生hash冲突后在存储数据后面加一个指针，指向后面冲突的数据
+上面的例子，用链地址法则是下面这样：</p>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/20180520012305597.png" alt="20180520012305597" style="zoom:67%;" />
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208192924626.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221208192924626"
+	
+	
+></p>
+<h4 id="建立一个公共溢出区">建立一个公共溢出区<a hidden class="anchor" aria-hidden="true" href="#建立一个公共溢出区">#</a></h4>
+<p>设哈希函数产生的哈希地址集为[0,m-1]，则分配两个表：
+基本表 DateType base_t[m]:每个单元只能存放一个元素；
+溢出表 DateType over_t[k]:只要关键码对应的散列地址在基本表上产生冲突，则所有这样的元素一律存入该表。
+查找时，对给定关键码kx通过散列函数计算出散列地址i，先与基本表的base_t[i]单元比较，若相等，查找成功，否则，到溢出表进行查找。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193032531.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221208193032531"
+	
+	
+></p>
+<h3 id="哈希表的建立查找及其asl分析">哈希表的建立、查找及其ASL分析<a hidden class="anchor" aria-hidden="true" href="#哈希表的建立查找及其asl分析">#</a></h3>
+<h4 id="hash表查找成功和查找不成功的平均查找长度">Hash表查找成功和查找不成功的平均查找长度<a hidden class="anchor" aria-hidden="true" href="#hash表查找成功和查找不成功的平均查找长度">#</a></h4>
+<p>Hash表的平均查找长度包括查找成功时的平均查找长度和查找失败时的平均查找长度。
+　　<strong>查找成功时的平均查找长度=表中每个元素查找成功时的比较次数之和/表中元素个数</strong>；
+<strong>查找不成功时的平均查找长度相当于在表中查找元素不成功时的平均比较次数</strong>，可以理解为向表中插入某个元素，该元素在每个位置都有可能，然后计算出在每个位置能够插入时需要比较的次数，<strong>再除以表长即为查找不成功时的平均查找长度</strong>。</p>
+<p>下面举个例子：
+将关键字序列{7, 8, 30, 11, 18, 9, 14}散列存储到散列表中。散列表的存储空间是一个下标从0开始的一维数组，长度为10，即{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}。散列函数为： H(key) = (key * 3) % 7，处理冲突采用线性探测再散列法。
+求等概率情况下查找成功和查找不成功的平均查找长度。</p>
+<p>解：</p>
+<h5 id="1-求散列表">1 求散列表<a hidden class="anchor" aria-hidden="true" href="#1-求散列表">#</a></h5>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">H</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="o">%</span> <span class="mi">7</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="n">H</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="o">%</span> <span class="mi">7</span> <span class="o">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="n">H</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="o">=</span> <span class="mi">6</span>
+</span></span><span class="line"><span class="cl"><span class="n">H</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="o">=</span> <span class="mi">5</span>
+</span></span><span class="line"><span class="cl"><span class="n">H</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span> <span class="o">=</span> <span class="mi">5</span>
+</span></span><span class="line"><span class="cl"><span class="n">H</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span> <span class="o">=</span> <span class="mi">6</span>
+</span></span><span class="line"><span class="cl"><span class="n">H</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1234567</span>
+</span></span></code></pre></div><p>按关键字序列顺序依次向<a class="link" href="https://so.csdn.net/so/search?q=%e5%93%88%e5%b8%8c&amp;spm=1001.2101.3001.7020"  target="_blank" rel="noopener"
+    >哈希</a>表中填入，发生冲突后按照“线性探测”探测到第一个空位置填入。
+H(7) = 0，key = 7应插在第0个位置，因为第0个位置为空，可以直接插入。
+H(8) = 3，key = 8应插在第3个位置，因为第3个位置为空，可以直接插入。
+H(30) = 6，key = 30应插在第6个位置，因为第6个位置为空，可以直接插入。
+H(11) = 5，key = 11应插在第5个位置，因为第5个位置为空，可以直接插入。
+H(18) = 5，key = 18应插在第5个位置，但是第5个位置已经被key=11占据了，所以往后挪一位到第6个位置，但是第6个位置被key=30占据了，再往后挪一位到第7个位置，这个位置是空的，所以key=18就插到这个位置
+H(9) = 6，key = 9应插在第6个位置，但是第6个位置已经被key = 30占据，所以需要往后挪一位到第7个位置，但是第7个位置已经被key = 18占据，所以再往后挪移到第8个位置，这个位置是空的，所以key = 9就插到这个位置。
+H(14) = 0，key = 14应插在第0个位置，但第0个位置已被key=7占据，所以往后挪移一位到第1个位置，这个位置是空的，所以key=14就插到这个位置。</p>
+<p>最终的插入结果如下表所示：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>address</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>key</td>
+<td>7</td>
+<td>14</td>
+<td></td>
+<td>8</td>
+<td></td>
+<td>11</td>
+<td>30</td>
+<td>18</td>
+<td>9</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h5 id="2-求查找成功的平均查找长度">2 求查找成功的平均查找长度<a hidden class="anchor" aria-hidden="true" href="#2-求查找成功的平均查找长度">#</a></h5>
+<p>查找7，H(7) = 0，在0的位置，一下子就找到了7，查找长度为1。
+查找8，H(8) = 3，在3的位置，一下子就找到了8，查找长度为1。
+查找30，H(30) = 6，在6的位置，一下子就找到了30，查找长度为1。
+查找11，H(11) = 5，在5的位置，一下子就找到了11，查找长度为1。
+查找18，H(18) = 5，第一次在5的位置没有找到18，第二次往后挪移一位到6的位置，仍没有找到，第三次再往后挪移一位到7的位置，找到了，查找长度为3。
+查找9，H(9) = 6，第一次在6的位置没找到9，第二次往后挪移一位到7的位置，仍没有找到，第三次再往后挪移一位到8的位置，找到了，查找长度为3.
+查找14，H(14) = 0，第一次在0的位置没找到14，第二次往后挪移一位到1的位置，找到了，查找长度为2。</p>
+<p>所以，查找成功的平均查找长度为(1 + 1 + 1 + 1 + 3 + 3 + 2) / 7 = 12 / 7。</p>
+<h5 id="3-求查找不成功的平均查找长度">3 求查找不成功的平均查找长度<a hidden class="anchor" aria-hidden="true" href="#3-求查找不成功的平均查找长度">#</a></h5>
+<p>查找不成功，说明要查找的数字肯定不在上述的散列表中。
+因为这里哈希函数的模为7，所以要查找的数的初始地址只可能位于0~6的位置上。
+地址0，到第一个关键字为空的地址2需要比较3次，因此查找不成功的次数为3。比如要查找的数为28，H(28) = (28 * 3) % 7 = 0。即28对应的地址是0，由于存放在0位置的数是7，所以往后挪移一位，发现在1位置存放的数是14，继续往后挪一位，发现位置2上没有数。至此就知道28不在这个哈希表里，即查找28失败。
+地址1，到第一个关键字为空的地址2需要比较2次，因此查找不成功的次数为2。
+地址2，到第一个关键字为空的地址2需要比较1次，因此查找不成功的次数为1。
+地址3，到第一个关键字为空的地址4需要比较2次，因此查找不成功的次数为2。
+地址4，到第一个关键字为空的地址4需要比较1次，因此查找不成功的次数为1。
+地址5，到第一个关键字为空的地址9需要比较5次，因此查找不成功的次数为5。
+比如要查找的数为4，H(4) = (4 * 3) % 7 = 5，所以从地址5开始查找，最终发现地址5、地址6、地址7、地址8上存放的数都不是5，并且地址9的位置上没放数据，至此可知5不在这个哈希表里。
+地址6，到第一个关键字为空的地址9需要比较4次，因此查找不成功的次数为4。
+所以，查找不成功的平均查找长度为（3 + 2 + 1 + 2 + 1 + 5 + 4）/ 7 = 18 / 7。</p>
+<h5 id="注意">注意<a hidden class="anchor" aria-hidden="true" href="#注意">#</a></h5>
+<p>为了提高阅读和理解的效率，在这边强调一下：</p>
+<ul>
+<li>求成功的ASL是针对于每个数字的，即你要把所有数字的查找后的次数做个累加，<strong>最后除的数字是元素的个数</strong>！这个很好理解，因为我们研究的也是所有元素的查找次数。</li>
+<li>求不成功的ASL针对的是<strong>每个位置</strong>！即<strong>每个位置往后找第一个为空的位置所比较的次数，然后累加最后除以哈希表的规模（如果是除留余数法，这个规模就是那个模数）</strong>。显然，这里的每个位置是要在哈希表内的位置，即你使用的哈希函数求出的所有可能的位置，<strong>对于除留余数法哈希表的大小取决于你选的那个p（大部分情况下是质数），而不是本身数组的大小</strong>。具体原因可以看上面那个例子，或者这里再举个例子：假如你模的是2，显然哈希函数算出来的数字非0即1，只有这两个位置，即使你存放的空间由10000，哈希表的大小还是只有2，所以你最后除的分母仍是2而不是10000。</li>
+</ul>
+<h4 id="散列表上的查找">散列表上的查找<a hidden class="anchor" aria-hidden="true" href="#散列表上的查找">#</a></h4>
+<p>散列表的查找过程基本上和造表过程相同。</p>
+<p>一些关键码可通过散列函数转换的地址直接找到，另一些关键码在散列函数得到的地址上产生了冲突，需要按处理冲突的方法进行查找。</p>
+<p>查找效率取决于产生冲突的多少，产生的冲突少，查找效率就高，产生的冲突多，查找效率就低。影响产生冲突有以下3个因素：</p>
+<ul>
+<li>
+<p>散列函数是否均匀</p>
+</li>
+<li>
+<p>处理冲突的方式</p>
+</li>
+<li>
+<p>散列表的装填因子</p>
+</li>
+</ul>
+<p>第三个因素：哈希表的装填因子。装填因子是散列表装满程度的标志因子，一般选择在0.65-0.85范围。由于表长是定值，与“填入表中的元素个数”成正比，所以，越大，填入表中的元素较多，产生冲突的可能性就越大；越小，填入表中的元素较少，产生冲突的可能性就越小。</p>
+<p>实际上，散列表的平均查找长度是装填因子的函数，只是不同处理冲突的方法有不同的函数。下页表给出几种不同处理冲突方法的平均查找长度和的关系，可供参考。</p>
+<h4 id="散列表上的删除">散列表上的删除<a hidden class="anchor" aria-hidden="true" href="#散列表上的删除">#</a></h4>
+<p>​    当在散列表上删除一个元素时，首先是查找，查找成功情况下才能做删除。</p>
+<p>   对于拉链法解决冲突构造的散列表，其删除等价于单链表上的删除；</p>
+<p>   对于开放地址法解决冲突构造的散列表，不能简单的将删除元素所在单元置为空，这样会断掉原来的探测地址序列，查找后面的元素将受到影响，删除这个元素可以将这各单元置为有别于空单元表示的特殊值，在查找时遇到这个特殊值，需要继续探测序列。</p>
+<h4 id="平均查找长度与哈希表的装填因子的关系">平均查找长度与哈希表的装填因子的关系<a hidden class="anchor" aria-hidden="true" href="#平均查找长度与哈希表的装填因子的关系">#</a></h4>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221208193531209.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221208193531209"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.css"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.js"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        &copy; 
+        
+        2024 Bethel<br>共 200.85k 字 · 共 23 篇文章
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://stack.jimmycai.com/" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> 由 <a href="https://jimmycai.com/" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
+
+
+<script src="https://mecdn.mcserverx.com/gh/zhixuan2333/gh-blog/master/js/nprogress.min.js" integrity="sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://mecdn.mcserverx.com/gh/zhixuan2333/gh-blog/master/css/nprogress.css" integrity="sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE" crossorigin="anonymous" />
+<script>
+    NProgress.start();
+    document.addEventListener("readystatechange", () => {
+        if (document.readyState === "interactive") NProgress.inc(0.8);
+        if (document.readyState === "complete") NProgress.done();
+    });
+</script>
+    </body>
+</html>

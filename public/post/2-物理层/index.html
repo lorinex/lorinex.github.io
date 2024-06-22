@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='物理层的功能 物理层是计算机网络分层结构的最低一层。物理层负责通过物理介质移动数据，涉及在介质上传输的信号和比特流。根据网络传输过程，物理层从'>
+<title>2 物理层 | Bethel's Blog</title>
+
+<link rel='canonical' href='http://localhost:1313/post/2-%E7%89%A9%E7%90%86%E5%B1%82/'>
+
+<link rel="stylesheet" href="/scss/style.min.c3c7ecff622b4ad3ac6aacf17244c017cc674f0e82b470bfb8f4de85243313d0.css"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"K3aYNEt3ZeYoZwhE",ck:"K3aYNEt3ZeYoZwhE"})</script>
+<script async src="https://umami.xalaok.top/uanalytics" data-website-id="095ee454-e560-4d9b-bf1c-869f8529c17f"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script><meta property='og:title' content='2 物理层'>
+<meta property='og:description' content='物理层的功能 物理层是计算机网络分层结构的最低一层。物理层负责通过物理介质移动数据，涉及在介质上传输的信号和比特流。根据网络传输过程，物理层从'>
+<meta property='og:url' content='http://localhost:1313/post/2-%E7%89%A9%E7%90%86%E5%B1%82/'>
+<meta property='og:site_name' content='Bethel'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-01-20T15:12:37&#43;00:00'/><meta property='article:modified_time' content='2024-01-20T15:12:37&#43;00:00'/>
+<meta name="twitter:title" content="2 物理层">
+<meta name="twitter:description" content="物理层的功能 物理层是计算机网络分层结构的最低一层。物理层负责通过物理介质移动数据，涉及在介质上传输的信号和比特流。根据网络传输过程，物理层从">
+    <link rel="shortcut icon" href="/favicon.png" />
+<link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont@1.7.0/lxgwwenkaigbscreen.css" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/tx_hu92c04046da3d4074953cad185e3935e5_62559_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Bethel</a></h1>
+            <h2 class="site-description">Live and learn. ✍️</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="http://localhost:1313/" selected></option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-high" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" />
+  <path d="M6.343 17.657l-1.414 1.414" />
+  <path d="M6.343 6.343l-1.414 -1.414" />
+  <path d="M17.657 6.343l1.414 -1.414" />
+  <path d="M17.657 17.657l1.414 1.414" />
+  <path d="M4 12h-2" />
+  <path d="M12 4v-2" />
+  <path d="M20 12h2" />
+  <path d="M12 20v2" />
+</svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+  <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+  <path d="M19 11h2m-1 -1v2" />
+</svg>
+                    <span>深色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#物理层的功能">物理层的功能</a></li>
+    <li><a href="#基本概念">基本概念</a></li>
+    <li><a href="#信道">信道</a>
+      <ol>
+        <li><a href="#基带信号和宽带信号">基带信号和宽带信号</a></li>
+        <li><a href="#单工半双工全双工">单工/半双工/全双工</a></li>
+        <li><a href="#串行传输和并行传输">串行传输和并行传输</a></li>
+        <li><a href="#异步传输和同步传输">异步传输和同步传输</a></li>
+        <li><a href="#信道的极限容量">信道的极限容量</a></li>
+      </ol>
+    </li>
+    <li><a href="#编码与调制">编码与调制</a>
+      <ol>
+        <li><a href="#数字数据编码为数字信号">数字数据编码为数字信号</a></li>
+        <li><a href="#模拟数据编码为数字信号">模拟数据编码为数字信号</a></li>
+        <li><a href="#数字数据调制为模拟信号">数字数据调制为模拟信号</a></li>
+        <li><a href="#模拟数据调制为模拟信号">模拟数据调制为模拟信号</a></li>
+        <li><a href="#电话系统">电话系统</a>
+          <ol>
+            <li><a href="#adsl非对称数字用户线">ADSL非对称数字用户线</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#传输介质">传输介质</a>
+      <ol>
+        <li><a href="#双绞线">双绞线</a></li>
+        <li><a href="#同轴电缆">同轴电缆</a></li>
+        <li><a href="#光纤">光纤</a></li>
+        <li><a href="#无线传输介质">无线传输介质</a></li>
+      </ol>
+    </li>
+    <li><a href="#物理层接口的特性">物理层接口的特性</a></li>
+    <li><a href="#物理层设备">物理层设备</a>
+      <ol>
+        <li><a href="#中继器">中继器</a></li>
+        <li><a href="#集线器">集线器</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="background-color: #2a9d8f; color: #fff;">
+                计算机网络
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/2-%E7%89%A9%E7%90%86%E5%B1%82/">2 物理层</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-01-20</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 11 分钟
+                </time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+  <path d="M13.5 6.5l4 4" />
+</svg>
+                <time class="article-words">
+                    字数: 5465 字
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="物理层的功能">物理层的功能<a hidden class="anchor" aria-hidden="true" href="#物理层的功能">#</a></h2>
+<p>物理层是计算机网络分层结构的最低一层。物理层负责通过物理介质移动数据，涉及在介质上传输的信号和比特流。根据网络传输过程，物理层从数据链路层接收完整的帧(Frame)，将二进制编码为一系列信号，并通过本地物理介质传输这些信号。</p>
+<h2 id="基本概念">基本概念<a hidden class="anchor" aria-hidden="true" href="#基本概念">#</a></h2>
+<p><strong>信号</strong> #card</p>
+<p>信号是<strong>数据的电气或电磁表现</strong>，可分为<strong>模拟信号（连续信号）<strong>和</strong>数字信号（离散信号）</strong>。</p>
+<p><strong>码元</strong> #card</p>
+<p>一个离散信号状态或信号事件
+表示一位k进制数字（k进制码元）
+1码元携带$log_2k$bit信息量</p>
+<p><strong>数据率Bit rate</strong></p>
+<p>数据传输速率 bps</p>
+<p><strong>波特率Baud rate</strong> #card</p>
+<p>码元传送速率
+$1 Baud = (log_2V)bps$
+V是信号的电平级数</p>
+<p><strong>信噪比S/N</strong> #card</p>
+<p>$SNR(db)=10log_{10} \frac S N$</p>
+<p>$\frac S N=10^{\frac {SNR} {10}}$</p>
+<h2 id="信道">信道<a hidden class="anchor" aria-hidden="true" href="#信道">#</a></h2>
+<p><strong>信道Channel</strong> #card</p>
+<p>传送信息的媒体</p>
+<h3 id="基带信号和宽带信号">基带信号和宽带信号<a hidden class="anchor" aria-hidden="true" href="#基带信号和宽带信号">#</a></h3>
+<p>信道按传输信号形式的不同，可分为传送模拟信号的模拟信道和传送数字信号的数字信道两</p>
+<p>大类；信道按传输介质的不同可分为无线信道和有线信道。</p>
+<p><strong>基带信号(Baseband signaling)</strong> #card</p>
+<p>基带信号将数字信号 1 和 0 直接用两种不同的电压表示，然后送到数字信道上传输。<strong>占用整条网线的信号传输。</strong></p>
+<p><strong>宽带信号传输(Broadband signaling)</strong> #card</p>
+<p>宽带信号将基带信号进行调制后形成频分复用模拟信号，然后送到模拟信道上传输。<strong>一条网线可以传输多种不同的信号</strong>。</p>
+<h3 id="单工半双工全双工">单工/半双工/全双工<a hidden class="anchor" aria-hidden="true" href="#单工半双工全双工">#</a></h3>
+<p>单工simplex/半双工half-duplex/全双工full-deplex #card</p>
+<ul>
+<li>单工：只有一个方向</li>
+<li>半双工：双方都能发送信号，但是不能同时发送</li>
+<li>全双工：通信双方都能同时发送消息</li>
+</ul>
+<h3 id="串行传输和并行传输">串行传输和并行传输<a hidden class="anchor" aria-hidden="true" href="#串行传输和并行传输">#</a></h3>
+<p>串行传输serial transmission和并行传输parallel transmission #card</p>
+<p>串行传输是指 1 比特 1 比特地按照时间顺序传输（远距离通信通常采用串行传输）
+并行传输是指若干比特通过多条通信信道同时传输。
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240120172438888.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240120172438888"
+	
+	
+></p>
+<h3 id="异步传输和同步传输">异步传输和同步传输<a hidden class="anchor" aria-hidden="true" href="#异步传输和同步传输">#</a></h3>
+<p>异步串行传输 #card</p>
+<ul>
+<li>独立时钟，无须同步</li>
+<li>以字符为单位进行传输，发送两个字符之间的间隔是任意的</li>
+<li>每个字节的开始位置发送一个起始位（0），结束时发送1个或者多个停止位（1），每个字节之间会有一个时间间隔</li>
+<li>接收方依靠字符中的起始位和停止位来同步</li>
+</ul>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240120173158356.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240120173158356"
+	
+	
+></p>
+<p>同步串行传输 #card</p>
+<ul>
+<li>以时钟信号线对传输的数据线上的信号进行比特同步</li>
+<li>以数据块（帧或分组）为单位传输</li>
+</ul>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240120173324594.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240120173324594"
+	
+	
+></p>
+<h3 id="信道的极限容量">信道的极限容量<a hidden class="anchor" aria-hidden="true" href="#信道的极限容量">#</a></h3>
+<p><strong>Nyquist 奈奎斯特准则</strong> #card</p>
+<p>无噪声信道 $C=2Blog_2V$</p>
+<p><strong>Shannon 香农定理</strong> #card</p>
+<p>有噪声信道 $C=Blog_2(1+S/N)$</p>
+<blockquote>
+<p>计算后取二者中的最小值</p>
+</blockquote>
+<h2 id="编码与调制">编码与调制<a hidden class="anchor" aria-hidden="true" href="#编码与调制">#</a></h2>
+<p>把数据变换为模拟信号的过程称为<strong>调制</strong>，把数据变换为数字信号的过程称为<strong>编码</strong>。</p>
+<h3 id="数字数据编码为数字信号">数字数据编码为数字信号<a hidden class="anchor" aria-hidden="true" href="#数字数据编码为数字信号">#</a></h3>
+<p>数字数据编码用于基带传输中，即在基本不改变数字数据信号频率的情况下，直接传输数字 信号。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240120174834063.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240120174834063"
+	
+	
+></p>
+<ol>
+<li><strong>归零(RZ)编码</strong>。#card</li>
+</ol>
+<ul>
+<li>用高电平表示 1 、低电平表示 0 （或者相反），每个码元的中间均跳变到零电平（归零），接收方根据该跳变调整本方的时钟基准，这就为收发双方提供了自同步机制。</li>
+<li>因为归零需要占用一部分带宽，所以传输效率受到了一定的影响。</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>非归零 (NRZ) 编码</strong>。#card</p>
+<ul>
+<li>与 RZ 编码的区别是不用归零，一个时钟全部用来传输数据，编码效率最高。</li>
+<li>但 NRZ 编码的收发双方存在同步问题，为此需要双方都带有时钟线。</li>
+</ul>
+</li>
+<li>
+<p><strong>反向非归零 (NRZI) 编码</strong>。#card</p>
+<ul>
+<li>与 NRZ 编码的区别是用电平的跳变表示 0 、电平保待不变表示 1 。</li>
+<li>跳变信号本身可作为一种通知机制。这种编码方式媒成了前两种编码的优点，既能传输时钟信号，又能尽虽不损失系统带宽。</li>
+<li>USB 2.0 的编码方式就是 NRZI 编码。</li>
+</ul>
+</li>
+<li>
+<p><strong>曼彻斯特编码</strong>。#card</p>
+<ul>
+<li>每个码元的中间都发生电平跳变，电平跳变既作为时钟信号（用于同步）， 又作为数据信号。可用向下跳变表示1、向上跳变表示0，或者采用相反的规定。</li>
+<li>编码速率是码元速率的 2 倍，所占的频带宽度是原始基带宽度的 2 倍。</li>
+<li>标准以太网使用的就是曼彻斯特编码。</li>
+</ul>
+</li>
+<li>
+<p><strong>差分曼彻斯特编码</strong>。#card</p>
+<ul>
+<li>每个码元的中间都发生电平跳变，与曼彻斯特编码不同的是，电平跳变仅表示时钟信号，而不表示数据。</li>
+<li>数据的表示在于每个码元开始处是否有电平跳变： 无跳变表示1，有跳变表示0。</li>
+<li>差分曼彻斯特编码拥有更强的抗干扰能力。</li>
+<li>编码速率是码元速率的 2 倍，所占的频带宽度是原始基带宽度的 2 倍。</li>
+<li>差分曼彻斯特编码则被广泛用于宽带高速网中。</li>
+</ul>
+</li>
+</ol>
+<h3 id="模拟数据编码为数字信号">模拟数据编码为数字信号<a hidden class="anchor" aria-hidden="true" href="#模拟数据编码为数字信号">#</a></h3>
+<p>主要包括<strong>采样、量化、编码</strong>三个步骤。</p>
+<p>数据传输率=采样频率×量化位数</p>
+<ol>
+<li>
+<p>采样 #card</p>
+<p>是指对模拟信号进行周期性扫描，将时间上连续的信号变成时间上离散的信号。
+采样定理：在将模拟信号转换成数字信号时，假设原始信号中的最大频率为f，那 么采样率j采样必须大于或等于最大频率 f 的 2 倍，才能保证采样后的数字信号完整保留原模拟信号的信息（只需记住结论）。另外，采样定理又称奈奎斯特定理。</p>
+</li>
+<li>
+<p>量化 #card</p>
+<p>是指将采样得到的电平幅值按照一定的分级标度转换为对应的数值并取整，这样就将连续的电平幅值转换为了离散的数字量。采样和量化的实质就是分割和转换。</p>
+</li>
+<li>
+<p>编码 #card</p>
+<p>是指将量化得到的离散整数转换为与之对应的二进制编码。</p>
+</li>
+</ol>
+<h3 id="数字数据调制为模拟信号">数字数据调制为模拟信号<a hidden class="anchor" aria-hidden="true" href="#数字数据调制为模拟信号">#</a></h3>
+<p>调制：将二进制数据转换为带通模拟信号</p>
+<p>正弦波由<strong>振幅、频率、相位</strong>定义</p>
+<p>数字数据调制为模拟信号的方法：</p>
+<ul>
+<li>
+<p>幅移键控(amplitude shift keying, ASK) #card</p>
+<ul>
+<li>振幅随基带数字信号变化，频率和相位保持不变。通过改变载波的振幅来表示数字信号1和0。这种方式比较容易实现，但抗干扰能力差。如，用有载波和无载波输出分别表示 1 和 0。</li>
+</ul>
+</li>
+<li>
+<p>频移键控(frequency shift keying, FSK) #card</p>
+<ul>
+<li>频率随基带数字信号变化，振幅和相位保持不变。通过改变载波的频率来表示数字信号1和0。这种方式容易实现，抗干扰能力强，目前应用较广泛。如，用频率f1和频率f2分别表示 1 和 0 。</li>
+</ul>
+</li>
+<li>
+<p>相移键控(phase shift keying, PSK) #card</p>
+<ul>
+<li>相位随基带数字信号变化，频率和振幅保持不变。通过改变载波的相位来表示数字信号1和0。又分为绝对调相和相对调相。如，用相位 0 和 π分别表示 1 和 0, 是一种绝对调相方式。</li>
+</ul>
+</li>
+<li>
+<p>正交振幅调制(quadrature amplitude modulation, QAM) #card</p>
+<ul>
+<li>振幅和相位变化结合在一起，形成叠加信号。设波特率为 B, 采用 m 个相位，每个相位有 n 种振幅，则该QAM的数据传输速率 R 为 $R=Blog_2(nm)$ (b/s)</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240120193826567.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240120193826567"
+	
+	
+></p>
+<p>QAM 效率最高，目前Modem（调制解调器）使用的方法。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240120194617831.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240120194617831"
+	
+	
+></p>
+<h3 id="模拟数据调制为模拟信号">模拟数据调制为模拟信号<a hidden class="anchor" aria-hidden="true" href="#模拟数据调制为模拟信号">#</a></h3>
+<p>为了实现传输的有效性，可能需要较高的频率。这种调制方式还可使用频分复用 (FDM) 技 术，充分利用带宽资源。电话机和本地局交换机采用模拟信号传输模拟数据的编码方式。</p>
+<h3 id="电话系统">电话系统<a hidden class="anchor" aria-hidden="true" href="#电话系统">#</a></h3>
+<h4 id="adsl非对称数字用户线">ADSL非对称数字用户线<a hidden class="anchor" aria-hidden="true" href="#adsl非对称数字用户线">#</a></h4>
+<ul>
+<li>有256个子信道，其中6个用于电话，2个用于控制，剩下248个用于数据。</li>
+<li>语音信道带宽为4000Hz。</li>
+<li>上行速度为64~640Kbit/s，下行速度为500Kbit/s-7Mbit/s。</li>
+</ul>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240120200156195.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240120200156195"
+	
+	
+></p>
+<h2 id="传输介质">传输介质<a hidden class="anchor" aria-hidden="true" href="#传输介质">#</a></h2>
+<h3 id="双绞线">双绞线<a hidden class="anchor" aria-hidden="true" href="#双绞线">#</a></h3>
+<p>双绞线是最常用的古老传输介质，它由两根采用一定规则并排绞合的、相互绝缘的铜导线组版。绞合可以减少对相邻导线的电磁干扰。为了进一步提高抗电磁干扰的能力，可在双绞线的外面再加一层，即用金属丝编织成的屏蔽层，这就是屏蔽双绞线 (STP) 。无屏蔽层的双绞线称为非屏蔽双绞线 (UTP) 。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240120200421277.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240120200421277"
+	
+	
+></p>
+<h3 id="同轴电缆">同轴电缆<a hidden class="anchor" aria-hidden="true" href="#同轴电缆">#</a></h3>
+<p>同轴电缆由内导体、绝缘层、网状编织屏蔽层和塑料外层构成。按特性阻抗数值的不同，通常将同轴电缆分为两类： 50Q同轴电缆和 75Q同轴电缆。其中， 50Q同轴电缆主 要用千传送基带数字信号，又称基带同轴电缆，它在局域网中应用广泛： 75Q同轴电缆主要用于传送宽带信号，又称宽带同轴电缆，主要用于有线电视系统。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240120200519759.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240120200519759"
+	
+	
+></p>
+<p>由于外导体屏蔽层的作用，同轴电缆具有良好的抗干扰特性，被广泛用千传输较高速率的数据，其传输距离更远，但价格较双绞线贵。</p>
+<h3 id="光纤">光纤<a hidden class="anchor" aria-hidden="true" href="#光纤">#</a></h3>
+<p>光纤通信就是利用光导纤维（简称光纤）传递光脉冲来进行通信。有光脉冲表示 1, 无光脉冲表示 0。可见光的频率约为$10^8$MHz, 因此光纤通信系统的带宽范围极大。光纤上要由纤芯和包层构成，纤芯很细，其直径只有 8 至 100µm,光波通过纤芯进行传导，包层较纤芯有较低的折射率。当光线从高折射率的介质射向低折射率的介质时，其折射角将大于入射角。因此，只要入射角大于某个临界角度，就会出现全反射，即光线碰到包层时就会折射回纤芯，这个过程不断重复，光也就沿着光纤传输下去。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240120200807816.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240120200807816"
+	
+	
+></p>
+<p>利用光的全反射特性，可以将从不同角度入射的多条光线在一根光纤中传输，这种光纤称为 多模光纤，多模光纤的光源为发光二极管。光脉冲在多模光纤中传输时会逐渐展宽，造成失真，因此多模光纤只适合于近距离传输。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240120200933751.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240120200933751"
+	
+	
+></p>
+<p>光纤的直径减小到只有一个光的波长时，光纤就像一根波导那样，可使光线一直向前传播， 而不会产生多次反射，这样的光纤就是单模光纤 。单模光纤的纤芯很细，直径只有几微米，制造成本较高。同时，单模光纤的光源为定向性很好的半导体激光器，因此单模光纤的衰减较小，可传输数公里甚至数十干米而不必采用中继器，适合远距离传输。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240120201001425.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240120201001425"
+	
+	
+></p>
+<p>光纤不仅具有通信容址非常大的优点，还具有如下特点：</p>
+<ol>
+<li>传输损耗小，中继距离长，对远距离传输特别经济。</li>
+</ol>
+<ol start="2">
+<li>
+<p>抗宙电和电磁干扰性能好。这在有大电流脉冲干扰的环境下尤为重要。</p>
+</li>
+<li>
+<p>无串音干扰，保密性好，也不易被窃听或截取数据。</p>
+</li>
+<li>
+<p>体积小，重量轻。这在现有电缆管道已拥塞不堪的情况下特别有利。</p>
+</li>
+</ol>
+<h3 id="无线传输介质">无线传输介质<a hidden class="anchor" aria-hidden="true" href="#无线传输介质">#</a></h3>
+<p>无线通信已广泛用于蜂窝移动电话领城。随着便携式计算机的出现，以及军事、野外等特殊场合对移动联网的需要，促进了移动通信的发展，现在无线局城网的应用己非常普遍。
+（1）无线电波
+无线电波具有较强的穿透能力，可以传输很长的距离，因此广泛用于通信领域，如无线手机通信、计算机冈络中的无线局城网（WLAN） 等。因为无线电波使信号向所有方向散播，所以有效距离范围内的接收设备无须对准菜个方向，就可与无线电波发射者进行通信连接，大大简化了通信连接。这也是无线电波传输的最重要优点之一。
+（2）微波、红外线和激光
+目前高带宽的无线通信主要使用三种技术：微波、红外线和激光，它们都需要在发送方和接收方之间有一条视线通路，有很强的方向性，沿直线传播。不同的是，红外通信和激光通信将要传输的信号分别转换为各自的信号格式，即红外光信号和激光信号，再直接在空间中传播。
+微波通信的频率较高，频段范围也很宽，载波频率通常为2~40GHz，因此通信信道的容量大。例如，一个带宽为2MHz 的频段可容纳500条语音线路，若用来传输数字信号，则数据率可达数兆比特/秒。与通常的无线电波不同，微波通信的信号是沿直线传播的，因此在地面上的传播距离有限，超过一定距离后就要使用中继站来接力。
+卫星通信利用地球同步卫星作为中继来转发微波信号，可以克服地面微波通信距离的限制3三颗相隔 120°的同步卫星几乎就能覆盖整个地球表面，因此基本能实现全球通信。卫星通信的优点是通信容量大、距离远、覆盖广，缺点是保密性差、端到端传播时延长。</p>
+<h2 id="物理层接口的特性">物理层接口的特性<a hidden class="anchor" aria-hidden="true" href="#物理层接口的特性">#</a></h2>
+<p>物理层考虑的是如何在连接到各种计算机的传输媒体上传输数据比特流，而不指具体的传输 媒体。网络中的硬件设备和传输介质的种类繁多，通信方式也各不相同。物理层应尽可能屏蔽这些差异，让数据链路层感觉不到这些差异，使数据链路层只需考虑如何完成本层的协议和服务。</p>
+<p>物理层的主要任务可以描述为确定与传输媒体的接口有关的一些特性：</p>
+<ol>
+<li>机械特性。指明接口所用接线器的形状和尺寸、引脚数目和排列、固定和锁定装置等。</li>
+<li>电气特性。指明在接口电缆的各条线上出现的电压的范围。</li>
+</ol>
+<ol start="3">
+<li>
+<p>功能特性。指明某条线上出现的某一电乎的电压表示何种意义。</p>
+</li>
+<li>
+<p>过程特性。或称规程特性。指明对千不同功能的各种可能事件的出现顺序。</p>
+</li>
+</ol>
+<p>常用的物理层接口标准有 EIA RS-232-C、 ADSL 和 SONET/SDH 等。</p>
+<h2 id="物理层设备">物理层设备<a hidden class="anchor" aria-hidden="true" href="#物理层设备">#</a></h2>
+<h3 id="中继器">中继器<a hidden class="anchor" aria-hidden="true" href="#中继器">#</a></h3>
+<p>中继器的主要功能是整形、放大并转发信号，以消除信号经过一长段电缆后产生的失真和衰减，使信号的波形和强度达到所需的要求，进而扩大网络传输的距离。其原理是信号再生（而非简单地放大衰减的信号）。中继器有两个端口，数据从一个端口输入，从另一个端口发出。端口仅作用于信号的电气部分，而不管是香有错误数据或不适于网段的数据。
+中继器是用来扩大网络规模的最简单的廉价互连设备。中继器两端的网络部分是网段，而不是子网，使用中继器连接的几个网段仍是一个局城网。中继器若出现故障，则对相邻两个网段的工作都产生影响。因为中继器工作在物理层，所以不能连接两个具有不同速率的局域网。</p>
+<blockquote>
+<p>若某个网络设备有存储转发功能，则认为它能连接两个不同的协议；若该网络设备无存储转发功能，则认为它不能连接两个不同的协议。中继器没有存储转发功能，因此它不能连接两个速率不同的网段，中继器两端的网段一定要使用同一个协议。</p>
+</blockquote>
+<p>从理论上讲，中继器的使用数目是无限的，网络因而也可无限延长。但事实上这是不可能的，因为网络标准中对信号的延迟范围做了具体规定，中继器只能在该范围内进行有效的工作，否则会引起网络故障。例如，在采用粗同轴电缆的 10BASES 以太网规范中，互相串联的中继器的个数不能超过4个，而且用4 个中继器串联的5 段通信介质中，只有3 段可以挂接计算机，其余2段只能用作扩展通信范围的链路段，不能挂接计算机。这就是所谓的“5-4-3 规则”。</p>
+<blockquote>
+<p>放大器和中继器都起放大作用，只不过放大器放大的是模拟信号，其原理是放大豪减的信号，而中继器放大的是数字信号，其原理是整形再生袤减的信号。</p>
+</blockquote>
+<h3 id="集线器">集线器<a hidden class="anchor" aria-hidden="true" href="#集线器">#</a></h3>
+<p>集线器 (Hub) 实质上是一个多端口的中继器。当 Hub 工作时，一个端口接收到数据信号后， 因为信号在从端口到 Hub 的传输过程中已有衰减，所以 Hub 便对该信号进行整形放大，使之再生（恢复）到发送时的状态，紧接若转发到其他所有（除输入端口外）处千工作状态的端口。若同时有两个或多个端口输入，则输出时将发生冲突，致使这些数据都无效。从 Hub 的工作方式可以 看出，它在网络中只起信号放大和转发作用，目的是扩大网络的传输范围，而不具备信号的定向传送能力，即信息传输的方向是固定的，是标准的共享式设备。</p>
+<blockquote>
+<p>集线器不能分割冲突域，集线器的所有端口都属于同一个冲突域。集线器在一个时钟周期内只能传输一组信息，当一台集线器连接的机器数目较多且多台机器经常需要同时通信时，将导致信息冲突，使得集线器的工作效率很差。</p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.css"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.js"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        &copy; 
+        
+        2024 Bethel<br>共 200.85k 字 · 共 23 篇文章
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://stack.jimmycai.com/" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> 由 <a href="https://jimmycai.com/" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
+
+
+<script src="https://mecdn.mcserverx.com/gh/zhixuan2333/gh-blog/master/js/nprogress.min.js" integrity="sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://mecdn.mcserverx.com/gh/zhixuan2333/gh-blog/master/css/nprogress.css" integrity="sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE" crossorigin="anonymous" />
+<script>
+    NProgress.start();
+    document.addEventListener("readystatechange", () => {
+        if (document.readyState === "interactive") NProgress.inc(0.8);
+        if (document.readyState === "complete") NProgress.done();
+    });
+</script>
+    </body>
+</html>

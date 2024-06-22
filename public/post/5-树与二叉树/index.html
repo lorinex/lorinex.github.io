@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='树 树 一个前驱，多个后继 定义 树是一类重要的非线性数据结构，是以分支关系定义的层次结构 树是由n（n&amp;gt;=0）个结点构成的有限集合T，非空树满'>
+<title>5 树与二叉树 | Bethel's Blog</title>
+
+<link rel='canonical' href='http://localhost:1313/post/5-%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/'>
+
+<link rel="stylesheet" href="/scss/style.min.c3c7ecff622b4ad3ac6aacf17244c017cc674f0e82b470bfb8f4de85243313d0.css"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"K3aYNEt3ZeYoZwhE",ck:"K3aYNEt3ZeYoZwhE"})</script>
+<script async src="https://umami.xalaok.top/uanalytics" data-website-id="095ee454-e560-4d9b-bf1c-869f8529c17f"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script><meta property='og:title' content='5 树与二叉树'>
+<meta property='og:description' content='树 树 一个前驱，多个后继 定义 树是一类重要的非线性数据结构，是以分支关系定义的层次结构 树是由n（n&amp;gt;=0）个结点构成的有限集合T，非空树满'>
+<meta property='og:url' content='http://localhost:1313/post/5-%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/'>
+<meta property='og:site_name' content='Bethel'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-01-22T13:37:31&#43;00:00'/><meta property='article:modified_time' content='2024-01-22T13:37:31&#43;00:00'/>
+<meta name="twitter:title" content="5 树与二叉树">
+<meta name="twitter:description" content="树 树 一个前驱，多个后继 定义 树是一类重要的非线性数据结构，是以分支关系定义的层次结构 树是由n（n&amp;gt;=0）个结点构成的有限集合T，非空树满">
+    <link rel="shortcut icon" href="/favicon.png" />
+<link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont@1.7.0/lxgwwenkaigbscreen.css" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/tx_hu92c04046da3d4074953cad185e3935e5_62559_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Bethel</a></h1>
+            <h2 class="site-description">Live and learn. ✍️</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="http://localhost:1313/" selected></option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-high" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" />
+  <path d="M6.343 17.657l-1.414 1.414" />
+  <path d="M6.343 6.343l-1.414 -1.414" />
+  <path d="M17.657 6.343l1.414 -1.414" />
+  <path d="M17.657 17.657l1.414 1.414" />
+  <path d="M4 12h-2" />
+  <path d="M12 4v-2" />
+  <path d="M20 12h2" />
+  <path d="M12 20v2" />
+</svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+  <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+  <path d="M19 11h2m-1 -1v2" />
+</svg>
+                    <span>深色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#树-1">树</a>
+      <ol>
+        <li><a href="#定义">定义</a></li>
+        <li><a href="#特点">特点</a></li>
+        <li><a href="#基本术语">基本术语</a></li>
+      </ol>
+    </li>
+    <li><a href="#二叉树">二叉树</a>
+      <ol>
+        <li><a href="#定义-1">定义</a></li>
+        <li><a href="#特点-1">特点</a></li>
+        <li><a href="#满二叉树">满二叉树</a></li>
+        <li><a href="#完全二叉树">完全二叉树</a></li>
+        <li><a href="#二叉树的性质">二叉树的性质</a></li>
+        <li><a href="#二叉树的存储结构">二叉树的存储结构</a>
+          <ol>
+            <li><a href="#二叉树的顺序存储">二叉树的顺序存储</a></li>
+            <li><a href="#链式存储结构">链式存储结构</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#二叉树的遍历">二叉树的遍历</a>
+      <ol>
+        <li><a href="#先序遍历">先序遍历</a></li>
+        <li><a href="#中序遍历">中序遍历</a></li>
+        <li><a href="#后序遍历">后序遍历</a></li>
+        <li><a href="#非递归方法实现二叉树的三种遍历">非递归方法实现二叉树的三种遍历</a>
+          <ol>
+            <li><a href="#包络线">包络线</a></li>
+            <li><a href="#栈的使用">栈的使用</a></li>
+          </ol>
+        </li>
+        <li><a href="#队列方法实现二叉树的层次遍历">队列方法实现二叉树的层次遍历</a>
+          <ol>
+            <li><a href="#队列的使用">队列的使用</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#二叉树遍历的应用">二叉树遍历的应用</a>
+      <ol>
+        <li><a href="#构造二叉树的二叉链表存储">构造二叉树的二叉链表存储</a></li>
+        <li><a href="#在二叉树中查找值为x的数据元素">在二叉树中查找值为x的数据元素</a></li>
+        <li><a href="#统计给定二叉树中叶子结点的数目">统计给定二叉树中叶子结点的数目</a></li>
+        <li><a href="#由遍历序列恢复二叉树">由遍历序列恢复二叉树</a></li>
+        <li><a href="#线索二叉树">线索二叉树</a>
+          <ol>
+            <li><a href="#线索二叉树先序">线索二叉树（先序）</a></li>
+            <li><a href="#线索二叉树的构建">线索二叉树的构建</a></li>
+            <li><a href="#二叉树中序线索化"><strong>二叉树中序线索化</strong></a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#最优二叉树">最优二叉树</a>
+      <ol>
+        <li><a href="#术语">术语</a></li>
+        <li><a href="#最优二叉树-1">最优二叉树</a></li>
+        <li><a href="#建立哈夫曼树最优二叉树的方法">建立哈夫曼树（最优二叉树）的方法</a>
+          <ol>
+            <li><a href="#基本思想-使权大的结点靠近根">[基本思想] 使权大的结点靠近根。</a></li>
+            <li><a href="#赫夫曼树的存储结构">赫夫曼树的存储结构</a></li>
+            <li><a href="#构造赫夫曼树的算法步骤">构造赫夫曼树的算法步骤</a></li>
+            <li><a href="#哈夫曼树的应用">哈夫曼树的应用</a></li>
+            <li><a href="#赫夫曼编码表的存储结构">赫夫曼编码表的存储结构</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#树和森林">树和森林</a>
+      <ol>
+        <li><a href="#树的四种表示方法">树的四种表示方法</a></li>
+        <li><a href="#森林">森林</a></li>
+        <li><a href="#树的存储">树的存储</a>
+          <ol>
+            <li><a href="#1双亲链表存储方法">1．双亲链表存储方法</a></li>
+            <li><a href="#2指向孩子的链表存储方法">2．指向孩子的链表存储方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#树与二叉树的转换">树与二叉树的转换</a>
+          <ol>
+            <li><a href="#树转换为二叉树">树转换为二叉树</a></li>
+            <li><a href="#森林转换为二叉树">森林转换为二叉树</a></li>
+            <li><a href="#二叉树到树森林的转换">二叉树到树、森林的转换</a></li>
+          </ol>
+        </li>
+        <li><a href="#树和森林的遍历">树和森林的遍历</a>
+          <ol>
+            <li><a href="#二叉树和树的应用示例"><strong>二叉树和树的应用示例</strong></a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="background-color: #2a9d8f; color: #fff;">
+                数据结构
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/5-%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/">5 树与二叉树</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-01-22</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 20 分钟
+                </time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+  <path d="M13.5 6.5l4 4" />
+</svg>
+                <time class="article-words">
+                    字数: 9739 字
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="树">树<a hidden class="anchor" aria-hidden="true" href="#树">#</a></h1>
+<h2 id="树-1">树<a hidden class="anchor" aria-hidden="true" href="#树-1">#</a></h2>
+<p>一个前驱，多个后继</p>
+<h3 id="定义">定义<a hidden class="anchor" aria-hidden="true" href="#定义">#</a></h3>
+<p>树是一类重要的非线性数据结构，是以<strong>分支关系定义的层次结构</strong></p>
+<p>树是由n（n&gt;=0）个结点构成的有限集合T，非空树满足：</p>
+<p>1）有一个称之为根（root）的结点，根节点没有前驱节点</p>
+<p>2）除根以外的其余结点被分成m个互不相交的集合$T_1,T_2,&hellip;,T_m$,其中每一个集合本身又是一棵树，称为<strong>子树</strong>。</p>
+<p>树的递归定义刻画了树的固有特性，即一棵非空树是由若干棵子树构成的，而子树又可由若干棵更小的子树构成。</p>
+<h3 id="特点">特点<a hidden class="anchor" aria-hidden="true" href="#特点">#</a></h3>
+<p>⑴树的根结点没有前驱结点，除根结点之外的所有结点<strong>有且只有一个前驱结点</strong>。</p>
+<p>⑵树中所有结点可以有零个或多个后继结点。</p>
+<h3 id="基本术语">基本术语<a hidden class="anchor" aria-hidden="true" href="#基本术语">#</a></h3>
+<p><strong>结点的度</strong>：结点拥有的子树数目</p>
+<p><strong>树的度</strong>：树的各节点度的最大值</p>
+<p><strong>叶子（终端）结点</strong>：度为0的结点</p>
+<p><strong>分支（非终端）结点</strong>：度不为0的结点</p>
+<p><strong>内部结点</strong>：除根结点之外的分支结点</p>
+<p><strong>双亲与孩子（父与子）结点</strong>：结点的子树的根称为该结点的孩子，该结点称为孩子的双亲</p>
+<p><strong>兄弟</strong>：属于同一双亲的孩子</p>
+<p><strong>结点的祖先</strong>：从根到该结点所经分支上的所有结点。</p>
+<p><strong>结点的子孙</strong>：该结点为根的子树中的任一结点。</p>
+<p><strong>结点的层次</strong>：表示该结点在树中的相对位置。根为第一层，其它的结点依次下推；若某结点在第L层上，则其孩子在第L+1层上。</p>
+<p><strong>树的深(高)度</strong>：树中结点的最大层次。</p>
+<p><strong>有序树</strong>：树中各结点的子树从左至右是有次序的，不能互换。否则，称为<strong>无序树</strong>。</p>
+<p><strong>路径长度</strong>：从树中某结点Ni出发，能够通过树中结点到达结点Nj，则称Ni到Nj存在一条路径，路径长度等于这两个结点之间的分支/边的个数。</p>
+<p><strong>森林</strong>：是m(m³0)棵互不相交的树的集合。</p>
+<h2 id="二叉树">二叉树<a hidden class="anchor" aria-hidden="true" href="#二叉树">#</a></h2>
+<h3 id="定义-1">定义<a hidden class="anchor" aria-hidden="true" href="#定义-1">#</a></h3>
+<p>二叉树是n(n&gt;=0)个结点的有限集合，它或为<strong>空树</strong>(n=0)，或由一个<strong>根</strong>结点和两棵互不相交的被分别称为根的<strong>左子树</strong>和根的<strong>右子树</strong>的二叉树组成。</p>
+<h3 id="特点-1">特点<a hidden class="anchor" aria-hidden="true" href="#特点-1">#</a></h3>
+<ul>
+<li>
+<p>定义是递归的</p>
+</li>
+<li>
+<p>0&lt;=结点的度&lt;=2</p>
+</li>
+<li>
+<p>是有序树</p>
+</li>
+</ul>
+<blockquote>
+<p>二叉树的每个结点至多只有两棵子树，且子树有左右之分，其次序不能任意颠倒。</p>
+</blockquote>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101132720184.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101132720184"
+	
+	
+></p>
+<h3 id="满二叉树">满二叉树<a hidden class="anchor" aria-hidden="true" href="#满二叉树">#</a></h3>
+<p>如果一棵二叉树每一层的结点个数都达到了最大，这棵二叉树称为满二叉树。对于满二叉树，所有的分支结点都存在左子树和右子树，所有叶子都在最下面一层。一棵深度为k的满二叉树有$2^k-1$个结点</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101132814531.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101132814531"
+	
+	
+></p>
+<h3 id="完全二叉树">完全二叉树<a hidden class="anchor" aria-hidden="true" href="#完全二叉树">#</a></h3>
+<p>一棵深度为k的有n个结点的二叉树，对其结点按从上至下，从左到右的顺序进行编号，如果编号为i的结点与满二叉树中编号为i的结点在二叉树中的位置相同，则这棵二叉树称为完全二叉树。</p>
+<p>​    完全二叉树的特点是叶子结点只能出现在最下层和次最下层，并且最下面一层上的结点都集中在该层最左边的若干位置上，至多只有最下面的两层上结点的度数可以小于2，满二叉树肯定是完全二叉树，而完全二叉树未必是满二叉树。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101132931739.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101132931739"
+	
+	
+></p>
+<h3 id="二叉树的性质">二叉树的性质<a hidden class="anchor" aria-hidden="true" href="#二叉树的性质">#</a></h3>
+<p>性质1   二叉树的第i层上至多有$2^{i-1}$(i&gt;=1)个结点。</p>
+<p>性质2   深度为k的二叉树至多有$2^k-1$个结点(k&gt;=1)。</p>
+<p>性质3   对任何一棵二叉树T，如果其终端结点数为n0，度为2的结点数为n2 ，则n0 = n2 + 1。</p>
+<blockquote>
+<p>设一颗二叉树上叶子结点数为n0，单分支结点数为n1，双分支结点数为n2，则总结点数为：n0+n1+n2。</p>
+<p>而一颗二叉树中，所有结点的分支数（即度数）应等于单分支结点数加上双分支结点数的两倍，即总分支数=n1+2n2。</p>
+<p>由于二叉树中除了根结点以外，每个结点都有唯一的一个分支指向它，因此二叉树中：总分支数=总结点数-1。</p>
+<p>即n1+2n2=n0+n1+n2-1。即n0=n2+1。</p>
+</blockquote>
+<p>性质4   具有n个结点的完全二叉树的深度为 $⌊\log_2n⌋+1$。</p>
+<blockquote>
+<p>假设深度为k，根据完全二叉树的定义和性质2可知，有$2^{k-1}-1&lt; n&lt;=2^k-1$且k是整数</p>
+<p>$k-1&lt;=\log_2n&lt;k$</p>
+<p>$k-1=⌊\log_2n⌋$</p>
+</blockquote>
+<p>性质5   一棵具有n个结点的完全二叉树(又称顺序二叉树)，对其结点按层从上至下(每层从左至右)进行1至n的编号，则对任一结点i(1&lt;=i&lt;=n)有：
+(1)若i&gt;1，则i的双亲是$⌊i/2⌋$；若i=1，则i是根，无双亲。
+(2)若2i&lt;=n，则i的左孩子是2i；否则， i无左孩子。
+(3)若2i+1&lt;=n，则i的右孩子是2i+1；否则， i无右孩子。</p>
+<h3 id="二叉树的存储结构">二叉树的存储结构<a hidden class="anchor" aria-hidden="true" href="#二叉树的存储结构">#</a></h3>
+<h4 id="二叉树的顺序存储">二叉树的顺序存储<a hidden class="anchor" aria-hidden="true" href="#二叉树的顺序存储">#</a></h4>
+<p>所谓二叉树的顺序存储，是用一组连续的存储单元存放二叉树中的结点。一般是按照二叉树结点从上至下、从左到右的顺序存储。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101135515374.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101135515374"
+	
+	
+></p>
+<p>对于一般的二叉树，如果仍按从上至下和从左到右的顺序将树中的结点顺序存储在一维数组中，则数组元素下标之间的关系不能够反映二叉树中结点之间的逻辑关系，只有增添一些并不存在的空结点，使之成为一棵完全二叉树的形式，然后再用一维数组顺序存储。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101140759629.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101140759629"
+	
+	
+></p>
+<p><strong>二叉树的顺序存储结构可描述为：</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define MAXNODE 1024
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">//二叉树的最大结点树
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">typedef</span> <span class="n">TElemType</span> <span class="n">SqBiTree</span><span class="p">[</span><span class="n">MAXNODE</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//0号单元存放根结点
+</span></span></span></code></pre></div><p>定义一个顺序存储的二叉树变量：<code>SqBiTree bt;</code></p>
+<p>即将bt为含有MAXNODE个TElemType类型元素的一维数组。</p>
+<h4 id="链式存储结构">链式存储结构<a hidden class="anchor" aria-hidden="true" href="#链式存储结构">#</a></h4>
+<p>用链来指示元素之间的逻辑关系，通常有<strong>二叉链表存储</strong>和<strong>三叉链表存储</strong></p>
+<h5 id="二叉链表存储">二叉链表存储<a hidden class="anchor" aria-hidden="true" href="#二叉链表存储">#</a></h5>
+<p>链表中每个结点有3个域组成，除了数据域外，还有两个指针域，分别给出该结点左孩子和右孩子所在的链结点的存储地址。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101142321230.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101142321230"
+	
+	
+></p>
+<p>下图(a)给出一棵二叉树的二叉链表存储表示。二叉链表也可以带头结点的方式存放，如图(b)所示。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101142402287.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101142402287"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">BiTNode</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TElemType</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="n">BiTNode</span> <span class="o">*</span><span class="n">lchild</span><span class="p">,</span><span class="o">*</span><span class="n">rchild</span><span class="p">;</span><span class="c1">//左右孩子指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="n">BiTNode</span><span class="p">,</span><span class="o">*</span><span class="n">BiTree</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//定义一个指向二叉树的指针变量:BiTree t;
+</span></span></span></code></pre></div><h5 id="三叉链表存储">三叉链表存储<a hidden class="anchor" aria-hidden="true" href="#三叉链表存储">#</a></h5>
+<p>二叉链表存储可以直接找到结点的孩子结点，但不能直接找到其双亲结点，用三叉链表存储可以解决这一问题，给运算带来方便</p>
+<p>每个结点由四个域组成，具体结构为：</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101142835792.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101142835792"
+	
+	
+></p>
+<p>下图给出一棵二叉树的三叉链表存储示意图</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101142908573.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101142908573"
+	
+	
+></p>
+<h2 id="二叉树的遍历">二叉树的遍历<a hidden class="anchor" aria-hidden="true" href="#二叉树的遍历">#</a></h2>
+<p>在二叉树的一些应用中，常常要求在树中查找具有某种特征的结点，或者对树中全部结点逐一进行某种处理。这就引入了遍历二叉树的问题，即如何按某条搜索路径巡访树中的每一个结点，使得每一个结点均被访问一次，而且仅被访问一次。</p>
+<p>遍历对线性结构是容易解决的，而二叉树是非线性的，因而需要寻找一种规律，以便使二叉树上的结点能排列在一个线性队列上，从而便于遍历。</p>
+<p>由二叉树的递归定义，二叉树的三个基本组成单元是：根结点、左子树和右子树。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101143518622.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101143518622"
+	
+	
+></p>
+<h3 id="先序遍历">先序遍历<a hidden class="anchor" aria-hidden="true" href="#先序遍历">#</a></h3>
+<p>若二叉树为空，则空操作；否则</p>
+<p>（1）访问根结点；</p>
+<p>（2）先序遍历左子树；</p>
+<p>（3）先序遍历右子树。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">PerOrderTraverse</span><span class="p">(</span><span class="n">BiTree</span> <span class="n">T</span><span class="p">,</span><span class="nf">Status</span><span class="p">(</span><span class="o">*</span><span class="n">Visit</span><span class="p">)(</span><span class="n">datatype</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//初始条件：二叉树T存在，Visit是对结点操作的应用函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//操作结果：先序递归遍历T，对每个结点调用函数Visit一次且仅一次
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">T</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">Visit</span><span class="p">(</span><span class="n">T</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">);</span><span class="c1">//访问根结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">PerOrderTraverse</span><span class="p">(</span><span class="n">T</span><span class="o">-&gt;</span><span class="n">lchild</span><span class="p">,</span><span class="n">Visit</span><span class="p">);</span><span class="c1">//再先序遍历左子树
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">PerOrderTraverse</span><span class="p">(</span><span class="n">T</span><span class="o">-&gt;</span><span class="n">lchild</span><span class="p">,</span><span class="n">Visit</span><span class="p">);</span><span class="c1">//最后先序遍历右子树
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101144259215.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101144259215"
+	
+	
+></p>
+<p>预留很多空，按根左右的方式写</p>
+<p>本质上是写出了这棵树的上下顺序</p>
+<h3 id="中序遍历">中序遍历<a hidden class="anchor" aria-hidden="true" href="#中序遍历">#</a></h3>
+<p>若二叉树为空，则空操作；否则</p>
+<p>（1）中序遍历左子树；</p>
+<p>（2）访问根结点；</p>
+<p>（3）中序遍历右子树。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">InOrderTraverse</span><span class="p">(</span><span class="n">BiTree</span> <span class="n">T</span><span class="p">,</span><span class="nf">Status</span><span class="p">(</span><span class="o">*</span><span class="n">Visit</span><span class="p">)(</span><span class="n">datatype</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//初始条件：二叉树T存在，Visit是对结点操作的应用函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//操作结果：中序递归遍历T，对每个结点调用函数Visit一次且仅一次
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">T</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">InOrderTraverse</span><span class="p">(</span><span class="n">T</span><span class="o">-&gt;</span><span class="n">lchild</span><span class="p">,</span><span class="n">Visit</span><span class="p">);</span><span class="c1">//先中序遍历左子树
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">Visit</span><span class="p">(</span><span class="n">T</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">);</span><span class="c1">//访问根结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">InOrderTraverse</span><span class="p">(</span><span class="n">T</span><span class="o">-&gt;</span><span class="n">rchild</span><span class="p">,</span><span class="n">Visit</span><span class="p">);</span><span class="c1">//最后中序遍历右子树
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101145146306.png" alt="image-20221101145146306" style="zoom:25%;" />
+<p>从左到右写这棵树，本质上是描述了这棵树的左右顺序</p>
+<h3 id="后序遍历">后序遍历<a hidden class="anchor" aria-hidden="true" href="#后序遍历">#</a></h3>
+<p>若二叉树为空，则空操作；否则</p>
+<p>（1）后序遍历左子树；</p>
+<p>（2）后序遍历右子树；</p>
+<p>（3）访问根结点。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">PostOrderTraverse</span><span class="p">(</span><span class="n">BiTree</span> <span class="n">T</span><span class="p">,</span><span class="nf">Status</span><span class="p">(</span><span class="o">*</span><span class="n">Visit</span><span class="p">)(</span><span class="n">datatype</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//初始条件：二叉树T存在，Visit是对结点操作的应用函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//操作结果：后序递归遍历T，对每个结点调用函数Visit一次且仅一次
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">T</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">PostOrderTraverse</span><span class="p">(</span><span class="n">T</span><span class="o">-&gt;</span><span class="n">lchild</span><span class="p">,</span><span class="n">Visit</span><span class="p">);</span><span class="c1">//先后序遍历左子树
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">PostOrderTraverse</span><span class="p">(</span><span class="n">T</span><span class="o">-&gt;</span><span class="n">rchild</span><span class="p">,</span><span class="n">Visit</span><span class="p">);</span><span class="c1">//然后后序遍历右子树
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">Visit</span><span class="p">(</span><span class="n">T</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">);</span><span class="c1">//最后访问根结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101145747743.png" alt="image-20221101145747743" style="zoom:25%;" />
+<p>后序遍历：预留很多空，直接写左右根</p>
+<p>【一秒学会构建二叉树和遍历，非标题党！秒做!超级简单（考研数据结构）】https://www.bilibili.com/video/BV11d4y1s7hm?vd_source=18eb90919502cd446c859adbd8eafddc</p>
+<h3 id="非递归方法实现二叉树的三种遍历">非递归方法实现二叉树的三种遍历<a hidden class="anchor" aria-hidden="true" href="#非递归方法实现二叉树的三种遍历">#</a></h3>
+<h4 id="包络线">包络线<a hidden class="anchor" aria-hidden="true" href="#包络线">#</a></h4>
+<p>下图中所示的从根结点左外侧开始，由根结点右外侧结束的曲线，称其为该二叉树的包络线，二叉树的遍历是沿着该线路进行的。沿着该路线按△标记的结点读得的序列为先序序列，按*标记读得的序列为中序序列，按⊕标记读得的序列为后序序列。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101150529106.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101150529106"
+	
+	
+></p>
+<h4 id="栈的使用">栈的使用<a hidden class="anchor" aria-hidden="true" href="#栈的使用">#</a></h4>
+<p>先序遍历是沿着包络线深入时遇到结点就访问；</p>
+<p>中序遍历是在从左子树返回时遇到结点访问；</p>
+<p>后序遍历是在从右子树返回时遇到结点访问</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101150806747.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101150806747"
+	
+	
+></p>
+<p>按包络线行走的核心思路：</p>
+<p>从根结点开始沿左子树深入下去，当深入到最左端，无法再深入下去时，则返回，再逐一进入刚才深入时遇到结点的右子树，再进行深入和返回，直到最后从根结点的右子树返回到根结点为止。</p>
+<p>在这一过程中，返回结点的顺序如深入结点的顺序想法，即后深入先返回。符合“栈”结构的特点。</p>
+<p>p是否为空</p>
+<p>​         如果不为空，把p指向的结点地址入栈，然后p=p-&gt;lchild</p>
+<p>​         如果为空，出栈一个结点地址复制给p，然后p=p-&gt;rchild</p>
+<p>如果结点地址<strong>入栈前访问</strong>该结点，则为<strong>先序</strong>遍历</p>
+<p>如果结点地址<strong>出栈后访问</strong>该结点，则为<strong>中序</strong>遍历</p>
+<p><strong>中序遍历的非递归算法</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// 中序遍历的非递归算法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Status</span> <span class="n">InOrderTraverse</span><span class="err">（</span><span class="n">BiTree</span> <span class="n">T</span><span class="p">,</span> <span class="nf">Status</span><span class="p">(</span><span class="o">*</span> <span class="n">Visit</span><span class="p">)(</span><span class="n">TElemType</span> <span class="n">e</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">InitStack</span><span class="p">(</span><span class="n">S</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="n">p</span> <span class="o">=</span> <span class="n">T</span><span class="p">;</span> <span class="c1">// p指向根结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">while</span> <span class="p">(</span><span class="n">p</span> <span class="o">||</span> <span class="o">!</span><span class="nf">StackEmpty</span><span class="p">(</span><span class="n">S</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span> <span class="c1">// p不为空或者栈不为空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                  <span class="nf">Push</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>    <span class="c1">// p不为空入栈p的值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                  <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">lchild</span><span class="p">;</span> <span class="c1">// p指向之前指向结点的左孩子
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>                <span class="c1">// p值为null，已经到了左下角
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                  <span class="nf">Pop</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span> <span class="c1">// 出栈，将值赋给p
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nf">Visit</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">return</span> <span class="n">ERROR</span><span class="p">;</span> <span class="c1">// 访问p指向的结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                  <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">rchild</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span> <span class="c1">// else
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="p">}</span>       <span class="c1">// while
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="队列方法实现二叉树的层次遍历">队列方法实现二叉树的层次遍历<a hidden class="anchor" aria-hidden="true" href="#队列方法实现二叉树的层次遍历">#</a></h3>
+<p>所谓二叉树的层次遍历，是指从二叉树的第一层（根结点）开始，从上至下逐层遍历，在同一层中，则按从左到右的顺序对结点逐个访问。对于下图所示的二叉树，按层次遍历所得到的结果序列为：</p>
+<p>A B C D E F G</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101152731644.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101152731644"
+	
+	
+></p>
+<h4 id="队列的使用">队列的使用<a hidden class="anchor" aria-hidden="true" href="#队列的使用">#</a></h4>
+<p>在进行层次遍历时，可设置一个队列结构，遍历从二叉树的根结点开始，首先将根结点指针入队列，然后从对头取出一个元素，每取一个元素，执行下面两个操作：</p>
+<p>⑴访问该元素所指结点；</p>
+<p>⑵若该元素所指结点的左、右孩子结点非空，则将该元素所指结点的左孩子指针和右孩子指针顺序入队。</p>
+<p>此过程不断进行，当队列为空时，二叉树的层次遍历结束。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Status</span> <span class="nf">LevelOrderTraverse</span><span class="p">(</span><span class="n">BiTree</span> <span class="n">T</span><span class="p">,</span> <span class="nf">Status</span> <span class="p">(</span><span class="o">*</span><span class="n">Visit</span><span class="p">)(</span><span class="n">TElemType</span> <span class="n">e</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="n">T</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">InitQueue</span><span class="p">(</span><span class="n">Q</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">EnQueue</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">T</span><span class="p">);</span> <span class="c1">// 根结点的指针T入队列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="nf">QueueEmpty</span><span class="p">(</span><span class="n">Q</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                  <span class="nf">DeQueue</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span> <span class="c1">// 从队头取一个指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nf">Visit</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">return</span> <span class="n">ERROR</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                  <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">lchild</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                        <span class="nf">EnQueue</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">lchild</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                  <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">rchild</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                        <span class="nf">EnQueue</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">rchild</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="c1">// LevelOrderTraverse
+</span></span></span></code></pre></div><h2 id="二叉树遍历的应用">二叉树遍历的应用<a hidden class="anchor" aria-hidden="true" href="#二叉树遍历的应用">#</a></h2>
+<h3 id="构造二叉树的二叉链表存储">构造二叉树的二叉链表存储<a hidden class="anchor" aria-hidden="true" href="#构造二叉树的二叉链表存储">#</a></h3>
+<p>构建一棵二叉树的二叉链表也是基于遍历的过程进行的。这里按照先序遍历的过程构建。</p>
+<p>首先建立二叉树带空指针的先序序列，依此作为构建时结点的输入顺序，如对于下图所示的二叉树，输入序列为：ABD0G000CE00F00（0表示空，为了简化问题，设数据元素的类型为字符型)。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101153436222.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101153436222"
+	
+	
+></p>
+<p>读入带空指针的先序序列构造二叉树，写法1，通过return返回二叉树指针</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101153548178.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101153548178"
+	
+	
+></p>
+<p>读入带空指针的先序序列构造二叉树，写法2，通过引用返回二叉树指针</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101153617280.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101153617280"
+	
+	
+></p>
+<p>读入带空指针的先序序列构造二叉树，写法3，传递指向指针的指针</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101153640701.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101153640701"
+	
+	
+></p>
+<h3 id="在二叉树中查找值为x的数据元素">在二叉树中查找值为x的数据元素<a hidden class="anchor" aria-hidden="true" href="#在二叉树中查找值为x的数据元素">#</a></h3>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101153818494.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101153818494"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101153828139.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101153828139"
+	
+	
+></p>
+<h3 id="统计给定二叉树中叶子结点的数目">统计给定二叉树中叶子结点的数目<a hidden class="anchor" aria-hidden="true" href="#统计给定二叉树中叶子结点的数目">#</a></h3>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101153900040.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101153900040"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101153909592.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101153909592"
+	
+	
+></p>
+<h3 id="由遍历序列恢复二叉树">由遍历序列恢复二叉树<a hidden class="anchor" aria-hidden="true" href="#由遍历序列恢复二叉树">#</a></h3>
+<p>最下面一排写中序遍历，竖着写先序遍历，根据这个表恢复二叉树</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/Screenshot_20221224_152007.jpg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Screenshot_20221224_152007"
+	
+	
+></p>
+<p>从前面讨论的二叉树的遍历知道，任意一棵二叉树结点的先序序列和中序序列都是唯一的。</p>
+<p>1、依据遍历定义：</p>
+<p>由二叉树的先序序列和中序序列<strong>可唯一</strong>地确定该二叉树。</p>
+<p>由二叉树的后序序列和中序序列也<strong>可唯一</strong>地确定该二叉树。</p>
+<p>由二叉树的先序序列和后序序列<strong>不能唯一</strong>地确定该二叉树。</p>
+<p>2、分隔过程：</p>
+<p>已知一棵二叉树的先序序列与中序序列分别为： A B C D E F G H I ， B C A E D G H F I，试恢复该二叉树。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101154948337.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101154948337"
+	
+	
+></p>
+<h3 id="线索二叉树">线索二叉树<a hidden class="anchor" aria-hidden="true" href="#线索二叉树">#</a></h3>
+<p>遍历二叉树实际上就是将树中所有结点排成一个<strong>线性序列</strong>（即非线性结构线性化）。在这样的线性序列中，除第一个结点外，每个结点有且仅有一个直接前驱结点；除最后一个结点外，每个结点有且仅有一个直接后继结点。</p>
+<p>然而，有时我们希望<strong>不进行遍历</strong>，就能很快找到某个结点在某种遍历下的直接前趋和后继。为此，就需要把每个结点的直接前趋和直接后继记录下来。</p>
+<p>线索二叉树分为：</p>
+<ul>
+<li>
+<p>先序线索二叉树</p>
+</li>
+<li>
+<p>中序线索二叉树</p>
+</li>
+<li>
+<p>后序线索二叉树</p>
+</li>
+</ul>
+<p>但二叉树的存储结构中并没有反映出前趋和后继信息。一个最简单的办法是在原来的二叉链表的每个结点中，再增加两个指针域<strong>fwd</strong>和<strong>bkwd</strong>，分别指向前趋和后继。这些指针被称为<strong>线索（thread）</strong>，加了线索的二叉树叫做线索二叉树</p>
+<h4 id="线索二叉树先序">线索二叉树（先序）<a hidden class="anchor" aria-hidden="true" href="#线索二叉树先序">#</a></h4>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101155354476.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101155354476"
+	
+	
+></p>
+<p>上述做法存储效率较低.</p>
+<p>一个具有n个结点的二叉树若采用二叉链表存储结构，在2n个指针域中只有n－1个指针域是用来存储孩子结点的地址，而另外n＋1个指针域存放的都是NULL。</p>
+<p>例如下图：7个结点，14个指针域，6个指针域存储孩子结点地址，8个存放的是NULL.</p>
+<p><strong>一个新的思路</strong>：</p>
+<p>是利用二叉树的二叉链表存储结构中的那些空指针域来指示前趋和后继。</p>
+<ul>
+<li>
+<p><strong>利用二叉链表的空指针域，存储指向该结点的前驱/后继</strong>(某种遍历方式下)结点的指针，方便二叉树的线性化使用。(n个结点的二叉树含有n+1空指针域)</p>
+</li>
+<li>
+<p>例如：可以利用某结点<strong>空的左指针域（lchild）<strong>指出该结点在某种遍历序列中的</strong>直接前驱结点</strong>的存储地址，利用结点<strong>空的右指针域</strong>（rchild）指出该结点在某种遍历序列中的<strong>直接后继结点</strong>的存储地址。对于那些非空的指针域，则仍然存放指向该结点左、右孩子的指针。这样，就得到了一棵线索二叉树。</p>
+</li>
+</ul>
+<p>指向孩子的指针和线索都是地址，如何区别某结点的指针域内存放的是指针还是线索？方法是为每个结点增设两个标志位域ltag和rtag，令：</p>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101155932079.png" alt="image-20221101155932079" style="zoom: 33%;" />
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="err">线索二叉树的结点定义如下：</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">BiThrNode</span> <span class="p">{</span>   
+</span></span><span class="line"><span class="cl">    <span class="n">datatype</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="n">BiThrNode</span>  <span class="o">*</span><span class="n">lchild</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="n">BiThrNode</span>  <span class="o">*</span><span class="n">rchild</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="n">ltag</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="n">rtag</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="n">BiThrNodeType</span><span class="p">,</span> <span class="o">*</span><span class="n">BiThrTree</span><span class="p">;</span>
+</span></span></code></pre></div><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101160021688.png" alt="image-20221101160021688" style="zoom:25%;" />
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101160037725.png" alt="image-20221101160037725" style="zoom:25%;" />
+<h4 id="线索二叉树的构建">线索二叉树的构建<a hidden class="anchor" aria-hidden="true" href="#线索二叉树的构建">#</a></h4>
+<p>由于线索化的<strong>实质</strong>是将二叉链表中的<strong>空指针改为指向前驱或后继的线索</strong>，而前驱或后继的信息只有在遍历时才能得到，因此线索化的过程即为在遍历过程中，访问结点的操作是检查当前结点的左、右指针域是否为空，如果为空，将它们改完指向前驱结点或后继结点的线索。</p>
+<p>为实现这一过程，设<strong>指针pre始终指向刚刚访问过的结点</strong>，即若指针p指向当前结点，则pre指向它的前驱，以便增设线索。</p>
+<h4 id="二叉树中序线索化"><strong>二叉树中序线索化</strong><a hidden class="anchor" aria-hidden="true" href="#二叉树中序线索化">#</a></h4>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101161255045.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101161255045"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Status</span> <span class="nf">InOrderThreading</span><span class="p">(</span><span class="n">BiThrTree</span> <span class="o">&amp;</span><span class="n">Thrt</span><span class="p">,</span> <span class="n">BiThrTree</span> <span class="n">T</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 中序遍历二叉树T并将其线索化，Thrt指向头结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">Thrt</span> <span class="o">=</span> <span class="p">(</span><span class="n">BiThrTree</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">BiThrNode</span><span class="p">))))</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">exit</span><span class="p">(</span><span class="n">OVERFLOW</span><span class="p">);</span> <span class="c1">// 构造头结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="n">Thrt</span><span class="o">-&gt;</span><span class="n">LTag</span> <span class="o">=</span> <span class="n">Link</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Thrt</span><span class="o">-&gt;</span><span class="n">Rtag</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">;</span> <span class="c1">// 构造头结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="n">Thrt</span><span class="o">-&gt;</span><span class="n">rchild</span> <span class="o">=</span> <span class="n">Thrt</span><span class="p">;</span> <span class="c1">// 右指针回指
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">T</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Thrt</span><span class="o">-&gt;</span><span class="n">lchild</span> <span class="o">=</span> <span class="n">Thrt</span><span class="p">;</span> <span class="c1">// 若二叉树空，左指针回指
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">else</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Thrt</span><span class="o">-&gt;</span><span class="n">lchild</span> <span class="o">=</span> <span class="n">T</span><span class="p">;</span> <span class="c1">// 头结点的左指针是根结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">pre</span> <span class="o">=</span> <span class="n">Thrt</span>        <span class="c1">// 将头结点作为初始的pre
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="nf">InThreading</span><span class="p">(</span><span class="n">T</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">pre</span><span class="o">-&gt;</span><span class="n">RTag</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">;</span> <span class="c1">// 最后一个结点线索化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">pre</span><span class="o">-&gt;</span><span class="n">rchild</span> <span class="o">=</span> <span class="n">Thrt</span><span class="p">;</span> <span class="c1">// 最后一个结点的后续是头结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">Thrt</span><span class="o">-&gt;</span><span class="n">rchild</span> <span class="o">=</span> <span class="n">pre</span><span class="p">;</span> <span class="c1">//  头结点的右指针执行最后一个结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="c1">// InOrderThreading    P134-6.6
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">InThreading</span><span class="p">(</span><span class="n">BiThrTree</span> <span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">InThreading</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">lchild</span><span class="p">);</span> <span class="c1">// 左子树线索化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">lchild</span><span class="p">)</span>         <span class="c1">// 如果p没有左孩子
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">p</span><span class="o">-&gt;</span><span class="n">LTag</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">p</span><span class="o">-&gt;</span><span class="n">lchild</span> <span class="o">=</span> <span class="n">pre</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>                 <span class="c1">// p结点存储前驱线索
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">pre</span><span class="o">-&gt;</span><span class="n">rchild</span><span class="p">)</span> <span class="c1">// 如果pre没有右孩子
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">pre</span><span class="o">-&gt;</span><span class="n">RTag</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">pre</span><span class="o">-&gt;</span><span class="n">rchild</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>                       <span class="c1">// pre结点存储后继线索
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">pre</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>                <span class="c1">// 保持pre指向p的前驱
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nf">InThreading</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">rchild</span><span class="p">);</span> <span class="c1">// 右子树线索化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="c1">// InThreading    P135-6.7
+</span></span></span></code></pre></div><p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101161606389.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101161606389"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101161651520.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101161651520"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101161701459.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101161701459"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101161715693.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101161715693"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101161726494.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101161726494"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Status</span> <span class="nf">InOrderTraverse_Thr</span><span class="p">(</span><span class="n">BiThrTree</span> <span class="n">T</span><span class="p">,</span> <span class="nf">Status</span> <span class="p">(</span><span class="o">*</span><span class="n">Visit</span><span class="p">)(</span><span class="n">TElemType</span> <span class="n">e</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// T指向头结点，头结点的左指针指向根节点
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 中序遍历二叉线索树的非递归算法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">p</span> <span class="o">=</span> <span class="n">T</span><span class="o">-&gt;</span><span class="n">lchild</span><span class="p">;</span> <span class="c1">// p指向根结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">while</span> <span class="p">(</span><span class="n">p</span> <span class="o">!=</span> <span class="n">T</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">while</span> <span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">LTag</span> <span class="o">==</span> <span class="n">Link</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">lchild</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 找到最左下角结点，即接下来应该访问的第一个结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nf">Visit</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                  <span class="k">return</span> <span class="n">ERROR</span><span class="p">;</span> <span class="c1">// 访问该结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">while</span> <span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">Rtag</span> <span class="o">==</span> <span class="n">Thread</span> <span class="o">&amp;&amp;</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">rchild</span> <span class="o">!=</span> <span class="n">T</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="c1">// 如果右指针为线索且不为空，则p-&gt;rchild即为后继
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                  <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">rchild</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                  <span class="nf">Visit</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">);</span> <span class="c1">// 指向后继并访问
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="p">}</span>                     <span class="c1">// while
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">rchild</span><span class="p">;</span>        <span class="c1">// p指向右子树根结点，下一步再去找左下角
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="c1">// InOrderTraverse_Thr    P134-6.5
+</span></span></span></code></pre></div><h2 id="最优二叉树">最优二叉树<a hidden class="anchor" aria-hidden="true" href="#最优二叉树">#</a></h2>
+<h3 id="术语">术语<a hidden class="anchor" aria-hidden="true" href="#术语">#</a></h3>
+<p><strong>结点权值</strong>: 和叶子结点对应的一个有某种意义的实数(Wi)</p>
+<p><strong>结点带权路径长度</strong>  叶子结点的路径长度与该结点的权之积。</p>
+<p><strong>树的路径长度</strong>  从树根到每一个叶子结点的路径长度之和。</p>
+<p><strong>树的带权路径长度</strong>  树中所有叶子结点的带权路径长度之和。</p>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101162144066.png" alt="image-20221101162144066" style="zoom:33%;" />
+<p><strong>最优二叉树(哈夫曼树)   带权路径长度WPL最小的 二叉树。</strong></p>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101162322259.png" alt="image-20221101162322259" style="zoom:33%;" />
+<h3 id="最优二叉树-1">最优二叉树<a hidden class="anchor" aria-hidden="true" href="#最优二叉树-1">#</a></h3>
+<p>在权值为w1,w2,…,wn的n个叶子所构成的所有二叉树中，带权路径长度最小的二叉树，称为最优二叉树(哈夫曼树) 。</p>
+<p>从前图可以看出，最优二叉树中，权值越大的叶子距离根越近。哈夫曼首先给出了构造最优二叉树的方法，故我们称其为<strong>哈夫曼算法</strong></p>
+<h3 id="建立哈夫曼树最优二叉树的方法">建立哈夫曼树（最优二叉树）的方法<a hidden class="anchor" aria-hidden="true" href="#建立哈夫曼树最优二叉树的方法">#</a></h3>
+<h4 id="基本思想-使权大的结点靠近根">[基本思想] 使权大的结点靠近根。<a hidden class="anchor" aria-hidden="true" href="#基本思想-使权大的结点靠近根">#</a></h4>
+<p>(1)将给定权值从小到大排序成{w1,w2,…,wm}，生成一个森林F={T1,T2,…,Tm}，其中Ti是一个带权Wi的根结点，它的左右子树均空。</p>
+<p>(2)把F中根的权值最小的两棵二叉树T1和T2合并成一棵新的二叉树T： T的左子树是T1 ，右子树是T2 ，T的根的权值是T1、T2树根结点权值之和。</p>
+<p>(3)将T按权值大小加入F中，同时从F中删去T1和T2</p>
+<p>(4)重复(2)和(3)，直到F中只含一棵树为止，该树即为所求。</p>
+<center class="half">
+    <img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101162904931.png" alt="image-20221101162904931" width="200"/>
+    <img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101162925228.png" alt="image-20221101162925228" width="200"/>
+    <img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101162946228.png" alt="image-20221101162946228" width="200"/>
+</center>
+<h4 id="赫夫曼树的存储结构">赫夫曼树的存储结构<a hidden class="anchor" aria-hidden="true" href="#赫夫曼树的存储结构">#</a></h4>
+<p>初始有n个叶子结点，则构造出的赫夫曼树(属于严格二叉树)共有2n-1个结点。</p>
+<p>用大小为2n的向量存储赫夫曼树—顺序存储。</p>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101163110399.png" alt="image-20221101163110399" style="zoom:67%;" />
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">weight</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">parent</span><span class="p">,</span> <span class="n">lchild</span><span class="p">,</span> <span class="n">rchild</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="n">HTNode</span><span class="p">,</span> <span class="o">*</span><span class="n">HuffmanTree</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//动态分配存储空间
+</span></span></span></code></pre></div><p>1)申请空间并初始化HT[1..2n-1]：</p>
+<p><code>weight=0, lchild=rchild=parent=0</code></p>
+<p>2)设置HT[1..n]的weight值</p>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101163303339.png" alt="image-20221101163303339" style="zoom:67%;" />
+<p>1.在HT[1..i-1]中parent = 0的结点中选weight最小的两个结点HT[s1]和HT[s2]</p>
+<p>2.修改HT[s1]和HT[s2]的parent值： parent=i</p>
+<p>3.置HT[i]：weight=HT[s1].weight + HT[s2].weight ,lchild=s1, rchild=s2</p>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101163412376.png" alt="image-20221101163412376" style="zoom:67%;" />
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101163431984.png" alt="image-20221101163431984" style="zoom:50%;" />
+<h4 id="构造赫夫曼树的算法步骤">构造赫夫曼树的算法步骤<a hidden class="anchor" aria-hidden="true" href="#构造赫夫曼树的算法步骤">#</a></h4>
+<p>HuffmanTree HT;</p>
+<p>1)申请空间并初始化HT[1..2n-1]：</p>
+<p>weight=0, lchild=rchild=parent=0</p>
+<p>2)设置HT[1..n]的weight值</p>
+<p>3)进行以下n-1次合并，依次产生HT[i]，i=n+1..2n-1：</p>
+<p>3.1)在HT[1..i-1]中parent = 0的结点中选weight最小的两个结点HT[s1]和HT[s2]</p>
+<p>3.2)修改HT[s1]和HT[s2]的parent值： parent=i</p>
+<p>3.3)置HT[i]：weight=HT[s1].weight + HT[s2].weight , lchild=s1, rchild=s2</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span>  <span class="nf">BuildHT</span><span class="p">(</span><span class="n">HuffmanTree</span> <span class="o">&amp;</span><span class="n">HT</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">w</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// w存放n个叶结点的权值(均&gt;0)，构造赫夫曼树HT
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>     <span class="k">if</span>  <span class="p">(</span> <span class="n">n</span><span class="o">&lt;=</span><span class="mi">1</span> <span class="p">)</span>  <span class="p">{</span> <span class="n">HT</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">       <span class="n">m</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>    <span class="c1">//计算总结点个数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>       <span class="n">HT</span><span class="o">=</span><span class="p">(</span><span class="n">HuffmanTree</span><span class="p">)</span><span class="nf">malloc</span><span class="p">((</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="k">sizeof</span><span class="p">(</span><span class="n">HTNode</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">       <span class="k">for</span> <span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">HT</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">,</span> <span class="o">++</span><span class="n">p</span><span class="p">,</span> <span class="o">++</span><span class="n">w</span><span class="p">)</span> <span class="o">*</span><span class="n">p</span><span class="o">=</span><span class="p">{</span><span class="o">*</span><span class="n">w</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span> <span class="c1">//初始化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>       <span class="k">for</span> <span class="p">(;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">m</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">,</span> <span class="o">++</span><span class="n">p</span><span class="p">)</span> <span class="o">*</span><span class="n">p</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span> <span class="c1">//后续结点初始化为0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>       <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">m</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>   <span class="c1">//建赫夫曼树
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nf">Select</span><span class="p">(</span><span class="n">HT</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">              <span class="c1">//在HT[1..i-1]中选择parent为0且权值最小的两个结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">HT</span><span class="p">[</span><span class="n">s1</span><span class="p">].</span><span class="n">parent</span><span class="o">=</span><span class="n">i</span><span class="p">;</span> <span class="n">HT</span><span class="p">[</span><span class="n">s2</span><span class="p">].</span><span class="n">parent</span><span class="o">=</span><span class="n">i</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">HT</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">lchild</span><span class="o">=</span><span class="n">s1</span><span class="p">;</span> <span class="n">HT</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">rchild</span><span class="o">=</span><span class="n">s2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">HT</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">weight</span><span class="o">=</span><span class="n">HT</span><span class="p">[</span><span class="n">s1</span><span class="p">].</span><span class="n">weight</span><span class="o">+</span><span class="n">HT</span><span class="p">[</span><span class="n">s2</span><span class="p">].</span><span class="n">weight</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">       <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="c1">//BuildHT
+</span></span></span></code></pre></div><h4 id="哈夫曼树的应用">哈夫曼树的应用<a hidden class="anchor" aria-hidden="true" href="#哈夫曼树的应用">#</a></h4>
+<p>最佳判定树</p>
+<p>哈夫曼编码：用于通信和数据传送中字符的二进制编码，可以使电文编码总长度最短。</p>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101164310926.png" alt="image-20221101164310926" style="zoom: 50%;" />
+<p>设需要编码的字符集合为{d1，d2，…，dn}，它们在电文中出现的次数或频率集合为{w1，w2，…，wn}，以d1，d2，…，dn作为叶结点，w1，w2，…，wn作为它们的权值，构造一棵哈夫曼树。</p>
+<ul>
+<li>
+<p>赫夫曼编码是不等长编码</p>
+</li>
+<li>
+<p>赫夫曼编码是前缀编码，即任一字符的编码都不是另一字符编码的前缀</p>
+</li>
+<li>
+<p>赫夫曼编码树中没有度为1的结点。若叶子结点的个数为n，则赫夫曼编码树的结点总数为 2n-1</p>
+</li>
+<li>
+<p>发送过程：根据由赫夫曼树得到的编码表送出字符数据</p>
+</li>
+<li>
+<p>接收过程：按左0、右1的规定，从根结点走到一个叶结点，完成一个字符的译码。反复此过程，直到接收数据结束</p>
+</li>
+</ul>
+<h4 id="赫夫曼编码表的存储结构">赫夫曼编码表的存储结构<a hidden class="anchor" aria-hidden="true" href="#赫夫曼编码表的存储结构">#</a></h4>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101164400044.png" alt="image-20221101164400044" style="zoom:33%;" />
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101164423491.png" alt="image-20221101164423491" style="zoom: 50%;" />
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span>  <span class="nf">HuffmanCoding</span><span class="p">(</span><span class="n">HuffmanTree</span> <span class="n">HT</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">HuffmanCode</span> <span class="o">&amp;</span><span class="n">HC</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 求赫夫曼树HT的n个字符的赫夫曼编码HC
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>     
+</span></span><span class="line"><span class="cl">    <span class="n">HC</span><span class="o">=</span><span class="p">(</span><span class="n">HuffmanCode</span><span class="p">)</span><span class="nf">malloc</span><span class="p">((</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cd</span><span class="o">=</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="nf">malloc</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">))</span> <span class="p">;</span>  <span class="c1">//分配编码的工作空间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cd</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="err">‘\</span><span class="mi">0</span><span class="err">’</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>   <span class="c1">//为每个字符求编码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">start</span><span class="o">=</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="n">HT</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">parent</span><span class="p">;</span>  <span class="n">f</span><span class="o">!=</span><span class="mi">0</span><span class="p">;</span>   <span class="n">c</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="n">HT</span><span class="p">[</span><span class="n">f</span><span class="p">].</span><span class="n">parent</span> <span class="p">)</span> 
+</span></span><span class="line"><span class="cl">        <span class="c1">//f是c的父节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span>  <span class="p">(</span><span class="n">HT</span><span class="p">[</span><span class="n">f</span><span class="p">].</span><span class="n">lchild</span><span class="o">==</span><span class="n">c</span><span class="p">)</span> <span class="n">cd</span><span class="p">[</span><span class="o">--</span><span class="n">start</span><span class="p">]</span><span class="o">=</span><span class="err">‘</span><span class="mi">0</span><span class="err">’</span><span class="p">;</span><span class="c1">// 若c是f的左孩子，记录编码0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">else</span> <span class="n">cd</span><span class="p">[</span><span class="o">--</span><span class="n">start</span><span class="p">]</span><span class="o">=</span><span class="err">“</span><span class="mi">1</span><span class="err">”</span><span class="p">;</span> <span class="c1">//否则为右孩子，记录编码1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">HC</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">((</span><span class="n">n</span><span class="o">-</span><span class="n">start</span><span class="p">)</span><span class="o">*</span><span class="nf">size</span><span class="p">(</span><span class="kt">char</span><span class="p">));</span> <span class="c1">//申请存储第i个字符编码的空间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nf">strcopy</span><span class="p">(</span><span class="n">HC</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">cd</span><span class="p">[</span><span class="n">start</span><span class="p">]);</span> <span class="c1">//从临时工作空间cd拷贝到HC[i]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>       <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">free</span><span class="p">(</span><span class="n">cd</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="c1">//HuffmanCoding
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include&lt;string&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Node</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">weight</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">ch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">code</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">lchild</span><span class="p">,</span> <span class="n">rchild</span><span class="p">,</span> <span class="n">parent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Select</span><span class="p">(</span><span class="n">Node</span> <span class="n">huffTree</span><span class="p">[],</span> <span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span><span class="c1">//找权值最小的两个a和b
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">weight</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//找最小的数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">huffTree</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">parent</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>     <span class="c1">//判断节点是否已经选过
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">weight</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">weight</span> <span class="o">=</span> <span class="n">huffTree</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">weight</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="o">*</span><span class="n">a</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">huffTree</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">weight</span> <span class="o">&lt;</span> <span class="n">weight</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">weight</span> <span class="o">=</span> <span class="n">huffTree</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">weight</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">*</span><span class="n">a</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">weight</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//找第二小的数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">huffTree</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">parent</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">||</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="o">*</span><span class="n">a</span><span class="p">))</span><span class="c1">//排除已选过的数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">weight</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">weight</span> <span class="o">=</span> <span class="n">huffTree</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">weight</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="o">*</span><span class="n">b</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">huffTree</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">weight</span>  <span class="o">&lt;</span> <span class="n">weight</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">weight</span> <span class="o">=</span> <span class="n">huffTree</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">weight</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">*</span><span class="n">b</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">huffTree</span><span class="p">[</span><span class="o">*</span><span class="n">a</span><span class="p">].</span><span class="n">lchild</span> <span class="o">&lt;</span> <span class="n">huffTree</span><span class="p">[</span><span class="o">*</span><span class="n">b</span><span class="p">].</span><span class="n">lchild</span><span class="p">)</span>  <span class="c1">//小的数放左边
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">temp</span> <span class="o">=</span> <span class="o">*</span><span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">*</span><span class="n">a</span> <span class="o">=</span> <span class="o">*</span><span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">*</span><span class="n">b</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Huff_Tree</span><span class="p">(</span><span class="n">Node</span> <span class="n">huffTree</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">w</span><span class="p">[],</span> <span class="n">string</span> <span class="n">ch</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="c1">//初始过程
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">huffTree</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">parent</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">huffTree</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">lchild</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">huffTree</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">rchild</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">huffTree</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">code</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">huffTree</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">weight</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="n">huffTree</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">ch</span> <span class="o">=</span> <span class="n">ch</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">i1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">i2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Select</span><span class="p">(</span><span class="n">huffTree</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i2</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span> <span class="c1">//将i1，i2节点合成节点k
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">huffTree</span><span class="p">[</span><span class="n">i1</span><span class="p">].</span><span class="n">parent</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">huffTree</span><span class="p">[</span><span class="n">i2</span><span class="p">].</span><span class="n">parent</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">huffTree</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">weight</span> <span class="o">=</span> <span class="n">huffTree</span><span class="p">[</span><span class="n">i1</span><span class="p">].</span><span class="n">weight</span> <span class="o">+</span> <span class="n">huffTree</span><span class="p">[</span><span class="n">i2</span><span class="p">].</span><span class="n">weight</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">huffTree</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">lchild</span> <span class="o">=</span> <span class="n">i1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">huffTree</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">rchild</span> <span class="o">=</span> <span class="n">i2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Huff_Code</span><span class="p">(</span><span class="n">Node</span> <span class="n">huffTree</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">huffTree</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">parent</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1">//从叶子往上找到根节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">k</span> <span class="o">=</span> <span class="n">huffTree</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">parent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">huffTree</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">lchild</span><span class="p">)</span> <span class="c1">//如果是根的左孩子，则记为0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="s">&#34;0&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="s">&#34;1&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">j</span> <span class="o">=</span> <span class="n">huffTree</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">parent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;字符 &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">huffTree</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">ch</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; 的编码：&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">l</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">l</span><span class="o">--</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">s</span><span class="p">[</span><span class="n">l</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">huffTree</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">code</span> <span class="o">+=</span> <span class="n">s</span><span class="p">[</span><span class="n">l</span><span class="p">];</span> <span class="c1">//保存编码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">string</span> <span class="nf">Huff_Decode</span><span class="p">(</span><span class="n">Node</span> <span class="n">huffTree</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">string</span> <span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;解码后为：&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">temp</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">,</span><span class="n">str</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">;</span><span class="c1">//保存解码后的字符串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">+</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">temp</span> <span class="o">==</span> <span class="n">huffTree</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">code</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">str</span><span class="o">=</span><span class="n">str</span><span class="o">+</span> <span class="n">huffTree</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">ch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">temp</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="o">&amp;&amp;</span><span class="n">j</span><span class="o">==</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">&amp;&amp;</span><span class="n">temp</span><span class="o">!=</span><span class="s">&#34;&#34;</span><span class="p">)</span><span class="c1">//全部遍历后没有
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">str</span><span class="o">=</span> <span class="s">&#34;解码错误！&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">str</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//编码过程
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">const</span> <span class="kt">int</span> <span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Node</span> <span class="n">huffTree</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">str</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="s">&#34;A&#34;</span><span class="p">,</span> <span class="s">&#34;B&#34;</span><span class="p">,</span> <span class="s">&#34;C&#34;</span><span class="p">,</span> <span class="s">&#34;D&#34;</span><span class="p">,</span> <span class="s">&#34;E&#34;</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">w</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">15</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Huff_Tree</span><span class="p">(</span><span class="n">huffTree</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">str</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Huff_Code</span><span class="p">(</span><span class="n">huffTree</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//解码过程
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">string</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;输入编码：&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">Huff_Decode</span><span class="p">(</span><span class="n">huffTree</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span><span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">system</span><span class="p">(</span><span class="s">&#34;pause&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="树和森林">树和森林<a hidden class="anchor" aria-hidden="true" href="#树和森林">#</a></h2>
+<h3 id="树的四种表示方法">树的四种表示方法<a hidden class="anchor" aria-hidden="true" href="#树的四种表示方法">#</a></h3>
+<p>(1)直观表示法</p>
+<p>​    树的直观表示法就是以倒着的分支树的形式表示，下图就是一棵树的直观表示。其特点就是对树的逻辑结构的描述非常直观。是数据结构中最常用的树的描述方法。</p>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101164540667.png" alt="image-20221101164540667" style="zoom:50%;" />
+<p>(2)嵌套集合表示法</p>
+ <img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101164601037.png" alt="image-20221101164601037" style="zoom:50%;" />
+<p>(3)凹入表示法</p>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101164619958.png" alt="image-20221101164619958" style="zoom:50%;" />
+<p>(4)广义表表示法</p>
+<p>(A(B(D,E(H,I),F),C(G)))</p>
+<h3 id="森林">森林<a hidden class="anchor" aria-hidden="true" href="#森林">#</a></h3>
+<p>是m(m&gt;=0)棵互不相交的树的集合</p>
+<h3 id="树的存储">树的存储<a hidden class="anchor" aria-hidden="true" href="#树的存储">#</a></h3>
+<h4 id="1双亲链表存储方法">1．双亲链表存储方法<a hidden class="anchor" aria-hidden="true" href="#1双亲链表存储方法">#</a></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define MAXNODE 1024    
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">//树中结点的最大个数，可根据实际情况进行修改
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">datatype</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">parent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">PNode</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">PNode</span> <span class="n">t</span><span class="p">[</span><span class="n">MAXNODE</span><span class="p">];</span>
+</span></span></code></pre></div><p>下图所示为树的双亲表示。图中用parent域的值为-1表示该结点无双亲结点，即该结点是一个根结点。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101164843045.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101164843045"
+	
+	
+></p>
+<p>对于实现Parent(t，x)操作和Root(x)操作很方便，但若求某结点的孩子结点时，则需查询整个数组。</p>
+<h4 id="2指向孩子的链表存储方法">2．指向孩子的链表存储方法<a hidden class="anchor" aria-hidden="true" href="#2指向孩子的链表存储方法">#</a></h4>
+<ol>
+<li>多重链表法</li>
+</ol>
+<p>令每个结点包括一个结点信息域和<strong>多个指针域</strong>，每个指针域指向该结点的一个孩子结点，通过各个指针域值反映出树中各结点之间的逻辑关系。常称为<strong>多重链表法</strong>。</p>
+<p>在一棵树中，各结点的度数各异，因此结点的指针域个数的设置有两种方法</p>
+<p>1）每个结点指针域的个数等于<strong>该结点的度数</strong></p>
+<p>2）每个结点指针域的个数等于<strong>树的度数</strong></p>
+<p>方法1)虽然在一定程度上节约存储空间，但由于树中各结点是不同构的，操作不易实现，所以很少采用。</p>
+<p>方法2）各结点是同构的操作方便，但浪费存储空间。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101165014421.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101165014421"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">TreeNode</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">datatype</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> 	<span class="k">struct</span> <span class="n">TreeNode</span> <span class="o">*</span> <span class="n">son</span><span class="p">[</span><span class="n">MAXSON</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="n">MSNode</span>
+</span></span></code></pre></div><ol start="2">
+<li>孩子链表表示法  (查找孩子方便，查找双亲比较困难)</li>
+</ol>
+<p>树中每一个元素对应一个结点，结点中有两部分信息，一是其本身的<strong>数据信息</strong>，二是其<strong>孩子链表的头指针</strong>，即将每个数据元素的孩子们链接成一个孩子链表。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101165217272.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101165217272"
+	
+	
+></p>
+<p>3．双亲孩子链表存储方法</p>
+<p>将双亲表示法和孩子链表法想结合，在孩子链表存储的基础上，其主结点又加上了其双亲的静态指针。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101165249780.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101165249780"
+	
+	
+></p>
+<p>4．孩子兄弟链表存储方法</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101165333625.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101165333625"
+	
+	
+></p>
+<p>树中每个元素对应一个结点，每个结点除其信息域外，有两个指针域，分别指向该结点的<strong>第一个孩子结点</strong>和<strong>下一个兄弟结点</strong>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">typedef</span>  <span class="k">struct</span>  <span class="n">csnode</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">datatype</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">struct</span> <span class="n">csnode</span><span class="o">*</span> <span class="n">lchild</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">struct</span> <span class="n">csnode</span><span class="o">*</span> <span class="n">nextsibling</span><span class="p">;</span> 	
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="n">SNode</span><span class="p">;</span>
+</span></span></code></pre></div><h3 id="树与二叉树的转换">树与二叉树的转换<a hidden class="anchor" aria-hidden="true" href="#树与二叉树的转换">#</a></h3>
+<p><a class="link" href="https://blog.csdn.net/linraise/article/details/11745559#:~:text=%e7%94%b1%e4%ba%8e%e6%a0%91%e6%a0%b9%e6%b2%a1%e6%9c%89%e5%85%84%e5%bc%9f%ef%bc%8c%e6%95%85%e6%a0%91%e8%bd%ac%e5%8c%96%e4%b8%ba%e4%ba%8c%e5%8f%89%e6%a0%91%e5%90%8e%ef%bc%8c%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e6%a0%b9%e7%bb%93%e7%82%b9%e7%9a%84%e5%8f%b3%e5%ad%90%e6%a0%91%e5%bf%85%e4%b8%ba%e7%a9%ba%e3%80%82,%282%29%e5%b0%86%e4%b8%80%e4%b8%aa%e6%a3%ae%e6%9e%97%e8%bd%ac%e6%8d%a2%e4%b8%ba%e4%ba%8c%e5%8f%89%e6%a0%91"  target="_blank" rel="noopener"
+    >树、森林与二叉树的转换_Raise的博客-CSDN博客_二叉树森林</a></p>
+<p>​    从树的孩子兄弟表示法可以看到，如果设定一定规则，就可用二叉树结构表示树和森林，这样，对树的操作实现就可以借助二叉树存储，利用二叉树上的操作来实现。</p>
+<p>​    在树或森林与二叉树之间有一个一一对应关系。任何一个树或森林可唯一对应到一棵二叉树；反之，任何一棵二叉树也能唯一地对应到一个树或森林。</p>
+<h4 id="树转换为二叉树">树转换为二叉树<a hidden class="anchor" aria-hidden="true" href="#树转换为二叉树">#</a></h4>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20221214213452.jpg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="微信图片_20221214213452"
+	
+	
+></p>
+<h4 id="森林转换为二叉树">森林转换为二叉树<a hidden class="anchor" aria-hidden="true" href="#森林转换为二叉树">#</a></h4>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20221214215624.jpg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="微信图片_20221214215624"
+	
+	
+></p>
+<h4 id="二叉树到树森林的转换">二叉树到树、森林的转换<a hidden class="anchor" aria-hidden="true" href="#二叉树到树森林的转换">#</a></h4>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20221214220852.jpg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="微信图片_20221214220852"
+	
+	
+></p>
+<h3 id="树和森林的遍历">树和森林的遍历<a hidden class="anchor" aria-hidden="true" href="#树和森林的遍历">#</a></h3>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101170512252.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101170512252"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101170522889.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101170522889"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101170533277.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101170533277"
+	
+	
+></p>
+<h4 id="二叉树和树的应用示例"><strong>二叉树和树的应用示例</strong><a hidden class="anchor" aria-hidden="true" href="#二叉树和树的应用示例">#</a></h4>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101170609466.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101170609466"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101170625280.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101170625280"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101170637848.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101170637848"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101170708364.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101170708364"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span>  <span class="nf">trial</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span>  <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  <span class="c1">// 进入本函数时，前i-1已放置好，现在从i行选择合适的位置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="k">if</span>  <span class="p">(</span> <span class="n">i</span><span class="o">&gt;</span><span class="n">n</span> <span class="p">)</span>    <span class="err">输出棋盘的当前布局</span><span class="p">;</span> <span class="c1">//已经摆满n个棋子
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">else</span>  <span class="k">for</span> <span class="p">(</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span> <span class="p">)</span>  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                      <span class="err">在第</span><span class="n">i行第j列放一个棋子</span><span class="err">；</span>
+</span></span><span class="line"><span class="cl">                      <span class="k">if</span>  <span class="p">(</span><span class="err">当前布局合法</span><span class="p">)</span>  <span class="nf">trial</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span> <span class="c1">//放下一行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                      <span class="err">移走第</span><span class="n">i行第j列的棋子</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">              <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="c1">//trial
+</span></span></span></code></pre></div><p>八皇后问题调用： trial(1,8)</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221101170747376.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221101170747376"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.css"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.js"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        &copy; 
+        
+        2024 Bethel<br>共 200.85k 字 · 共 23 篇文章
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://stack.jimmycai.com/" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> 由 <a href="https://jimmycai.com/" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
+
+
+<script src="https://mecdn.mcserverx.com/gh/zhixuan2333/gh-blog/master/js/nprogress.min.js" integrity="sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://mecdn.mcserverx.com/gh/zhixuan2333/gh-blog/master/css/nprogress.css" integrity="sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE" crossorigin="anonymous" />
+<script>
+    NProgress.start();
+    document.addEventListener("readystatechange", () => {
+        if (document.readyState === "interactive") NProgress.inc(0.8);
+        if (document.readyState === "complete") NProgress.done();
+    });
+</script>
+    </body>
+</html>

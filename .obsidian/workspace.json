@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 248.5
+    "width": 334.5
   },
   "right": {
     "id": "bad03ea09745a182",
@@ -178,6 +178,19 @@
   },
   "active": "062788e87a1cf5bb",
   "lastOpenFiles": [
+    "public/categories/计算机基础/index.xml",
+    "public/categories/数据结构和算法/index.xml",
+    "public/post/3-数据链路层/index.html",
+    "public/post/3-数据链路层",
+    "public/post/8-排序/index.html",
+    "public/post/8-排序",
+    "public/post/6-应用层/index.html",
+    "public/post/6-应用层",
+    "public/post/2-物理层/index.html",
+    "public/post/2-物理层",
+    "public/post/page/4/index.html",
+    "resources/_gen/images/img/tx_hu92c04046da3d4074953cad185e3935e5_62559_300x0_resize_q75_box.jpg",
+    "_templates/template_副本~.md",
     "content/post/计算机网络/6 应用层.md",
     "content/post/计算机网络/5 传输层.md",
     "content/post/计算机网络/5 传输层~.md",
@@ -200,29 +213,16 @@
     "content/post/数据结构/3 栈、队列和数组~.md",
     "content/post/数据结构/2 线性表.md",
     "content/post/计算机网络/1 计算机网络体系结构.md",
-    "public/post/1-计算机网络体系结构/index.html",
-    "public/post/1-计算机网络体系结构",
     "content/post/数据结构/1 绪论.md",
     "content/post/计算机网络/1 计算机网络体系结构.assets/image-20240118215417554.png",
     "content/post/计算机网络/1 计算机网络体系结构.assets/image-20240118184111807.png",
-    "content/post/计算机网络/1 计算机网络体系结构.assets",
     "_templates/template-计网.md",
-    "content/post/计算机网络/Untitled.md",
-    "_templates/template-计组.md",
-    "themes/hugo-theme-stack/layouts/partials/head/opengraph/provider/twitter.html",
-    "themes/hugo-theme-stack/layouts/partials/head/opengraph/provider/base.html",
-    "themes/hugo-theme-stack/layouts/partials/head/opengraph/provider",
-    "themes/hugo-theme-stack/layouts/partials/head/opengraph/include.html",
-    "themes/hugo-theme-stack/layouts/partials/footer/components/script.html",
-    "themes/hugo-theme-stack/layouts/partials/footer/components/custom-font.html",
-    "themes/hugo-theme-stack/layouts/partials/comments/provider/waline.html",
     "themes/hugo-theme-stack/assets/img/avatar.png",
     "themes/hugo-theme-stack/assets/icons/messages.svg",
     "themes/hugo-theme-stack/assets/icons/user.svg",
     "themes/hugo-theme-stack/assets/icons/toggle-right.svg",
     "themes/hugo-theme-stack/assets/icons/toggle-left.svg",
     "themes/hugo-theme-stack/assets/icons/search.svg",
-    "themes/hugo-theme-stack/assets/icons/tag.svg",
-    "themes/hugo-theme-stack/assets/icons/rss.svg"
+    "themes/hugo-theme-stack/assets/icons/tag.svg"
   ]
 }

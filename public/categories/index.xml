@@ -2,41 +2,65 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Categories on Bethel</title>
-        <link>https://www.xxx.blog/categories/</link>
+        <link>http://localhost:1313/categories/</link>
         <description>Recent content in Categories on Bethel</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Tue, 16 Jan 2024 14:56:50 +0000</lastBuildDate><atom:link href="https://www.xxx.blog/categories/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>数据结构</title>
-        <link>https://www.xxx.blog/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
-        <pubDate>Tue, 16 Jan 2024 14:56:50 +0000</pubDate>
+        <lastBuildDate>Tue, 23 Jan 2024 21:03:54 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>计算机网络</title>
+        <link>http://localhost:1313/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</link>
+        <pubDate>Tue, 23 Jan 2024 21:03:54 +0000</pubDate>
         
-        <guid>https://www.xxx.blog/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
-        <description>&lt;img src="https://www.xxx.blog/cover/41.webp" alt="Featured image of post 数据结构" /&gt;</description>
+        <guid>http://localhost:1313/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</guid>
+        <description>&lt;img src="http://localhost:1313/cover/23.webp" alt="Featured image of post 计算机网络" /&gt;</description>
+        </item>
+        <item>
+        <title>数据结构</title>
+        <link>http://localhost:1313/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+        <pubDate>Mon, 22 Jan 2024 13:38:09 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
+        <description>&lt;img src="http://localhost:1313/cover/41.webp" alt="Featured image of post 数据结构" /&gt;</description>
         </item>
         <item>
         <title>操作系统</title>
-        <link>https://www.xxx.blog/categories/os/</link>
+        <link>http://localhost:1313/categories/os/</link>
         <pubDate>Fri, 05 Jan 2024 15:38:45 +0000</pubDate>
         
-        <guid>https://www.xxx.blog/categories/os/</guid>
-        <description>&lt;img src="https://www.xxx.blog/cover/32.webp" alt="Featured image of post 操作系统" /&gt;</description>
+        <guid>http://localhost:1313/categories/os/</guid>
+        <description>&lt;img src="http://localhost:1313/cover/32.webp" alt="Featured image of post 操作系统" /&gt;</description>
         </item>
         <item>
-        <title>计算机网络</title>
-        <link>https://www.xxx.blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <title>计算机基础</title>
+        <link>http://localhost:1313/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/</link>
+        <pubDate>Wed, 01 Nov 2023 14:57:20 +0000</pubDate>
         
-        <guid>https://www.xxx.blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</guid>
-        <description>&lt;img src="https://www.xxx.blog/cover/23.webp" alt="Featured image of post 计算机网络" /&gt;</description>
+        <guid>http://localhost:1313/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>数据结构408</title>
+        <link>http://localhost:1313/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84408/</link>
+        <pubDate>Wed, 01 Nov 2023 14:57:20 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84408/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>数据结构和算法</title>
+        <link>http://localhost:1313/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/</link>
+        <pubDate>Wed, 01 Nov 2023 14:57:20 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/</guid>
+        <description></description>
         </item>
         <item>
         <title>计算机组成原理</title>
-        <link>https://www.xxx.blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</link>
+        <link>http://localhost:1313/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://www.xxx.blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</guid>
-        <description>&lt;img src="https://www.xxx.blog/cover/7.webp" alt="Featured image of post 计算机组成原理" /&gt;</description>
+        <guid>http://localhost:1313/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</guid>
+        <description>&lt;img src="http://localhost:1313/cover/7.webp" alt="Featured image of post 计算机组成原理" /&gt;</description>
         </item>
         
     </channel>

@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='数据链路层的功能 数据链路层的功能： 向网络层提供一个定义良好的服务接口。 处理传输错误。 调节数据流，确保慢速的接收方不会被快速的发送方淹没。 为了'>
+<title>3 数据链路层 | Bethel's Blog</title>
+
+<link rel='canonical' href='http://localhost:1313/post/3-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/'>
+
+<link rel="stylesheet" href="/scss/style.min.c3c7ecff622b4ad3ac6aacf17244c017cc674f0e82b470bfb8f4de85243313d0.css"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"K3aYNEt3ZeYoZwhE",ck:"K3aYNEt3ZeYoZwhE"})</script>
+<script async src="https://umami.xalaok.top/uanalytics" data-website-id="095ee454-e560-4d9b-bf1c-869f8529c17f"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script><meta property='og:title' content='3 数据链路层'>
+<meta property='og:description' content='数据链路层的功能 数据链路层的功能： 向网络层提供一个定义良好的服务接口。 处理传输错误。 调节数据流，确保慢速的接收方不会被快速的发送方淹没。 为了'>
+<meta property='og:url' content='http://localhost:1313/post/3-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/'>
+<meta property='og:site_name' content='Bethel'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-01-21T15:23:20&#43;00:00'/><meta property='article:modified_time' content='2024-01-21T15:23:20&#43;00:00'/>
+<meta name="twitter:title" content="3 数据链路层">
+<meta name="twitter:description" content="数据链路层的功能 数据链路层的功能： 向网络层提供一个定义良好的服务接口。 处理传输错误。 调节数据流，确保慢速的接收方不会被快速的发送方淹没。 为了">
+    <link rel="shortcut icon" href="/favicon.png" />
+<link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont@1.7.0/lxgwwenkaigbscreen.css" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/tx_hu92c04046da3d4074953cad185e3935e5_62559_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Bethel</a></h1>
+            <h2 class="site-description">Live and learn. ✍️</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="http://localhost:1313/" selected></option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-high" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" />
+  <path d="M6.343 17.657l-1.414 1.414" />
+  <path d="M6.343 6.343l-1.414 -1.414" />
+  <path d="M17.657 6.343l1.414 -1.414" />
+  <path d="M17.657 17.657l1.414 1.414" />
+  <path d="M4 12h-2" />
+  <path d="M12 4v-2" />
+  <path d="M20 12h2" />
+  <path d="M12 20v2" />
+</svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+  <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+  <path d="M19 11h2m-1 -1v2" />
+</svg>
+                    <span>深色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#数据链路层的功能">数据链路层的功能</a></li>
+    <li><a href="#封装成帧与透明传输">封装成帧与透明传输</a>
+      <ol>
+        <li><a href="#字符计数法character-count">字符计数法Character Count</a></li>
+        <li><a href="#字节填充法byte-stuffing">字节填充法Byte Stuffing</a></li>
+        <li><a href="#零比特填充法bit-stuffing">零比特填充法Bit Stuffing</a></li>
+        <li><a href="#违规编码法physical-layer-coding-violations">违规编码法Physical Layer Coding Violations</a></li>
+      </ol>
+    </li>
+    <li><a href="#差错检测和纠正">差错检测和纠正</a>
+      <ol>
+        <li><a href="#检错编码">检错编码</a>
+          <ol>
+            <li><a href="#奇偶校验码">奇偶校验码</a></li>
+            <li><a href="#循环冗余码crc">循环冗余码CRC</a></li>
+          </ol>
+        </li>
+        <li><a href="#纠错编码">纠错编码</a></li>
+      </ol>
+    </li>
+    <li><a href="#流量控制和可靠传输机制">流量控制和可靠传输机制</a>
+      <ol>
+        <li><a href="#乌托邦式的单工协议">乌托邦式的单工协议</a></li>
+        <li><a href="#stop-and-wait-protocol">Stop-and-Wait Protocol</a>
+          <ol>
+            <li><a href="#无错信道上的单工停等协议">无错信道上的单工停等协议</a></li>
+            <li><a href="#有错信道上的单工停等协议">有错信道上的单工停等协议</a></li>
+            <li><a href="#超时重传">超时重传</a></li>
+            <li><a href="#差错控制">差错控制</a></li>
+            <li><a href="#信道利用率">信道利用率</a></li>
+          </ol>
+        </li>
+        <li><a href="#sliding-window-protocol">Sliding Window Protocol</a>
+          <ol>
+            <li><a href="#滑动窗口的概念">滑动窗口的概念</a></li>
+            <li><a href="#滑动窗口协议的特点">滑动窗口协议的特点</a></li>
+            <li><a href="#可靠的传输机制">可靠的传输机制</a></li>
+            <li><a href="#一位滑动窗口协议">一位滑动窗口协议</a></li>
+            <li><a href="#回退n帧协议gbn">回退N帧协议GBN</a></li>
+            <li><a href="#选择重传协议sr">选择重传协议SR</a></li>
+          </ol>
+        </li>
+        <li><a href="#信道利用率帧序号计算">信道利用率/帧序号计算</a></li>
+      </ol>
+    </li>
+    <li><a href="#介质访问控制">介质访问控制</a>
+      <ol>
+        <li><a href="#静态分配信道">静态分配信道</a>
+          <ol>
+            <li><a href="#fdm-频分多路复用">FDM 频分多路复用</a></li>
+            <li><a href="#tdm-时分多路复用">TDM 时分多路复用</a></li>
+            <li><a href="#stdm-统计时分复用">STDM 统计时分复用</a></li>
+            <li><a href="#wdm-波分多路复用">WDM 波分多路复用</a></li>
+            <li><a href="#cdm-码分多路复用">CDM 码分多路复用</a></li>
+          </ol>
+        </li>
+        <li><a href="#动态分配信道">动态分配信道</a>
+          <ol>
+            <li></li>
+            <li><a href="#动态划分信道轮询访问介质访问控制">动态划分信道（轮询访问介质访问控制）</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#局域网">局域网</a>
+      <ol>
+        <li><a href="#经典以太网">经典以太网</a>
+          <ol>
+            <li></li>
+          </ol>
+        </li>
+        <li><a href="#交换式以太网">交换式以太网</a>
+          <ol>
+            <li></li>
+          </ol>
+        </li>
+        <li><a href="#高速以太网">高速以太网</a>
+          <ol>
+            <li><a href="#快速以太网">快速以太网</a></li>
+            <li><a href="#千兆以太网">千兆以太网</a></li>
+            <li><a href="#万兆以太网">万兆以太网</a></li>
+          </ol>
+        </li>
+        <li><a href="#无线局域网">无线局域网</a>
+          <ol>
+            <li><a href="#80211-体系结构和协议栈">802.11 体系结构和协议栈</a></li>
+            <li><a href="#80211局域网的mac帧">802.11局域网的MAC帧</a></li>
+          </ol>
+        </li>
+        <li><a href="#虚拟局域网">虚拟局域网</a>
+          <ol>
+            <li></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#广域网">广域网</a></li>
+    <li><a href="#数据链路层协议实例">数据链路层协议实例</a>
+      <ol>
+        <li><a href="#ppp">PPP</a>
+          <ol>
+            <li><a href="#组成">组成</a></li>
+            <li><a href="#帧格式">帧格式</a></li>
+            <li><a href="#字节填充">字节填充</a></li>
+            <li><a href="#比特填充">比特填充</a></li>
+            <li><a href="#ppp协议的应满足的需求">PPP协议的应满足的需求</a></li>
+            <li><a href="#ppp协议的不需要满足的需求">PPP协议的不需要满足的需求</a></li>
+          </ol>
+        </li>
+        <li><a href="#hdlc">HDLC</a>
+          <ol>
+            <li><a href="#hdlc站">HDLC站</a></li>
+            <li><a href="#hdlc的帧格式">HDLC的帧格式</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#ppp协议和hdlc协议比较">PPP协议和HDLC协议比较</a></li>
+    <li><a href="#数据链路层设备">数据链路层设备</a>
+      <ol>
+        <li><a href="#以太网交换机">以太网交换机</a>
+          <ol>
+            <li><a href="#交换机的自学习功能">交换机的自学习功能</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="background-color: #2a9d8f; color: #fff;">
+                计算机网络
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/3-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/">3 数据链路层</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-01-21</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 31 分钟
+                </time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+  <path d="M13.5 6.5l4 4" />
+</svg>
+                <time class="article-words">
+                    字数: 15087 字
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="数据链路层的功能">数据链路层的功能<a hidden class="anchor" aria-hidden="true" href="#数据链路层的功能">#</a></h2>
+<p>数据链路层的功能：</p>
+<ol>
+<li>向网络层提供一个定义良好的服务接口。</li>
+<li>处理传输错误。</li>
+<li>调节数据流，确保慢速的接收方不会被快速的发送方淹没。</li>
+</ol>
+<p>为了实现这些目标，数据链路层从网络层获得数据包，然后将这些数据包封装成帧 (frame) 以便传输。每个帧包含一个帧头、一个有效载荷（用于存放数据包）以及一个帧尾。</p>
+<p>基本术语：</p>
+<ol>
+<li>
+<p>结点(node)：</p>
+<p>网络中的主机（host）和路由器（router）称为结点</p>
+</li>
+<li>
+<p>链路（Link）</p>
+<p>两个结点之间的点到点的线路段</p>
+</li>
+<li>
+<p>数据链路（Data Link）</p>
+<p>协议+链路，在不可靠的物理链路上实现可靠的传输</p>
+</li>
+<li>
+<p>端到端（end to end）</p>
+<p>从源结点（source node）到目的结点 （ destinationnode）的通信路径（path），可能由多个链路组成</p>
+</li>
+</ol>
+<p>提供给网络层的服务：</p>
+<p>无确认的无连接服务：是指源机器向目标机器发送独立的帧，目标机器并不对这些帧进行确认。</p>
+<p>有确认的无连接服务：当向网络层提供这种服务时，数据链路层仍然没有使用逻辑连接，但其发送的每一帧都需要单独确认。</p>
+<p>面向连接的服务：采用这种服务，源机器和目标机器在传输任何数据之前要建立一个连接。连接上发送的每一帧都被编号，数据链路层确保发出的每个帧都会真正被接收方收到。它还保证每个帧只被接收一次，并且所有的帧都将按正确的顺序被接收。</p>
+<p>数据链路层使用的信道</p>
+<ol>
+<li>点对点信道，使用一对一的通信方式。 PPP 协议则是目前使用报广泛的点对点协议。</li>
+<li>广播信道，这种信道上连接的主机很多，使用一对多的广播通信方式。采用共享广播信 道的有线局域网普遍使用 CSMA/CD 协议，而无线局域网则使用 CSMA/CA 协议。</li>
+</ol>
+<h2 id="封装成帧与透明传输">封装成帧与透明传输<a hidden class="anchor" aria-hidden="true" href="#封装成帧与透明传输">#</a></h2>
+<p><strong>透明传输</strong>：在数据链路层传输时，所传输的数据在数据链路层没有任何的阻挡，接收方所收到的数据和发送方发送的数据没有任何差别，也就是说，<strong>数据链路层对其传输的数据帧是完全透明的。</strong></p>
+<p><strong>封装成帧</strong>是指在一段数据的前后分别添加首部和尾部构成帧。</p>
+<p>帧是数据链路层的数据传送单元。</p>
+<p>帧长=帧的数据部分长度+首部和尾部的长度。</p>
+<p>首部和尾部中含有很多控制信息，它们的一个重要作用是确定帧的界限，即<strong>帧定界</strong>。</p>
+<p>接收方能从接收到的二进制比特流中区分出帧的 起始与终止，即<strong>帧同步</strong>。</p>
+<h3 id="字符计数法character-count">字符计数法Character Count<a hidden class="anchor" aria-hidden="true" href="#字符计数法character-count">#</a></h3>
+<p>利用头部中的一个字段来标识该帧中的字符数。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/2021-07-21-10-47-55-9uynXC.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<h3 id="字节填充法byte-stuffing">字节填充法Byte Stuffing<a hidden class="anchor" aria-hidden="true" href="#字节填充法byte-stuffing">#</a></h3>
+<p>让每个用一些特殊的字节作为开始和结朿。这些特殊字节通常都相同，称为标志字节 (flag byte)，作为帧的起始和结束分界符。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/2021-07-21-10-47-55-09lAvz.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<h3 id="零比特填充法bit-stuffing">零比特填充法Bit Stuffing<a hidden class="anchor" aria-hidden="true" href="#零比特填充法bit-stuffing">#</a></h3>
+<p>每个帧的开始和结束由一个特殊的比特模式，01111110 或十六进制 0x7E 标记。这种模式是一个标志字节。每当发送方的数据链路层在数据中遇到连续五个 1，它便自动在输出的比特流中填入一个比特 0。这种比特填充类似于字节填充，在数据字段的标志字节之前插入一个转义字节到出境字符流中。</p>
+<h3 id="违规编码法physical-layer-coding-violations">违规编码法Physical Layer Coding Violations<a hidden class="anchor" aria-hidden="true" href="#违规编码法physical-layer-coding-violations">#</a></h3>
+<p>在物理层进行比特编码时，常采用违规编码法。例如，曼彻斯特编码方法将数据比特 “1&quot; 编码成“高－低“电平对，将数据比特 ”O&quot; 编码成“低－高“电平对，而“高－高“电平对和“低 －低“电平对在数据比特中是违规的（即没有采用），因此可借用这些违规编码序列来定界帧的起始和终止。局域网 IEEE 802 标准就采用了这种方法。违规编码法不采用任何填充技术便能实现数 据的透明传输，但只适用千采用冗余编码的特殊编码环境。</p>
+<h2 id="差错检测和纠正">差错检测和纠正<a hidden class="anchor" aria-hidden="true" href="#差错检测和纠正">#</a></h2>
+<p>通常利用编码技术进行差错控制，主要有两类：自动重传请求 (ARQ)和前向纠错(FEC) 。</p>
+<p>在 ARQ方式中，当接收方检测到差错时，就设法通知发送方重发，直到收到正确的数据为止。在 FEC 方式中，接收方不但能发现差错，而且能确定错误的位置并加以纠正。因此，差错控制又可分为检错编码和纠错编码。</p>
+<h3 id="检错编码">检错编码<a hidden class="anchor" aria-hidden="true" href="#检错编码">#</a></h3>
+<h4 id="奇偶校验码">奇偶校验码<a hidden class="anchor" aria-hidden="true" href="#奇偶校验码">#</a></h4>
+<p>缺点：只能检验奇数位出错情况</p>
+<ol>
+<li>奇检验码：附加一个检验位后，码长为 n 的码字中 1 的个数为奇数。</li>
+<li>偶检验码：附加一个检验位后，码长为 n 的码字中 1 的个数为偶数。</li>
+</ol>
+<h4 id="循环冗余码crc">循环冗余码CRC<a hidden class="anchor" aria-hidden="true" href="#循环冗余码crc">#</a></h4>
+<p>（1）发送方：待校验数据补充r个0之后，对生成多项式进行模2除法，余数（r位）即为校验信息</p>
+<p>（2）接收方：待校验数据和校验信息一起，对生成多项式进行模2除法，余数不为0即认为有错</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240121164309560.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240121164309560"
+	
+	
+></p>
+<p>CRC 的性能：</p>
+<ul>
+<li><strong>所有的一位错误都将被检测到</strong></li>
+<li>可以捕捉到<strong>所有包含奇数个位</strong>变反的错误情形</li>
+<li>带 r 个校验位的多项式编码可以检测到所有<strong>长度小于等于 r 的突发错误</strong></li>
+<li>如果突发错误的长度为 r+1，这样一个不正确的帧被当做有效帧接收的概率是$\frac 1 {2^{r-1}}$</li>
+<li>同样可以证明，当一个长度大于 r+1 位的突发错误发生时，或者几个短突发错误发生时，一个坏帧被当做有效帧通过检测的概率为$\frac 1 {2^{r}}$</li>
+</ul>
+<h3 id="纠错编码">纠错编码<a hidden class="anchor" aria-hidden="true" href="#纠错编码">#</a></h3>
+<p>最常见的纠错编码是海明码。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240121164632811.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240121164632811"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240121164709496.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240121164709496"
+	
+	
+></p>
+<h2 id="流量控制和可靠传输机制">流量控制和可靠传输机制<a hidden class="anchor" aria-hidden="true" href="#流量控制和可靠传输机制">#</a></h2>
+<h3 id="乌托邦式的单工协议">乌托邦式的单工协议<a hidden class="anchor" aria-hidden="true" href="#乌托邦式的单工协议">#</a></h3>
+<p>单工协议即数据只能单向传输。这个协议假设信道永远不会丢失或损坏帧，接收方的处理能力足够快，缓冲区足够大。发送程序无限循环，接受程序响应事件，协议1中不包含流量控制和纠错功能。</p>
+<h3 id="stop-and-wait-protocol">Stop-and-Wait Protocol<a hidden class="anchor" aria-hidden="true" href="#stop-and-wait-protocol">#</a></h3>
+<h4 id="无错信道上的单工停等协议">无错信道上的单工停等协议<a hidden class="anchor" aria-hidden="true" href="#无错信道上的单工停等协议">#</a></h4>
+<p>发送方的速度如果过快，接收方会被淹没，除了增强接收方的处理能力，可以让接收方给发送方发送反馈，发送方收到后才可以发送下一帧。发送程序无限循环并等待接收方确认，接受程序响应事件后发送确认帧。</p>
+<h4 id="有错信道上的单工停等协议">有错信道上的单工停等协议<a hidden class="anchor" aria-hidden="true" href="#有错信道上的单工停等协议">#</a></h4>
+<p>有错信道上传输数据需要增加校验，接收方仅在数据正确时发送确认帧。但在确认帧丢失的情况下（超时），发送方将重发。接收方难以判断帧是重发还是新发，因此帧前加上序号以区分。重复的帧也会收到确认帧，以便发送方决策。</p>
+<h4 id="超时重传">超时重传<a hidden class="anchor" aria-hidden="true" href="#超时重传">#</a></h4>
+<ol>
+<li>分组丢失：发送方发送分组，接收方没有收到分组，那么接收方不会发出确认，只要发送方过一段时间没有收到确认，就认为刚才的分组丢了，那么发送方就会再次发送。</li>
+<li>确认丢失：发送方发送成功，接收方接收成功，确认分组也被发送，但是分组丢失，那么到了等待时间，发送方没有收到确认，又会发送分组过去，此时接收方前面已经收到了分组，那么此时接收方要做的事就是:丢弃分组,重新发送确认。</li>
+<li>传送延迟：发送方发送成功，接收方接收成功，确认分组也被发送，没有丢失，但是由于传输太慢，等到了发送方设置的时间，发送方又会重新发送分组，此时接收方要做的事情：丢弃分组，重新发送确认.。发送方如果收到两个或者多个确认，就停止发送，丢弃其他确认。</li>
+</ol>
+<h4 id="差错控制">差错控制<a hidden class="anchor" aria-hidden="true" href="#差错控制">#</a></h4>
+<p>ARQ（自动请求重传）实现差错控制</p>
+<ul>
+<li>如果正确的接收，那么接受方会发送一个ACK帧给发送方</li>
+<li>如果发送方没有收到接受方回复的ACK帧，那么发送方会设置计时器并重新发送传输帧</li>
+</ul>
+<p>为了确保正确性，必须对框架和ACK进行编号</p>
+<ul>
+<li>接收机需要区分重传（由于丢失ACK或提前定时器）和新帧，对于停等协议，2个数字（使用1位）就足够了。</li>
+</ul>
+<h4 id="信道利用率">信道利用率<a hidden class="anchor" aria-hidden="true" href="#信道利用率">#</a></h4>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240121214056171.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240121214056171"
+	
+	
+>
+$$
+\alpha = \frac {t_{prop}} {t_{frame}} = \frac {Distance/Speed Of Signal} {Frame Size/Bit rate}
+$$</p>
+<p>$$
+U=\frac {t_{frame}} {2t_{prop}+t_{frame}}=\frac 1 {2\alpha +1}
+$$</p>
+<h3 id="sliding-window-protocol">Sliding Window Protocol<a hidden class="anchor" aria-hidden="true" href="#sliding-window-protocol">#</a></h3>
+<h4 id="滑动窗口的概念">滑动窗口的概念<a hidden class="anchor" aria-hidden="true" href="#滑动窗口的概念">#</a></h4>
+<p>所有滑动窗口协议的本质是在任何时刻发送方总是维持着一组序号，分别对应于允许它发送的帧。我们称这些帧落在发送窗口 (sending window) 内。类似地，接收方也维持着一个接收窗口 (receiving window)，对应于一组允许它接受的帧。</p>
+<p><strong>发送方窗口内的序号代表了那些可以被发送的帧，或者那些已经被发送但还没有被确认的帧</strong>。任何时候当有新的数据包从网络层到来时，它被赋予窗口中的下一个最高序号，并且窗口的上边界前移一格。当收到一个确认时，窗口的下边界也前移一格。按照这种方法发送窗口持续地维持了一系列未被确认的帧。</p>
+<p><strong>接收方数据链路层的窗口对应于它可以接受的帧</strong>。任何落在窗口内的帧被放入接收方的缓冲区。当收到一个帧，而且其序号等于窗口下边界时，接收方将它传递给网络层，并将整个窗口向前移动 1 个位置。任何落在窗口外面的帧都将被丢弃。在所有情况下，接收方都要生成一个确认并返回给发送方，以便发送方知道该如何处理。</p>
+<h4 id="滑动窗口协议的特点">滑动窗口协议的特点<a hidden class="anchor" aria-hidden="true" href="#滑动窗口协议的特点">#</a></h4>
+<ul>
+<li>只有接受窗口向前移动的时候，发送窗口才会向前移动</li>
+<li>从滑动窗口的概念来看，停止等待协议、回退N协议和选择重传协议只不过是发送窗口和接受窗口的大小不同
+<ul>
+<li>停止等待协议：发送窗口和接受窗口大小都是1</li>
+<li>后退N协议:发送窗口&gt;1,接收窗口大小为1</li>
+<li>选择重传协议:发送窗口&gt;1,接受窗口大小&gt;1</li>
+</ul>
+</li>
+<li>当接收窗口大小为1的时候可以保证有序的被接收</li>
+<li>数据链路层中，传输过程中滑动窗口的大小是固定的</li>
+</ul>
+<h4 id="可靠的传输机制">可靠的传输机制<a hidden class="anchor" aria-hidden="true" href="#可靠的传输机制">#</a></h4>
+<ul>
+<li>捎带确认(piggy backing)：数据帧携带一个ACK帧</li>
+<li>超时重传：在发送某个数据帧之后，就开启一个计时器，开始计时，一旦超过某段时间还没有收到确认帧，就重新发送该数据帧</li>
+</ul>
+<p>自动重传请求ARQ：接受方请求发送方重新发送出错的数据帧来恢复出错的帧，传统的自动重传分三种</p>
+<ul>
+<li>停止等待ARQ</li>
+<li>后退ARQ</li>
+<li>选择性重传ARQ
+窗口开的够大的时候，帧在线路上可以连续的流动，因此又称连续的ARQ协议</li>
+</ul>
+<h4 id="一位滑动窗口协议">一位滑动窗口协议<a hidden class="anchor" aria-hidden="true" href="#一位滑动窗口协议">#</a></h4>
+<p>发送窗口=接收窗口=1，其实就是停等协议。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/2021-07-21-10-48-05-bbOgga.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<h4 id="回退n帧协议gbn">回退N帧协议GBN<a hidden class="anchor" aria-hidden="true" href="#回退n帧协议gbn">#</a></h4>
+<ul>
+<li>发送窗口的大小&gt;1，接收窗口的大小=1</li>
+<li>接收端发现某一帧发生差错时，直接丢弃所有后续的帧，对丢弃帧不发送确认</li>
+<li>数据链路层除了接收应该递交给网络层的下一帧之外，拒绝接收其它任何帧</li>
+<li>发送方最终会超时，将按顺序重传所有未被确认的帧，即从最初受损或丢失的那一帧开始</li>
+<li>接收端接收帧的顺序和发送端发出帧的顺序相同</li>
+</ul>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/1734701-20191113143205596-1020968708.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<p><strong>窗口大小的选择</strong></p>
+<ul>
+<li>用n表示序号字段长度；$2^n$表示发送端可发送帧的序号个数</li>
+<li>发送窗口尺寸w应为$2^n-1$</li>
+<li>任何时候，可以发送的帧的最大个数不能等同于序号空间的大小。对回退 n 协议，可发送的帧最多为 MAX_SEQ 个，即使存在 MAX_SEQ+1 个不同的序号（分别为 0、1、2、&hellip;MAX_SEQ)。</li>
+</ul>
+<p><strong>适用情况</strong></p>
+<ul>
+<li>回退n帧协议，如果错误率较低时，工作的很好</li>
+<li>但错误率较高时，就会浪费大量的带宽在重传上</li>
+</ul>
+<p><strong>累计确认</strong></p>
+<p>当 n 号帧的确认到达，n-1 号帧、n-2 号帧等都会自动被确认。这种类型的确认称为累计确认 (cumulative acknowledgement)。</p>
+<p><strong>计时器</strong></p>
+<p>因为协议 5 有多个未被确认的帧，所以逻辑上它需要多个计时器，即每一个未被确认的帧都需要一个计时器</p>
+<h4 id="选择重传协议sr">选择重传协议SR<a hidden class="anchor" aria-hidden="true" href="#选择重传协议sr">#</a></h4>
+<ul>
+<li>接收方的数据链路层存储坏帧之后的所有正确的帧，当发送方得知某个帧出错时，只是重传此坏帧，而不是所有的后继帧</li>
+<li>在这个协议中，发送方和接收方都维持一个可接收序列号的窗口</li>
+<li>接收窗口的大小&gt;1，并为窗口中的每个序列号都提供一个缓冲区，每个缓冲区用一位判断其是否为空</li>
+<li>当某一帧到达时，接收方检查其序列号，看其是否落在窗口内</li>
+<li>如果落在窗口内且从未接收过，就接收并存储</li>
+<li>接收到的此帧保存在数据链路层，而不交给网络层，直到比它序列号小的所有帧都按次序已交给了网络层，此帧才能提交给网络层</li>
+</ul>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/1734701-20191113173906867-2062364742.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<p><strong>选择重传协议的窗口大小</strong></p>
+<p>窗口大小应为</p>
+<p><code>Ws+Wr&lt;=2^n | Ws&gt;=Wr | Ws,Wr&lt;=2^(n-1) </code></p>
+<p>一般情况下发送窗口和接收窗口都取$2^{n-1}$</p>
+<p>这个问题的本质在于：当接收方向前移动它的窗口后，新的有效序号范围与老的序号范围有重叠。因此，后续的一批帧可能是重复的帧（如果所有的确认都丢失了），也可能是新的帧（如果所有的确认都接收到了）。可怜的接收方根本无法区分这两种情形。</p>
+<p>解决这个难题的办法是确保接收方向前移动窗口之后，新窗口与老窗口的序号没有重叠。为了保证没有重叠，窗口的最大尺寸应该不超过序号空间的一半，</p>
+<p>无论如何，接收方不可能接受序号低于窗口下界的帧，也不可能接受序号高于窗口上界的帧。因此，所需要的缓冲区的数量等于窗口的大小，而不是序号的范围。</p>
+<p>出于同样的原因，需要的计时器数量等同于缓冲区的数量，而不是序号空间的大小。</p>
+<p>实际上，每个缓冲区都有一个相关联的计时器。当计时器超时，缓冲区的内容就要被重传</p>
+<p><strong>NAK</strong></p>
+<p>当接收方有理由怀疑出现了错误时，它就给发送方返回一个否定确认 (NAK) 帧。这样的帧实际上是一个重传请求，在 NAK 中指定了要重传的帧。在两种情况下，接收方要特别注意：接收到一个受损的帧，或者到达的帧并非是自己所期望的（可能出现丢帧错误）。为了避免多次请求重传同一个丢失帧，接收方应该记录下对于某一帧是否已经发送过 NAK。</p>
+<h3 id="信道利用率帧序号计算">信道利用率/帧序号计算<a hidden class="anchor" aria-hidden="true" href="#信道利用率帧序号计算">#</a></h3>
+<ol>
+<li>信道利用率</li>
+</ol>
+<ul>
+<li>帧发送时间$$t_f$$、单向传播时延$$t_p$$、发送窗口大小$$W_T$$
+<ul>
+<li>$$\alpha=\frac{t_p}{t_f}$$</li>
+<li>$$t_f=\frac{帧长}{信道速率}$$</li>
+</ul>
+</li>
+<li>信道利用率$$U=\frac{W_T}{1+2a}=\frac{W_T<em>t_f}{t_f+2</em>t_p+t_{确认}（一般忽略）}$$
+<ul>
+<li>U=100%  $$W\geq1+2a$$</li>
+<li>U&lt;100%  $$W&lt;1+2a$$</li>
+</ul>
+</li>
+<li>采用捎带应答时，信道利用率$$U=\frac{W_T}{2+2a}$$
+<ul>
+<li>U=100%  $$W\geq2+2a$$</li>
+<li>U&lt;100%  $$W&lt;2+2a$$</li>
+</ul>
+</li>
+<li>信道利用率$$U=\frac{L_1}{L_1+L_2+2×t×v}$$
+<ul>
+<li>L1:发送帧长   L2:确认帧长  t:单向传播时延   v:传输速率</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>帧序号计算</li>
+</ol>
+<ul>
+<li>第一个总用时$$t_总=t_f+2*t_p+t_{确认}$$</li>
+<li>计算可发多少个
+<ul>
+<li>$$x=\frac{t_总}{t}$$</li>
+</ul>
+</li>
+<li>计算最小帧序号 n
+<ul>
+<li>GBN:$$x&lt;2^n-1$$</li>
+<li>SR:$$x&lt;2^{n-1}$$</li>
+</ul>
+</li>
+</ul>
+<h2 id="介质访问控制">介质访问控制<a hidden class="anchor" aria-hidden="true" href="#介质访问控制">#</a></h2>
+<p><a class="link" href="https://aye10032.gitbook.io/computernetwork/di-san-zhang-shu-ju-lian-lu-ceng/3.5-jie-zhi-fang-wen-kong-zhi"  target="_blank" rel="noopener"
+    >https://aye10032.gitbook.io/computernetwork/di-san-zhang-shu-ju-lian-lu-ceng/3.5-jie-zhi-fang-wen-kong-zhi</a></p>
+<h3 id="静态分配信道">静态分配信道<a hidden class="anchor" aria-hidden="true" href="#静态分配信道">#</a></h3>
+<p>将使用介质的每个设备与来自同一信道上的其他设备的通信隔开，把时域和频域资源合理分配给网络上的设备。</p>
+<h4 id="fdm-频分多路复用">FDM 频分多路复用<a hidden class="anchor" aria-hidden="true" href="#fdm-频分多路复用">#</a></h4>
+<ul>
+<li>每个信号有自己独立的带宽，信号在通信的过程中自始自终都占用这个频带，在同样的时间占用不同的带宽频率
+<ul>
+<li><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%28null%29"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></li>
+</ul>
+</li>
+<li>不用于数字，只用于<strong>模拟信号</strong></li>
+</ul>
+<h4 id="tdm-时分多路复用">TDM 时分多路复用<a hidden class="anchor" aria-hidden="true" href="#tdm-时分多路复用">#</a></h4>
+<ul>
+<li>时分多路复用TDM，信道分割的方法是信号占用的时间，将使用复用的各路信号在时间上互不重叠，在传输时把时间分成小的时隙，每一时隙由复用的一个信号占用
+<ul>
+<li><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%28null%29-20240122110938080.%28null%29"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></li>
+</ul>
+</li>
+<li><strong>不会发生碰撞</strong></li>
+</ul>
+<h4 id="stdm-统计时分复用">STDM 统计时分复用<a hidden class="anchor" aria-hidden="true" href="#stdm-统计时分复用">#</a></h4>
+<ul>
+<li>是改进的时分复用技术，它可以提高信道的利用率。集中器使用这个方法。</li>
+</ul>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%28null%29-20240122110938415.%28null%29"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<ul>
+<li>统计时分复用技术使用STDM帧来传送复用数据，但每一个STDM帧中的时隙数小于或等于连接在集中器上的用户数，因此STDM帧不是固定分配时隙，而是按需动态分配时隙，由于用户占用的时隙并不是周期性地被使用，所以在每个时隙中还必须有用户的地址信息，这是统计时分复用必须要有的不可避免的开销。</li>
+<li>各用户有了数据就随时发往集中器的输入缓存，然后集中器按照一定顺序依次扫描用户是否输入，把缓存中的输入数据放到 STDM 帧中，没有数据的缓存就跳过去，当一个帧的数据放满了才发送出去。</li>
+</ul>
+<h4 id="wdm-波分多路复用">WDM 波分多路复用<a hidden class="anchor" aria-hidden="true" href="#wdm-波分多路复用">#</a></h4>
+<ul>
+<li>使用一根光纤来同时传输多个光载波信号</li>
+<li><strong>用于光信号</strong></li>
+</ul>
+<h4 id="cdm-码分多路复用">CDM 码分多路复用<a hidden class="anchor" aria-hidden="true" href="#cdm-码分多路复用">#</a></h4>
+<ul>
+<li>CDM与前几钟技术不同，它既共享信道的频率，也共享时间，是一种真正的动态复用技术，其原理是每比特时间被分成m个更短的时间槽，称为码片（Chip），通常情况下每比特有64或128个码片，每个站点（通道）被指定一个唯一的m位的代码或码片序列。当发送1时站点就发送码片序列，发送0时就发送码片序列的反码。当两个或多个站点同时发送时，各路数据在信道中被线形相加。为了从信道中分离出各路信号，要求各个站点的码片序列是相互正交的</li>
+<li>Java\C\Python\PHP(规格化内积/正交)</li>
+<li>均匀分割</li>
+</ul>
+<h3 id="动态分配信道">动态分配信道<a hidden class="anchor" aria-hidden="true" href="#动态分配信道">#</a></h3>
+<blockquote>
+<p>有效数据率&amp;CSMA/CD工作过程，例题：</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%28null%29-20240122110938739.%28null%29"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<p>以太网最短帧长：使最短帧发送时间不少于2τ，以便发送站点能够在发送完毕之前检测到冲突</p>
+</blockquote>
+<h5 id="aloha">ALOHA<a hidden class="anchor" aria-hidden="true" href="#aloha">#</a></h5>
+<p>纯ALOHA想发就发，不监听，不按时间槽发送，随机重发如果发生冲突，接收方在就会检测出差错,然后不予确认，发送方在一定时间内收不到确认就判断发生冲突。等待超时后就会重发数据帧。两个帧时内无冲突概率 $$e^{-2G}$$吞吐量： $$S=G*e^{-2G}$$  G=0.5 时，最好的信道利用率为 18.4%（G 每帧时的平均帧数）</p>
+<p>时隙S-ALOHA只在时隙开始才能发送把时间分成若干个相同的时间片，所有用户在时间片开始时刻同步接入网络信道若发生冲突，那么等到时间槽开始才能发，无冲突的概率为 $$e^{-G}$$，G=1 时效率最高位 36.8% ，效率是纯ALOHA的两倍</p>
+<h5 id="csmacarrier-sense-multiple-access-载波侦听多路访问协议发送前先侦听缺点如果发生冲突都需要将已经出错的数据帧发送给接受方造成资源的浪费imghttpspicture2023-1309715649cosap-beijingmyqcloudcomimgnull-20240122111242527null">CSMA（Carrier Sense Multiple Access ）载波侦听多路访问协议，发送前先侦听缺点：如果发生冲突，都需要将已经出错的数据帧发送给接受方，造成资源的浪费<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%28null%29-20240122111242527.%28null%29"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></h5>
+<p>1 坚持忙时一直监听，空闲就发</p>
+<p>非坚持busy不发，随机时间后检测</p>
+<p>p 坚持Idle 下 p发送，1-p不发busy等待下一个时间槽空闲后随机发</p>
+<h5 id="csmacd碰撞检测">CSMA/CD（碰撞检测）<a hidden class="anchor" aria-hidden="true" href="#csmacd碰撞检测">#</a></h5>
+<ul>
+<li>先听再发，边发边听，碰撞停止，随机延发（二进制退避）</li>
+<li>（半双工）以太网使用，使用 CSMA 协议，有线</li>
+<li><strong>二进制退避算法</strong>
+<ul>
+<li>确定基本退避（推迟)时间为争用期2τ
+<ol>
+<li>数据发送方最长需要一个往返传播时延的时间（2t）才可以了解自己的数据有没有和其他的数据帧冲突。 只要经过2t时间还没有检测到碰撞，就能肯定这次发送不会发生碰撞。这段时间称为争用期</li>
+</ol>
+</li>
+<li>定义参数k，它等于重传次数，但k不超过10
+<ol>
+<li>k=min[重传次数，10]</li>
+<li>当重传次数不超过10时，k等于重传次数</li>
+<li>当重传次数大于10时，k就不再增大而一直等于10。</li>
+</ol>
+</li>
+<li>从离散的整数集合$$[0,1,2^k-1]$$中随机取出一个数r，</li>
+<li>重传时间$$T=r*2τ$$</li>
+<li>当重传达16次仍不能成功时，认为此帧永远无法正确发出，抛弃此帧并向高层报告出错。</li>
+<li><strong>最短有效帧长</strong>$$L=2τ*带宽$$</li>
+</ul>
+</li>
+</ul>
+<h5 id="macamultiple-access-with-collision-avoidance">MACA（Multiple Access with Collision Avoidance）<a hidden class="anchor" aria-hidden="true" href="#macamultiple-access-with-collision-avoidance">#</a></h5>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%28null%29-20240122111242967.%28null%29"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<blockquote>
+<p>（A） 首先给B发送一个RTS帧（包含了随后将要发送的数据帧的长度）。</p>
+<p>（B） B用一个CTS帧作为应答（包含了随后将要发送的数据帧的长度，复制）。</p>
+<p>（C） C只听到了A发出的RTS，但没有听到B发出的CTS，只要它没有干扰CTS，那么在数据帧传送过程中，它可以自由地发送任何信息。</p>
+<p>（D） D听不到RTS帧，但是听到了CTS帧。只要听到了CTS帧，这意味着它与一个将要接收数据帧的站离得很近，所以，它就延缓发送任何信息直到那个帧如期传送完毕。</p>
+<p>（E） 站E听到了这两条控制消息，与D一样在数据帧完成之前它必须保持安静。</p>
+</blockquote>
+<h5 id="csmaca">CSMA/CA<a hidden class="anchor" aria-hidden="true" href="#csmaca">#</a></h5>
+<blockquote>
+<p>CS：载波侦听/监听，每一个站在发送数据之前以及发送数据时都要检测一下总线上是否有其他计算机在发送数据。</p>
+<p>MA：多点接入，表示许多计算机以多点接入的方式连接在一根总线上。</p>
+<p>CD：碰撞检测（冲突检测)，边发送边监听，通过适配器边发送数据边检测信道上信号电压的变化情况，以便判断自己在发送数据时其他站是否也在发送数据。</p>
+<p>基于MACA进行了改进，在802.11标准定义，能解决隐藏终端问题，但不能解决暴露终端问题</p>
+</blockquote>
+<ul>
+<li>半双工网络/无线网</li>
+<li>RTS：请求发送控制帧</li>
+<li>CTS：允许发送控制帧-&gt;明确发送许可，指示其它站点不要发送</li>
+<li>过程：
+<ul>
+<li>在发送数据前，先检查信道是否空闲
+<ol>
+<li>信道空闲：
+<ul>
+<li>发出RTS（RTS包括发射端的地址、接收端的地址、下一份数据将持续发送的时间等信息）。</li>
+<li>接收端收到RTS后会发出响应CTS。</li>
+<li>发送端收到CTS后，开始发送数据帧（同时预约信道:发送方告知其他站点自己要传多久数据)</li>
+</ul>
+</li>
+<li>信道忙：等待信道空闲。</li>
+<li><strong>当接受方接收到其他发送方发送RTS后，因为已经建立过通信了，所以就不会响应其他发送方的RTS，这样就可以避免信号发生干扰。</strong></li>
+</ol>
+</li>
+<li>接受方使用CRC循环检验码判断接受的数据是否出错。没有出错返回ACK响应.</li>
+<li>发送方收到ACK就可以进行下一个数据帧的发送，若没有则一直重传至规定重发次数为止(采用二进制指数退避算法来确定随机的推迟时间）。</li>
+</ul>
+</li>
+<li><strong>终端问题</strong>
+<ul>
+<li><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%28null%29-20240122111243262.%28null%29"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></li>
+<li>隐藏终端问题
+<ul>
+<li>A和C向B传送数据，若A开始发送，C监听不到A的传输，C认为它可以向B传输数据，导致在B处产生冲突，因此，需要一个MAC协议来防止冲突的发生</li>
+</ul>
+</li>
+<li>暴露终端问题
+<ul>
+<li>B先向A发送，此时C监听到有一个传输正在进行，认为它不能向D发送数据，因此，需要一个MAC协议来防止延迟传输的发生</li>
+</ul>
+</li>
+<li>解决方案（MACA）</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%28null%29-20240122111243555.%28null%29"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%28null%29-20240122111243857.%28null%29"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<h4 id="动态划分信道轮询访问介质访问控制">动态划分信道（轮询访问介质访问控制）<a hidden class="anchor" aria-hidden="true" href="#动态划分信道轮询访问介质访问控制">#</a></h4>
+<blockquote>
+<p>结合了信道划分介质访问控制的优点（不会发生传输冲突）</p>
+<p>和随机访问介质访问控制的优点（数据帧可以占据全部带宽）</p>
+<p>轮询访问介质访问控制：既要不产生冲突，发送时又占全部带宽。</p>
+<p>令牌转递协议主要应用于令牌环网（物理星型拓扑，逻辑环形拓扑）</p>
+<p>采用令牌传送方式的网络常用于<strong>负载较重、通信量较大</strong>的网络中</p>
+</blockquote>
+<h5 id="轮询协议">轮询协议<a hidden class="anchor" aria-hidden="true" href="#轮询协议">#</a></h5>
+<ul>
+<li>主结点轮流&quot;邀请&quot;从属结点发送数据。</li>
+<li>缺点：
+<ul>
+<li>轮询开销</li>
+<li>等待延迟</li>
+<li>单点故障</li>
+</ul>
+</li>
+</ul>
+<h5 id="令牌传递协议">令牌传递协议<a hidden class="anchor" aria-hidden="true" href="#令牌传递协议">#</a></h5>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/(null)-20240122111244196.(null)" alt="img" style="zoom:50%;" />
+<ul>
+<li>所有站连接成一个单环结构，一个站依次连接到下一站。令牌传递到下一站只是简单地从一个方向接收令牌在另一个方向上发送令牌。令牌绕着环循环到达任何一个目标站。为了阻止帧陷入无限循环，应设置帧必须从某个站取下，如可设置为最初发送帧的原始站，经历一个完整的环后取下。</li>
+<li>令牌：
+<ul>
+<li>特殊格式的MAC帧，不含任何信息。令牌控制信道的使用，确保同一时刻只有一个结点独占信道。</li>
+<li>每个结点都可以在一定的时间内(令牌持有时间）获得发送数据的权利，并不是无限制地持有令牌。</li>
+</ul>
+</li>
+<li>缺点：</li>
+<li>令牌开销</li>
+<li>等待延迟</li>
+<li>单点故障（替代机解决）</li>
+</ul>
+<h2 id="局域网">局域网<a hidden class="anchor" aria-hidden="true" href="#局域网">#</a></h2>
+<p>局域网（ Local Area Ne twork, LAN) 是指在一个较小的地理范围内，将各种计算机、外部设备和数据库系统等通过双绞线、同轴电缆等连接介质互相连接起来，组成资源和 信息共享的计算机互连网络。主要特点如下：</p>
+<ol>
+<li>为一个单位所拥有，且地理范围和站点数目均有限。</li>
+</ol>
+<ol start="2">
+<li>
+<p>所有站点共享较高的总带宽（即较高的数据传输速率）。</p>
+</li>
+<li>
+<p>较低的时延和较低的误码率。</p>
+</li>
+<li>
+<p>各站为平等关系而非主从关系。</p>
+</li>
+<li>
+<p>能进行广播和多播。</p>
+</li>
+</ol>
+<p>局域网的介质访问控制方法主要有 CSMA/CD 协议、令牌总线协议和令牌环协议，其中前两 种协议主要用千总线形局域网，令牌环协议主要用于环形局域网。</p>
+<h3 id="经典以太网">经典以太网<a hidden class="anchor" aria-hidden="true" href="#经典以太网">#</a></h3>
+<p>以太网是目前最流行的有线局域网技术。以太网逻辑上采用总线形拓扑结构，所有计算机共 享同一条总线，信息以广播方式发送，以太网使用 CSMAJCD 方式对总线进行访问控制。</p>
+<p>以太网采用两项措施来简化通信：</p>
+<ol>
+<li>
+<p>采用无连接的工作方式，既不对发送的数据帧编号，又不要求接收方发送确认，即以太网尽最大努力交付数据，提供的是不可靠服务，对差错的纠正则由高层完成。</p>
+</li>
+<li>
+<p>发送的数据都使用曼彻斯特编码的信号，每个码元的中间出现一次电压转换，接收方利用这种电压转换方便地将位同步信号提取出来。</p>
+</li>
+</ol>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240122115842065.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240122115842065"
+	
+	
+></p>
+<p>网卡：</p>
+<p>计算机与外界局域网的连接是通过主板上嵌入的一块网络适配器 (Adapter) ［又称网络接口卡NlC)] 实现的。适配器上装有处理器和存储器，工作在数据链路层。适 配器和局域网的通信是通过电缆或双绞线以串行方式进行的，而适配器和计算机的通信则是通过 计算机的1/0 总线以并行方式进行的。因此，适配器的重要功能就是进行数据的串并转换。 适配器不仅能实现与局域网传输介质之间的物理连接和电信号匹配，还涉及帧的发送与接 收、帧的封装与拆封、介质访问控制、数据的编码与解码及数据缓存等功能。当适配器收到正确 的帧时，就使用中断来通知该计算机，并交付协议栈中的网络层。当计算机要发送 IP 数据报时， 就由协议栈把 IP 数据报向下交给适配器，组帧后发送到局域网。</p>
+<p>以太网的MAC地址</p>
+<p>lEEE 802 标准为局域网规定了一种 48 位的全球地址，是指厄域网上的每台计算机中固化在适 配器的 ROM 中的地址，称为物理地址或 MAC 地址（因为这种地址用在 MAC 帧中），这个地址用 千控制主机在树络上的数据通信。全世界所有的局域网适配器都具有不同的地址，一台计笃机只要 没有更换适配器，不管其地理位翌如何变化，共 MAC 地址都不会变化。</p>
+<p>MAC 地址长 6 字节，一般用由连字符（或冒号）分隔的 12 个十六进制数表示，如 02-60-8c-e4-b1-21 。高 24 位为厂商代码，低 24 位为厂商自行分配的适配器序列号。</p>
+<p>当路由器通过适配器连接到局域网时，适配器上的 MAC 地址就用来标志路由器的某个接口。 路由器若同时连接到两个网络上，则它需要两个适配器和两个 MAC 地址。</p>
+<p>以太网的MAC帧</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240122120130412.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240122120130412"
+	
+	
+></p>
+<h5 id="目标地址">目标地址<a hidden class="anchor" aria-hidden="true" href="#目标地址">#</a></h5>
+<p>如果传输出去的目标地址第一位是 0，则表示这是一个普通地址；如果是 1，则表示这是一个组地址。组地址允许多个站同时监听一个地址。当某个帧被发送到一个组地址， 该组中的所有站都要接收它。往一组地址的发送行为称为组播 (multicasting)。由全 1 组成的特殊地址保留用作广播 (broadcasting)。如果一个帧的目标地址字段为全 1，则它被网络上的所有站接收。</p>
+<h5 id="mac-地址">MAC 地址<a hidden class="anchor" aria-hidden="true" href="#mac-地址">#</a></h5>
+<p>站的源地址有一个有趣的特点，那就是它们具有全球唯一性。</p>
+<p>地址字段的前 3 个字节用作该站所在的组织唯一标识符 (OUI, Organizationally Unique Identifier)。该字段的值由 IEEE 分配，指明了网络设备制造商。</p>
+<p>地址字段的最后 3 个字节由制造商负责分配，并在设备出厂之前把完整的地址用程序编入 NIC</p>
+<h5 id="数据字段和长度范围">数据字段和长度范围<a hidden class="anchor" aria-hidden="true" href="#数据字段和长度范围">#</a></h5>
+<p>接下来是数据 (Data) 字段，最多可包含 1500 个字节。总帧长度最多 1518 字节。</p>
+<p>以太网要求有效帧必须至少 64 字节长，从目标地址算起直到校验和，包括这两个字段本身在内。如果帧的数据部分少于 46 个字节，则使用填充 (Pad) 字段来填充该帧，使其达到最小长度要求</p>
+<h5 id="数据字段下限的原因">数据字段下限的原因<a hidden class="anchor" aria-hidden="true" href="#数据字段下限的原因">#</a></h5>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/2021-07-21-13-03-06-yDuRZv.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<p>当 B 检测到它所接收到的信号比它发送的信号更强时，它知道已经发生了冲突，所以放弃了自己传送，并且产生一个 48 位的突发噪声以警告所有其他站。</p>
+<p>如果一个站试图传送非常短的帧，则可以想象：虽然发生了冲突，但是在突发噪声回到发送方 (2 て）之前，传送已经结束。然后，发送方将会得出刚オ一帧已经成功发送的错误结论。为了避免发生这样的情况，所有帧必须至少需要 2 て时间才能完成发送，这样当突发噪声回到发送方时传送过程仍在进行。</p>
+<h5 id="二进制指数后退-binary-exponential-backoff">二进制指数后退 (binary exponential backoff)<a hidden class="anchor" aria-hidden="true" href="#二进制指数后退-binary-exponential-backoff">#</a></h5>
+<p>一般地，在第i�次冲突之后，从0∼2i−10∼2�−1之间随机选择一个数，然后等待这么多个时间槽。然而，达到 10 次冲突之后，随机数的选择区间被固定在最大值 1023，以后不再增加。在 16 次冲突之后，控制器放弃努力，并给计算机返回一个失败报告。</p>
+<h3 id="交换式以太网">交换式以太网<a hidden class="anchor" aria-hidden="true" href="#交换式以太网">#</a></h3>
+<h5 id="交换机">交换机<a hidden class="anchor" aria-hidden="true" href="#交换机">#</a></h5>
+<p>交换机只把帧输出到该帧想去的端口。当交换机端口接收到来自某个站的以太网帧，它就检査该帧的以太网地址，确定该帧前往的目的地端口</p>
+<p>在集线器中，所有站都位于同一个冲突域 (collision domain)， 它们必须使用 CSMA/CD 算法来调度各自的传输。在交换机中，每个端口有自己独立的冲突域。通常情况下，电缆是全双工的，站和端口可以同时往电缆上发送帧，根本无须担心其他站或者端口。现在冲突不可能发生，因而 CSMA/CD 也就不需要了。然后，如果电缆是半双工的，则站和端口必须以通常的 CSMA/CD 方式竞争传输。</p>
+<p><a class="link" href="https://static.xqmmcqs.com/2021-07-21-13-03-08-CmRZJq.png"  target="_blank" rel="noopener"
+    ><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/2021-07-21-13-03-08-CmRZJq.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></a></p>
+<h5 id="交换机的优点">交换机的优点<a hidden class="anchor" aria-hidden="true" href="#交换机的优点">#</a></h5>
+<p>交换机的性能优于集线器有两方面的原因。首先，由于没有冲突，容量的使用更为有效。其次，也是更重要的，有了交换机可以同时发送多个帧（由不同的站发出）。这些帧到达交换机端口并穿过交换机背板输出到适当的端口</p>
+<p>帧被发送到输出端口还有利于安全。大多数 LAN 接口都支持混杂模式 (promiscuous mode)，这个模式下所有的帧都被发到每台计算机，而不只是那些它寻址的机器。每个连到集线器上的计算机能看到其他所有计算机之间的流量</p>
+<p>有了交换机，流量只被转发到它的目的端口。</p>
+<h3 id="高速以太网">高速以太网<a hidden class="anchor" aria-hidden="true" href="#高速以太网">#</a></h3>
+<p>速率达到或超过 100Mb/s 的以太网称为高速以太网，表 3.3 列出了几种高速以太网技术。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240122120446572.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240122120446572"
+	
+	
+></p>
+<h4 id="快速以太网">快速以太网<a hidden class="anchor" aria-hidden="true" href="#快速以太网">#</a></h4>
+<p>传输速率比传统快10倍，数据传输速率达到100Mb/s。用户只需更换一个适配器，再配上一个100Mb/s的集线器就可方便地由10BASE-T以太网直接升级到100Mb/s。目前的10Mb/s和100Mb/s以太网是使用无屏蔽双绞线布线的。</p>
+<h4 id="千兆以太网">千兆以太网<a hidden class="anchor" aria-hidden="true" href="#千兆以太网">#</a></h4>
+<ul>
+<li>数据传输速率是快速以太网的10倍，可达到1Gb/s。吉比特以太网保留了传统10BASE-T以太网的基本特征，具有相同的帧格式和类似的组网方法</li>
+<li>特点（802.3z标准的G比特以太网）：
+<ul>
+<li>支持全双工和半双工两种工作方式；</li>
+<li>在半双工方式下采用CSMA/CD协议，而在全双工方式下不采用该协议；</li>
+<li>向后兼容10BASE-T和100BASE-T技术。</li>
+</ul>
+</li>
+<li>1000BASE-T，即IEEE 802.3ab，使用4对5类非屏蔽双绞线，双绞线长度可达100 m。</li>
+<li>1000BASE-X，即IEEE 802.3z，有以下3种有关传输介质的标准：
+<ul>
+<li>1000BASE-CX；</li>
+<li>1000BASE-LX；</li>
+<li>1000BASE-SX。</li>
+</ul>
+</li>
+</ul>
+<h4 id="万兆以太网">万兆以太网<a hidden class="anchor" aria-hidden="true" href="#万兆以太网">#</a></h4>
+<ul>
+<li>又称万兆以太网，使用IEEE 802.3以太网介质访问控制MAC协议</li>
+<li>特征：
+<ul>
+<li>只支持双工模式，不支持单工模式，而传统的以太网标准均支持单工/双工模式。</li>
+<li>由于传输速率高，10吉比特以太网只能使用光纤作为传输介质，而传统的以太网标准均支持同轴电缆。</li>
+<li>不支持CSMA/CD协议，因为该协议只适用于速率较慢的单工以太网。</li>
+<li>使用64B/66B和8B/10B两种编码方式，而传统以太网只使用8B/10B的编码方式。</li>
+<li>具有支持局域网和广域网的接口，且有效距离可达40 km，而传统的以太网只支持局域网应用，有效传输距离不超过5 km。</li>
+</ul>
+</li>
+</ul>
+<h3 id="无线局域网">无线局域网<a hidden class="anchor" aria-hidden="true" href="#无线局域网">#</a></h3>
+<h4 id="80211-体系结构和协议栈">802.11 体系结构和协议栈<a hidden class="anchor" aria-hidden="true" href="#80211-体系结构和协议栈">#</a></h4>
+<p>有固定基础设施的无线局域网</p>
+<p>无固定基础设施移动自组织网络</p>
+<h4 id="80211局域网的mac帧">802.11局域网的MAC帧<a hidden class="anchor" aria-hidden="true" href="#80211局域网的mac帧">#</a></h4>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/2021-07-21-13-03-16-h9nbGA.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<p>数据帧的第二个字段为持续时间 (Duration) 字段，它通告本帧和其确认将会占用信道多长时间，按微秒计时。该字段会出现在所有帧中，包括控制帧，其他站使用该字段来管理各自的 NAV 机制。</p>
+<p>接下来是地址字段。发往 AP 或者从 AP 接收的帧都具有 3 个地址，这些地址都是标准的 IEEE802 格式。第一个地址是接收方地址，第二个地址是发送方地址。很显然，这两个地址是必不可少的，那么第三个地址是做什么用的呢？请记住，当帧在一个客户端和网络中另一点之间传输时，AP 只是一个简单的中继点。这网络中的另一点也许是一个远程客户端，或许是 Internet 接入点。第三个地址就指明了这个远程端点</p>
+<h3 id="虚拟局域网">虚拟局域网<a hidden class="anchor" aria-hidden="true" href="#虚拟局域网">#</a></h3>
+<h5 id="vlan-和配置表">VLAN 和配置表<a hidden class="anchor" aria-hidden="true" href="#vlan-和配置表">#</a></h5>
+<p>为了使 VLAN 正常地运行，网桥必须建立配置表。这些配置表指明了通过哪些端口可以访问到哪些 VLAN。当一帧到来时，比如说来自灰色 VLAN，那么这帧必须被转发到所有标记为 G 的端口。这一条规则对于网桥不知道目的地位置的普通流量（即单播）以及组播和广播流量都适用。注意，一个端口可以标记为多种 VLAN 颜色。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/2021-07-21-13-03-21-fyrCfc.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<h5 id="vlan-帧格式">VLAN 帧格式<a hidden class="anchor" aria-hidden="true" href="#vlan-帧格式">#</a></h5>
+<p><a class="link" href="https://static.xqmmcqs.com/2021-07-21-13-03-21-moYXc1.png"  target="_blank" rel="noopener"
+    ><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/2021-07-21-13-03-21-moYXc1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></a></p>
+<h5 id="vlan-感知">VLAN 感知<a hidden class="anchor" aria-hidden="true" href="#vlan-感知">#</a></h5>
+<p>因为存在一些计算机（和交换机）无法感知 VLAN，因此第一个 VLAN 感知的网桥在帧上添加一个 VLAN 字段，路径上的最后一个网桥把添加的 VLAN 字段删除。</p>
+<p><a class="link" href="https://static.xqmmcqs.com/2021-07-21-13-03-22-cJN9Bk.png"  target="_blank" rel="noopener"
+    ><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/2021-07-21-13-03-22-cJN9Bk.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></a></p>
+<h2 id="广域网">广域网<a hidden class="anchor" aria-hidden="true" href="#广域网">#</a></h2>
+<p>广域网(Wide Area Network,WAN) 通常是指毅盖范围很广（远超一个城市的范围）的长距离网络，任务是长距离运送主机所发送的数据。连接广域网各结点交换机的链路都是高速链路， 广域网首要考虑的问题是通信容昼必须足够大，以便支持日益增长的通信拭。 广域网不等千互联网。互联网可以连接不同类型的网络，通常使用路由器来连接。图 3.32 显示了由相距较远的局域网通过路由器与广域网相连而成的一个栩盖范围很广的互联网。因此，局域网可以通过广域网与另一个相隔很远的局域网通信。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240122125926898.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240122125926898"
+	
+	
+></p>
+<p>广域网由一些结点交换机（注意不是路由器，结点交换机和路由器都用来转发分组，它们的 工作原理也类似。结点交换机在单个网络中转发分组，而路由器在多个网络构成的互联网中转发 分组）及连接这些交换机的链路组成。结点交换机的功能是存储并转发分组。结点之间都是点到点连接，但为了提高网络的可靠性，通常一个结点交换机往往与多个结点交换机相连。从层次上考虑，广域网和局域网的区别很大，因为局域网使用的协议主要在数据链路层（还有少量在物理层），而广域网使用的协议主要在网络层。怎么理解“局域网使用的协议主要在数据链路层，而广域网使用的协议主要在网络层“这句话呢？若网络中的两个结点要进行数据交换， 则结点除了要给出数据，还要给数据“包装”上一层控制信息，用于实现传输控制等功能。若这 层控制信息是数据链路层协议的控制信息，则称使用了数据链路层协议；若这层控制信息是网络 层的控制信息，则称使用了网络层协议。</p>
+<h2 id="数据链路层协议实例">数据链路层协议实例<a hidden class="anchor" aria-hidden="true" href="#数据链路层协议实例">#</a></h2>
+<h3 id="ppp">PPP<a hidden class="anchor" aria-hidden="true" href="#ppp">#</a></h3>
+<p>**点对点****协议（Point-to-Point Protocol， PPP）**是目前使用最广泛的数据链路层协议，用于使用拨号电话接入因特网时一般都使用PPP协议，是面向字节的数据链路层协议。 PPP协议只支持全双工链路。</p>
+<h4 id="组成">组成<a hidden class="anchor" aria-hidden="true" href="#组成">#</a></h4>
+<ul>
+<li>一种将封装了多种协议的数据报传输到串行链路的方法。</li>
+<li>链路控制协议（Link Control Protocol， LCP），LCP 协议是 PPP 协议的一部分。它用于建立、配置、测试数据链路的连接。</li>
+<li>一套网络控制协议（Network Control Protocol， NCP），NCPs 是一系列协议，用于建立和配置不同的网络层协议。每个 NCP 协议都支持不同的网络层协议，比如 IP 协议，OSI 的网络层，苹果的 Appple Talk 等。</li>
+</ul>
+<h4 id="帧格式">帧格式<a hidden class="anchor" aria-hidden="true" href="#帧格式">#</a></h4>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%28null%29-20240122130122287.%28null%29"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<h5 id="标志字段">标志字段<a hidden class="anchor" aria-hidden="true" href="#标志字段">#</a></h5>
+<ul>
+<li>标志（flag）：首部的第一个字段和尾部的最后一个字段都是标志字段 F（flag），规定的值用十六进制表示为：0x7E = 01111110。如果数据字段碰巧出现了标志字段的值，则需要在数据字段进行字节填充，来消除这种歧义。</li>
+<li>PPP 协议可以应用在异步传输或者同步传输中，异步传输以字节为单位传输，同步传输以比特为单位传输。所以填充方式也分为字节填充和比特填充。</li>
+</ul>
+<h4 id="字节填充">字节填充<a hidden class="anchor" aria-hidden="true" href="#字节填充">#</a></h4>
+<ul>
+<li>当 PPP 使用异步传输时，如果信息字段出现了和标志字段一样的字节（<strong>0x7E 为开始/结束字符，0x7D 为转义字符）</strong>，就需要进行字节填充，核心思路是通过在该字节前面填充转义字符（escape character， ESC）。</li>
+<li>然后用0x20 xor后面那个</li>
+</ul>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%28null%29-20240122130122478.%28null%29"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<h4 id="比特填充">比特填充<a hidden class="anchor" aria-hidden="true" href="#比特填充">#</a></h4>
+<ul>
+<li>PPP 协议在用在同步光纤网络等链路时，会使用<strong>同步传输（将一连串的比特连续传送</strong>，而不是按字节为单位传送）。这时候 PPP 协议采用比特填充。
+<ul>
+<li><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%28null%29-20240122130122660.%28null%29"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></li>
+</ul>
+</li>
+</ul>
+<h4 id="ppp协议的应满足的需求">PPP协议的应满足的需求<a hidden class="anchor" aria-hidden="true" href="#ppp协议的应满足的需求">#</a></h4>
+<p>(1) 简单。对数据链路层的帧，无需差错恢复，无需序号，无需流量控制。  (2) 封装成帧。PPP协议必须规定特殊的字符作为帧定界符（标志着一个帧的开始和结束）。  (3) 透明传输。与帧定界符一样的比特组合应该如何处理。  (4) 差错检测：接收到错误的帧就直接丢弃。  (5) 最大传送单元：数据部分最大长度MTU。  &hellip;.</p>
+<h4 id="ppp协议的不需要满足的需求">PPP协议的不需要满足的需求<a hidden class="anchor" aria-hidden="true" href="#ppp协议的不需要满足的需求">#</a></h4>
+<p>(1) 无需差错纠正/恢复。  (2) 无需流量控制。  (3) 无需支持多点链路。  (4) 不存在乱序交付。  差错恢复、流量控制等由高层协议处理。</p>
+<h3 id="hdlc">HDLC<a hidden class="anchor" aria-hidden="true" href="#hdlc">#</a></h3>
+<p>HDLC 称为“高级数据链路控制协议”，它是一个在<strong>同步网络</strong>上传输的、面向比特位的数据链路层协议。</p>
+<p>数据报文可透明传输，用于实现透明传输的是“零比特插入法”，易于硬件实现。</p>
+<p>采用全双工通信。 所有帧采用CRC校验，对信息帧进行顺序编号，可防止漏收或重传，传输可靠性高。</p>
+<h4 id="hdlc站">HDLC站<a hidden class="anchor" aria-hidden="true" href="#hdlc站">#</a></h4>
+<p>HDLC站分为：主站、从站和复合站。  (1) 主站：发送命令（包括数据信息）帧，接收响应帧，并负责对整个链路的控制系统的初启、流程控制、差错检测或恢复等。  (2) 从站：接收由主站发来的命令帧，向主站发送响应帧，并且配合主站参与差错恢复等链路控制。  复合站：既能发送，又能接收命令帧和响应帧，并且负责这整个链路的控制。</p>
+<h4 id="hdlc的帧格式">HDLC的帧格式<a hidden class="anchor" aria-hidden="true" href="#hdlc的帧格式">#</a></h4>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/-20240122130133057"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<p>(1) 标志（Flag）字段：占一个字节，二进制位01111110。  (2) 控制（Control）字段：表示帧的类型。分为三种：信息帧（I）、监督帧（S）、无编号帧（U）。</p>
+<blockquote>
+<p>(1) 信息帧：控制字段第1位为0，用来传输数据信息，或使用捎带技术对数据进行确认。 (2) 监督帧：前两位比特是10，用于流量控制，执行对信息帧的确认、请求重发和请求暂停发送等功能。 (3) 无编号帧：前两位比特是11，用于提供对链路的建立、拆除等多种控制功能。</p>
+</blockquote>
+<h2 id="ppp协议和hdlc协议比较">PPP协议和HDLC协议比较<a hidden class="anchor" aria-hidden="true" href="#ppp协议和hdlc协议比较">#</a></h2>
+<p>相同点：  (1) PPP、HDLC协议都支持全双工链路。  (2) 都可以实现透明传输。  (3) 都可以实现差错检测，但都不纠正差错。</p>
+<p>不同点：  (1) PPP协议面向字节，HDLC协议面向比特。  (2) HDLC协议帧格式没有协议字段。  (3) PPP协议无序号和确认机制，HDLC协议有编号和确认机制。  (4) PPP协议不可靠，HDLC协议可靠。</p>
+<p>（5）PPP 可以用于同步传输也可以用于异步传输，而 HDLC 只能用在同步网上</p>
+<h2 id="数据链路层设备">数据链路层设备<a hidden class="anchor" aria-hidden="true" href="#数据链路层设备">#</a></h2>
+<h3 id="以太网交换机">以太网交换机<a hidden class="anchor" aria-hidden="true" href="#以太网交换机">#</a></h3>
+<p>以太网交换机也称二层交换机，二层是指以太网交换机工作在数据链路层。以太网交换机实质上是一个多接口的网桥，它能将网络分成小的冲突城，为每个用户提供更大的带宽。对于传统使用集线器的共享式 10Mb/s 以太网，若共有N个用户，则每个用户的平均带宽为总带宽（10Mb/s）的 1/。使用以太网交换机（全双工方式）连接这些主机时，虽然从每个接口到主机的带宽还是10Mb/s，但是因为一个用户通信时是独占带宽的（而不是和其他网络用户共享传输介质带宽的），所以拥有N个接口的交换机的总容量为 Nx10Mb/s。这正是交换机的最大优点。</p>
+<p>以太网交换机的特点：1）当交换机的接口直接与主机或其他交换机连接时，可工作在全双工方式，并能同时连通多对接口，使每对相互通信的主机都能像独占通信介质那样，无冲突地传输数据，这样就不需要使用 CSMA/CD 协议。2）当交换机的接口连接集线器时，只能使用 CSMA/CD 协议且只能工作在半双工方式。当前的交换机和计算机中的网卡都能自动识别上述两种情况。3）交换机是一种即插即用设备，其内部的帧转发表是通过自学习算法，基于网络中各主机间的通信，自动地逐渐建立的。4）交换机因为使用专用交换结构芯片，交换速率较高。5） 交换机独占传输介质的带宽。</p>
+<p>以太网交换机主要采用两种交换模式：1） 直通交换方式。只检查帧的目的MAC 地址，以决定该帧的转发接口。这种方式的交换时延非常小，缺点是它不检查差错就直接转发，因此可能将一些无效帧转发给其他站。直通交换方式不适用于需要速率匹配、协议转换或差错检测的线路。2）存储转发交换方式。先将接收到的帧缓存到高速缓存器中，并检查数据是否正确，确认无误后通过查找表转换为输出接口，以便将该帧发送出去。若发现帧有错，则将其丢弃。优点是可靠性高，且能支持不同速率接口间的转换，缺点是时延较大。交换机一般都具有多种速率的接口，如10Mb/s、100Mb/s 的接口，以及多速率自适应接口。</p>
+<h4 id="交换机的自学习功能">交换机的自学习功能<a hidden class="anchor" aria-hidden="true" href="#交换机的自学习功能">#</a></h4>
+<p>决定一个帧是转发到某个接口还足丢弃它称为过虎。决定一个帧应被移至哪个接口称为转发。交换机的过滤和转发借助交换表 (switch table) 完成。交换表中的一个表项至少包含： 一 个 MAC 地址和连通该 MAC 地址的接口。</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240122130415185.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240122130415185"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240122130429660.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240122130429660"
+	
+	
+></p>
+<p>共享式以太网和交换式以太网的对比</p>
+<p>假设交换机已通过自学习算法逐步建立了完整的转发表，下面举例说明使用镁线器的共享式 以太网与全部使用交换机的交换式以太网的区别。 l) 主机发送普通帧。对于共享式以太网，集线器将帧转发到其他所有接口，其他各主机中</p>
+<p>的网卡根据帧的目的 MAC 地址决定接收或丢弃该帧。对于交换式以太网，交换机收到帧 后，根据帧的目的 MAC 地址和自身的交换表将帧明确地转发给目的主机。</p>
+<ol start="2">
+<li>主机发送广播帧。对于共享式以太网，媒线器将帧转发到其他所有接口，其他各主机 中的网卡检测到帧的目的 MAC 地址是广播地址时，就接收该帧。对于交换式以太网，</li>
+</ol>
+<p>交换机检测到帧的目的 MAC 地址是广播地址，千是从其他所有接口转发该帧，其他</p>
+<p>各主机收到该广播帧后，就接收该帧。两种悄况从效果上看是相同的，但它们的原理 并不相同。</p>
+<ol start="3">
+<li>多对主机同时通信。对千共享式以太网，当多对主机同时通信时，必然产生冲突。对千 交换式以太网，交换机能实现多对接口的商速并行交换，因此不会产生冲突。</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.css"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.js"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        &copy; 
+        
+        2024 Bethel<br>共 200.85k 字 · 共 23 篇文章
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://stack.jimmycai.com/" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> 由 <a href="https://jimmycai.com/" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
+
+
+<script src="https://mecdn.mcserverx.com/gh/zhixuan2333/gh-blog/master/js/nprogress.min.js" integrity="sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://mecdn.mcserverx.com/gh/zhixuan2333/gh-blog/master/css/nprogress.css" integrity="sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE" crossorigin="anonymous" />
+<script>
+    NProgress.start();
+    document.addEventListener("readystatechange", () => {
+        if (document.readyState === "interactive") NProgress.inc(0.8);
+        if (document.readyState === "complete") NProgress.done();
+    });
+</script>
+    </body>
+</html>

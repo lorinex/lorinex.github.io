@@ -1,1 +1,76 @@
-(()=>{var i;Math.lerp=(t,s,e)=>(1-e)*t+e*s;var o=(t,s)=>{try{return window.getComputedStyle?window.getComputedStyle(t)[s]:t.currentStyle[s]}catch{}return""},r=class{constructor(){this.pos={curr:null,prev:null},this.pt=[],this.create(),this.init(),this.render()}move(s,e){this.cursor.style.left=`${s}px`,this.cursor.style.top=`${e}px`}create(){this.cursor||(this.cursor=document.createElement("div"),this.cursor.id="cursor",this.cursor.classList.add("hidden"),document.body.append(this.cursor));var s=document.getElementsByTagName("*");for(let e=0;e<s.length;e++)o(s[e],"cursor")=="pointer"&&this.pt.push(s[e].outerHTML);document.body.appendChild(this.scr=document.createElement("style")),this.scr.innerHTML=`* {cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' width='8px' height='8px'><circle cx='4' cy='4' r='4' opacity='.5' fill='rgb(57, 197, 187)'/></svg>") 4 4, auto}`}refresh(){this.scr.remove(),this.cursor.classList.remove("hover"),this.cursor.classList.remove("active"),this.pos={curr:null,prev:null},this.pt=[],this.create(),this.init(),this.render()}init(){document.onmouseover=s=>this.pt.includes(s.target.outerHTML)&&this.cursor.classList.add("hover"),document.onmouseout=s=>this.pt.includes(s.target.outerHTML)&&this.cursor.classList.remove("hover"),document.onmousemove=s=>{this.pos.curr==null&&this.move(s.clientX-8,s.clientY-8),this.pos.curr={x:s.clientX-8,y:s.clientY-8},this.cursor.classList.remove("hidden")},document.onmouseenter=s=>this.cursor.classList.remove("hidden"),document.onmouseleave=s=>this.cursor.classList.add("hidden"),document.onmousedown=s=>this.cursor.classList.add("active"),document.onmouseup=s=>this.cursor.classList.remove("active")}render(){this.pos.prev?(this.pos.prev.x=Math.lerp(this.pos.prev.x,this.pos.curr.x,.15),this.pos.prev.y=Math.lerp(this.pos.prev.y,this.pos.curr.y,.15),this.move(this.pos.prev.x,this.pos.prev.y)):this.pos.prev=this.pos.curr,requestAnimationFrame(()=>this.render())}};i=new r;})();
+(() => {
+  // <stdin>
+  var CURSOR;
+  Math.lerp = (a, b, n) => (1 - n) * a + n * b;
+  var getStyle = (el, attr) => {
+    try {
+      return window.getComputedStyle ? window.getComputedStyle(el)[attr] : el.currentStyle[attr];
+    } catch (e) {
+    }
+    return "";
+  };
+  var Cursor = class {
+    constructor() {
+      this.pos = { curr: null, prev: null };
+      this.pt = [];
+      this.create();
+      this.init();
+      this.render();
+    }
+    move(left, top) {
+      this.cursor.style["left"] = `${left}px`;
+      this.cursor.style["top"] = `${top}px`;
+    }
+    create() {
+      if (!this.cursor) {
+        this.cursor = document.createElement("div");
+        this.cursor.id = "cursor";
+        this.cursor.classList.add("hidden");
+        document.body.append(this.cursor);
+      }
+      var el = document.getElementsByTagName("*");
+      for (let i = 0; i < el.length; i++)
+        if (getStyle(el[i], "cursor") == "pointer")
+          this.pt.push(el[i].outerHTML);
+      document.body.appendChild(this.scr = document.createElement("style"));
+      this.scr.innerHTML = `* {cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' width='8px' height='8px'><circle cx='4' cy='4' r='4' opacity='.5' fill='rgb(57, 197, 187)'/></svg>") 4 4, auto}`;
+    }
+    // 换颜色在opacity='.5'后面加fill='rgb(xxx, xxx, xxx)'
+    refresh() {
+      this.scr.remove();
+      this.cursor.classList.remove("hover");
+      this.cursor.classList.remove("active");
+      this.pos = { curr: null, prev: null };
+      this.pt = [];
+      this.create();
+      this.init();
+      this.render();
+    }
+    init() {
+      document.onmouseover = (e) => this.pt.includes(e.target.outerHTML) && this.cursor.classList.add("hover");
+      document.onmouseout = (e) => this.pt.includes(e.target.outerHTML) && this.cursor.classList.remove("hover");
+      document.onmousemove = (e) => {
+        this.pos.curr == null && this.move(e.clientX - 8, e.clientY - 8);
+        this.pos.curr = { x: e.clientX - 8, y: e.clientY - 8 };
+        this.cursor.classList.remove("hidden");
+      };
+      document.onmouseenter = (e) => this.cursor.classList.remove("hidden");
+      document.onmouseleave = (e) => this.cursor.classList.add("hidden");
+      document.onmousedown = (e) => this.cursor.classList.add("active");
+      document.onmouseup = (e) => this.cursor.classList.remove("active");
+    }
+    render() {
+      if (this.pos.prev) {
+        this.pos.prev.x = Math.lerp(this.pos.prev.x, this.pos.curr.x, 0.15);
+        this.pos.prev.y = Math.lerp(this.pos.prev.y, this.pos.curr.y, 0.15);
+        this.move(this.pos.prev.x, this.pos.prev.y);
+      } else {
+        this.pos.prev = this.pos.curr;
+      }
+      requestAnimationFrame(() => this.render());
+    }
+  };
+  (() => {
+    CURSOR = new Cursor();
+  })();
+})();

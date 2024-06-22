@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>操作系统 on Bethel</title>
-        <link>https://www.xxx.blog/categories/os/</link>
+        <link>http://localhost:1313/categories/os/</link>
         <description>Recent content in 操作系统 on Bethel</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Fri, 05 Jan 2024 15:38:45 +0000</lastBuildDate><atom:link href="https://www.xxx.blog/categories/os/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 05 Jan 2024 15:38:45 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/os/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>8 Mass-Storage Structure</title>
-        <link>https://www.xxx.blog/post/8-mass-storage-structure/</link>
+        <link>http://localhost:1313/post/8-mass-storage-structure/</link>
         <pubDate>Fri, 05 Jan 2024 15:38:45 +0000</pubDate>
         
-        <guid>https://www.xxx.blog/post/8-mass-storage-structure/</guid>
+        <guid>http://localhost:1313/post/8-mass-storage-structure/</guid>
         <description>&lt;h1 id=&#34;mass-storage-structure&#34;&gt;Mass-Storage Structure&lt;/h1&gt;
 &lt;h2 id=&#34;disk-structure&#34;&gt;Disk Structure&lt;/h2&gt;
 &lt;h2 id=&#34;disk-attachment&#34;&gt;Disk Attachment&lt;/h2&gt;
 &lt;h2 id=&#34;disk-scheduling&#34;&gt;Disk Scheduling※&lt;/h2&gt;
 &lt;h3 id=&#34;fcfs&#34;&gt;FCFS&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.xxx.blog/../../../../../Library/Application%20Support/typora-user-images/image-20240105154647558.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Library/Application%20Support/typora-user-images/image-20240105154647558.png&#34;
 	
 	
 	
@@ -92,10 +92,10 @@
         </item>
         <item>
         <title>7 File-System</title>
-        <link>https://www.xxx.blog/post/7-file-system/</link>
+        <link>http://localhost:1313/post/7-file-system/</link>
         <pubDate>Sat, 30 Dec 2023 12:45:59 +0000</pubDate>
         
-        <guid>https://www.xxx.blog/post/7-file-system/</guid>
+        <guid>http://localhost:1313/post/7-file-system/</guid>
         <description>&lt;h1 id=&#34;file-system&#34;&gt;File-System&lt;/h1&gt;
 &lt;h2 id=&#34;file-concept&#34;&gt;File Concept&lt;/h2&gt;
 &lt;p&gt;连续的逻辑地址空间指的是操作系统为用户提供了统一的逻辑视图来访问存储设备上的信息。文件是一个命名的、相关的信息的集合，这些信息被记录在次级存储设备上。文件是逻辑次级存储的最小分配单元。常见的文件类型包括程序源代码、目标代码和数据文件(数字、字符、二进制)。文件可以是自由格式的，也可以是格式固定的。文件的信息由其创建者定义。文件通过其名称进行命名，并可以通过名称进行访问，是独立的。&lt;/p&gt;
@@ -947,10 +947,10 @@ n为相对块号，第一个为0。
         </item>
         <item>
         <title>6 Main Memory And Virtual Memory</title>
-        <link>https://www.xxx.blog/post/6-main-memory-and-virtual-memory/</link>
+        <link>http://localhost:1313/post/6-main-memory-and-virtual-memory/</link>
         <pubDate>Mon, 25 Dec 2023 19:54:47 +0000</pubDate>
         
-        <guid>https://www.xxx.blog/post/6-main-memory-and-virtual-memory/</guid>
+        <guid>http://localhost:1313/post/6-main-memory-and-virtual-memory/</guid>
         <description>&lt;h1 id=&#34;main-memory&#34;&gt;Main Memory&lt;/h1&gt;
 &lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
 &lt;p&gt;计算机内存由大量存储单元组成，每个单元有地址。程序需要将指令和数据加载到内存中才能运行。
@@ -1734,10 +1734,10 @@ TLB Reach = (TLB Size) x (Page Size)
         </item>
         <item>
         <title>5  Deadlocks</title>
-        <link>https://www.xxx.blog/post/5-deadlocks/</link>
+        <link>http://localhost:1313/post/5-deadlocks/</link>
         <pubDate>Sat, 21 Oct 2023 21:27:13 +0000</pubDate>
         
-        <guid>https://www.xxx.blog/post/5-deadlocks/</guid>
+        <guid>http://localhost:1313/post/5-deadlocks/</guid>
         <description>&lt;h1 id=&#34;deadlocks&#34;&gt;Deadlocks&lt;/h1&gt;
 &lt;h2 id=&#34;system-model&#34;&gt;System Model&lt;/h2&gt;
 &lt;ol&gt;
@@ -2140,10 +2140,10 @@ b. 请求资源后，系统仍然处于安全状态。&lt;/li&gt;
         </item>
         <item>
         <title>4 Process Synchronization</title>
-        <link>https://www.xxx.blog/post/4-process-synchronization/</link>
+        <link>http://localhost:1313/post/4-process-synchronization/</link>
         <pubDate>Sat, 21 Oct 2023 21:19:31 +0000</pubDate>
         
-        <guid>https://www.xxx.blog/post/4-process-synchronization/</guid>
+        <guid>http://localhost:1313/post/4-process-synchronization/</guid>
         <description>&lt;h1 id=&#34;process-synchronization&#34;&gt;Process Synchronization&lt;/h1&gt;
 &lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
 &lt;h3 id=&#34;bounded-buffer-procedure-consumer-problem&#34;&gt;Bounded-Buffer Procedure-Consumer Problem&lt;/h3&gt;
@@ -2744,10 +2744,10 @@ acquire()和release()锁的操作必须是原子性的，通常通过硬件原�
         </item>
         <item>
         <title>3 CPU Scheduling</title>
-        <link>https://www.xxx.blog/post/3-cpu-scheduling/</link>
+        <link>http://localhost:1313/post/3-cpu-scheduling/</link>
         <pubDate>Sat, 21 Oct 2023 21:12:53 +0000</pubDate>
         
-        <guid>https://www.xxx.blog/post/3-cpu-scheduling/</guid>
+        <guid>http://localhost:1313/post/3-cpu-scheduling/</guid>
         <description>&lt;h1 id=&#34;cpu-scheduling&#34;&gt;CPU Scheduling&lt;/h1&gt;
 &lt;h2 id=&#34;basic-concepts&#34;&gt;Basic Concepts&lt;/h2&gt;
 &lt;p&gt;The objective of multiprogramming is to have some process running at all times.
@@ -3215,10 +3215,10 @@ simulations，即模拟仿真，是一种通过程序构建计算机系统模型
         </item>
         <item>
         <title>2 Processes And Threads</title>
-        <link>https://www.xxx.blog/post/2-processes-and-threads/</link>
+        <link>http://localhost:1313/post/2-processes-and-threads/</link>
         <pubDate>Sat, 21 Oct 2023 20:54:29 +0000</pubDate>
         
-        <guid>https://www.xxx.blog/post/2-processes-and-threads/</guid>
+        <guid>http://localhost:1313/post/2-processes-and-threads/</guid>
         <description>&lt;h1 id=&#34;2-processes-and-threads&#34;&gt;2 Processes And Threads&lt;/h1&gt;
 &lt;h2 id=&#34;process-concept&#34;&gt;Process Concept&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;进程&lt;/strong&gt;是执行中的程序。
@@ -4092,10 +4092,10 @@ CPU.bx=pNew.bx;
         </item>
         <item>
         <title>1 Introduction</title>
-        <link>https://www.xxx.blog/post/1-introduction/</link>
+        <link>http://localhost:1313/post/1-introduction/</link>
         <pubDate>Tue, 12 Sep 2023 09:26:35 +0000</pubDate>
         
-        <guid>https://www.xxx.blog/post/1-introduction/</guid>
+        <guid>http://localhost:1313/post/1-introduction/</guid>
         <description>&lt;h1 id=&#34;1-introduction&#34;&gt;1 Introduction&lt;/h1&gt;
 &lt;p&gt;Computer System Components&lt;/p&gt;
 &lt;p&gt;可以计算机系统分成三个基本组成部分：&lt;strong&gt;底层的计算机硬件、中间层的操作系统以及上层的计算机应用程序&lt;/strong&gt;，操作系统属于承上启下的中间层，所以它在计算机系统中的地位和作用尤为重要。&lt;/p&gt;

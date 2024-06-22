@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='串 串的概念和基本操作 串的概念 串（字符串）：是由零个或多个字符组成的有限序列。 记作：s =“a1a2…an” (n&amp;gt;=0) 串是特殊的线性表，数据元素是单个字'>
+<title>4 串 | Bethel's Blog</title>
+
+<link rel='canonical' href='http://localhost:1313/post/4-%E4%B8%B2/'>
+
+<link rel="stylesheet" href="/scss/style.min.c3c7ecff622b4ad3ac6aacf17244c017cc674f0e82b470bfb8f4de85243313d0.css"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"K3aYNEt3ZeYoZwhE",ck:"K3aYNEt3ZeYoZwhE"})</script>
+<script async src="https://umami.xalaok.top/uanalytics" data-website-id="095ee454-e560-4d9b-bf1c-869f8529c17f"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script><meta property='og:title' content='4 串'>
+<meta property='og:description' content='串 串的概念和基本操作 串的概念 串（字符串）：是由零个或多个字符组成的有限序列。 记作：s =“a1a2…an” (n&amp;gt;=0) 串是特殊的线性表，数据元素是单个字'>
+<meta property='og:url' content='http://localhost:1313/post/4-%E4%B8%B2/'>
+<meta property='og:site_name' content='Bethel'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-01-22T13:30:51&#43;00:00'/><meta property='article:modified_time' content='2024-01-22T13:30:51&#43;00:00'/>
+<meta name="twitter:title" content="4 串">
+<meta name="twitter:description" content="串 串的概念和基本操作 串的概念 串（字符串）：是由零个或多个字符组成的有限序列。 记作：s =“a1a2…an” (n&amp;gt;=0) 串是特殊的线性表，数据元素是单个字">
+    <link rel="shortcut icon" href="/favicon.png" />
+<link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont@1.7.0/lxgwwenkaigbscreen.css" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/tx_hu92c04046da3d4074953cad185e3935e5_62559_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Bethel</a></h1>
+            <h2 class="site-description">Live and learn. ✍️</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="http://localhost:1313/" selected></option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-high" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" />
+  <path d="M6.343 17.657l-1.414 1.414" />
+  <path d="M6.343 6.343l-1.414 -1.414" />
+  <path d="M17.657 6.343l1.414 -1.414" />
+  <path d="M17.657 17.657l1.414 1.414" />
+  <path d="M4 12h-2" />
+  <path d="M12 4v-2" />
+  <path d="M20 12h2" />
+  <path d="M12 20v2" />
+</svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+  <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+  <path d="M19 11h2m-1 -1v2" />
+</svg>
+                    <span>深色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#串的概念和基本操作">串的概念和基本操作</a>
+      <ol>
+        <li><a href="#串的概念">串的概念</a></li>
+        <li><a href="#基本术语">基本术语</a></li>
+      </ol>
+    </li>
+    <li><a href="#串的表示和实现">串的表示和实现</a>
+      <ol>
+        <li><a href="#定长顺序存储表示">定长顺序存储表示</a></li>
+        <li><a href="#堆分配存储表示">堆分配存储表示</a></li>
+        <li><a href="#块链存储表示">块链存储表示</a></li>
+      </ol>
+    </li>
+    <li><a href="#串的模式匹配">串的模式匹配</a>
+      <ol>
+        <li><a href="#kmp算法">KMP算法</a>
+          <ol>
+            <li><a href="#next数组k的计算">next数组（k的计算）</a></li>
+            <li><a href="#next数组修正">next数组修正</a></li>
+            <li><a href="#代码">代码</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#串应用示例--文本编辑">串应用示例&ndash;文本编辑</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="background-color: #2a9d8f; color: #fff;">
+                数据结构
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/4-%E4%B8%B2/">4 串</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-01-22</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 4 分钟
+                </time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+  <path d="M13.5 6.5l4 4" />
+</svg>
+                <time class="article-words">
+                    字数: 1619 字
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="串">串<a hidden class="anchor" aria-hidden="true" href="#串">#</a></h1>
+<h2 id="串的概念和基本操作">串的概念和基本操作<a hidden class="anchor" aria-hidden="true" href="#串的概念和基本操作">#</a></h2>
+<h3 id="串的概念">串的概念<a hidden class="anchor" aria-hidden="true" href="#串的概念">#</a></h3>
+<p>串（字符串）：是由零个或多个字符组成的有限序列。 <br>
+记作：s =“a1a2…an”        (n&gt;=0)
+串是特殊的线性表，数据元素是单个字符。</p>
+<p>相对于一般的线性结构的特点：</p>
+<ul>
+<li>
+<p>结构简单，规模庞大，元素重复率高</p>
+</li>
+<li>
+<p>模式匹配（查找）操作：模式检测、模式定位、模式计数等</p>
+</li>
+</ul>
+<p>s =“a1a2…an”    (n³0)</p>
+<p>s 是串名，用引号引起来的字符序列是串的值，$a_i$可以是字母、数字、空格、其他字符。引号本身不属于串的内容。$a_i$(1&lt;=i&lt;=n)是一个任意字符，它称为<strong>串的元素</strong>，是构成串的基本单位，i是它在整个串中的序号。</p>
+<p>n为串的长度，表示串中所包含的字符个数，当n=0时，称为<strong>空串</strong>,通常记为f 。</p>
+<h3 id="基本术语">基本术语<a hidden class="anchor" aria-hidden="true" href="#基本术语">#</a></h3>
+<p><strong>子串</strong>和<strong>主串</strong>：串中任意个连续的字符组成的子序列称为该串的<em><strong>子串</strong></em>。包含子串的串称为<em><strong>主串</strong></em>。</p>
+<p><strong>串相等</strong>：两个串长度相等，且对应位置的字符都相等。</p>
+<p><strong>空串</strong>和<strong>空白串</strong>：<em>空串</em>不包含任何字符,表示为f；<em>空白串</em>由一个或多个空格组成，如‘ ’。</p>
+<p><strong>子串的位置</strong>：子串的第一个字符在主串中的序号称为子串的位置。</p>
+<p>例：ab<strong>cdp</strong>qrst   <strong>cdp</strong>子串在主串中的位置为3</p>
+<h2 id="串的表示和实现">串的表示和实现<a hidden class="anchor" aria-hidden="true" href="#串的表示和实现">#</a></h2>
+<h3 id="定长顺序存储表示">定长顺序存储表示<a hidden class="anchor" aria-hidden="true" href="#定长顺序存储表示">#</a></h3>
+<p>用一组地址连续的存储单元存储串值中的字符序列，可以<strong>定长来指明最大的字符个数</strong>，也叫定长串。如：</p>
+<p><code>#define MAXSIZE 256 </code></p>
+<p>​    <code>char s[MAXSIZE]; </code></p>
+<p>则字符串中的字符个数不能超过256。</p>
+<p>三种标识串实际长度的方法：</p>
+<p>1）类似顺序表，用一个变量curlen来指向最后一个字符的存储下标，这种方式可以直接得到串的长度：s.curlen+1</p>
+<p>2）在<strong>串尾存储一个特殊字符</strong>来作为终结符</p>
+<p>3）用s[0]存放串的实际长度，串值存放在s[1]~s[MAXSIZE-1]</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221015182055743.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221015182055743"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221015182255064.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221015182255064"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Status</span> <span class="nf">Concat</span><span class="p">(</span><span class="n">SString</span> <span class="o">&amp;</span><span class="n">T</span><span class="p">,</span><span class="n">SString</span> <span class="n">S1</span><span class="p">,</span><span class="n">SString</span> <span class="n">S2</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//用T返回串s1和s2联接而成的新串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//uncut表示是否截断，未截断TRUE，截断为FALSE
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">S1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">S2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">MAXSTRLEN</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">T</span><span class="p">[</span><span class="mf">1.</span><span class="p">.</span><span class="n">S1</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">=</span><span class="n">S1</span><span class="p">[</span><span class="mf">1.</span><span class="p">.</span><span class="n">S1</span><span class="p">[</span><span class="mi">0</span><span class="p">]];</span>
+</span></span><span class="line"><span class="cl">        <span class="n">T</span><span class="p">[</span><span class="n">S1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mf">1.</span><span class="p">.</span><span class="n">S1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">S2</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">=</span><span class="n">S2</span><span class="p">[</span><span class="mf">1.</span><span class="p">.</span><span class="n">S2</span><span class="p">[</span><span class="mi">0</span><span class="p">]];</span>
+</span></span><span class="line"><span class="cl">        <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">S1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">S2</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="n">uncut</span><span class="o">=</span><span class="n">TRUE</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">if</span>  <span class="p">(</span><span class="n">S1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;</span><span class="n">MAXSTRLEN</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	               <span class="n">T</span><span class="p">[</span><span class="mf">1.</span><span class="p">.</span><span class="n">S1</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">S1</span><span class="p">[</span><span class="mf">1.</span><span class="p">.</span><span class="n">S1</span><span class="p">[</span><span class="mi">0</span><span class="p">]];</span>
+</span></span><span class="line"><span class="cl">		        <span class="n">T</span><span class="p">[</span><span class="n">s1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mf">1.</span><span class="p">.</span><span class="n">MAXSTRLEN</span><span class="p">]</span> <span class="o">=</span> <span class="n">S2</span><span class="p">[</span><span class="mf">1.</span><span class="p">.</span><span class="n">MAXSTRLEN</span><span class="o">-</span><span class="n">S1</span><span class="p">[</span><span class="mi">0</span><span class="p">]];</span>
+</span></span><span class="line"><span class="cl">		        <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span> <span class="n">MAXSTRLEN</span><span class="p">;</span>  <span class="n">uncut</span><span class="o">=</span><span class="n">FALSE</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                  <span class="k">else</span>  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">T</span><span class="p">[</span><span class="mf">0.</span><span class="p">.</span><span class="n">MAXSTRLEN</span><span class="p">]</span><span class="o">=</span> <span class="n">S1</span><span class="p">[</span><span class="mf">0.</span><span class="p">.</span><span class="n">MAXSTRLEN</span><span class="p">];</span>  
+</span></span><span class="line"><span class="cl">                       <span class="n">uncut</span><span class="o">=</span> <span class="n">FALSE</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">uncut</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="c1">// Concat
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Status</span> <span class="nf">SubString</span><span class="p">(</span><span class="n">SString</span> <span class="o">&amp;</span><span class="n">Sub</span><span class="p">,</span> <span class="n">SString</span> <span class="n">S</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pos</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">     <span class="c1">//用Sub返回串S从第pos个字符起长度为len的子串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="p">{</span>    <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="n">pos</span><span class="o">&lt;</span><span class="mi">1</span> <span class="o">||</span> <span class="n">pos</span> <span class="o">&gt;</span><span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="o">||</span> <span class="n">len</span><span class="o">&lt;</span><span class="mi">0</span>  <span class="o">||</span> <span class="n">len</span> <span class="o">&gt;</span> <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">pos</span><span class="o">+</span><span class="mi">1</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="n">ERROR</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">           <span class="n">Sub</span><span class="p">[</span><span class="mf">1.</span><span class="p">.</span><span class="n">len</span><span class="p">]</span><span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">pos</span><span class="p">..</span><span class="n">pos</span><span class="o">+</span><span class="n">len</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	       <span class="n">Sub</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span> <span class="n">len</span>
+</span></span><span class="line"><span class="cl">	       <span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span> <span class="c1">// SubString
+</span></span></span></code></pre></div><p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221015183035348.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221015183035348"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">StrCompare</span><span class="p">(</span><span class="n">SString</span> <span class="n">S</span><span class="p">,</span> <span class="n">SString</span> <span class="n">T</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// S&gt;T,返回值&gt;0；S=T，返回0；S&lt;T，返回值&lt; 0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>     <span class="k">for</span>  <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>  <span class="n">i</span><span class="o">&lt;=</span><span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>  <span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="c1">//逐个字符进行比较
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>              <span class="k">if</span>  <span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="k">return</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">       <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="c1">// StrCompare
+</span></span></span></code></pre></div><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221015183115433.png" alt="image-20221015183115433" style="zoom:50%;" />
+<h3 id="堆分配存储表示">堆分配存储表示<a hidden class="anchor" aria-hidden="true" href="#堆分配存储表示">#</a></h3>
+<p>动态分配串值存储空间，避免定长结构的截断现象。</p>
+<p>[存储定义]</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">typedef</span>  <span class="k">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span>   <span class="o">*</span><span class="n">ch</span><span class="p">;</span>     <span class="c1">//串空间基址，按串长申请
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span>   <span class="n">length</span><span class="p">;</span>    <span class="c1">//串长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="n">HString</span><span class="p">;</span>
+</span></span></code></pre></div><p>[基本操作实现示例]</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">StrCompare</span><span class="p">(</span><span class="n">HString</span> <span class="n">S</span><span class="p">,</span> <span class="n">HString</span> <span class="n">T</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// S&gt;T,返回值&gt;0；S=T，返回0；S&lt;T，返回值&lt; 0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">S</span><span class="p">.</span><span class="n">length</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">S</span><span class="p">.</span><span class="n">ch</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">T</span><span class="p">.</span><span class="n">ch</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">                  <span class="k">return</span> <span class="n">S</span><span class="p">.</span><span class="n">ch</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">T</span><span class="p">.</span><span class="n">ch</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">S</span><span class="p">.</span><span class="n">length</span> <span class="o">-</span> <span class="n">T</span><span class="p">.</span><span class="n">length</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="c1">// StrCompare
+</span></span></span></code></pre></div><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221015183249012.png" alt="image-20221015183249012" style="zoom:50%;" />
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl">     <span class="n">Status</span> <span class="nf">Concat</span><span class="p">(</span><span class="n">HString</span> <span class="o">&amp;</span><span class="n">T</span><span class="p">,</span>  <span class="n">HString</span>  <span class="n">S1</span><span class="p">,</span> <span class="n">HString</span> <span class="n">S2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">     <span class="c1">//返回串S1和S2联接而成的新串T
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="p">{</span>   <span class="k">if</span>  <span class="p">(</span><span class="n">T</span><span class="p">.</span><span class="n">ch</span><span class="p">)</span>   <span class="nf">free</span><span class="p">(</span><span class="n">T</span><span class="p">.</span><span class="n">ch</span><span class="p">);</span>   <span class="c1">//释放T原有空间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>          <span class="k">if</span>  <span class="p">(</span> <span class="o">!</span> <span class="p">(</span><span class="n">T</span><span class="p">.</span><span class="n">ch</span><span class="o">=</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">((</span><span class="n">S1</span><span class="p">.</span><span class="n">length</span><span class="o">+</span><span class="n">S2</span><span class="p">.</span><span class="n">length</span><span class="p">)</span><span class="o">*</span>
+</span></span><span class="line"><span class="cl">                                         <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">))))</span>
+</span></span><span class="line"><span class="cl">                  <span class="nf">exit</span><span class="p">(</span><span class="n">OVERFLOW</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">          <span class="n">T</span><span class="p">.</span><span class="n">length</span><span class="o">=</span><span class="n">S1</span><span class="p">.</span><span class="n">length</span><span class="o">+</span><span class="n">S2</span><span class="p">.</span><span class="n">length</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">          <span class="n">T</span><span class="p">.</span><span class="n">ch</span><span class="p">[</span><span class="mf">0.</span><span class="p">.</span><span class="n">s1</span><span class="p">.</span><span class="n">length</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">S1</span><span class="p">.</span><span class="n">ch</span><span class="p">[</span><span class="mf">0.</span><span class="p">.</span><span class="n">s1</span><span class="p">.</span><span class="n">length</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">          <span class="n">T</span><span class="p">.</span><span class="n">ch</span><span class="p">[</span><span class="n">S1</span><span class="p">.</span><span class="n">length</span><span class="p">..</span> <span class="n">T</span><span class="p">.</span><span class="n">length</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">S2</span><span class="p">.</span><span class="n">ch</span><span class="p">[</span><span class="mf">0.</span><span class="p">.</span><span class="n">S2</span><span class="p">.</span><span class="n">length</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span> <span class="c1">// Concat
+</span></span></span></code></pre></div><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221015183316749.png" alt="image-20221015183316749" style="zoom:50%;" />
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl">     <span class="n">Status</span> <span class="nf">SubString</span><span class="p">(</span><span class="n">HString</span> <span class="o">&amp;</span><span class="n">Sub</span><span class="p">,</span> <span class="n">HString</span> <span class="n">S</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pos</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">     <span class="c1">//求串S从第pos个字符起长度为len的子串Sub
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="p">{</span>    <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="n">pos</span><span class="o">&lt;</span><span class="mi">1</span> <span class="o">||</span> <span class="n">pos</span> <span class="o">&gt;</span><span class="n">S</span><span class="p">.</span><span class="n">length</span>  <span class="o">||</span> <span class="n">len</span><span class="o">&lt;</span><span class="mi">0</span>  <span class="o">||</span> <span class="n">len</span> <span class="o">&gt;</span> <span class="n">S</span><span class="p">.</span><span class="n">length</span><span class="o">-</span><span class="n">pos</span><span class="o">+</span><span class="mi">1</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="n">ERROR</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">           <span class="k">if</span>  <span class="p">(</span><span class="n">Sub</span><span class="p">.</span><span class="n">ch</span><span class="p">)</span>   <span class="nf">free</span><span class="p">(</span><span class="n">Sub</span><span class="p">.</span><span class="n">ch</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">           <span class="k">if</span>  <span class="p">(</span> <span class="o">!</span><span class="n">len</span> <span class="p">)</span>  <span class="p">{</span>  <span class="n">Sub</span><span class="p">.</span><span class="n">ch</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>  <span class="n">Sub</span><span class="p">.</span><span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">           <span class="k">else</span>  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                   <span class="k">if</span>  <span class="p">(</span> <span class="o">!</span><span class="p">(</span><span class="n">Sub</span><span class="p">.</span><span class="n">ch</span><span class="o">=</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="n">len</span><span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">))))</span>
+</span></span><span class="line"><span class="cl">                             <span class="nf">exit</span><span class="p">(</span><span class="n">OVERFLOW</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">Sub</span><span class="p">.</span><span class="n">ch</span><span class="p">[</span><span class="mf">0.</span><span class="p">.</span><span class="n">len</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">S</span><span class="p">.</span><span class="n">ch</span><span class="p">[</span><span class="n">pos</span><span class="o">-</span><span class="mf">1.</span><span class="p">.</span><span class="n">pos</span><span class="o">+</span><span class="n">len</span><span class="o">-</span><span class="mi">2</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">Sub</span><span class="p">.</span><span class="n">length</span><span class="o">=</span><span class="n">len</span><span class="p">;</span>   
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">OK</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">      <span class="p">}</span> <span class="c1">// SubString
+</span></span></span></code></pre></div><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221015183338268.png" alt="image-20221015183338268" style="zoom:50%;" />
+<h3 id="块链存储表示">块链存储表示<a hidden class="anchor" aria-hidden="true" href="#块链存储表示">#</a></h3>
+<p><img src="/image-20221015183359280.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221015183359280"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define CHUNKSIZE  4          </span><span class="c1">//由用户定义块大小
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">typedef</span>  <span class="k">struct</span>  <span class="n">Chunk</span>  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">         <span class="kt">char</span>  <span class="n">ch</span><span class="p">[</span><span class="n">CHUNKSIZE</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">         <span class="k">struct</span> <span class="n">Chunk</span> <span class="o">*</span> <span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="n">Chunk</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span>  <span class="k">struct</span>  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="n">Chunk</span> <span class="o">*</span> <span class="n">head</span><span class="err">，</span> <span class="o">*</span> <span class="n">tail</span><span class="p">;</span>     <span class="c1">//串的、尾头指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="kt">int</span>    <span class="n">curlen</span><span class="p">;</span>                  <span class="c1">//串的当前长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="n">LString</span><span class="p">;</span>
+</span></span></code></pre></div><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221015183427507.png" alt="image-20221015183427507" style="zoom:50%;" />
+<h2 id="串的模式匹配">串的模式匹配<a hidden class="anchor" aria-hidden="true" href="#串的模式匹配">#</a></h2>
+<ul>
+<li>
+<p>模式匹配的应用</p>
+<ul>
+<li>
+<p>网站上搜索新闻</p>
+</li>
+<li>
+<p>在文档中搜索一个单词</p>
+</li>
+</ul>
+</li>
+<li>
+<p>定义</p>
+<ul>
+<li><strong>子串定位操作</strong>称为串的模式匹配</li>
+</ul>
+</li>
+<li>
+<p>模式匹配函数</p>
+<ul>
+<li>Index(S,T,pos)</li>
+<li>返回子串T在主串S中第pos个字符之后第一次出现的位置，不存在，返回0.</li>
+</ul>
+</li>
+</ul>
+<h3 id="kmp算法">KMP算法<a hidden class="anchor" aria-hidden="true" href="#kmp算法">#</a></h3>
+<p>KMP算法主要是通过消除主串指针的回溯来提高匹配的效率。</p>
+<p>简单模式匹配算法性能较低的根源：主串指针回溯是不必要的</p>
+<p>改进思路：尽量跳过一些不必要的比较</p>
+<p>主串S：S[0]中储存字符串的长度</p>
+<h4 id="next数组k的计算">next数组（k的计算）<a hidden class="anchor" aria-hidden="true" href="#next数组k的计算">#</a></h4>
+<p>当<code>j</code>等于<code>1</code>时，<code>k=0</code>；否则分析j前面的部分，看有没有正序x位和倒序x位相同的情况，如果没有这种情况k=1，如果有多于一种，则k等于x的最大值+1</p>
+<h4 id="next数组修正">next数组修正<a hidden class="anchor" aria-hidden="true" href="#next数组修正">#</a></h4>
+<p>当<code>T[j]=T[next[j]]</code>时，需要将<code>next[j]</code>修正为<code>next[next[j]]</code>， 依次类推</p>
+<blockquote>
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221021140238583.png" alt="image-20221021140238583" style="zoom:50%;" />
+<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221021140312667.png" alt="image-20221021140312667" style="zoom:50%;" />
+</blockquote>
+<h4 id="代码">代码<a hidden class="anchor" aria-hidden="true" href="#代码">#</a></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">Index_KMP</span><span class="p">(</span><span class="n">SString</span> <span class="n">S</span><span class="p">,</span><span class="n">SString</span> <span class="n">T</span><span class="p">,</span><span class="kt">int</span> <span class="n">pos</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span><span class="o">=</span><span class="n">pos</span><span class="p">;</span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&amp;&amp;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="o">==</span><span class="mi">0</span><span class="o">||</span><span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="n">T</span><span class="p">[</span><span class="n">j</span><span class="p">]){</span>
+</span></span><span class="line"><span class="cl">            <span class="o">++</span><span class="n">i</span><span class="p">;</span><span class="o">++</span><span class="n">j</span><span class="p">;</span><span class="c1">//继续比较后继字符
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">j</span><span class="o">=</span><span class="n">next</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="o">&gt;</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">return</span> <span class="n">i</span><span class="o">-</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="串应用示例--文本编辑">串应用示例&ndash;文本编辑<a hidden class="anchor" aria-hidden="true" href="#串应用示例--文本编辑">#</a></h2>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221021140758425.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221021140758425"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221021140811537.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221021140811537"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20221021140826110.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221021140826110"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.css"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.js"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        &copy; 
+        
+        2024 Bethel<br>共 200.85k 字 · 共 23 篇文章
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://stack.jimmycai.com/" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> 由 <a href="https://jimmycai.com/" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
+
+
+<script src="https://mecdn.mcserverx.com/gh/zhixuan2333/gh-blog/master/js/nprogress.min.js" integrity="sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://mecdn.mcserverx.com/gh/zhixuan2333/gh-blog/master/css/nprogress.css" integrity="sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE" crossorigin="anonymous" />
+<script>
+    NProgress.start();
+    document.addEventListener("readystatechange", () => {
+        if (document.readyState === "interactive") NProgress.inc(0.8);
+        if (document.readyState === "complete") NProgress.done();
+    });
+</script>
+    </body>
+</html>

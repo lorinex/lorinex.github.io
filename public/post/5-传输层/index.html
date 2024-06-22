@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='主要概念 引入网络层的原因：消除网络层的不可靠性；提供源主机到端主机的可靠地，如实际使用网 络无关的信息传输；提高服务质量，进行差错检测。 与网络'>
+<title>5 传输层 | Bethel's Blog</title>
+
+<link rel='canonical' href='http://localhost:1313/post/5-%E4%BC%A0%E8%BE%93%E5%B1%82/'>
+
+<link rel="stylesheet" href="/scss/style.min.c3c7ecff622b4ad3ac6aacf17244c017cc674f0e82b470bfb8f4de85243313d0.css"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"K3aYNEt3ZeYoZwhE",ck:"K3aYNEt3ZeYoZwhE"})</script>
+<script async src="https://umami.xalaok.top/uanalytics" data-website-id="095ee454-e560-4d9b-bf1c-869f8529c17f"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script><meta property='og:title' content='5 传输层'>
+<meta property='og:description' content='主要概念 引入网络层的原因：消除网络层的不可靠性；提供源主机到端主机的可靠地，如实际使用网 络无关的信息传输；提高服务质量，进行差错检测。 与网络'>
+<meta property='og:url' content='http://localhost:1313/post/5-%E4%BC%A0%E8%BE%93%E5%B1%82/'>
+<meta property='og:site_name' content='Bethel'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-01-23T20:52:56&#43;00:00'/><meta property='article:modified_time' content='2024-01-23T20:52:56&#43;00:00'/>
+<meta name="twitter:title" content="5 传输层">
+<meta name="twitter:description" content="主要概念 引入网络层的原因：消除网络层的不可靠性；提供源主机到端主机的可靠地，如实际使用网 络无关的信息传输；提高服务质量，进行差错检测。 与网络">
+    <link rel="shortcut icon" href="/favicon.png" />
+<link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont@1.7.0/lxgwwenkaigbscreen.css" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/tx_hu92c04046da3d4074953cad185e3935e5_62559_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Bethel</a></h1>
+            <h2 class="site-description">Live and learn. ✍️</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="http://localhost:1313/" selected></option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-high" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" />
+  <path d="M6.343 17.657l-1.414 1.414" />
+  <path d="M6.343 6.343l-1.414 -1.414" />
+  <path d="M17.657 6.343l1.414 -1.414" />
+  <path d="M17.657 17.657l1.414 1.414" />
+  <path d="M4 12h-2" />
+  <path d="M12 4v-2" />
+  <path d="M20 12h2" />
+  <path d="M12 20v2" />
+</svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+  <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+  <path d="M19 11h2m-1 -1v2" />
+</svg>
+                    <span>深色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#算法">算法</a>
+      <ol>
+        <li><a href="#流量控制拥塞控制">流量控制，拥塞控制</a>
+          <ol>
+            <li><a href="#慢启动---启动速率很低拥塞窗口初始值为1个最大报文段长度mss在达到阈-值或者发现丢包之前拥塞窗口按指数级增长imghttpspicture2023-1309715649cosap-beijingmyqcloudcomimgnull-20240123210154605null---注---cwnd-congestionwindow">慢启动   启动速率很低，拥塞窗口初始值为1个最大报文段长度（MSS）。在达到阈 值或者发现丢包之前，拥塞窗口按指数级增长<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/(null)-20240123210154605.(null)" alt="img">   注：   cwnd: CongestionWindow</a></li>
+            <li><a href="#ai---当拥塞窗口达到阈值时按线性增长">AI   当拥塞窗口达到阈值时，按线性增长</a></li>
+            <li><a href="#md---出现重发定时器超时拥塞窗口降为最小值1个mss阈值改为超时时刻的拥塞窗口值的一半重新开始新的慢启动">MD   出现重发定时器超时，拥塞窗口降为最小值（1个MSS），阈值改为超时时刻的拥塞窗口值的一半，重新开始新的慢启动。</a></li>
+            <li><a href="#快速恢复---收到三个重复的ack时拥塞窗口降为当前窗口的一半开始新的ai">快速恢复   收到三个重复的ACK时，拥塞窗口降为当前窗口的一半，开始新的AI</a></li>
+            <li><a href="#最大最小公平性-max-min-fairness">最大最小公平性 (Max-Min Fairness)</a></li>
+            <li><a href="#tcp拥塞控制过程">TCP拥塞控制过程</a></li>
+          </ol>
+        </li>
+        <li><a href="#nagle算法发送端--积累要发送的数据一次尽可能发送较大的数据量1个mss">Nagle算法（发送端）  积累要发送的数据，一次尽可能发送较大的数据量（1个MSS）</a></li>
+        <li><a href="#clark算法接收端--等待空闲的接收缓冲区变大只在有较大缓存至少为12-mss时才发送窗口更新通知">Clark算法（接收端）  等待空闲的接收缓冲区变大，只在有较大缓存（至少为1/2 MSS）时，才发送窗口更新通知</a></li>
+        <li><a href="#jacobson算法--估计端到端环回时延rtt--rtt_估值alpha-times-rtt_估值的历史值--1---alpha-times-rtt_测量值">Jacobson算法  估计端到端环回时延RTT  $$RTT_{估值}=\alpha \times RTT_{估值的历史值} + (1 - \alpha) \times RTT_{测量值}$$</a></li>
+      </ol>
+    </li>
+    <li><a href="#传输层协议">传输层协议</a>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#udp">UDP</a></li>
+            <li><a href="#tcp">TCP</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="background-color: #2a9d8f; color: #fff;">
+                计算机网络
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/5-%E4%BC%A0%E8%BE%93%E5%B1%82/">5 传输层</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-01-23</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 3 分钟
+                </time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+  <path d="M13.5 6.5l4 4" />
+</svg>
+                <time class="article-words">
+                    字数: 1336 字
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>主要概念</p>
+<blockquote>
+<p>引入网络层的原因：消除网络层的不可靠性；提供源主机到端主机的可靠地，如实际使用网 络无关的信息传输；提高服务质量，进行差错检测。</p>
+<p>与网络层的区别：传输层提供应用进程间的逻辑通信，而网络层只是实现主机到主机之间通信</p>
+<p>传输层提供高效、可靠、高性价比的数据传输，独立于当前的物理层网络，是进程与进程间的通信</p>
+</blockquote>
+<h2 id="算法">算法<a hidden class="anchor" aria-hidden="true" href="#算法">#</a></h2>
+<h3 id="流量控制拥塞控制">流量控制，拥塞控制<a hidden class="anchor" aria-hidden="true" href="#流量控制拥塞控制">#</a></h3>
+<h4 id="慢启动---启动速率很低拥塞窗口初始值为1个最大报文段长度mss在达到阈-值或者发现丢包之前拥塞窗口按指数级增长imghttpspicture2023-1309715649cosap-beijingmyqcloudcomimgnull-20240123210154605null---注---cwnd-congestionwindow">慢启动   启动速率很低，拥塞窗口初始值为1个最大报文段长度（MSS）。在达到阈 值或者发现丢包之前，拥塞窗口按指数级增长<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%28null%29-20240123210154605.%28null%29"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+>   注：   cwnd: CongestionWindow</h4>
+<h4 id="ai---当拥塞窗口达到阈值时按线性增长">AI   当拥塞窗口达到阈值时，按线性增长<a hidden class="anchor" aria-hidden="true" href="#ai---当拥塞窗口达到阈值时按线性增长">#</a></h4>
+<h4 id="md---出现重发定时器超时拥塞窗口降为最小值1个mss阈值改为超时时刻的拥塞窗口值的一半重新开始新的慢启动">MD   出现重发定时器超时，拥塞窗口降为最小值（1个MSS），阈值改为超时时刻的拥塞窗口值的一半，重新开始新的慢启动。<a hidden class="anchor" aria-hidden="true" href="#md---出现重发定时器超时拥塞窗口降为最小值1个mss阈值改为超时时刻的拥塞窗口值的一半重新开始新的慢启动">#</a></h4>
+<h4 id="快速恢复---收到三个重复的ack时拥塞窗口降为当前窗口的一半开始新的ai">快速恢复   收到三个重复的ACK时，拥塞窗口降为当前窗口的一半，开始新的AI<a hidden class="anchor" aria-hidden="true" href="#快速恢复---收到三个重复的ack时拥塞窗口降为当前窗口的一半开始新的ai">#</a></h4>
+<h4 id="最大最小公平性-max-min-fairness">最大最小公平性 (Max-Min Fairness)<a hidden class="anchor" aria-hidden="true" href="#最大最小公平性-max-min-fairness">#</a></h4>
+<p>基本含义：使得资源分配向量的最小分量的值最大，防止任何网络流被‘饿死’，同时在一定程度上尽可能增加每个流的速率。</p>
+<p>原则：一个信道上，在满足最小需求的前提下，各流尽量均分带宽；如果增加任何一个参与者（分量）的带宽，将导致其它的具有相同或者更少带宽的参与者（分量）的带宽下降，此时即满足了最大最小公平性</p>
+<blockquote>
+<p>In Figure 6-20, suppose a new flow E is added that takes a path from R1 to R2 to R6. How does the max-min bandwidth allocation change for the five flows?</p>
+<p>习题8：在书图6-20（即下图）中，假设加入了一个新的流E，它的路径是从R1到R2、R2再到R6。请问对于5个流的最大－最小带宽分配有什么变化？</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%28null%29-20240123210154980.%28null%29"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<p>解题思路：本题考查对于最大最小公平性原则的理解。在带宽分配中，如果增加任一个流的带宽，不会减少最小带宽需求的流的带宽，则该分配方式满足最大最小公平性原则。</p>
+<p>答：流A和E在R1-R2均分带宽。由于A不是占用带宽最小的流，从2/3降为1/2没有违反最大-最小公平性原则。</p>
+<p>在链路R1-R2上，A分配1/2带宽，在R2-R3上继续分配1/2带宽；</p>
+<p>在链路R1-R2上，E分配1/2带宽, 在R2-R6上继续分配1/2带宽；</p>
+<p>其他流（B、C、D）的带宽分配不变。</p>
+</blockquote>
+<h4 id="tcp拥塞控制过程">TCP拥塞控制过程<a hidden class="anchor" aria-hidden="true" href="#tcp拥塞控制过程">#</a></h4>
+<p>慢启动，AIMD</p>
+<p>发送窗口=min(接收窗口，拥塞窗口)</p>
+<p>发生超时，则阈值＝超时时刻的拥塞窗口值/2</p>
+<h3 id="nagle算法发送端--积累要发送的数据一次尽可能发送较大的数据量1个mss">Nagle算法（发送端）  积累要发送的数据，一次尽可能发送较大的数据量（1个MSS）<a hidden class="anchor" aria-hidden="true" href="#nagle算法发送端--积累要发送的数据一次尽可能发送较大的数据量1个mss">#</a></h3>
+<h3 id="clark算法接收端--等待空闲的接收缓冲区变大只在有较大缓存至少为12-mss时才发送窗口更新通知">Clark算法（接收端）  等待空闲的接收缓冲区变大，只在有较大缓存（至少为1/2 MSS）时，才发送窗口更新通知<a hidden class="anchor" aria-hidden="true" href="#clark算法接收端--等待空闲的接收缓冲区变大只在有较大缓存至少为12-mss时才发送窗口更新通知">#</a></h3>
+<h3 id="jacobson算法--估计端到端环回时延rtt--rtt_估值alpha-times-rtt_估值的历史值--1---alpha-times-rtt_测量值">Jacobson算法  估计端到端环回时延RTT  $$RTT_{估值}=\alpha \times RTT_{估值的历史值} + (1 - \alpha) \times RTT_{测量值}$$<a hidden class="anchor" aria-hidden="true" href="#jacobson算法--估计端到端环回时延rtt--rtt_估值alpha-times-rtt_估值的历史值--1---alpha-times-rtt_测量值">#</a></h3>
+<h2 id="传输层协议">传输层协议<a hidden class="anchor" aria-hidden="true" href="#传输层协议">#</a></h2>
+<h4 id="udp">UDP<a hidden class="anchor" aria-hidden="true" href="#udp">#</a></h4>
+<p>提供无连接、尽力而为的传输服务，采用校验和方式进行差错检测 ，不提供差错恢复功能。 UDP保留发送方和接收方之间的消息边界</p>
+<p>使用UDP的协议：DNS、DHCP、RIP等</p>
+<h5 id="段头格式">段头格式<a hidden class="anchor" aria-hidden="true" href="#段头格式">#</a></h5>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%28null%29-20240123210155297.%28null%29"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<h5 id="校验和计算">校验和计算<a hidden class="anchor" aria-hidden="true" href="#校验和计算">#</a></h5>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%28null%29-20240123210155575.%28null%29"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<h4 id="tcp">TCP<a hidden class="anchor" aria-hidden="true" href="#tcp">#</a></h4>
+<p>提供面向连接的、可靠的字节流服务，不保证应用层的消息边界</p>
+<h5 id="段格式">段格式<a hidden class="anchor" aria-hidden="true" href="#段格式">#</a></h5>
+<p>段头（20或更多字节）</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%28null%29-20240123210155826.%28null%29"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%28null%29-20240123210156094.%28null%29"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<h5 id="校验和">校验和<a hidden class="anchor" aria-hidden="true" href="#校验和">#</a></h5>
+<p>Provides extra reliability</p>
+<p>It checksums the <strong>header</strong>, the <strong>data</strong>, and the <strong>conceptualpseudo-header</strong></p>
+<p>Pseudo-header: helps detect mis-delivered packets Checksum is mandatory(TCP中的校验和是必须支持的)</p>
+<h5 id="options-in-header">Options in Header<a hidden class="anchor" aria-hidden="true" href="#options-in-header">#</a></h5>
+<ul>
+<li>MSS(Maximum Segment Size)
+<ul>
+<li>连接建立时协商</li>
+<li>收发方向的MSS可以不同</li>
+</ul>
+</li>
+<li>Window scale
+<ul>
+<li>允许双方在连接开始时协商</li>
+<li>最大可达 $$2^{30$$ 字节</li>
+</ul>
+</li>
+<li>Timestamp</li>
+<li>SACK
+<ul>
+<li>选择性确认</li>
+</ul>
+</li>
+</ul>
+<h5 id="三步建立连接四步释放连接">三步建立连接，四步释放连接<a hidden class="anchor" aria-hidden="true" href="#三步建立连接四步释放连接">#</a></h5>
+<p>建立连接（客户端确认“服务器的确认”😀）</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%28null%29-20240123210156371.%28null%29"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<p>释放连接（主动方等被动方的遗言，然后确认“被动方的确认”😀）</p>
+<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%28null%29-20240123210156619.%28null%29"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.css"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.js"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        &copy; 
+        
+        2024 Bethel<br>共 200.85k 字 · 共 23 篇文章
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://stack.jimmycai.com/" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> 由 <a href="https://jimmycai.com/" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
+
+
+<script src="https://mecdn.mcserverx.com/gh/zhixuan2333/gh-blog/master/js/nprogress.min.js" integrity="sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://mecdn.mcserverx.com/gh/zhixuan2333/gh-blog/master/css/nprogress.css" integrity="sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE" crossorigin="anonymous" />
+<script>
+    NProgress.start();
+    document.addEventListener("readystatechange", () => {
+        if (document.readyState === "interactive") NProgress.inc(0.8);
+        if (document.readyState === "complete") NProgress.done();
+    });
+</script>
+    </body>
+</html>
