@@ -73,8 +73,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -170,13 +169,10 @@
     "hiddenItems": {
       "switcher:打开快速切换": false,
       "templates:插入模板": false,
-      "command-palette:打开命令面板": false,
-      "file-tree-alternative:File Tree Alternative Plugin": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "flashcards-obsidian:Generate flashcards": false
+      "command-palette:打开命令面板": false
     }
   },
-  "active": "195759f4b3f0aa6f",
+  "active": "03fbcaa50a44b6c7",
   "lastOpenFiles": [
     "content/post/计算机网络/6 应用层.md",
     "content/post/计算机网络/5 传输层.md",
