@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/post/计算机组成原理/test.md",
+                "file": "content/post/计算机网络/6 应用层.md",
                 "mode": "source",
                 "source": false
               }
@@ -38,7 +38,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "content/post/计算机组成原理/test.md"
+                "file": "content/post/计算机网络/6 应用层.md"
               }
             }
           },
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "content/post/计算机组成原理/test.md",
+                "file": "content/post/计算机网络/6 应用层.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "content/post/计算机组成原理/test.md",
+                "file": "content/post/计算机网络/6 应用层.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -179,7 +179,12 @@
   "active": "062788e87a1cf5bb",
   "lastOpenFiles": [
     "content/post/计算机网络/5 传输层.md",
+    "content/post/计算机网络/4 网络层.md",
+    "content/post/计算机网络/3 数据链路层.md",
+    "content/post/计算机网络/2 物理层.md",
+    "content/post/计算机网络/1 计算机网络体系结构.md",
     "content/post/计算机组成原理/test.md",
+    "content/post/数据结构/外部排序.md",
     "_templates/template~.md",
     "_templates/template.md",
     "public/categories/计算机基础/index.xml",
@@ -196,10 +201,8 @@
     "_templates/template_副本~.md",
     "content/post/计算机网络/6 应用层.md",
     "content/post/计算机网络/5 传输层~.md",
-    "content/post/计算机网络/4 网络层.md",
     "content/post/计算机网络/4 网络层~.md",
     "content/post/数据结构/8 排序.md",
-    "content/post/数据结构/外部排序.md",
     "content/post/数据结构/7 查找.md",
     "content/post/数据结构/6 图.md",
     "content/post/数据结构/5 树与二叉树.md",
@@ -208,13 +211,10 @@
     "content/post/数据结构/查找.md",
     "content/post/数据结构/图.md",
     "content/post/数据结构/树.md",
-    "content/post/计算机网络/3 数据链路层.md",
     "content/post/计算机网络/3 数据链路层~.md",
     "content/post/数据结构/3 栈、队列和数组.md",
-    "content/post/计算机网络/2 物理层.md",
     "content/post/数据结构/3 栈、队列和数组~.md",
     "content/post/数据结构/2 线性表.md",
-    "content/post/计算机网络/1 计算机网络体系结构.md",
     "content/post/计算机网络/1 计算机网络体系结构.assets/image-20240118215417554.png",
     "content/post/计算机网络/1 计算机网络体系结构.assets/image-20240118184111807.png",
     "themes/hugo-theme-stack/assets/img/avatar.png",
