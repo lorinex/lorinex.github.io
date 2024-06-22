@@ -23,11 +23,6 @@ permalinks:
 
 params:
     languages:
-    # en:
-    #     languageName: English
-    #     title: Xalaok's Blog
-    #     description: Blog
-    #     weight: 2
     zh-cn:
         languageName: 中文
         title: Bethel 
