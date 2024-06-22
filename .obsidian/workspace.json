@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/post/计算机网络/6 应用层.md",
+                "file": "content/post/计算机组成原理/test 1.md",
                 "mode": "source",
                 "source": false
               }
@@ -38,7 +38,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "content/post/计算机网络/6 应用层.md"
+                "file": "content/post/计算机组成原理/test 1.md"
               }
             }
           },
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 334.5
+    "width": 356.5
   },
   "right": {
     "id": "bad03ea09745a182",
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "content/post/计算机网络/6 应用层.md",
+                "file": "content/post/计算机组成原理/test 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "content/post/计算机网络/6 应用层.md",
+                "file": "content/post/计算机组成原理/test 1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -178,6 +178,9 @@
   },
   "active": "062788e87a1cf5bb",
   "lastOpenFiles": [
+    "content/post/计算机网络/6 应用层.md",
+    "content/post/计算机组成原理/test 1.md",
+    "_templates/template~.md",
     "content/post/计算机网络/5 传输层.md",
     "content/post/计算机网络/4 网络层.md",
     "content/post/计算机网络/3 数据链路层.md",
@@ -185,7 +188,6 @@
     "content/post/计算机网络/1 计算机网络体系结构.md",
     "content/post/计算机组成原理/test.md",
     "content/post/数据结构/外部排序.md",
-    "_templates/template~.md",
     "_templates/template.md",
     "public/categories/计算机基础/index.xml",
     "public/categories/数据结构和算法/index.xml",
@@ -199,7 +201,6 @@
     "public/post/2-物理层",
     "resources/_gen/images/img/tx_hu92c04046da3d4074953cad185e3935e5_62559_300x0_resize_q75_box.jpg",
     "_templates/template_副本~.md",
-    "content/post/计算机网络/6 应用层.md",
     "content/post/计算机网络/5 传输层~.md",
     "content/post/计算机网络/4 网络层~.md",
     "content/post/数据结构/8 排序.md",
@@ -214,7 +215,6 @@
     "content/post/计算机网络/3 数据链路层~.md",
     "content/post/数据结构/3 栈、队列和数组.md",
     "content/post/数据结构/3 栈、队列和数组~.md",
-    "content/post/数据结构/2 线性表.md",
     "content/post/计算机网络/1 计算机网络体系结构.assets/image-20240118215417554.png",
     "content/post/计算机网络/1 计算机网络体系结构.assets/image-20240118184111807.png",
     "themes/hugo-theme-stack/assets/img/avatar.png",
