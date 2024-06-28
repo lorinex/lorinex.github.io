@@ -231,10 +231,6 @@
       <ol>
         <li><a href="#流量控制拥塞控制">流量控制，拥塞控制</a>
           <ol>
-            <li><a href="#慢启动---启动速率很低拥塞窗口初始值为1个最大报文段长度mss在达到阈-值或者发现丢包之前拥塞窗口按指数级增长imghttpspicture2023-1309715649cosap-beijingmyqcloudcomimgnull-20240123210154605null---注---cwnd-congestionwindow">慢启动   启动速率很低，拥塞窗口初始值为1个最大报文段长度（MSS）。在达到阈 值或者发现丢包之前，拥塞窗口按指数级增长<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/(null)-20240123210154605.(null)" alt="img">   注：   cwnd: CongestionWindow</a></li>
-            <li><a href="#ai---当拥塞窗口达到阈值时按线性增长">AI   当拥塞窗口达到阈值时，按线性增长</a></li>
-            <li><a href="#md---出现重发定时器超时拥塞窗口降为最小值1个mss阈值改为超时时刻的拥塞窗口值的一半重新开始新的慢启动">MD   出现重发定时器超时，拥塞窗口降为最小值（1个MSS），阈值改为超时时刻的拥塞窗口值的一半，重新开始新的慢启动。</a></li>
-            <li><a href="#快速恢复---收到三个重复的ack时拥塞窗口降为当前窗口的一半开始新的ai">快速恢复   收到三个重复的ACK时，拥塞窗口降为当前窗口的一半，开始新的AI</a></li>
             <li><a href="#最大最小公平性-max-min-fairness">最大最小公平性 (Max-Min Fairness)</a></li>
             <li><a href="#tcp拥塞控制过程">TCP拥塞控制过程</a></li>
           </ol>
@@ -354,7 +350,7 @@
 </blockquote>
 <h2 id="算法">算法<a hidden class="anchor" aria-hidden="true" href="#算法">#</a></h2>
 <h3 id="流量控制拥塞控制">流量控制，拥塞控制<a hidden class="anchor" aria-hidden="true" href="#流量控制拥塞控制">#</a></h3>
-<h4 id="慢启动---启动速率很低拥塞窗口初始值为1个最大报文段长度mss在达到阈-值或者发现丢包之前拥塞窗口按指数级增长imghttpspicture2023-1309715649cosap-beijingmyqcloudcomimgnull-20240123210154605null---注---cwnd-congestionwindow">慢启动   启动速率很低，拥塞窗口初始值为1个最大报文段长度（MSS）。在达到阈 值或者发现丢包之前，拥塞窗口按指数级增长<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%28null%29-20240123210154605.%28null%29"
+<p>慢启动   启动速率很低，拥塞窗口初始值为1个最大报文段长度（MSS）。在达到阈 值或者发现丢包之前，拥塞窗口按指数级增长<img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/%28null%29-20240123210154605.%28null%29"
 	
 	
 	
@@ -363,10 +359,10 @@
 		alt="img"
 	
 	
->   注：   cwnd: CongestionWindow</h4>
-<h4 id="ai---当拥塞窗口达到阈值时按线性增长">AI   当拥塞窗口达到阈值时，按线性增长<a hidden class="anchor" aria-hidden="true" href="#ai---当拥塞窗口达到阈值时按线性增长">#</a></h4>
-<h4 id="md---出现重发定时器超时拥塞窗口降为最小值1个mss阈值改为超时时刻的拥塞窗口值的一半重新开始新的慢启动">MD   出现重发定时器超时，拥塞窗口降为最小值（1个MSS），阈值改为超时时刻的拥塞窗口值的一半，重新开始新的慢启动。<a hidden class="anchor" aria-hidden="true" href="#md---出现重发定时器超时拥塞窗口降为最小值1个mss阈值改为超时时刻的拥塞窗口值的一半重新开始新的慢启动">#</a></h4>
-<h4 id="快速恢复---收到三个重复的ack时拥塞窗口降为当前窗口的一半开始新的ai">快速恢复   收到三个重复的ACK时，拥塞窗口降为当前窗口的一半，开始新的AI<a hidden class="anchor" aria-hidden="true" href="#快速恢复---收到三个重复的ack时拥塞窗口降为当前窗口的一半开始新的ai">#</a></h4>
+>   注：   cwnd: CongestionWindow</p>
+<p>AI   当拥塞窗口达到阈值时，按线性增长
+MD   出现重发定时器超时，拥塞窗口降为最小值（1个MSS），阈值改为超时时刻的拥塞窗口值的一半，重新开始新的慢启动。
+快速恢复   收到三个重复的ACK时，拥塞窗口降为当前窗口的一半，开始新的AI</p>
 <h4 id="最大最小公平性-max-min-fairness">最大最小公平性 (Max-Min Fairness)<a hidden class="anchor" aria-hidden="true" href="#最大最小公平性-max-min-fairness">#</a></h4>
 <p>基本含义：使得资源分配向量的最小分量的值最大，防止任何网络流被‘饿死’，同时在一定程度上尽可能增加每个流的速率。</p>
 <p>原则：一个信道上，在满足最小需求的前提下，各流尽量均分带宽；如果增加任何一个参与者（分量）的带宽，将导致其它的具有相同或者更少带宽的参与者（分量）的带宽下降，此时即满足了最大最小公平性</p>
@@ -610,9 +606,11 @@
         
             
         
+            
+        
         &copy; 
         
-        2024 Bethel<br>共 200.85k 字 · 共 23 篇文章
+        2024 Bethel<br>共 200.85k 字 · 共 24 篇文章
     </section>
     
     <section class="powerby">

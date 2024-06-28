@@ -5,6 +5,16 @@
         <link>http://localhost:1313/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</link>
         <description>Recent content in 计算机组成原理 on Bethel</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>zh-cn</language><atom:link href="http://localhost:1313/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+        <language>zh-cn</language>
+        <lastBuildDate>Sat, 22 Jun 2024 22:36:42 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>test</title>
+        <link>http://localhost:1313/post/test/</link>
+        <pubDate>Sat, 22 Jun 2024 22:36:42 +0000</pubDate>
+        
+        <guid>http://localhost:1313/post/test/</guid>
+        <description>&lt;p&gt;test&lt;/p&gt;
+</description>
+        </item>
+        
     </channel>
 </rss>

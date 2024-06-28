@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Mass-Storage Structure Disk Structure Disk Attachment Disk Scheduling※ FCFS SSTF SCAN scan得先到199在回去 199-53&#43;199-14 C-SCAN 从199-0这一段也要计算 199-53&#43;199&#43;37 LOOK C-LOOK Disk Management Swap-Space Management'>
-<title>8 Mass-Storage Structure | Bethel's Blog</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='test'>
+<title>test | Bethel's Blog</title>
 
-<link rel='canonical' href='http://localhost:1313/post/8-mass-storage-structure/'>
+<link rel='canonical' href='http://localhost:1313/post/test/'>
 
 <link rel="stylesheet" href="/scss/style.min.c3c7ecff622b4ad3ac6aacf17244c017cc674f0e82b470bfb8f4de85243313d0.css"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"K3aYNEt3ZeYoZwhE",ck:"K3aYNEt3ZeYoZwhE"})</script>
 <script async src="https://umami.xalaok.top/uanalytics" data-website-id="095ee454-e560-4d9b-bf1c-869f8529c17f"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script><meta property='og:title' content='8 Mass-Storage Structure'>
-<meta property='og:description' content='Mass-Storage Structure Disk Structure Disk Attachment Disk Scheduling※ FCFS SSTF SCAN scan得先到199在回去 199-53&#43;199-14 C-SCAN 从199-0这一段也要计算 199-53&#43;199&#43;37 LOOK C-LOOK Disk Management Swap-Space Management'>
-<meta property='og:url' content='http://localhost:1313/post/8-mass-storage-structure/'>
+<script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script><meta property='og:title' content='test'>
+<meta property='og:description' content='test'>
+<meta property='og:url' content='http://localhost:1313/post/test/'>
 <meta property='og:site_name' content='Bethel'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-01-05T15:38:45&#43;00:00'/><meta property='article:modified_time' content='2024-01-05T15:38:45&#43;00:00'/>
-<meta name="twitter:title" content="8 Mass-Storage Structure">
-<meta name="twitter:description" content="Mass-Storage Structure Disk Structure Disk Attachment Disk Scheduling※ FCFS SSTF SCAN scan得先到199在回去 199-53&#43;199-14 C-SCAN 从199-0这一段也要计算 199-53&#43;199&#43;37 LOOK C-LOOK Disk Management Swap-Space Management">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-06-22T22:36:42&#43;00:00'/><meta property='article:modified_time' content='2024-06-22T22:36:42&#43;00:00'/>
+<meta name="twitter:title" content="test">
+<meta name="twitter:description" content="test">
     <link rel="shortcut icon" href="/favicon.png" />
 <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont@1.7.0/lxgwwenkaigbscreen.css" />
     </head>
@@ -205,51 +205,7 @@
     </ol>
 </aside>
 
-    <aside class="sidebar right-sidebar sticky">
-        
-            
-                
-    <section class="widget archives">
-        <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">目录</h2>
-        
-        <div class="widget--toc">
-            <nav id="TableOfContents">
-  <ol>
-    <li><a href="#disk-structure">Disk Structure</a></li>
-    <li><a href="#disk-attachment">Disk Attachment</a></li>
-    <li><a href="#disk-scheduling">Disk Scheduling※</a>
-      <ol>
-        <li><a href="#fcfs">FCFS</a></li>
-        <li><a href="#sstf">SSTF</a></li>
-        <li><a href="#scan">SCAN</a></li>
-        <li><a href="#c-scan">C-SCAN</a></li>
-        <li><a href="#look">LOOK</a></li>
-        <li><a href="#c-look">C-LOOK</a></li>
-      </ol>
-    </li>
-    <li><a href="#disk-management">Disk Management</a></li>
-    <li><a href="#swap-space-management">Swap-Space Management</a></li>
-  </ol>
-</nav>
-        </div>
-    </section>
-
-            
-        
-    </aside>
-
+    
 
             <main class="main full-width">
     <article class="main-article">
@@ -259,8 +215,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/os/" style="background-color: #2a9d8f; color: #fff;">
-                操作系统
+            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="background-color: #2a9d8f; color: #fff;">
+                计算机组成原理
             </a>
         
     </header>
@@ -268,7 +224,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/post/8-mass-storage-structure/">8 Mass-Storage Structure</a>
+            <a href="/post/test/">test</a>
         </h2>
     
         
@@ -290,7 +246,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2024-01-05</time>
+                <time class="article-time--published">2024-06-22</time>
             </div>
         
 
@@ -318,7 +274,7 @@
   <path d="M13.5 6.5l4 4" />
 </svg>
                 <time class="article-words">
-                    字数: 56 字
+                    字数: 1 字
                 </time>
             </div>
         
@@ -333,82 +289,7 @@
     <section class="article-content">
     
     
-    <h1 id="mass-storage-structure">Mass-Storage Structure<a hidden class="anchor" aria-hidden="true" href="#mass-storage-structure">#</a></h1>
-<h2 id="disk-structure">Disk Structure<a hidden class="anchor" aria-hidden="true" href="#disk-structure">#</a></h2>
-<h2 id="disk-attachment">Disk Attachment<a hidden class="anchor" aria-hidden="true" href="#disk-attachment">#</a></h2>
-<h2 id="disk-scheduling">Disk Scheduling※<a hidden class="anchor" aria-hidden="true" href="#disk-scheduling">#</a></h2>
-<h3 id="fcfs">FCFS<a hidden class="anchor" aria-hidden="true" href="#fcfs">#</a></h3>
-<p><img src="/Library/Application%20Support/typora-user-images/image-20240105154647558.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20240105154647558"
-	
-	
-></p>
-<h3 id="sstf">SSTF<a hidden class="anchor" aria-hidden="true" href="#sstf">#</a></h3>
-<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240105154709617.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20240105154709617"
-	
-	
-></p>
-<h3 id="scan">SCAN<a hidden class="anchor" aria-hidden="true" href="#scan">#</a></h3>
-<p>scan得先到199在回去</p>
-<p>199-53+199-14</p>
-<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240105154727755.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20240105154727755"
-	
-	
-></p>
-<h3 id="c-scan">C-SCAN<a hidden class="anchor" aria-hidden="true" href="#c-scan">#</a></h3>
-<p>从199-0这一段也要计算</p>
-<p>199-53+199+37</p>
-<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240105154749652.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20240105154749652"
-	
-	
-></p>
-<h3 id="look">LOOK<a hidden class="anchor" aria-hidden="true" href="#look">#</a></h3>
-<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240105154812358.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20240105154812358"
-	
-	
-></p>
-<h3 id="c-look">C-LOOK<a hidden class="anchor" aria-hidden="true" href="#c-look">#</a></h3>
-<p><img src="https://picture2023-1309715649.cos.ap-beijing.myqcloud.com/img/image-20240105154842588.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20240105154842588"
-	
-	
-></p>
-<h2 id="disk-management">Disk Management<a hidden class="anchor" aria-hidden="true" href="#disk-management">#</a></h2>
-<h2 id="swap-space-management">Swap-Space Management<a hidden class="anchor" aria-hidden="true" href="#swap-space-management">#</a></h2>
+    <p>test</p>
 
 </section>
 

@@ -3,15 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2024-01-23T21:03:54+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/post/6-%E5%BA%94%E7%94%A8%E5%B1%82/</loc>
-    <lastmod>2024-01-23T21:03:54+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2024-01-23T21:03:54+00:00</lastmod>
+    <lastmod>2024-06-22T22:49:06+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/post/</loc>
+    <lastmod>2024-06-22T22:49:06+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/</loc>
+    <lastmod>2024-06-22T22:36:42+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/test/</loc>
+    <lastmod>2024-06-22T22:36:42+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</loc>
+    <lastmod>2024-06-22T22:36:42+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/6-%E5%BA%94%E7%94%A8%E5%B1%82/</loc>
     <lastmod>2024-01-23T21:03:54+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</loc>
@@ -77,15 +83,6 @@
     <loc>http://localhost:1313/post/6-main-memory-and-virtual-memory/</loc>
     <lastmod>2023-12-25T19:54:47+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2023-11-01T14:57:20+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84408/</loc>
-    <lastmod>2023-11-01T14:57:20+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2023-11-01T14:57:20+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/post/%E5%A4%96%E9%83%A8%E6%8E%92%E5%BA%8F/</loc>
     <lastmod>2023-11-01T14:57:20+00:00</lastmod>
   </url><url>
@@ -108,8 +105,6 @@
     <lastmod>2023-01-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
-  </url><url>
-    <loc>http://localhost:1313/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</loc>
   </url><url>
     <loc>http://localhost:1313/search/</loc>
   </url>
