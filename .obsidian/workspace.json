@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/post/OS/1   Introduction.md",
-                "mode": "source",
+                "file": "content/post/数据结构/1 绪论.md",
+                "mode": "preview",
                 "source": false
               }
             }
@@ -38,7 +38,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "content/post/OS/1   Introduction.md"
+                "file": "content/post/数据结构/1 绪论.md"
               }
             }
           },
@@ -73,7 +73,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -93,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "content/post/OS/1   Introduction.md",
+                "file": "content/post/数据结构/1 绪论.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "content/post/OS/1   Introduction.md",
+                "file": "content/post/数据结构/1 绪论.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -177,6 +178,8 @@
   },
   "active": "195759f4b3f0aa6f",
   "lastOpenFiles": [
+    "content/post/数据结构/2 线性表.md",
+    "content/post/OS/1   Introduction.md",
     "content/post/计算机网络/2 物理层.md",
     "content/post/计算机组成原理/test.md",
     "content/post/计算机组成原理/test 1.md",
@@ -212,8 +215,6 @@
     "content/post/数据结构/图.md",
     "content/post/数据结构/树.md",
     "content/post/计算机网络/3 数据链路层~.md",
-    "content/post/数据结构/3 栈、队列和数组.md",
-    "content/post/数据结构/3 栈、队列和数组~.md",
     "content/post/计算机网络/1 计算机网络体系结构.assets/image-20240118215417554.png",
     "content/post/计算机网络/1 计算机网络体系结构.assets/image-20240118184111807.png",
     "themes/hugo-theme-stack/assets/img/avatar.png",
