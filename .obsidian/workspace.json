@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/post/数据结构/1 绪论.md",
-                "mode": "preview",
+                "file": "content/post/OS/1   Introduction.md",
+                "mode": "source",
                 "source": false
               }
             }
@@ -38,7 +38,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "content/post/数据结构/1 绪论.md"
+                "file": "content/post/OS/1   Introduction.md"
               }
             }
           },
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "content/post/数据结构/1 绪论.md",
+                "file": "content/post/OS/1   Introduction.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "content/post/数据结构/1 绪论.md",
+                "file": "content/post/OS/1   Introduction.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -178,6 +178,7 @@
   },
   "active": "195759f4b3f0aa6f",
   "lastOpenFiles": [
+    "content/post/数据结构/1 绪论.md",
     "content/post/数据结构/2 线性表.md",
     "content/post/OS/1   Introduction.md",
     "content/post/计算机网络/2 物理层.md",
@@ -214,7 +215,6 @@
     "content/post/数据结构/查找.md",
     "content/post/数据结构/图.md",
     "content/post/数据结构/树.md",
-    "content/post/计算机网络/3 数据链路层~.md",
     "content/post/计算机网络/1 计算机网络体系结构.assets/image-20240118215417554.png",
     "content/post/计算机网络/1 计算机网络体系结构.assets/image-20240118184111807.png",
     "themes/hugo-theme-stack/assets/img/avatar.png",

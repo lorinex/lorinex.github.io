@@ -312,7 +312,7 @@ When an interrupt or fault occurs hardware switches to kernel mode.
 		- 由指令引起的异常，如非法操作码、缺页故障、除数为0、运算溢出。
 	- 自陷(trap)
 		- 软件中断
-		- 在用户态调用操作系统内核程序，如条件陷入、系统调用。
+		- 在用户态调用操作系统内核程序，如条件陷入、系统调用、虚拟内存缺页。
 	- 终止(abort)
 		- 硬件中断
 		- 出现了使得CPU无法继续执行的硬件故障。
